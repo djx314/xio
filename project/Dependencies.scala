@@ -3,8 +3,6 @@ import sbt.Keys._
 
 trait Dependencies {
 
-
-
   val zioLoggingVersion = "0.4.0"
   val zio = Seq(
     "dev.zio" %% "zio"               % "1.0.0",
@@ -12,9 +10,6 @@ trait Dependencies {
     "dev.zio" %% "zio-logging"       % zioLoggingVersion,
     "dev.zio" %% "zio-logging-slf4j" % zioLoggingVersion
   )
-
-
-
 
   val circeVersion = "0.14.0-M1"
 
@@ -25,17 +20,6 @@ trait Dependencies {
     //"io.circe" %% "circe-optics",
     //"io.circe" %% "circe-generic-extras"
   ).map(_ % circeVersion)
-
-
-
-
-
-
-
-
-
-
-
 
 }
 
