@@ -30,10 +30,10 @@ class NatPairPositive[Tail <: NatPair, HeadT, HeadR](val tail: Tail, val head: H
   self =>
   override type Self               = NatPairPositive[Tail, HeadT, HeadR]
   override type Next[T, R]         = NatPairPositive[NatPairPositive[Tail, HeadT, HeadR], T, R]
-  override type Plus[O <: NatPair] = Tail#Plus[O]#Next[HeadT, HeadR]
+  override type Plus[O <: NatPair] = NatPairPositive[Tail#Plus[O], HeadT, HeadR]
   override def selfNatPair: NatPairPositive[Tail, HeadT, HeadR]                             = self
   override def next[T, R](p: T): NatPairPositive[NatPairPositive[Tail, HeadT, HeadR], T, R] = new NatPairPositive(tail = self, head = p)
-  override def plus[O <: NatPair](n: O): Tail#Plus[O]#Next[HeadT, HeadR]                    = tail.plus(n).next(head)
+  override def plus[O <: NatPair](n: O): NatPairPositive[Tail#Plus[O], HeadT, HeadR]        = new NatPairPositive(tail = tail.plus(n), head = head)
 
   override def toString: String = s"${tail} :: ${head}"
 }
