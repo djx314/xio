@@ -1,6 +1,6 @@
 package xio.nat
 
-trait AddNat {1
+trait AddNat {
   type U[N <: Nat] <: Nat
 }
 
