@@ -14,7 +14,7 @@ object NatPairFilter {
   implicit val natFilterZero: NatPairFilter.Aux[NatPairZero, NatZero] =
     new NatPairFilter[NatPairZero] {
       override type R = NatZero
-      override def filter(t: NatPairZero): NatZero = NatZero.value
+      override def filter(t: NatPairZero): NatZero = NatZero
     }
 
   implicit def natFilterPositive2[PairTail <: NatPair, HeadT, HeadR, NatTail <: Nat, NN <: AddNat](implicit

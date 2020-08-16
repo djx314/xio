@@ -9,7 +9,7 @@ trait BottomNat {
 
 class BottomNatZero extends BottomNat {
   override type AppendBottom[T] = NatPositive[NatZero, T]
-  override def appendBottom[T](t: T): NatPositive[NatZero, T] = new NatPositive(NatZero.value, t)
+  override def appendBottom[T](t: T): NatPositive[NatZero, T] = new NatPositive(NatZero, t)
 }
 
 object BottomNatZero {
