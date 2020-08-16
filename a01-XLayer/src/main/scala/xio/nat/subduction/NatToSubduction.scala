@@ -11,7 +11,7 @@ trait NatToSubduction[P1 <: Nat, P2 <: Nat] {
 object NatToSubduction {
 
   implicit def subductionNatPositiveImplicit[P1 <: Nat, P2 <: Nat](implicit
-    cv: P2#Plus[P1]#消融1[P2#ToAbove]#NatN <:< P1,
+    cv: P2#Plus[P1]#消融1[P2#ToAbove] <:< AboveNatPairImpl[AboveNatZero, P1],
     cv2: P2#Plus[P1]#PlusBottom[P1#ToBottom] <:< P2,
     n1: NatToAbove[P2#ToAbove],
     n2: NatToBottom[P1#ToBottom]

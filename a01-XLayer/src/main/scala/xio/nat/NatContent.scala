@@ -1,14 +1,14 @@
 package xio.nat
 
-trait NatContent[T <: Nat] {
-  def content: T
+trait NatContent[T1 <: Nat, T2 <: Nat] {
+  def content(t: T1): T2
 }
 
 object NatContent {
 
-  def apply[N <: Nat, R2 <: Nat](n: N)(implicit cv1: NatToTag[R2#ToTag], imp2: NatPairFilter.Aux[N#Multiply[R2], R2]): NatContent[R2] =
-    new NatContent[R2] {
-      override def content: R2 = imp2.filter(n.multiply(cv1))
+  implicit def natContentImplicit[N <: Nat, R2 <: Nat](implicit cv1: NatToTag[R2#ToTag], imp2: NatPairFilter.Aux[N#Multiply[R2], R2]): NatContent[N, R2] =
+    new NatContent[N, R2] {
+      override def content(n: N): R2 = imp2.filter(n.multiply(cv1))
     }
 
 }
