@@ -1,11 +1,10 @@
 package xio.nat
 
-import xio.nat.subduction.{AboveNat, AboveNatPair, AboveNatPairImpl, AboveNatPositive, AboveNatZero, BottomNat, BottomNatPositive, BottomNatZero, NatToAbove, NatToBottom}
+import xio.nat.subduction.{AboveNat, AboveNatPair, AboveNatPairImpl, AboveNatPositive, AboveNatZero, BottomNat, BottomNatPositive, NatToAbove, NatToBottom}
 
 trait Nat extends BottomNat {
 
-  type Next[T] <: Nat
-  override type AppendBottom[T] <: Nat
+  override type Next[T] <: Nat
   type PlusBottom[T <: BottomNat] <: BottomNat
   type ToBottom <: BottomNat
   type ToAbove <: AboveNat
@@ -16,8 +15,7 @@ trait Nat extends BottomNat {
   type 消融1[T <: AboveNat] <: AboveNatPair
   def 消融1[T <: AboveNat](implicit item: NatToAbove[T]): 消融1[T]
 
-  def next[T](t: T): Next[T]
-  override def appendBottom[T](t: T): AppendBottom[T]
+  override def next[T](t: T): Next[T]
   def plusBottom[T <: BottomNat](implicit t: NatToBottom[T]): PlusBottom[T]
   def toBottom: ToBottom
   def toAbove: ToAbove
@@ -29,9 +27,8 @@ trait Nat extends BottomNat {
 class NatZero extends Nat {
   self =>
   override type Next[T]                    = NatPositive[NatZero, T]
-  override type AppendBottom[T]            = NatPositive[NatZero, T]
   override type PlusBottom[T <: BottomNat] = T
-  override type ToBottom                   = BottomNatZero
+  override type ToBottom                   = NatZero
   override type ToAbove                    = AboveNatZero
   override type Pair[T <: Nat]             = T#ToTag#PairNat[NatZero]
   override type Plus[I <: Nat]             = I
@@ -41,9 +38,8 @@ class NatZero extends Nat {
   override def 消融1[T <: AboveNat](implicit item: NatToAbove[T]): AboveNatPairImpl[T, NatZero] = new AboveNatPairImpl(aboveNat = item.tag, natN = self)
 
   override def next[T](t: T): NatPositive[NatZero, T]                                         = new NatPositive(self, t)
-  override def appendBottom[T](t: T): NatPositive[NatZero, T]                                 = new NatPositive(tail = self, head = t)
   override def plusBottom[T <: BottomNat](implicit t: NatToBottom[T]): T                      = t.tag
-  override def toBottom: BottomNatZero                                                        = BottomNatZero.value
+  override def toBottom: NatZero                                                              = self
   override def toAbove: AboveNatZero                                                          = AboveNatZero.value
   override def pair[T <: Nat](implicit natToTag: NatToTag[T#ToTag]): T#ToTag#PairNat[NatZero] = natToTag.tag.pairNat(self)
   override def plus[I <: Nat](i: I): I                                                        = i
@@ -57,8 +53,7 @@ object NatZero extends NatZero
 class NatPositive[Tail <: Nat, Head](val tail: Tail, val head: Head) extends Nat {
   self =>
   override type Next[H]                    = NatPositive[NatPositive[Tail, Head], H]
-  override type AppendBottom[T]            = NatPositive[NatPositive[Tail, Head], T]
-  override type PlusBottom[T <: BottomNat] = Tail#PlusBottom[T]#AppendBottom[Head]
+  override type PlusBottom[T <: BottomNat] = Tail#PlusBottom[T]#Next[Head]
   override type ToBottom                   = BottomNatPositive[Tail#ToBottom]
   override type ToAbove                    = AboveNatPositive[Tail#ToAbove]
   override type Pair[T <: Nat]             = T#ToTag#PairNat[NatPositive[Tail, Head]]
@@ -69,8 +64,7 @@ class NatPositive[Tail <: Nat, Head](val tail: Tail, val head: Head) extends Nat
   override def 消融1[T <: AboveNat](implicit item: NatToAbove[T]): T#消融2[Tail, Head] = item.tag.消融2(tail, head)
 
   override def next[H](h: H): NatPositive[NatPositive[Tail, Head], H]                                         = new NatPositive(tail = self, head = h)
-  override def appendBottom[T](t: T): NatPositive[NatPositive[Tail, Head], T]                                 = new NatPositive(tail = self, head = t)
-  override def plusBottom[T <: BottomNat](implicit t: NatToBottom[T]): Tail#PlusBottom[T]#AppendBottom[Head]  = tail.plusBottom(t).appendBottom(head)
+  override def plusBottom[T <: BottomNat](implicit t: NatToBottom[T]): Tail#PlusBottom[T]#Next[Head]          = tail.plusBottom(t).next(head)
   override def toBottom: BottomNatPositive[Tail#ToBottom]                                                     = new BottomNatPositive(tail.toBottom)
   override def toAbove: AboveNatPositive[Tail#ToAbove]                                                        = new AboveNatPositive(tail.toAbove)
   override def pair[T <: Nat](implicit natToTag: NatToTag[T#ToTag]): T#ToTag#PairNat[NatPositive[Tail, Head]] = natToTag.tag.pairNat(self)
