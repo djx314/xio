@@ -1,4 +1,4 @@
 CustomSettings.scalaSettings
 CustomSettings.compilerSettings
 
-name := "a01-XLayer"
+name := "a03-XError"
