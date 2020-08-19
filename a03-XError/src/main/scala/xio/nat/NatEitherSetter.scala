@@ -32,5 +32,4 @@ trait NatEitherSetterImplicit1 {
     new NatEitherSetter[NatEitherPositive[Tail, Head1], Head2] {
       override def put(item: Head2): NatEitherPositive[Tail, Head1] = new NatSuccess(iImplicit.put(item))
     }
-
 }

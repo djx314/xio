@@ -64,6 +64,7 @@ class NatPositive[Tail <: Nat, Head](val tail: Tail, val head: Head) extends Nat
   override def toAbove: AboveNatPositive[Tail#ToAbove]                                               = new AboveNatPositive(tail.toAbove)
   override def plus[I <: Nat](i: I): NatPositive[Tail#Plus[I], Head]                                 = new NatPositive(tail.plus(i), head)
   override def toTag: TagNatPositive[Tail#ToTag, Head]                                               = new TagNatPositive(tail.toTag)
+  def get[P](implicit headerFunctor: HeaderFunctor[NatPositive[Tail, Head], P]): P                   = headerFunctor.to(self)
 
   override def toString: String = s"${tail} :: ${head}"
 }
