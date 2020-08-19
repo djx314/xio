@@ -3,7 +3,7 @@ package xio.nat
 import xio.nat.subduction.{AboveNat, AboveNatPair, AboveNatPairImpl, AboveNatPositive, AboveNatZero, BottomNat, BottomNatPositive, NatToAbove, NatToBottom}
 
 trait Nat extends BottomNat {
-
+  self =>
   override type Next[T] <: Nat
   type PlusBottom[T <: BottomNat] <: BottomNat
   type ToBottom <: BottomNat

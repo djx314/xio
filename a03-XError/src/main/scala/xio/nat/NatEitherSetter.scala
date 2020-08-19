@@ -16,7 +16,7 @@ object NatEitherSetter extends NatEitherSetterImplicit1 {
 
   implicit def positiveSetter[Tail <: NatEither, Head]: NatEitherSetter[NatEitherPositive[Tail, Head], Head] =
     new NatEitherSetter[NatEitherPositive[Tail, Head], Head] {
-      override def put(item: Head): NatEitherPositive[Tail, Head] = new NatEitherHave(Right(item))
+      override def put(item: Head): NatEitherPositive[Tail, Head] = new NatEitherPositive(Right(item))
     }
 
   implicit def positiveSetterImplicit1[Head]: NatEitherSetter[NatEitherFirst[Head], Head] =
@@ -30,6 +30,6 @@ trait NatEitherSetterImplicit1 {
     iImplicit: NatEitherSetter[Tail, Head2]
   ): NatEitherSetter[NatEitherPositive[Tail, Head1], Head2] =
     new NatEitherSetter[NatEitherPositive[Tail, Head1], Head2] {
-      override def put(item: Head2): NatEitherPositive[Tail, Head1] = new NatSuccess(iImplicit.put(item))
+      override def put(item: Head2): NatEitherPositive[Tail, Head1] = new NatEitherPositive(Left(iImplicit.put(item)))
     }
 }
