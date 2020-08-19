@@ -6,8 +6,6 @@ trait NatEither {
   type Map[I] <: NatEither
   type Current
 
-  def map[I](cv: Current => I): Map[I]
-
 }
 
 class NatEitherFirst[I](val one: I) extends NatEither {
@@ -15,8 +13,6 @@ class NatEitherFirst[I](val one: I) extends NatEither {
   override type Next[I1] = NatEitherPositive[NatEitherFirst[I], I1]
   override type Map[I1]  = NatEitherFirst[I1]
   override type Current  = I
-
-  override def map[I1](cv: Current => I1): NatEitherFirst[I1] = new NatEitherFirst(cv(one))
 
   override def toString: String = s"First(${one})"
 }
@@ -30,8 +26,6 @@ class NatEitherPositive[Pre <: NatEither, I](val either: Either[Pre, I]) extends
   override type Next[I1] = NatEitherPositive[NatEitherPositive[Pre, I], I1]
   override type Map[I1]  = NatEitherPositive[Pre, I1]
   override type Current  = I
-
-  override def map[I1](cv: Current => I1): NatEitherPositive[Pre, I1] = new NatEitherPositive(either.map(cv))
 
   override def toString: String = either.fold(pre => s"${pre} :: success", i => s"Right(${i})")
 }
