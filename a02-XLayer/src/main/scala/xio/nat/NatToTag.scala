@@ -1,16 +1,20 @@
 package xio.nat
 
-trait NatToTag[T <: TagNat] {
+trait NatToTag[T <: TagNat[N], N <: Nat] {
   def tag: T
 }
 
 object NatToTag {
-  implicit val zeroNat: NatToTag[TagNatZero] = new NatToTag[TagNatZero] {
-    override def tag: TagNatZero = TagNatZero.value
-  }
+  implicit def zeroNat[N <: Nat]: NatToTag[TagNatZero[N], N] =
+    new NatToTag[TagNatZero[N], N] {
+      override def tag: TagNatZero[N] = new TagNatZero
+    }
 
-  implicit def positiveNat[Head, TagTail <: TagNat](implicit to: NatToTag[TagTail]): NatToTag[TagNatPositive[TagTail, Head]] =
-    new NatToTag[TagNatPositive[TagTail, Head]] {
-      override def tag: TagNatPositive[TagTail, Head] = new TagNatPositive[TagTail, Head](tail = to.tag)
+  implicit def positiveNat[Head, TagTail <: TagNat[N], N <: Nat](implicit
+    to: NatToTag[TagTail, N],
+    p: HeaderFunctor[N, Head]
+  ): NatToTag[TagNatPositive[N, TagTail, Head], N] =
+    new NatToTag[TagNatPositive[N, TagTail, Head], N] {
+      override def tag: TagNatPositive[N, TagTail, Head] = new TagNatPositive(tail = to.tag, p = p)
     }
 }

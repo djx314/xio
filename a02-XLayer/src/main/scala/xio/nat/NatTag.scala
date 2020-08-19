@@ -1,23 +1,19 @@
 package xio.nat
 
-trait TagNat {
-  type PairNat[N <: Nat] <: NatPair
-  def pairNat[N <: Nat](n: N): PairNat[N]
+trait TagNat[NatModel <: Nat] {
+  type NatTarget <: Nat
+  def n(model: NatModel): NatTarget
 }
 
-class TagNatZero extends TagNat {
+class TagNatZero[N <: Nat] extends TagNat[N] {
   self =>
-  override type PairNat[N <: Nat] = NatPairZero[N]
-  override def pairNat[N <: Nat](n: N): NatPairZero[N] = new NatPairZero(n)
-  override def toString: String                        = "TagNatZero"
+  override type NatTarget = NatZero
+  override def n(model: N): NatZero = NatZero
+  override def toString: String     = "TagNatZero"
 }
 
-object TagNatZero {
-  val value: TagNatZero = new TagNatZero
-}
-
-class TagNatPositive[Tail <: TagNat, Head](val tail: Tail) extends TagNat {
+class TagNatPositive[N <: Nat, Tail <: TagNat[N], Head](val tail: Tail, p: HeaderFunctor[N, Head]) extends TagNat[N] {
   self =>
-  override type PairNat[N <: Nat] = NatPairPositive[Tail#PairNat[N], Head]
-  override def pairNat[N <: Nat](n: N): NatPairPositive[Tail#PairNat[N], Head] = new NatPairPositive(tail = tail.pairNat(n))
+  override type NatTarget = NatPositive[Tail#NatTarget, Head]
+  override def n(model: N): NatPositive[Tail#NatTarget, Head] = new NatPositive(tail.n(model), p.to(model))
 }
