@@ -7,6 +7,12 @@ trait NatReversePlus[N2 <: Nat, N1 <: Nat] {
   def takeTail(t1: PluI): N2
 }
 
+object NatReversePlus {
+  implicit def zeroNat[N2 <: Nat]: NatReversePlus[N2, NatZero] = new NatReversePlusZero
+  implicit def positiveNat[N1Tail <: Nat, N1Head, N2 <: Nat](implicit n: NatReversePlus[N2, N1Tail]): NatReversePlus[N2, NatPositive[N1Tail, N1Head]] =
+    new NatReversePlusPositive(tail = n)
+}
+
 class NatReversePlusZero[N2 <: Nat] extends NatReversePlus[N2, NatZero] {
   override type PluI = N2
   override def plus(t1: NatZero, t2: N2): N2 = t2
