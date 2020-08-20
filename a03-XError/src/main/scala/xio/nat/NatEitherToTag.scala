@@ -1,20 +1,20 @@
 package xio.nat
 
-trait NatEitherToTag[T <: TagNatEitherM[N], N <: NatEither] {
-  def tag(k: T#NatTarget): N
+trait NatEitherToTag[T <: NatEither, N <: NatEither] {
+  def tag(k: T): N
 }
 
 object NatEitherToTag {
-  implicit def zeroNat[N <: NatEither, Head](implicit d: NatEitherSetter[N, Head]): NatEitherToTag[TagNatEitherPositive[N, NatEitherFirst[Head]], N] =
-    new NatEitherToTag[TagNatEitherPositive[N, NatEitherFirst[Head]], N] {
+  implicit def zeroNat[N <: NatEither, Head](implicit d: NatEitherSetter[N, Head]): NatEitherToTag[NatEitherFirst[Head], N] =
+    new NatEitherToTag[NatEitherFirst[Head], N] {
       override def tag(k: NatEitherFirst[Head]): N = d.put(k.one)
     }
 
   implicit def positiveNat[Head, TagTail <: NatEither, N <: NatEither](implicit
-    to: NatEitherToTag[TagNatEitherPositive[N, TagTail], N],
+    to: NatEitherToTag[TagTail, N],
     p: NatEitherSetter[N, Head]
-  ): NatEitherToTag[TagNatEitherPositive[N, NatEitherPositive[TagTail, Head]], N] =
-    new NatEitherToTag[TagNatEitherPositive[N, NatEitherPositive[TagTail, Head]], N] {
+  ): NatEitherToTag[NatEitherPositive[TagTail, Head], N] =
+    new NatEitherToTag[NatEitherPositive[TagTail, Head], N] {
       override def tag(k: NatEitherPositive[TagTail, Head]): N = k.either.fold(pre => to.tag(pre), data => p.put(data))
     }
 }

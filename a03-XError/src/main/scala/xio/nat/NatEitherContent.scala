@@ -11,9 +11,6 @@ object NatEitherContent {
 
   def apply[N1 <: NatEither]: NatEitherContentApply[N1] = new NatEitherContentApply[N1]
 
-  implicit def natContentImplicit[N <: NatEither, R2 <: NatEither](n: NatEitherContent[N])(implicit
-    cv1: NatEitherToTag[N#ToTag[R2], R2],
-    c: N <:< N#ToTag[R2]#NatTarget
-  ): NatEitherContent[R2] = new NatEitherContent(cv1.tag(n.n))
-
+  implicit def natContentImplicit[N <: NatEither, R2 <: NatEither](n: NatEitherContent[N])(implicit cv1: NatEitherToTag[N, R2]): NatEitherContent[R2] =
+    new NatEitherContent(cv1.tag(n.n))
 }
