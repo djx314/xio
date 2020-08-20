@@ -1,7 +1,7 @@
 package xio
 
-import xio.nat.NatContent
-import xio.nat.subduction.NatToSubduction
+import xio.nat.{NatContent, NatReversePlusToTag}
+
 import scala.language.implicitConversions
 
 trait XIO[I <: nat.Nat, E] {
@@ -11,10 +11,10 @@ trait XIO[I <: nat.Nat, E] {
     new XIO[I, E1] {
       override def in(n: I): E1 = cv(self.in(n))
     }
-  def flatMap[I1 <: nat.Nat, E1](cv: E => XIO[I1, E1])(implicit v: NatToSubduction[I, I1]): XIO[I1#Plus[I], E1] =
+  def flatMap[I1 <: nat.Nat, E1](cv: E => XIO[I1, E1])(implicit v: NatReversePlusToTag[I, I1]): XIO[I1#Plus[I], E1] =
     new XIO[I1#Plus[I], E1] {
       override def in(n: I1#Plus[I]): E1 = {
-        cv(self.in(v.takeHead(n))).in(v.takeTail(n))
+        cv(self.in(v.tag.takeTail(n))).in(v.tag.takeHead(n))
       }
     }
 }
