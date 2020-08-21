@@ -3,16 +3,23 @@ import sbt.Keys._
 
 trait CustomSettings {
 
+  val scala_213_Version = "2.13.3"
   val scalaSettings = Seq(
-    //scalacOptions ++= Seq("-feature", "-deprecation", "-Ywarn-unused-import", "-language:existentials")
-    scalacOptions ++= Seq("-feature", "-deprecation" /*, "-Ypartial-unification"*/ ),
-    scalaVersion := "2.13.3"
+    scalacOptions ++= Seq("-feature", "-deprecation"),
+    scalaVersion := scala_213_Version,
+    crossScalaVersions := List("2.12.12", scala_213_Version)
   )
 
-  val compilerSettings = Seq(
-    // scalacOptions += "-Ypartial-unification",
+  protected val scalaOption1 = scalacOptions ++= {
+    if (scalaVersion.value startsWith "2.13") List.empty
+    else List("-Ypartial-unification")
+  }
+
+  // addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full)
+
+  val compilerSettings = List(
+    scalaOption1,
     org.scalafmt.sbt.ScalafmtPlugin.autoImport.scalafmtOnCompile := true
-    // addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full)
   )
 
 }
