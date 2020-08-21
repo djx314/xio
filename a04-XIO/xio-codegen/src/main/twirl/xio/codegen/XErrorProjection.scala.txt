@@ -4,6 +4,7 @@ package xio.nat.error
 
 trait XErrorProjection {
 
+    type _0 = XErrorFirst[NoError]
     @for(i <- 1 to maxItem) {
         type _@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }] = @for(ii <- 2 to i) { XErrorPositive[ } XErrorFirst[T1] @for(ii <- 2 to i) { , T@{ii}] }
     }

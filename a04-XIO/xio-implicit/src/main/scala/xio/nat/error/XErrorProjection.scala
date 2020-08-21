@@ -1,5 +1,6 @@
 package xio.nat.error
 trait XErrorProjection {
+    type _0 = XErrorFirst[NoError]
         type _1[  T1 ] =  XErrorFirst[T1] 
         type _2[  T1   ,  T2 ] =  XErrorPositive[  XErrorFirst[T1]  , T2] 
         type _3[  T1   ,  T2   ,  T3 ] =  XErrorPositive[  XErrorPositive[  XErrorFirst[T1]  , T2]  , T3] 
