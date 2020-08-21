@@ -1,6 +1,8 @@
 package xio
 
-trait XError {
+import xio.nat.error.XErrorProjection
+
+trait XError extends XErrorProjection {
   type Plus[NI <: XError] <: XError
   type RePlus[NI <: XError] <: XError
 }

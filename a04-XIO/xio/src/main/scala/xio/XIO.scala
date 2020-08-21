@@ -1,7 +1,7 @@
 package xio
 
-import xio.nat.error.XErrorReversePlus
-import xio.nat.has.XHasReversePlus
+import xio.nat.error.{NatEitherToTag, XErrorReversePlus}
+import xio.nat.has.{NatToTag, XHasReversePlus}
 import zio.ZIO
 
 import scala.language.implicitConversions
@@ -26,14 +26,20 @@ trait XIO[I <: XHas, L <: XError, R] {
 
 object XIO {
 
-  /*implicit def xioImplicit[I1 <: XHas, I2 <: XHas, E](i: XIO[I1, E])(implicit cv: NatToTag[I1, I2]): XIO[I2, E] =
-    new XIO[I2, E] {
-      override def in(n: I2): E = i.in(cv.tag(n))
-    }*/
+  implicit def xioImplicit[I1 <: XHas, I2 <: XHas, E1 <: XError, E2 <: XError, E](
+    i: XIO[I1, E1, E]
+  )(implicit cv: NatToTag[I1, I2], v: NatEitherToTag[E1, E2]): XIO[I2, E2, E] =
+    new XIO[I2, E2, E] {
+      override def zio: ZIO[I2, E2, E] =
+        for {
+          i2 <- ZIO.identity[I2]
+          u  <- i.zio.provide(cv.tag(i2)).mapError(n => v.tag(n))
+        } yield u
+    }
 
-  def identity[T <: XHas]: XIO[T, Nothing, T] =
-    new XIO[T, Nothing, T] {
-      override def zio: ZIO[T, Nothing, T] = ZIO.identity[T]
+  def identity[T <: XHas]: XIO[T, XError#_0, T] =
+    new XIO[T, XError#_0, T] {
+      override def zio: ZIO[T, XError#_0, T] = ZIO.identity[T]
     }
 
 }
