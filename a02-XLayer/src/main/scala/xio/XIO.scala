@@ -1,6 +1,6 @@
 package xio
 
-import xio.nat.{NatContent, NatReversePlus}
+import xio.nat.{NatReversePlus, NatToTag}
 
 import scala.language.implicitConversions
 
@@ -21,11 +21,14 @@ trait XIO[I <: nat.Nat, E] {
 
 object XIO {
 
-  implicit def xioImplicit[I1 <: nat.Nat, I2 <: nat.Nat, E](i: XIO[I1, E])(implicit cv: NatContent[I2, I1]): XIO[I2, E] =
+  implicit def xioImplicit[I1 <: nat.Nat, I2 <: nat.Nat, E](i: XIO[I1, E])(implicit cv: NatToTag[I1, I2]): XIO[I2, E] =
     new XIO[I2, E] {
-      override def in(n: I2): E = i.in(cv.content(n))
+      override def in(n: I2): E = i.in(cv.tag(n))
     }
 
-  def identity[T <: nat.Nat]: XIO[T, T] = s => s
+  def identity[T <: nat.Nat]: XIO[T, T] =
+    new XIO[T, T] {
+      override def in(n: T): T = n
+    }
 
 }
