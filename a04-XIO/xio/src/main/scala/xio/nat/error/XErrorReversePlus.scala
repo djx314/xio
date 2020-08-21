@@ -10,12 +10,12 @@ trait XErrorReversePlus[N2 <: XError, N1 <: XError] {
 }
 
 object XErrorReversePlus {
-  implicit def zeroNat[N2 <: XError, F]: XErrorReversePlus[N2, XErrorFirst[F]] = new XErrorReversePlusZero
+  implicit def firstNat[N2 <: XError, F]: XErrorReversePlus[N2, XErrorFirst[F]] = new XErrorReversePlusFirst
   implicit def positiveNat[N1Tail <: XError, N1Head, N2 <: XError](implicit n: XErrorReversePlus[N2, N1Tail]): XErrorReversePlus[N2, XErrorPositive[N1Tail, N1Head]] =
     new XErrorReversePlusPositive(tail = n)
 }
 
-class XErrorReversePlusZero[N2 <: XError, F] extends XErrorReversePlus[N2, XErrorFirst[F]] {
+class XErrorReversePlusFirst[N2 <: XError, F] extends XErrorReversePlus[N2, XErrorFirst[F]] {
   override type PluI = XErrorPositive[N2, F]
   override def plus(t1: XErrorPositive[N2, F]): Either[XErrorFirst[F], N2] = t1.either.fold(n2 => Right(n2), f => Left(new XErrorFirst(f)))
   override def takeHead(t1: XErrorFirst[F]): XErrorPositive[N2, F]         = new XErrorPositive(Right(t1.one))

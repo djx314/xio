@@ -7,27 +7,29 @@ trait XError {
 
 package nat.error {
 
-  trait XErrorHas[Current] extends XError {
-    type HasPlus[NI <: XErrorHas[I], I] <: XErrorHas[Current]
-    type HasRePlus[NI <: XErrorHas[I], I] <: XErrorHas[I]
+  final abstract class XErrorZero private () extends XError {
+    type Plus[NI <: XError] = NI
+    type RePlus[NI <: XError] = NI
+  }
+
+  trait XErrorHas extends XError {
+    type Current
     type Plus[NI <: XError] <: XError
     type RePlus[NI <: XError] <: XError
   }
 
-  class XErrorFirst[I](val one: I) extends XErrorHas[I] {
+  class XErrorFirst[I](val one: I) extends XErrorHas {
     self =>
-    override type HasPlus[NI <: XErrorHas[I1], I1] = XErrorPositive[NI, I]
-    override type HasRePlus[NI <: XErrorHas[I1], I1] = NI#HasPlus[XErrorFirst[I], I]
+    override type Current = I
     override type Plus[NI <: XError] = XErrorPositive[NI, I]
     override type RePlus[NI <: XError] = NI#Plus[XErrorFirst[I]]
 
     override def toString: String = s"First(${one})"
   }
 
-  class XErrorPositive[Pre <: XError, I](val either: Either[Pre, I]) extends XErrorHas[I] {
+  class XErrorPositive[Pre <: XError, I](val either: Either[Pre, I]) extends XErrorHas {
     self =>
-    override type HasPlus[NI <: XErrorHas[I1], I1] = XErrorPositive[Pre#Plus[NI], I]
-    override type HasRePlus[NI <: XErrorHas[I1], I1] = NI#HasPlus[XErrorPositive[Pre, I],I]
+    override type Current = I
     override type Plus[NI <: XError] = XErrorPositive[Pre#Plus[NI], I]
     override type RePlus[NI <: XError] = NI#Plus[XErrorPositive[Pre, I]]
 
