@@ -1,11 +1,17 @@
 @(maxItem: Int)
 
-package zsg.codegen
+package xio.nat.has
 
-import scala.io.Source
+trait XHasProjection {
 
-object StringUtil {
+    @for(i <- 1 to maxItem) {
+        type _@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }] = @for(ii <- 1 to i) { XHasPositive[ } XHasZero @for(ii <- 1 to i) { , T@{ii}] }
+    }
 
-  def trimLines(i: String): String = Source.fromString(i).getLines().map(p => (p.trim, p)).filter(!_._1.isEmpty).map(_._2).mkString(System.lineSeparator)
+}
 
+trait XHasProjectionApply {
+    @for(i <- 1 to maxItem) {
+        def _@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }](@for(ii <- 1 to i) { @if(ii > 1) { , } t@{ii}: T@{ii} }): xio.XHas#_@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }] = @for(ii <- 1 to i) { new XHasPositive(tail = } XHasZero @for(ii <- 1 to i) { , head = t@{ii}) }
+    }
 }

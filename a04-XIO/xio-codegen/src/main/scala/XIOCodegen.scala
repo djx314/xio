@@ -7,14 +7,21 @@ import scala.util.Using
 
 object XIOCodegen {
 
-  val filePath = Paths.get(".", "a04-XIO", "xio", "src", "main", "scala", "xio", "nat", "has", "XHasProjection.scala")
+  val filePath1 = Paths.get(".", "a04-XIO", "xio-implicit", "src", "main", "scala", "xio", "nat", "has", "XHasProjection.scala")
+  val filePath2 = Paths.get(".", "a04-XIO", "xio-implicit", "src", "main", "scala", "xio", "nat", "error", "XErrorProjection.scala")
 
   def main(i: Array[String]): Unit = {
-    Files.createDirectories(filePath.getParent)
-    Using(new PrintWriter(filePath.toFile, "utf-8")) { writer =>
+    Files.createDirectories(filePath1.getParent)
+    Using(new PrintWriter(filePath1.toFile, "utf-8")) { writer =>
       val content = StringUtil.trimLines(xio.codegen.txt.XHasProjection(maxItem = XIOParam.maxItem).body)
       writer.println(content)
     }
 
+    Files.createDirectories(filePath2.getParent)
+    Using(new PrintWriter(filePath2.toFile, "utf-8")) { writer =>
+      val content = StringUtil.trimLines(xio.codegen.txt.XErrorProjection(maxItem = XIOParam.maxItem).body)
+      writer.println(content)
+    }
   }
+
 }
