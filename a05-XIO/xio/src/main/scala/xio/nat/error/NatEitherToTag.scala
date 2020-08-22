@@ -7,15 +7,15 @@ trait NatEitherToTag[T <: XError, N <: XError] {
 }
 
 object NatEitherToTag {
-  implicit def zeroNat[N <: XError, Head](implicit d: NatEitherSetter[N, Head]): NatEitherToTag[XErrorFirst[Head], N] = new NatEitherToTagZero(d)
+  implicit def zeroNat[N <: XError](implicit n: NatEitherSetter[N, XErrorZero]): NatEitherToTag[XErrorZero, N] = new NatEitherToTagZero(n = n)
   implicit def positiveNat[Head, TagTail <: XError, N <: XError](implicit
     to: NatEitherToTag[TagTail, N],
     p: NatEitherSetter[N, Head]
   ): NatEitherToTag[XErrorPositive[TagTail, Head], N] = new NatEitherToTagPositive(to = to, p = p)
 }
 
-class NatEitherToTagZero[Head, N <: XError](d: NatEitherSetter[N, Head]) extends NatEitherToTag[XErrorFirst[Head], N] {
-  def tag(k: XErrorFirst[Head]): N = d.put(k.one)
+class NatEitherToTagZero[N <: XError](n: NatEitherSetter[N, XErrorZero]) extends NatEitherToTag[XErrorZero, N] {
+  def tag(k: XErrorZero): N = n.put(k)
 }
 
 class NatEitherToTagPositive[NatTail <: XError, NatHead, N <: XError](to: NatEitherToTag[NatTail, N], p: NatEitherSetter[N, NatHead])

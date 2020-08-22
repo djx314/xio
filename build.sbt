@@ -14,3 +14,4 @@ val a05         = (project in file05 / "xio").dependsOn(a05_implicit)
 val a05_codegen = project in file05 / "xio-codegen"
 
 addCommandAlias("codegen1", "a04_codegen/runMain xio.codegen.XIOCodegen")
+addCommandAlias("codegen2", "a05_codegen/runMain xio.codegen.XIOCodegen")

@@ -4,6 +4,7 @@ package xio.nat.has
 
 trait XHasProjection {
 
+    type _0 = XHasZero
     @for(i <- 1 to maxItem) {
         type _@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }] = @for(ii <- 1 to i) { XHasPositive[ } XHasZero @for(ii <- 1 to i) { , T@{ii}] }
     }
@@ -11,6 +12,7 @@ trait XHasProjection {
 }
 
 trait XHasProjectionApply {
+    val _0: xio.XHas#_0 = XHasZero
     @for(i <- 1 to maxItem) {
         def _@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }](@for(ii <- 1 to i) { @if(ii > 1) { , } t@{ii}: T@{ii} }): xio.XHas#_@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }] = @for(ii <- 1 to i) { new XHasPositive(tail = } XHasZero @for(ii <- 1 to i) { , head = t@{ii}) }
     }

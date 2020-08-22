@@ -9,24 +9,19 @@ trait XError extends XErrorProjection {
 
 package nat.error {
 
-  final abstract class NoError private()
+  final abstract class XErrorZero private () extends XError {
+    override type Plus[NI <: XError]   = NI
+    override type RePlus[NI <: XError] = NI#Plus[XErrorZero]
 
-  class XErrorFirst[I](val one: I) extends XError {
-    self =>
-    override type Plus[NI <: XError] = XErrorPositive[NI, I]
-    override type RePlus[NI <: XError] = NI#Plus[XErrorFirst[I]]
-
-    override def toString: String = s"First(${one})"
+    override def toString: String = "XErrorZero"
   }
 
   class XErrorPositive[Pre <: XError, I](val either: Either[Pre, I]) extends XError {
     self =>
-    override type Plus[NI <: XError] = XErrorPositive[Pre#Plus[NI], I]
+    override type Plus[NI <: XError]   = XErrorPositive[Pre#Plus[NI], I]
     override type RePlus[NI <: XError] = NI#Plus[XErrorPositive[Pre, I]]
 
     override def toString: String = either.fold(pre => s"${pre} :: success", i => s"Right(${i})")
   }
 
 }
-
-

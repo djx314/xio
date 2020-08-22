@@ -1,6 +1,6 @@
 package xio
 
-import xio.nat.error.{NatEitherMapper, NatEitherSetter}
+import xio.nat.error.NatEitherSetter
 
 object Test1 {
   type Ei1 = XError#_5[Item2, Item3, Item3, Item4, Item5]
@@ -13,8 +13,6 @@ object Test1 {
 
     val item3Either = NatEitherSetter.set[Ei1](new Item3)
     val item4Either = NatEitherSetter.set[Ei1](new Item4)
-    println(NatEitherMapper.map(item3Either, { i: Item3 => new Item5 })) // Right(Item5) :: success :: success
-    println(NatEitherMapper.map(item4Either, { i: Item3 => new Item5 })) // Right(Item4) :: success
   }
 
 }
