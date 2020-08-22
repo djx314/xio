@@ -7,14 +7,9 @@ trait NatEitherSetter[Ei <: XError, I] {
 }
 
 object NatEitherSetter extends NatEitherSetterImplicit1 {
-  trait NatEitherApply[Ei <: XError] {
-    def apply[I](item: I)(implicit nt: NatEitherSetter[Ei, I]): Ei
+  class NatEitherApply[Ei <: XError] {
+    def apply[I](item: I)(implicit nt: NatEitherSetter[Ei, I]): Ei = nt.put(item)
   }
-
-  def set[Ei <: XError]: NatEitherApply[Ei] =
-    new NatEitherApply[Ei] {
-      override def apply[I](item: I)(implicit nt: NatEitherSetter[Ei, I]): Ei = nt.put(item)
-    }
 
   implicit def positiveSetter3[Tail <: XError, Head]: NatEitherSetter[XErrorPositive[Tail, Head], Head] =
     new NatEitherSetter[XErrorPositive[Tail, Head], Head] {

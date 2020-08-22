@@ -28,7 +28,7 @@ trait XIO[I <: XHas, L <: XError, R] {
   def mapError[E1, ESUM <: XError](n: (E1, NatEitherSetter.NatEitherApply[ESUM]) => ESUM)(implicit nm: NatEitherToTag[L, XErrorPositive[ESUM, E1]]): XIO[I, ESUM, R] =
     new XIO[I, ESUM, R] {
       override def zio: ZIO[I, ESUM, R] = {
-        self.zio.mapError(l => nm.tag(l).either.fold(identity, e1 => n(e1, NatEitherSetter.set)))
+        self.zio.mapError(l => nm.tag(l).either.fold(identity, e1 => n(e1, new NatEitherSetter.NatEitherApply)))
       }
     }
 }
