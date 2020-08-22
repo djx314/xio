@@ -7,7 +7,7 @@ trait CustomSettings {
   val scalaSettings = Seq(
     scalacOptions ++= Seq("-feature", "-deprecation"),
     scalaVersion := scala_213_Version,
-    crossScalaVersions := List("2.12.12", scala_213_Version)
+    crossScalaVersions := List("2.11.12", "2.12.12", scala_213_Version)
   )
 
   protected val scalaOption1 = scalacOptions ++= {

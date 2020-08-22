@@ -26,6 +26,9 @@ object XIO {
       override def in(n: I2): E = i.in(cv.content(n))
     }
 
-  def identity[T <: nat.Nat]: XIO[T, T] = s => s
+  def identity[T <: nat.Nat]: XIO[T, T] =
+    new XIO[T, T] {
+      override def in(n: T): T = n
+    }
 
 }

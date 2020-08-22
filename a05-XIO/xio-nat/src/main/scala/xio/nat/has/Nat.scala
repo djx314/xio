@@ -1,7 +1,6 @@
 package xio.nat.has
 
 trait Nat {
-  self =>
   type Plus[I <: Nat] <: Nat
   type RePlus[I <: Nat] <: Nat
 
