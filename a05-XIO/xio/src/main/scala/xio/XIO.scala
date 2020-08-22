@@ -25,22 +25,21 @@ trait XIO[I <: XHas, L <: XError, R] {
         } yield r1
     }
   }
-  def mapError[E1, ESUM <: XError](n: (E1, NatEitherSetter.NatEitherApply[ESUM]) => ESUM)(implicit nm: NatEitherToTag[L, XErrorPositive[ESUM, E1]]): XIO[I, ESUM, R] = {
+  def mapError[E1, ESUM <: XError](n: (E1, NatEitherSetter.NatEitherApply[ESUM]) => ESUM)(implicit nm: NatEitherToTag[L, XErrorPositive[ESUM, E1]]): XIO[I, ESUM, R] =
     new XIO[I, ESUM, R] {
       override def zio: ZIO[I, ESUM, R] = {
         self.zio.mapError(l => nm.tag(l).either.fold(identity, e1 => n(e1, NatEitherSetter.set)))
       }
     }
-  }
 }
 
 object XIO {
 
-  implicit def xioImplicit[I1 <: XHas, I2 <: XHas, E1 <: XError, E2 <: XError, E](
-    i: XIO[I1, E1, E]
-  )(implicit cv: NatToTag[I1, I2], v: NatEitherToTag[E1, E2]): XIO[I2, E2, E] =
-    new XIO[I2, E2, E] {
-      override def zio: ZIO[I2, E2, E] =
+  implicit def xioImplicit[I1 <: XHas, I2 <: XHas, E1 <: XError, E2 <: XError, O1, O2](
+    i: XIO[I1, E1, O1]
+  )(implicit cv: NatToTag[I1, I2], v: NatEitherToTag[E1, E2], cv3: O1 <:< O2): XIO[I2, E2, O2] =
+    new XIO[I2, E2, O2] {
+      override def zio: ZIO[I2, E2, O2] =
         for {
           i2 <- ZIO.identity[I2]
           u  <- i.zio.provide(cv.tag(i2)).mapError(n => v.tag(n))
@@ -50,6 +49,11 @@ object XIO {
   def identity[T <: XHas]: XIO[T, XError#_0, T] =
     new XIO[T, XError#_0, T] {
       override def zio: ZIO[T, XError#_0, T] = ZIO.identity[T]
+    }
+
+  def fail[T](i: T): XIO[XHas#_0, XError#_1[T], Nothing] =
+    new XIO[XHas#_0, XError#_1[T], Nothing] {
+      override def zio: ZIO[XHas#_0, XError#_1[T], Nothing] = ZIO.fail(new XErrorPositive(Right(i)))
     }
 
 }
