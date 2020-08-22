@@ -1,19 +1,19 @@
 @(maxItem: Int)
 
-package xio.nat.has
+package xio
 
-trait XHasProjection {
+trait XHas {
 
-    type _0 = XHasZero
+    type _0 = nat.has.NatZero
     @for(i <- 1 to maxItem) {
-        type _@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }] = @for(ii <- 1 to i) { XHasPositive[ } XHasZero @for(ii <- 1 to i) { , T@{ii}] }
+        type _@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }] = @for(ii <- 1 to i) { nat.has.NatPositive[ } nat.has.NatZero @for(ii <- 1 to i) { , T@{ii}] }
     }
 
 }
 
-trait XHasProjectionApply {
-    val _0: xio.XHas#_0 = XHasZero
+object XHas {
+    val _0: xio.XHas#_0 = nat.has.NatZero
     @for(i <- 1 to maxItem) {
-        def _@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }](@for(ii <- 1 to i) { @if(ii > 1) { , } t@{ii}: T@{ii} }): xio.XHas#_@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }] = @for(ii <- 1 to i) { new XHasPositive(tail = } XHasZero @for(ii <- 1 to i) { , head = t@{ii}) }
+        def _@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }](@for(ii <- 1 to i) { @if(ii > 1) { , } t@{ii}: T@{ii} }): xio.XHas#_@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }] = @for(ii <- 1 to i) { new nat.has.NatPositive(tail = } nat.has.NatZero @for(ii <- 1 to i) { , head = t@{ii}) }
     }
 }

@@ -1,7 +1,5 @@
 CustomSettings.scalaSettings
-CustomSettings.compilerSettings
+CustomSettings.notFmtCompilerSettings
 
 organization := "org.xarcher.xio"
 name := "xio"
-
-libraryDependencies ++= Dependencies.zio

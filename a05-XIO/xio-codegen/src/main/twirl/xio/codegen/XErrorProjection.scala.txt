@@ -1,12 +1,12 @@
 @(maxItem: Int)
 
-package xio.nat.error
+package xio
 
-trait XErrorProjection {
+trait XError {
 
-    type _0 = XErrorZero
+    type _0 = nat.error.NatEitherZero
     @for(i <- 1 to maxItem) {
-        type _@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }] = @for(ii <- 1 to i) { XErrorPositive[ } XErrorZero @for(ii <- 1 to i) { , T@{ii}] }
+        type _@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }] = @for(ii <- 1 to i) { nat.error.NatEitherPositive[ } nat.error.NatEitherZero @for(ii <- 1 to i) { , T@{ii}] }
     }
 
 }

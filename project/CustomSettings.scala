@@ -17,10 +17,10 @@ trait CustomSettings {
 
   // addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full)
 
-  val fmt =     org.scalafmt.sbt.ScalafmtPlugin.autoImport.scalafmtOnCompile := true
+  val fmt = org.scalafmt.sbt.ScalafmtPlugin.autoImport.scalafmtOnCompile := true
 
-  val notFmtCompilerSettings =    List(    scalaOption1  )
-  val compilerSettings = List(    scalaOption1,fmt  )
+  val notFmtCompilerSettings = List(scalaOption1)
+  val compilerSettings       = List(scalaOption1, fmt)
 
 }
 
