@@ -33,6 +33,19 @@ trait XIO[I <: Nat, L <: NatEither, R] {
         self.zio.mapError(l => nm.tag(l).either.fold(identity, e1 => n(e1, new NatEitherSetter.NatEitherApply)))
       }
     }
+
+  final def provideLayer[E1 <: NatEither, R0 <: Nat, R1 <: Nat](
+    layer: ZLayer[R0, E1, R1]
+  )(implicit ev1: NatToTag[I, R1], ev2: NatEitherReversePlus[L, E1]): XIO[R0, E1#Plus[L], R] =
+    new XIO[R0, E1#Plus[L], R] {
+      override def zio: ZIO[R0, E1#Plus[L], R] = self.zio.mapError(ev2.takeTail).provideLayer(layer.map(ev1.tag).mapError(ev2.takeHead))
+    }
+
+  final def provide[R1 <: Nat](r: R1)(implicit ev: NatToTag[I, R1]): XIO[NatZero, L, R] =
+    new XIO[NatZero, L, R] {
+      override def zio: ZIO[NatZero, L, R] = self.zio.provide(ev.tag(r))
+    }
+
 }
 
 object XIO {
