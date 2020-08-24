@@ -30,3 +30,9 @@ class NatPositive[Tail <: Nat, Head](val tail: Tail, val head: Head) extends Nat
   def get[P](implicit headerFunctor: NatFinder[NatPositive[Tail, Head], P]): P = headerFunctor.to(self)
   override def toString: String                                                = s"${tail} :: ${head}"
 }
+
+case class NatTuple2[T1, T2](_1: T1, _2: T2) extends NatPositive[NatPositive[NatZero, T1], T2](tail = new NatPositive(tail = NatZero, head = _1), head = _2) {
+  override type Plus[I <: Nat] = NatPositive[NatPositive[I, T1], T2]
+  override def plus[I <: Nat](i: I): NatPositive[NatPositive[I, T1], T2] = new NatPositive(tail = new NatPositive(tail = i, head = _1), head = _2)
+  override def toString: String                                          = s"(${_1}, ${_2})"
+}

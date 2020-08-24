@@ -79,7 +79,7 @@ object XRuntime {
           override val zlayer: ZLayer[NatZero, NatEitherZero, NatPositive[NatZero, blocking.Blocking.Service]] =
             blocking.Blocking.live.map(r => new NatPositive(NatZero, r.get))
         }
-      live1 ++ live2 ++ live3 ++ live4 ++ live5
+      live5 ++ live4 ++ live3 ++ live2 ++ live1
     }
 
   }
