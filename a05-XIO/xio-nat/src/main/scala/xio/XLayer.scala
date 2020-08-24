@@ -1,6 +1,6 @@
 package xio
 
-import xio.nat.error.{NatEither, NatEitherPositive, NatEitherReversePlus, NatEitherSetter, NatEitherToTag}
+import xio.nat.error.{NatEither, NatEitherPositive, NatEitherReversePlus, NatEitherSetter, NatEitherToTag, NatEitherZero}
 import xio.nat.has.{Nat, NatPositive, NatReversePlus, NatToTag, NatZero}
 
 import scala.language.implicitConversions
@@ -75,4 +75,8 @@ object XLayer {
       override def zlayer: ZLayer[I2, E2, O2] =
         ZLayer.identity[I2].map(cv.tag).>>>(i.zlayer).mapError(v.tag).map(cv3.tag)
     }
+
+  def identity[T <: Nat]:XLayer[T, NatEitherZero,T] = new XLayer[T, NatEitherZero,T] {
+    override def zlayer: ZLayer[T, NatEitherZero, T] = ZLayer.identity[T]
+  }
 }
