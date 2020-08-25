@@ -11,15 +11,16 @@ import scala.concurrent.ExecutionContext
 trait XIO[I <: Nat, L <: NatEither, R] {
   self =>
   def zio: ZIO[I, L, R]
+  def noErrorZIO(implicit ev: L <:< NatEitherZero): ZIO[I, Nothing, R] = self.zio.asInstanceOf[ZIO[I, Nothing, R]]
   def map[E1](cv: R => E1): XIO[I, L, E1] =
     new XIO[I, L, E1] {
-      override def zio: ZIO[I, L, E1] = self.zio.map(cv)
+      override val zio: ZIO[I, L, E1] = self.zio.map(cv)
     }
   def flatMap[I1 <: Nat, L1 <: NatEither, E1](
     cv: R => XIO[I1, L1, E1]
   )(implicit v: NatReversePlus[I, I1], n: NatEitherReversePlus[L, L1]): XIO[I1#Plus[I], L1#Plus[L], E1] = {
     new XIO[I1#Plus[I], L1#Plus[L], E1] {
-      override def zio: ZIO[I1#Plus[I], L1#Plus[L], E1] =
+      override val zio: ZIO[I1#Plus[I], L1#Plus[L], E1] =
         for {
           plus <- ZIO.identity[I1#Plus[I]]
           r    <- self.zio.provide(v.takeTail(plus)).mapError(e => n.takeTail(e))
@@ -31,22 +32,30 @@ trait XIO[I <: Nat, L <: NatEither, R] {
     n: (E1, NatEitherSetter.NatEitherApply[ESUM]) => ESUM
   )(implicit nm: NatEitherToTag[L, NatEitherPositive[ESUM, E1]]): XIO[I, ESUM, R] =
     new XIO[I, ESUM, R] {
-      override def zio: ZIO[I, ESUM, R] = {
+      override val zio: ZIO[I, ESUM, R] = {
         self.zio.mapError(l => nm.tag(l).either.fold(identity, e1 => n(e1, new NatEitherSetter.NatEitherApply)))
       }
     }
 
   final def provideLayer[E1 <: NatEither, R0 <: Nat, R1 <: Nat](
-    layer: ZLayer[R0, E1, R1]
+    layer: XLayer[R0, E1, R1]
   )(implicit ev1: NatToTag[I, R1], ev2: NatEitherReversePlus[L, E1]): XIO[R0, E1#Plus[L], R] =
     new XIO[R0, E1#Plus[L], R] {
-      override def zio: ZIO[R0, E1#Plus[L], R] = self.zio.mapError(ev2.takeTail).provideLayer(layer.map(ev1.tag).mapError(ev2.takeHead))
+      override val zio: ZIO[R0, E1#Plus[L], R] = self.zio.mapError(ev2.takeTail).provideLayer(layer.zlayer.map(ev1.tag).mapError(ev2.takeHead))
     }
 
   final def provide[R1 <: Nat](r: R1)(implicit ev: NatToTag[I, R1]): XIO[NatZero, L, R] =
     new XIO[NatZero, L, R] {
-      override def zio: ZIO[NatZero, L, R] = self.zio.provide(ev.tag(r))
+      override val zio: ZIO[NatZero, L, R] = self.zio.provide(ev.tag(r))
     }
+
+  final def either: XIO[I, XError#_0, Either[L, R]] = new XIO[I, XError#_0, Either[L, R]] {
+    override val zio: ZIO[I, XError#_0, Either[L, R]] = self.zio.either
+  }
+
+  final def catchAll[R1 <: Nat, E2 <: NatEither, A1 >: R](h: L => ZIO[R1, E2, A1])(implicit n: NatToTag[I, R1]): XIO[R1, E2, A1] = new XIO[R1, E2, A1] {
+    override def zio: ZIO[R1, E2, A1] = self.zio.provideLayer(ZLayer.requires[R1].map(n.tag)).catchAll(u => h(u).provideLayer(ZLayer.identity[R1]))
+  }
 
 }
 

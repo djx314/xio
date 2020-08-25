@@ -86,9 +86,9 @@ object XLayer {
       override val zlayer: ZLayer[A, NatEitherZero, A] = ZLayer.requires[A]
     }
 
-  def fromManagedMany[R <: Nat, E <: NatEither, A <: Nat](m: ZManaged[R, E, A]): XLayer[R, E, A] =
+  def fromManagedMany[R <: Nat, E <: NatEither, A <: Nat](m: XManaged[R, E, A]): XLayer[R, E, A] =
     new XLayer[R, E, A] {
-      override val zlayer: ZLayer[R, E, A] = ZLayer.fromManagedMany(m)
+      override val zlayer: ZLayer[R, E, A] = ZLayer.fromManagedMany(m.zmanaged)
     }
 
 }
