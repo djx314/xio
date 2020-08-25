@@ -6,6 +6,8 @@ import xio.nat.has.{Nat, NatReversePlus, NatToTag, NatZero}
 import scala.language.implicitConversions
 import zio._
 
+import scala.concurrent.ExecutionContext
+
 trait XIO[I <: Nat, L <: NatEither, R] {
   self =>
   def zio: ZIO[I, L, R]
@@ -66,9 +68,21 @@ object XIO {
       override def zio: ZIO[T, NatEitherZero, T] = ZIO.identity[T]
     }
 
-  def fail[T](i: T): XIO[NatZero, XError#_1[ T], Nothing] =
+  def fail[T](i: T): XIO[NatZero, XError#_1[T], Nothing] =
     new XIO[NatZero, NatEitherPositive[NatEitherZero, T], Nothing] {
       override def zio: ZIO[NatZero, NatEitherPositive[NatEitherZero, T], Nothing] = ZIO.fail(new NatEitherPositive(Right(i)))
     }
+
+  def fromFutureInterrupt[A](make: ExecutionContext => scala.concurrent.Future[A]): XIO[XHas#_0, XError#_1[Throwable], A] = new XIO[XHas#_0, XError#_1[Throwable], A] {
+    override def zio: ZIO[XHas#_0, XError#_1[Throwable], A] = ZIO.fromFutureInterrupt(f => make(f)).mapError(s => new NatEitherPositive(Right(s)))
+  }
+
+  def fromUIO[I](u: UIO[I]): XIO[XHas#_0, XError#_0, I] = new XIO[XHas#_0, XError#_0, I] {
+    override def zio: ZIO[XHas#_0, XError#_0, I] = u
+  }
+
+  def effect[A](effect: => A): XIO[XHas#_0, XError#_1[Throwable], A] = new XIO[XHas#_0, XError#_1[Throwable], A] {
+    override val zio: ZIO[XHas#_0, XError#_1[Throwable], A] = ZIO.effect(effect).mapError(e => new NatEitherPositive(Right(e)))
+  }
 
 }
