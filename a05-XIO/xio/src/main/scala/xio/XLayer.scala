@@ -76,12 +76,12 @@ object XLayer {
         ZLayer.requires[I2].map(cv.tag).>>>(i.zlayer).mapError(v.tag).map(cv3.tag)
     }
 
-  def identity[T <: Nat]: XLayer[T, NatEitherZero, T] =
+  def identity[T <: Nat]: XLayer[T, XError#_0, T] =
     new XLayer[T, NatEitherZero, T] {
       override val zlayer: ZLayer[T, NatEitherZero, T] = ZLayer.identity[T]
     }
 
-  def requires[A <: Nat]: XLayer[A, NatEitherZero, A] =
+  def requires[A <: Nat]: XLayer[A, XError#_0, A] =
     new XLayer[A, NatEitherZero, A] {
       override val zlayer: ZLayer[A, NatEitherZero, A] = ZLayer.requires[A]
     }

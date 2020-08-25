@@ -9,9 +9,9 @@ val a04_implicit = project in file04 / "xio-implicit"
 val a04          = (project in file04 / "xio").dependsOn(a04_implicit)
 val a04_codegen  = project in file04 / "xio-codegen"
 val file05       = file(".") / "a05-XIO"
-val a05_nat      = project in file05 / "xio-nat"
-val a05          = (project in file05 / "xio").dependsOn(a05_nat)
+val a05          = project in file05 / "xio"
 val a05_codegen  = project in file05 / "xio-codegen"
 
 addCommandAlias("codegen1", "a04_codegen/runMain xio.codegen.XIOCodegen")
 addCommandAlias("codegen2", "a05_codegen/runMain xio.codegen.XIOCodegen")
+addCommandAlias("p", "+a05/publishLocal")

@@ -61,12 +61,12 @@ object XIO {
         } yield u
     }
 
-  def identity[T <: Nat]: XIO[T, NatEitherZero, T] =
+  def identity[T <: Nat]: XIO[T, XError#_0, T] =
     new XIO[T, NatEitherZero, T] {
       override def zio: ZIO[T, NatEitherZero, T] = ZIO.identity[T]
     }
 
-  def fail[T](i: T): XIO[NatZero, NatEitherPositive[NatEitherZero, T], Nothing] =
+  def fail[T](i: T): XIO[NatZero, XError#_1[ T], Nothing] =
     new XIO[NatZero, NatEitherPositive[NatEitherZero, T], Nothing] {
       override def zio: ZIO[NatZero, NatEitherPositive[NatEitherZero, T], Nothing] = ZIO.fail(new NatEitherPositive(Right(i)))
     }
