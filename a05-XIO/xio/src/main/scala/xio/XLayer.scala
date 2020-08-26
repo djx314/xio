@@ -96,6 +96,11 @@ object XLayer {
       override val zlayer: ZLayer[R, E, A] = ZLayer.fromManagedMany(m.zmanaged)
     }
 
+  def fromZLayer[R <: Nat, E <: NatEither, A <: Nat](m: ZLayer[R, E, A]): XLayer[R, E, A] =
+    new XLayer[R, E, A] {
+      override val zlayer: ZLayer[R, E, A] = m
+    }
+
   class FunctinManyApply[ErrorType <: NatEither] {
     def apply[R <: Nat, A <: Nat](m: R => A): XLayer[R, ErrorType, A] = new XLayer[R, ErrorType, A] {
       override def zlayer: ZLayer[R, ErrorType, A] = ZLayer.fromFunctionMany(m)

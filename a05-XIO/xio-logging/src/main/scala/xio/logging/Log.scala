@@ -1,46 +1,97 @@
 package xio.logging
 
+import xio.nat.error.NatEither
+import xio.nat.has.{Nat, NatFinder, NatPositive, NatToTag}
 import xio.{XError, XHas, XIO, XLayer}
-import zio.ZIO
+import zio._
 import zio.logging._
 
 object xlog {
 
-  type Logging = XHas#_1[Logger[String]]
+  type XLogging = XHas#_1[Logger[String]]
 
-  def apply(level: LogLevel)(line: => String): XIO[Logging, Nothing, Unit] = new XIO[Logging, XError#_0, Unit] {
-    override def zio: ZIO[Logging, XError#_0, Unit] = log.apply(level)(line)
-  }.provideLayer(XLayer.fromF)
+  def apply(level: LogLevel)(line: => String): XIO[XLogging, XError#_0, Unit] =
+    XIO.fromZIO(
+      log
+        .apply(level)(line)
+        .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
+          Has(l.head)
+        }))
 
-  val context: URIO[Logging, LogContext] =
-    Logging.context
+  val context: XIO[XLogging, XError#_0, LogContext] = XIO.fromZIO(Logging.context.provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
+    Has(l.head)
+  }))
 
-  def debug(line: => String): ZIO[Logging, Nothing, Unit] =
-    Logging.debug(line)
+  def debug(line: => String): XIO[XLogging, XError#_0, Unit] =
+    XIO.fromZIO(
+      log
+        .debug(line)
+        .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
+          Has(l.head)
+        }))
 
-  def error(line: => String): ZIO[Logging, Nothing, Unit] =
-    Logging.error(line)
+  def error(line: => String): XIO[XLogging, XError#_0, Unit] =
+    XIO.fromZIO(
+      log
+        .error(line)
+        .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
+          Has(l.head)
+        }))
 
-  def error(line: => String, cause: Cause[Any]): ZIO[Logging, Nothing, Unit] =
-    Logging.error(line, cause)
+  def error(line: => String, cause: Cause[Any]): XIO[XLogging, XError#_0, Unit] =
+    XIO.fromZIO(
+      log
+        .error(line, cause = cause)
+        .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
+          Has(l.head)
+        }))
 
-  def info(line: => String): ZIO[Logging, Nothing, Unit] =
-    Logging.info(line)
+  def info(line: => String): XIO[XLogging, XError#_0, Unit] =
+    XIO.fromZIO(
+      log
+        .info(line)
+        .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
+          Has(l.head)
+        }))
 
-  def locally[A, R <: Logging, E, A1](fn: LogContext => LogContext)(zio: ZIO[R, E, A1]): ZIO[Logging with R, E, A1] =
-    Logging.locally(fn)(zio)
+  def locally[R <: Nat, E <: NatEither, A1](fn: LogContext => LogContext)(zio: XIO[R, E, A1])(implicit n: NatFinder[R, Logger[String]]): XIO[R, E, A1] =
+    XIO
+      .fromFunction[E] { m: R =>
+        m
+      }
+      .scalax_simpleFlatMap(nn => XIO.fromZIO(n.to(nn).locally(fn)(zio.zio)))
 
-  def locallyM[A, R <: Logging, E, A1](
-                                        fn: LogContext => URIO[R, LogContext]
-                                      )(zio: ZIO[R, E, A1]): ZIO[Logging with R, E, A1] =
-    Logging.locallyM(fn)(zio)
+  def locallyM[R <: Nat, E <: NatEither, A1](
+    fn: LogContext => XIO[R, XError#_0, LogContext]
+  )(zio: XIO[R, E, A1])(implicit n: NatFinder[R, Logger[String]]): XIO[R, E, A1] =
+    XIO
+      .fromFunction[E] { m: R =>
+        m
+      }
+      .scalax_simpleFlatMap(nn => XIO.fromZIO(n.to(nn).locallyM(p => fn(p).noErrorZIO)(zio.zio)))
 
-  def throwable(line: => String, t: Throwable): ZIO[Logging, Nothing, Unit] =
-    Logging.throwable(line, t)
+  def throwable(line: => String, t: Throwable): XIO[XLogging, XError#_0, Unit] =
+    XIO.fromZIO(
+      log
+        .throwable(line, t)
+        .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
+          Has(l.head)
+        }))
 
-  def trace(line: => String): ZIO[Logging, Nothing, Unit] =
-    Logging.trace(line)
+  def trace(line: => String): XIO[XLogging, Nothing, Unit] =
+    XIO.fromZIO(
+      log
+        .trace(line)
+        .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
+          Has(l.head)
+        }))
 
-  def warn(line: => String): ZIO[Logging, Nothing, Unit] =
+  def warn(line: => String): XIO[XLogging, XError#_0, Unit] =
+    XIO.fromZIO(
+      log
+        .warn(line)
+        .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
+          Has(l.head)
+        }))
 
 }

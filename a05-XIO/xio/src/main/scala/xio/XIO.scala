@@ -63,12 +63,15 @@ trait XIO[I <: Nat, L <: NatEither, R] {
     override val zio: ZIO[I, XError#_0, Either[L, R]] = self.zio.either
   }
 
-  final def catchAll[R1 <: Nat, E2 <: NatEither, A1 >: R](h: L => ZIO[R1, E2, A1])(implicit n: NatToTag[I, R1]): XIO[R1, E2, A1] =
+  final def catchAll[R1 <: Nat, E2 <: NatEither, A1 >: R](h: L => XIO[R1, E2, A1])(implicit n: NatToTag[I, R1]): XIO[R1, E2, A1] =
     scalax_simpleProvideLayer(XLayer.fromFunctionMany[L](n.tag)).scalax_simpleCatchAll(h)
 
-  final def scalax_simpleCatchAll[E2 <: NatEither, A1 >: R](h: L => ZIO[I, E2, A1]): XIO[I, E2, A1] = new XIO[I, E2, A1] {
-    override def zio: ZIO[I, E2, A1] = self.zio.catchAll(u => h(u))
+  final def scalax_simpleCatchAll[E2 <: NatEither, A1 >: R](h: L => XIO[I, E2, A1]): XIO[I, E2, A1] = new XIO[I, E2, A1] {
+    override def zio: ZIO[I, E2, A1] = self.zio.catchAll(u => h(u).zio)
   }
+
+  final def retryN(n: Int): XIO[I, L, R] =
+    self.scalax_simpleCatchAll(e => if (n <= 0) XIO.scalax_simeFail(e) else self.retryN(n - 1))
 
 }
 
@@ -83,10 +86,11 @@ object XIO {
       override def zio: ZIO[T, NatEitherZero, T] = ZIO.identity[T]
     }
 
-  def fail[T](i: T): XIO[NatZero, XError#_1[T], Nothing] =
-    new XIO[NatZero, NatEitherPositive[NatEitherZero, T], Nothing] {
-      override def zio: ZIO[NatZero, NatEitherPositive[NatEitherZero, T], Nothing] = ZIO.fail(new NatEitherPositive(Right(i)))
-    }
+  def fail[T](i: T): XIO[NatZero, XError#_1[T], Nothing] = scalax_simeFail(new NatEitherPositive(Right(i)))
+
+  def scalax_simeFail[N <: Nat, T <: NatEither, R](i: T): XIO[N, T, R] = new XIO[N, T, R] {
+    override def zio: ZIO[N, T, R] = ZIO.fail(i)
+  }
 
   def fromFutureInterrupt[A](make: ExecutionContext => scala.concurrent.Future[A]): XIO[XHas#_0, XError#_1[Throwable], A] = new XIO[XHas#_0, XError#_1[Throwable], A] {
     override def zio: ZIO[XHas#_0, XError#_1[Throwable], A] = ZIO.fromFutureInterrupt(f => make(f)).mapError(s => new NatEitherPositive(Right(s)))
@@ -95,6 +99,10 @@ object XIO {
   def fromUIO[I](u: UIO[I]): XIO[XHas#_0, XError#_0, I] = new XIO[XHas#_0, XError#_0, I] {
     override def zio: ZIO[XHas#_0, XError#_0, I] = u
   }
+
+  def fromRIO[P <: Nat, I](u: RIO[P, I]): XIO[P, XError#_1[Throwable], I] = XIO.fromZIO(u.mapError(n => new NatEitherPositive(Right(n))))
+  def fromTask[I](u: Task[I]): XIO[NatZero, XError#_1[Throwable], I]      = XIO.fromZIO(u.mapError(n => new NatEitherPositive(Right(n))))
+  def fromIO[E <: NatEither, I](i: IO[E, I]): XIO[NatZero, E, I]          = XIO.fromZIO(i)
 
   def effect[A](effect: => A): XIO[XHas#_0, XError#_1[Throwable], A] = new XIO[XHas#_0, XError#_1[Throwable], A] {
     override val zio: ZIO[XHas#_0, XError#_1[Throwable], A] = ZIO.effect(effect).mapError(e => new NatEitherPositive(Right(e)))
@@ -107,5 +115,9 @@ object XIO {
   }
 
   def fromFunction[NErrorType <: NatEither]: FunctinManyApply[NErrorType] = new FunctinManyApply[NErrorType]
+
+  def fromZIO[I <: Nat, L <: NatEither, R](i: ZIO[I, L, R]): XIO[I, L, R] = new XIO[I, L, R] {
+    override def zio: ZIO[I, L, R] = i
+  }
 
 }
