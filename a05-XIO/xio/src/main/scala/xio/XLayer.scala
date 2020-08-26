@@ -25,6 +25,11 @@ trait XLayer[I <: Nat, L <: NatEither, R <: Nat] {
       }
     }
 
+  def scalax_simpeMapError[ESUM <: NatEither](n: L => ESUM): XLayer[I, ESUM, R] =
+    new XLayer[I, ESUM, R] {
+      override val zlayer: ZLayer[I, ESUM, R] = self.zlayer.mapError(n)
+    }
+
   def >>>[E1 <: NatEither, RIn2 <: Nat, ROut2 <: Nat](
     that: XLayer[RIn2, E1, ROut2]
   )(implicit n: NatToTag[RIn2, R], e: NatEitherReversePlus[L, E1]): XLayer[I, E1#Plus[L], ROut2] =
@@ -90,5 +95,13 @@ object XLayer {
     new XLayer[R, E, A] {
       override val zlayer: ZLayer[R, E, A] = ZLayer.fromManagedMany(m.zmanaged)
     }
+
+  class FunctinManyApply[ErrorType <: NatEither] {
+    def apply[R <: Nat, A <: Nat](m: R => A): XLayer[R, ErrorType, A] = new XLayer[R, ErrorType, A] {
+      override def zlayer: ZLayer[R, ErrorType, A] = ZLayer.fromFunctionMany(m)
+    }
+  }
+
+  def fromFunctionMany[ErrorType <: NatEither]: FunctinManyApply[ErrorType] = new FunctinManyApply[ErrorType]
 
 }
