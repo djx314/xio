@@ -2,7 +2,7 @@ package xio.logging
 
 import xio.nat.error.NatEither
 import xio.nat.has.{Nat, NatFinder, NatPositive, NatToTag}
-import xio.{XError, XHas, XIO, XLayer}
+import xio.{XError, XHas, XIO, XIOHelper, XLayer}
 import zio._
 import zio.logging._
 
@@ -55,20 +55,11 @@ object xlog {
         }))
 
   def locally[R <: Nat, E <: NatEither, A1](fn: LogContext => LogContext)(zio: XIO[R, E, A1])(implicit n: NatFinder[R, Logger[String]]): XIO[R, E, A1] =
-    XIO
-      .fromFunction[E] { m: R =>
-        m
-      }
-      .scalax_simpleFlatMap(nn => XIO.fromZIO(n.to(nn).locally(fn)(zio.zio)))
+    XIOHelper.scalax_simpleFlatMap(XIO.fromFunction[E](identity[R]))(nn => XIO.fromZIO(n.to(nn).locally(fn)(zio.zio)))
 
-  def locallyM[R <: Nat, E <: NatEither, A1](
-    fn: LogContext => XIO[R, XError#_0, LogContext]
-  )(zio: XIO[R, E, A1])(implicit n: NatFinder[R, Logger[String]]): XIO[R, E, A1] =
-    XIO
-      .fromFunction[E] { m: R =>
-        m
-      }
-      .scalax_simpleFlatMap(nn => XIO.fromZIO(n.to(nn).locallyM(p => fn(p).noErrorZIO)(zio.zio)))
+  def locallyM[R <: Nat, E <: NatEither, A1](fn: LogContext => XIO[R, XError#_0, LogContext])(zio: XIO[R, E, A1])(
+    implicit n: NatFinder[R, Logger[String]]): XIO[R, E, A1] =
+    XIOHelper.scalax_simpleFlatMap(XIO.fromFunction[E](identity[R]))(nn => XIO.fromZIO(n.to(nn).locallyM(p => fn(p).noErrorZIO)(zio.zio)))
 
   def throwable(line: => String, t: Throwable): XIO[XLogging, XError#_0, Unit] =
     XIO.fromZIO(
