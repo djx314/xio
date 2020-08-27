@@ -69,7 +69,7 @@ object xlog {
           Has(l.head)
         }))
 
-  def trace(line: => String): XIO[XLogging, Nothing, Unit] =
+  def trace(line: => String): XIO[XLogging, XError#_0, Unit] =
     XIO.fromZIO(
       log
         .trace(line)
