@@ -76,4 +76,9 @@ object XIO {
 
   def fromZIO[I <: Nat, L <: NatEither, R](i: ZIO[I, L, R]): XIO[I, L, R] = new XIOImpl(i)
 
+  def collectAll[R <: Nat, E <: NatEither, A, Collection[+Element] <: Iterable[Element]](
+    in: Collection[XIO[R, E, A]]
+  )(implicit bf: BuildFrom[Iterable[ZIO[R, E, A]], A, Iterable[A]]): XIO[R, E, Iterable[A]] =
+    XIO.fromZIO(ZIO.collectAll(in.map(_.zio)))
+
 }
