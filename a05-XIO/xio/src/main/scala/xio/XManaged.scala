@@ -18,10 +18,10 @@ trait XManaged[I <: Nat, L <: NatEither, R <: Nat] {
 
 object XManaged {
 
-  def make[R <: Nat, R1 <: Nat, E <: NatEither, A <: Nat](acquire: XIO[R, E, A])(release: A => XIO[R1, XError#_0, Any])(implicit n: NatToTag[R, R1]): XManaged[R1, E, A] =
+  def make[R <: Nat, R1 <: Nat, E <: NatEither, A <: Nat](acquire: XIO[R, E, A])(release: A => XIO[R1, XError0, Any])(implicit n: NatToTag[R, R1]): XManaged[R1, E, A] =
     new XManaged[R1, E, A] {
       override val zmanaged: ZManaged[R1, E, A] =
-        ZManaged.make(XIOHelper.scalax_simpleProvideLayer(acquire)(XLayer.fromFunctionMany[E](n.tag)).zio)(n1 => release(n1).noErrorZIO)
+        ZManaged.make(XIOHelper.simpleProvideLayer(acquire)(XLayer.fromFunctionMany[E](n.tag)).zio)(n1 => release(n1).noErrorZIO)
     }
   /*implicit def xioImplicit[I1 <: Nat, I2 <: Nat, E1 <: NatEither, E2 <: NatEither, O1, O2](
     i: XIO[I1, E1, O1]

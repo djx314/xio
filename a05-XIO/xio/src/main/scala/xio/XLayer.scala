@@ -1,7 +1,7 @@
 package xio
 
 import xio.nat.error.{NatEither, NatEitherPositive, NatEitherReversePlus, NatEitherSetter, NatEitherToTag, NatEitherZero}
-import xio.nat.has.{Nat, NatPositive, NatReversePlus, NatToTag, NatTuple2, NatZero}
+import xio.nat.has.{Nat, NatReversePlus, NatToTag, NatTuple2}
 
 import scala.language.implicitConversions
 import zio._
@@ -81,12 +81,12 @@ object XLayer {
         ZLayer.requires[I2].map(cv.tag).>>>(i.zlayer).mapError(v.tag).map(cv3.tag)
     }
 
-  def identity[T <: Nat]: XLayer[T, XError#_0, T] =
+  def identity[T <: Nat]: XLayer[T, XError0, T] =
     new XLayer[T, NatEitherZero, T] {
       override val zlayer: ZLayer[T, NatEitherZero, T] = ZLayer.identity[T]
     }
 
-  def requires[A <: Nat]: XLayer[A, XError#_0, A] =
+  def requires[A <: Nat]: XLayer[A, XError0, A] =
     new XLayer[A, NatEitherZero, A] {
       override val zlayer: ZLayer[A, NatEitherZero, A] = ZLayer.requires[A]
     }
