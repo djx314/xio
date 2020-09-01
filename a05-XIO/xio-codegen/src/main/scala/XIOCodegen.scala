@@ -8,7 +8,7 @@ import scala.util.Using
 object XIOCodegen {
 
   val filePath1 = Paths.get(".", "a05-XIO", "xio", "src", "main", "scala", "xio", "nat", "has", "XHas.scala")
-  val filePath2 = Paths.get(".", "a05-XIO", "xio", "src", "main", "scala", "xio", "nat", "error", "XError.scala")
+  val filePath2 = Paths.get(".", "a05-XIO", "xio", "src", "main", "scala", "xio", "nat", "error", "XErrorAlias.scala")
 
   def main(i: Array[String]): Unit = {
     Files.createDirectories(filePath1.getParent)
