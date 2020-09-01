@@ -53,7 +53,8 @@ object XIO {
 
   def identity[T <: Nat]: XIO[T, XError#_0, T] = XIO.fromZIO(ZIO.identity[T])
 
-  def fail[T](i: T): XIO[NatZero, XError#_1[T], Nothing] = XIOHelper.scalax_simpleFail(new NatEitherPositive(Right(i)))
+  def fail[T](i: T): XIO[XHas#_0, XError#_1[T], Nothing]                          = XIOHelper.scalax_simpleFail(new NatEitherPositive(Right(i)))
+  def fromOption[T](i: => Option[T]): XIO[XHas#_0, XError#_1[Option[Nothing]], T] = XIOHelper.simpleFromOption(i)
 
   def fromFutureInterrupt[A](make: ExecutionContext => scala.concurrent.Future[A]): XIO[XHas#_0, XError#_1[Throwable], A] =
     XIO.fromZIO(ZIO.fromFutureInterrupt(f => make(f)).mapError(s => new NatEitherPositive(Right(s))))

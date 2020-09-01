@@ -1,8 +1,7 @@
 package xio
 
-import xio.nat.error.NatEither
+import xio.nat.error.{NatEither, NatEitherPositive}
 import xio.nat.has.{Nat, NatZero}
-
 import zio._
 
 object XIOHelper {
@@ -22,8 +21,9 @@ object XIOHelper {
 
   def scalax_simpleCatchAll[I <: Nat, L <: NatEither, R, E2 <: NatEither, A1 >: R](p: XIO[I, L, R]): XIOSimpleCatchAllApply[I, L, R] = new XIOSimpleCatchAllApply(p)
 
-  def scalax_simpleFail[N <: Nat, T <: NatEither, R](i: T): XIO[N, T, R] = new XIO[N, T, R] {
-    override def zio: ZIO[N, T, R] = ZIO.fail(i)
-  }
+  def scalax_simpleFail[N <: Nat, T <: NatEither, R](i: T): XIO[N, T, R] = XIO.fromZIO(ZIO.fail(i))
+
+  def simpleFromOption[N <: Nat, R](i: => Option[R]): XIO[N, XError#_1[Option[Nothing]], R] =
+    XIO.fromZIO(ZIO.fromOption(i).mapError(i => new NatEitherPositive(Right(i))))
 
 }
