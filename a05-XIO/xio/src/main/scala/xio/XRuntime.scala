@@ -41,38 +41,33 @@ object XRuntime {
 
   object XEnv {
 
-    val xlive: XEnv = new NatPositive(
-      new NatPositive(
-        new NatPositive(new NatPositive(new NatPositive(NatZero, clock.Clock.Service.live), console.Console.Service.live), system.System.Service.live),
-        random.Random.Service.live
-      ),
-      blocking.Blocking.Service.live
-    )
+    val xlive: XEnv =
+      XHasTuple5(clock.Clock.Service.live, console.Console.Service.live, system.System.Service.live, random.Random.Service.live, blocking.Blocking.Service.live)
 
     val any: XLayer[XEnv, XError0, XEnv] = XLayer.requires[XEnv]
 
     val live: XLayer[XHas0, XError0, XEnv] = {
-      val live1: XLayer[XHas0, XError0, XHas1[clock.Clock.Service]] =
-        new XLayer[NatZero, XError0, XHas1[clock.Clock.Service]] {
-          override val zlayer: ZLayer[XHas0, XError0, XHas1[clock.Clock.Service]] = clock.Clock.live.map(r => new NatPositive(NatZero, r.get))
+      val live1: XLayer[XHas0, XError0, XHasTuple1[clock.Clock.Service]] =
+        new XLayer[NatZero, XError0, XHasTuple1[clock.Clock.Service]] {
+          override val zlayer: ZLayer[XHas0, XError0, XHasTuple1[clock.Clock.Service]] = clock.Clock.live.map(r => XHasTuple1(r.get))
         }
-      val live2: XLayer[XHas0, XError0, XHas1[console.Console.Service]] =
-        new XLayer[XHas0, XError0, XHas1[console.Console.Service]] {
-          override val zlayer: ZLayer[XHas0, XError0, XHas1[console.Console.Service]] =
-            console.Console.live.map(r => new NatPositive(NatZero, r.get))
+      val live2: XLayer[XHas0, XError0, XHasTuple1[console.Console.Service]] =
+        new XLayer[XHas0, XError0, XHasTuple1[console.Console.Service]] {
+          override val zlayer: ZLayer[XHas0, XError0, XHasTuple1[console.Console.Service]] =
+            console.Console.live.map(r => XHasTuple1(r.get))
         }
-      val live3: XLayer[XHas0, XError0, XHas1[system.System.Service]] =
-        new XLayer[XHas0, XError0, XHas1[system.System.Service]] {
-          override val zlayer: ZLayer[XHas0, NatEitherZero, XHas1[system.System.Service]] = system.System.live.map(r => new NatPositive(NatZero, r.get))
+      val live3: XLayer[XHas0, XError0, XHasTuple1[system.System.Service]] =
+        new XLayer[XHas0, XError0, XHasTuple1[system.System.Service]] {
+          override val zlayer: ZLayer[XHas0, NatEitherZero, XHasTuple1[system.System.Service]] = system.System.live.map(r => XHasTuple1(r.get))
         }
-      val live4: XLayer[XHas0, XError0, XHas1[random.Random.Service]] =
-        new XLayer[XHas0, XError0, XHas1[random.Random.Service]] {
-          override val zlayer: ZLayer[XHas0, XError0, XHas1[random.Random.Service]] = random.Random.live.map(r => new NatPositive(NatZero, r.get))
+      val live4: XLayer[XHas0, XError0, XHasTuple1[random.Random.Service]] =
+        new XLayer[XHas0, XError0, XHasTuple1[random.Random.Service]] {
+          override val zlayer: ZLayer[XHas0, XError0, XHasTuple1[random.Random.Service]] = random.Random.live.map(r => XHasTuple1(r.get))
         }
-      val live5: XLayer[XHas0, XError0, XHas1[blocking.Blocking.Service]] =
-        new XLayer[XHas0, XError0, XHas1[blocking.Blocking.Service]] {
-          override val zlayer: ZLayer[XHas0, XError0, XHas1[blocking.Blocking.Service]] =
-            blocking.Blocking.live.map(r => new NatPositive(NatZero, r.get))
+      val live5: XLayer[XHas0, XError0, XHasTuple1[blocking.Blocking.Service]] =
+        new XLayer[XHas0, XError0, XHasTuple1[blocking.Blocking.Service]] {
+          override val zlayer: ZLayer[XHas0, XError0, XHasTuple1[blocking.Blocking.Service]] =
+            blocking.Blocking.live.map(r => XHasTuple1(r.get))
         }
       live5 ++ live4 ++ live3 ++ live2 ++ live1
     }

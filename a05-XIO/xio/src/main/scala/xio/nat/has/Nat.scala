@@ -13,13 +13,13 @@ trait Nat {
 class NatZero extends Nat {
   self =>
   override type InnerPlus[I <: Nat] = I
-  override type Plus[I <: Nat]      = I#InnerPlus[NatZero]
+  override type Plus[I <: Nat]      = I#SelfType#InnerPlus[NatZero]
   override type SelfType            = NatZero
 
-  override def innerPlus[I <: Nat](i: I): I               = i
-  override def plus[I <: Nat](i: I): I#InnerPlus[NatZero] = i.innerPlus(self)
-  override def selfType: NatZero                          = self
-  override def toString: String                           = "NatZero"
+  override def innerPlus[I <: Nat](i: I): I                        = i
+  override def plus[I <: Nat](i: I): I#SelfType#InnerPlus[NatZero] = i.selfType.innerPlus(self)
+  override def selfType: NatZero                                   = self
+  override def toString: String                                    = "NatZero"
 }
 
 object NatZero extends NatZero
