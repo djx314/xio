@@ -5,16 +5,18 @@ trait NatEitherToTag[T <: NatEither, N <: NatEither] {
 }
 
 object NatEitherToTag extends NatEitherImplicit1 {
-  implicit def zeroNat1[N <: NatEither]: NatEitherToTag[N, N] = new NatEitherToTag[N, N] {
-    override def tag(k: N): N = k
-  }
+  implicit def zeroNat1[N <: NatEither]: NatEitherToTag[N, N] =
+    new NatEitherToTag[N, N] {
+      override def tag(k: N): N = k
+    }
 }
 
 trait NatEitherImplicit1 {
   implicit def zeroNat[N <: NatEither](implicit n: ZeroSetter[N]): NatEitherToTag[NatEitherZero, N] = new NatEitherToTagZero(n = n)
   implicit def positiveNat[Head, TagTail <: NatEither, N <: NatEither](implicit
-                                                                       to: NatEitherToTag[TagTail, N],
-                                                                       p: NatEitherSetter[N, Head]): NatEitherToTag[NatEitherPositive[TagTail, Head], N] =
+    to: NatEitherToTag[TagTail, N],
+    p: NatEitherSetter[N, Head]
+  ): NatEitherToTag[NatEitherPositive[TagTail, Head], N] =
     new NatEitherToTagPositive(to = to, p = p)
 }
 

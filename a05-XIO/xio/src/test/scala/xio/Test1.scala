@@ -3,8 +3,8 @@ package xio
 import xio.nat.error.NatEitherSetter
 
 object Test1 {
-  type Ei1 = XError#_5[Item2, Item3, Item3, Item4, Item5]
-  type Ei2 = XError#_5[Item3, Item4, Item4, Item3, Item3]
+  type Ei1 = XError5[Item2, Item3, Item3, Item4, Item5]
+  type Ei2 = XError5[Item3, Item4, Item4, Item3, Item3]
 
   def main(arr: Array[String]): Unit = {
     val setter = new NatEitherSetter.NatEitherApply[Ei1]

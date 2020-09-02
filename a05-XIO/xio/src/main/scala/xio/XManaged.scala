@@ -11,9 +11,10 @@ import scala.concurrent.ExecutionContext
 trait XManaged[I <: Nat, L <: NatEither, R <: Nat] {
   self =>
   def zmanaged: ZManaged[I, L, R]
-  def map[R2 <: Nat](n: R => R2): XManaged[I, L, R2] = new XManaged[I, L, R2] {
-    override def zmanaged: ZManaged[I, L, R2] = self.zmanaged.map(n)
-  }
+  def map[R2 <: Nat](n: R => R2): XManaged[I, L, R2] =
+    new XManaged[I, L, R2] {
+      override def zmanaged: ZManaged[I, L, R2] = self.zmanaged.map(n)
+    }
 }
 
 object XManaged {

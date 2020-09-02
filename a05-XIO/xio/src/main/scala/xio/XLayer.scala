@@ -102,9 +102,10 @@ object XLayer {
     }
 
   class FunctinManyApply[ErrorType <: NatEither] {
-    def apply[R <: Nat, A <: Nat](m: R => A): XLayer[R, ErrorType, A] = new XLayer[R, ErrorType, A] {
-      override def zlayer: ZLayer[R, ErrorType, A] = ZLayer.fromFunctionMany(m)
-    }
+    def apply[R <: Nat, A <: Nat](m: R => A): XLayer[R, ErrorType, A] =
+      new XLayer[R, ErrorType, A] {
+        override def zlayer: ZLayer[R, ErrorType, A] = ZLayer.fromFunctionMany(m)
+      }
   }
 
   def fromFunctionMany[ErrorType <: NatEither]: FunctinManyApply[ErrorType] = new FunctinManyApply[ErrorType]

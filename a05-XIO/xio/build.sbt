@@ -1,5 +1,5 @@
 CustomSettings.scalaSettings
-CustomSettings.notFmtCompilerSettings
+CustomSettings.compilerSettings
 
 organization := "org.xarcher.xio"
 name := "xio"

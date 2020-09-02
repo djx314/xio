@@ -5,16 +5,16 @@ trait NatToTag[T <: Nat, N <: Nat] {
 }
 
 object NatToTag extends NatToTagImplicit1 {
-  implicit def zeroNat1[N <: Nat]: NatToTag[N, N] = new NatToTag[N, N] {
-    def tag(input: N): N = input
-  }
+  implicit def zeroNat1[N <: Nat]: NatToTag[N, N] =
+    new NatToTag[N, N] {
+      def tag(input: N): N = input
+    }
 }
 
 trait NatToTagImplicit1 {
   implicit def zeroNat[N <: Nat]: NatToTag[NatZero, N] = new NatToTagZero
-  implicit def positiveNat[Head, TagTail <: Nat, N <: Nat](implicit
-                                                           to: NatToTag[TagTail, N],
-                                                           p: NatFinder[N, Head]): NatToTag[NatPositive[TagTail, Head], N] = new NatToTagPositive(to = to, p = p)
+  implicit def positiveNat[Head, TagTail <: Nat, N <: Nat](implicit to: NatToTag[TagTail, N], p: NatFinder[N, Head]): NatToTag[NatPositive[TagTail, Head], N] =
+    new NatToTagPositive(to = to, p = p)
 }
 
 class NatToTagZero[N <: Nat] extends NatToTag[NatZero, N] {

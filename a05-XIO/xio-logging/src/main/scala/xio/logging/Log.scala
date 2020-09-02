@@ -2,13 +2,13 @@ package xio.logging
 
 import xio.nat.error.NatEither
 import xio.nat.has.{Nat, NatFinder}
-import xio.{XError0, XHas, XIO, XIOHelper}
+import xio.{XError0, XHas1, XIO, XIOHelper}
 import zio._
 import zio.logging._
 
 object xlog {
 
-  type XLogging = XHas#_1[Logger[String]]
+  type XLogging = XHas1[Logger[String]]
 
   def apply(level: LogLevel)(line: => String): XIO[XLogging, XError0, Unit] =
     XIO.fromZIO(
