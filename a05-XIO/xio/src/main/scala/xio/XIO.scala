@@ -18,8 +18,8 @@ trait XIO[I <: Nat, L <: NatEither, R] {
 
   def flatMap[I1 <: Nat, L1 <: NatEither, E1](
     cv: R => XIO[I1, L1, E1]
-  )(implicit v: NatReversePlus[I, I1], n: NatEitherReversePlus[L, L1]): XIO[I1#Plus[I], L1#Plus[L], E1] =
-    XIOHelper.simpleFlatMap(XIO.fromFunction[L1#Plus[L]](identity[I1#Plus[I]]))(plus =>
+  )(implicit v: NatReversePlus[I, I1], n: NatEitherReversePlus[L, L1]): XIO[I1#InnerPlus[I], L1#Plus[L], E1] =
+    XIOHelper.simpleFlatMap(XIO.fromFunction[L1#Plus[L]](identity[I1#InnerPlus[I]]))(plus =>
       XIOHelper.simpleFlatMap(XIOHelper.simpeMapError(XIOHelper.simpleProvide(self)(v.takeTail(plus)))(n.takeTail))(n1 =>
         XIOHelper.simpeMapError(XIOHelper.simpleProvide(cv(n1))(v.takeHead(plus)))(n.takeHead)
       )

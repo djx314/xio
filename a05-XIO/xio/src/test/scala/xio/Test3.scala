@@ -11,7 +11,7 @@ object Test3 {
       n3 <- XIO.identity[XHas2[Item1, Item3]]
     } yield (n2.tail.tail.head, n2.tail.head, n2.head, n3.tail.head, n3.head)
 
-    val i2: XIO[XHas3[Item1, Item1, Item2]#RePlus[XHas2[Item1, Item3]], XError0, Items2] = i1
+    val i2: XIO[XHas3[Item1, Item1, Item2]#Plus[XHas2[Item1, Item3]], XError0, Items2] = i1
     println(Runtime.default.unsafeRun(i2.zio.provide(XHas5(new Item1, new Item1, new Item2, new Item1, new Item3)))) // (Item1,Item1,Item2,Item1,Item3)
 
     val i3: XIO[XHas3[Item1, Item2, Item3], XError0, Items2] = i1
