@@ -14,20 +14,20 @@ trait XHasAlias {
     @for(i <- 2 to maxItem) {
         def XHas@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }](@for(ii <- 1 to i) { @if(ii > 1) { , } _@{ii}: T@{ii} }): XHas@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }] = new nat.has.NatPositive(tail = XHas@{i - 1}(@for(ii <- 1 to i - 1) { @if(ii > 1) { , } _@{ii} }) , head = _@{i})
     }
-    case class XHasTuple1[T1](has: XHas1[T1]) {
+    implicit class XHasTuple1ImplicitClass[T1](private val has: XHas1[T1]) {
         def _1: T1 = has.head
-        def replace_1[T](i: T): XHasTuple1[T] = XHasTuple1(XHas1(i))
+        def replace_1[T](i: T): XHas1[T] = XHas1(i)
     }
     @for(i <- 2 to maxItem) {
-        case class XHasTuple@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }](has: XHas@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }]) {
+        implicit class XHasTuple@{i}ImplicitClass[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }](private val has: XHas@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }]) {
             @for(ii <- 1 to i - 1) {
-                def _@{ii}: T@{ii} = XHasTuple@{i - 1}(has.tail)._@{ii}
+                def _@{ii}: T@{ii} = has.tail._@{ii}
             }
             def _@{i}: T@{i} = has.head
             @for(ii <- 1 to i - 1) {
-                def replace_@{ii}[T](i: T): XHasTuple@{i}[@for(iii <- 1 to i) { @if(iii > 1) { , } @if(ii == iii) { T } else { T@{iii} } }] = XHasTuple@{i}(new xio.nat.has.NatPositive(XHasTuple@{i - 1}(has.tail).replace_@{ii}(i).has, has.head))
+                def replace_@{ii}[T](i: T): XHas@{i}[@for(iii <- 1 to i) { @if(iii > 1) { , } @if(ii == iii) { T } else { T@{iii} } }] = new xio.nat.has.NatPositive(has.tail.replace_@{ii}(i), has.head)
             }
-            def replace_@{i}[T](i: T): XHasTuple@{i}[@for(ii <- 1 to i - 1) { T@{ii} , } T] = XHasTuple@{i}(new xio.nat.has.NatPositive(has.tail, i))
+            def replace_@{i}[T](i: T): XHas@{i}[@for(ii <- 1 to i - 1) { T@{ii} , } T] = new xio.nat.has.NatPositive(has.tail, i)
         }
 
         @*object XHasTuple@{i} {

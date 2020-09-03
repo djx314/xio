@@ -24,37 +24,12 @@ object XManaged {
       override val zmanaged: ZManaged[R1, E, A] =
         ZManaged.make(XIOHelper.simpleProvideLayer(acquire)(XLayer.fromFunctionMany[E](n.tag)).zio)(n1 => release(n1).noErrorZIO)
     }
-  /*implicit def xioImplicit[I1 <: Nat, I2 <: Nat, E1 <: NatEither, E2 <: NatEither, O1, O2](
-    i: XIO[I1, E1, O1]
-  )(implicit cv: NatToTag[I1, I2], v: NatEitherToTag[E1, E2], cv3: O1 <:< O2): XIO[I2, E2, O2] =
-    new XIO[I2, E2, O2] {
-      override def zio: ZIO[I2, E2, O2] =
-        for {
-          i2 <- ZIO.identity[I2]
-          u  <- i.zio.provide(cv.tag(i2)).mapError(n => v.tag(n))
-        } yield u
+
+  implicit def xioImplicit[I1 <: Nat, I2 <: Nat, E1 <: NatEither, E2 <: NatEither, O1 <: Nat, O2 <: Nat](
+    i: XManaged[I1, E1, O1]
+  )(implicit cv: NatToTag[I1, I2], v: NatEitherToTag[E1, E2], cv3: NatToTag[O2, O1]): XManaged[I2, E2, O2] =
+    new XManaged[I2, E2, O2] {
+      override val zmanaged: ZManaged[I2, E2, O2] = ZManaged.fromFunction(cv.tag).>>>(i.zmanaged).mapError(v.tag).map(cv3.tag)
     }
-
-  def identity[T <: Nat]: XIO[T, XError#_0, T] =
-    new XIO[T, NatEitherZero, T] {
-      override def zio: ZIO[T, NatEitherZero, T] = ZIO.identity[T]
-    }
-
-  def fail[T](i: T): XIO[NatZero, XError#_1[T], Nothing] =
-    new XIO[NatZero, NatEitherPositive[NatEitherZero, T], Nothing] {
-      override def zio: ZIO[NatZero, NatEitherPositive[NatEitherZero, T], Nothing] = ZIO.fail(new NatEitherPositive(Right(i)))
-    }
-
-  def fromFutureInterrupt[A](make: ExecutionContext => scala.concurrent.Future[A]): XIO[XHas#_0, XError#_1[Throwable], A] = new XIO[XHas#_0, XError#_1[Throwable], A] {
-    override def zio: ZIO[XHas#_0, XError#_1[Throwable], A] = ZIO.fromFutureInterrupt(f => make(f)).mapError(s => new NatEitherPositive(Right(s)))
-  }
-
-  def fromUIO[I](u: UIO[I]): XIO[XHas#_0, XError#_0, I] = new XIO[XHas#_0, XError#_0, I] {
-    override def zio: ZIO[XHas#_0, XError#_0, I] = u
-  }
-
-  def effect[A](effect: => A): XIO[XHas#_0, XError#_1[Throwable], A] = new XIO[XHas#_0, XError#_1[Throwable], A] {
-    override val zio: ZIO[XHas#_0, XError#_1[Throwable], A] = ZIO.effect(effect).mapError(e => new NatEitherPositive(Right(e)))
-  }*/
 
 }

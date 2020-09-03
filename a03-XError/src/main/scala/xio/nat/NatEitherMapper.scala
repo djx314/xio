@@ -18,9 +18,8 @@ object NatEitherMapper extends NatEitherMapperImplicit1 {
       override def map(n: NatEitherFirst[I1], cv: I1 => I2): NatEitherFirst[I2] = new NatEitherFirst(cv(n.one))
     }
 
-  implicit def mapperImplicit2[I1, I2, II <: NatEither, OO <: NatEither](implicit
-    iImplicit: NatEitherMapper.Aux[II, OO, I1, I2]
-  ): NatEitherMapper.Aux[NatEitherPositive[II, I1], NatEitherPositive[OO, I2], I1, I2] =
+  implicit def mapperImplicit2[I1, I2, II <: NatEither, OO <: NatEither](
+    implicit iImplicit: NatEitherMapper.Aux[II, OO, I1, I2]): NatEitherMapper.Aux[NatEitherPositive[II, I1], NatEitherPositive[OO, I2], I1, I2] =
     new NatEitherMapper[NatEitherPositive[II, I1], I1, I2] {
       override type O = NatEitherPositive[OO, I2]
       override def map(n: NatEitherPositive[II, I1], cv: I1 => I2): NatEitherPositive[OO, I2] =
@@ -35,9 +34,9 @@ trait NatEitherMapperImplicit1 {
       override def map(n: NatEitherFirst[I1], cv: II1 => I2): NatEitherFirst[I1] = new NatEitherFirst(n.one)
     }
 
-  implicit def mapperImplicit4[I1, II1, I2, II <: NatEither, OO <: NatEither](implicit
-    iImplicit: NatEitherMapper.Aux[II, OO, II1, I2]
-  ): NatEitherMapper.Aux[NatEitherPositive[II, I1], NatEitherPositive[OO, I1], II1, I2] =
+  implicit def mapperImplicit4[I1, II1, I2, II <: NatEither, OO <: NatEither](
+    implicit
+    iImplicit: NatEitherMapper.Aux[II, OO, II1, I2]): NatEitherMapper.Aux[NatEitherPositive[II, I1], NatEitherPositive[OO, I1], II1, I2] =
     new NatEitherMapper[NatEitherPositive[II, I1], II1, I2] {
       override type O = NatEitherPositive[OO, I1]
       override def map(n: NatEitherPositive[II, I1], cv: II1 => I2): NatEitherPositive[OO, I1] =

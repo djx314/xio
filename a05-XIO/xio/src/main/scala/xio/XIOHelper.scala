@@ -26,7 +26,7 @@ object XIOHelper {
   def simpleFail[N <: Nat, T <: NatEither, R](i: T): XIO[N, T, R] = XIO.fromZIO(ZIO.fail(i))
 
   def simpleFromOption[N <: Nat, R](i: => Option[R]): XIO[N, XError1[Option[Nothing]], R] =
-    XIO.fromZIO(ZIO.fromOption(i).mapError(i => new NatEitherPositive(Right(i))))
+    XIO.fromZIO(ZIO.fromOption(i).mapError(i => XError1(i)))
 
   final def simpleZipWith[R1 <: Nat, E1 <: NatEither, A, B, C](thidMOdel: => XIO[R1, E1, A], that: => XIO[R1, E1, B])(f: (A, B) => C): XIO[R1, E1, C] =
     XIO.fromZIO(thidMOdel.zio.zipWith(that.zio)(f))

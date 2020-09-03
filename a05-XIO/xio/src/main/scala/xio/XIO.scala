@@ -61,19 +61,19 @@ object XIO {
 
   def identity[T <: Nat]: XIO[T, XError0, T] = XIO.fromFunction(identityFn)
 
-  def fail[T](i: T): XIO[XHas0, XError1[T], Nothing]                          = XIOHelper.simpleFail(new NatEitherPositive(Right(i)))
+  def fail[T](i: T): XIO[XHas0, XError1[T], Nothing]                          = XIOHelper.simpleFail(XError1(i))
   def fromOption[T](i: => Option[T]): XIO[XHas0, XError1[Option[Nothing]], T] = XIOHelper.simpleFromOption(i)
 
   def fromFutureInterrupt[A](make: ExecutionContext => scala.concurrent.Future[A]): XIO[XHas0, XError1[Throwable], A] =
-    XIO.fromZIO(ZIO.fromFutureInterrupt(f => make(f)).mapError(s => new NatEitherPositive(Right(s))))
+    XIO.fromZIO(ZIO.fromFutureInterrupt(f => make(f)).mapError(s => XError1(s)))
 
   def fromUIO[I](u: UIO[I]): XIO[XHas0, XError0, I] = XIO.fromZIO(u)
 
-  def fromRIO[P <: Nat, I](u: RIO[P, I]): XIO[P, XError1[Throwable], I] = XIO.fromZIO(u.mapError(n => new NatEitherPositive(Right(n))))
-  def fromTask[I](u: Task[I]): XIO[NatZero, XError1[Throwable], I]      = XIO.fromZIO(u.mapError(n => new NatEitherPositive(Right(n))))
+  def fromRIO[P <: Nat, I](u: RIO[P, I]): XIO[P, XError1[Throwable], I] = XIO.fromZIO(u.mapError(n => XError1(n)))
+  def fromTask[I](u: Task[I]): XIO[NatZero, XError1[Throwable], I]      = XIO.fromZIO(u.mapError(n => XError1(n)))
   def fromIO[E <: NatEither, I](i: IO[E, I]): XIO[NatZero, E, I]        = XIO.fromZIO(i)
 
-  def effect[A](effect: => A): XIO[XHas0, XError1[Throwable], A] = XIO.fromZIO(ZIO.effect(effect).mapError(e => new NatEitherPositive(Right(e))))
+  def effect[A](effect: => A): XIO[XHas0, XError1[Throwable], A] = XIO.fromZIO(ZIO.effect(effect).mapError(e => XError1(e)))
 
   class FunctinManyApply[ErrorType <: NatEither] {
     def apply[N <: Nat, A](effect: N => A): XIO[N, ErrorType, A] = XIO.fromZIO(ZIO.fromFunction(effect))
