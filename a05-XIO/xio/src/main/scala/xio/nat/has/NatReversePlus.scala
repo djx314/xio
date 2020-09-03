@@ -26,3 +26,20 @@ class NatReversePlusPositive[N1Tail <: Nat, N1Head, N2 <: Nat](val tail: NatReve
   override def takeHead(t1: NatPositive[N1Tail#InnerPlus[N2], N1Head]): NatPositive[N1Tail, N1Head]     = new NatPositive(tail = tail.takeHead(t1.tail), head = t1.head)
   override def takeTail(t1: NatPositive[N1Tail#InnerPlus[N2], N1Head]): N2                              = tail.takeTail(t1.tail)
 }
+
+/*trait NatReversePlus1111[N2 <: Nat, N1 <: Nat] {
+  type PluI = N1#InnerPlus[N2]#InnerPlus[NatZero]
+  def plus(t1: N1, t2: N2): PluI
+  def takeHead(t1: PluI): N1
+  def takeTail(t1: PluI): N2
+}
+
+object NatReversePlus1111 {
+  implicit def bi[N1 <: Nat, N2 <: Nat](implicit p: NatReversePlus[N2, N1]): NatReversePlus1111[N2, N1] =
+    new NatReversePlus1111[N2, N1] {
+      override type PluI = N1#InnerPlus[NatZero]#InnerPlus[N2]
+      override def plus(t1: N1, t2: N2): PluI = t1.innerPlus(NatZero).innerPlus(t2)
+      override def takeHead(t1: PluI): N1
+      override def takeTail(t1: PluI): N2
+    }
+}*/

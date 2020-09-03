@@ -5,9 +5,9 @@ trait NatFinder[NN <: Nat, HeadR] {
 }
 
 object NatFinder {
-  implicit def implicit1[HeadT, N <: Nat](implicit n: NatFinderImpl[N#SelfType, HeadT]): NatFinder[N#SelfType, HeadT] =
-    new NatFinder[N#SelfType, HeadT] {
-      override def to(t: N#SelfType): HeadT = n.to(t)
+  implicit def implicit1[HeadT, N <: Nat](implicit n: NatFinderImpl[N#InnerPlus[NatZero], HeadT]): NatFinder[N, HeadT] =
+    new NatFinder[N, HeadT] {
+      override def to(t: N): HeadT = n.to(t.innerPlus(NatZero))
     }
 }
 

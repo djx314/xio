@@ -61,12 +61,12 @@ trait XLayer[I <: Nat, L <: NatEither, R <: Nat] {
 
   final def <&>[E1 <: NatEither, RIn2 <: Nat, ROut2 <: Nat](
     that: XLayer[RIn2, E1, ROut2]
-  )(implicit n1: NatReversePlus[I, RIn2], e: NatEitherReversePlus[L, E1]): XLayer[RIn2#InnerPlus[I], E1#Plus[L], XHasTuple2[ROut2, R]] =
-    new XLayer[RIn2#InnerPlus[I], E1#Plus[L], XHasTuple2[ROut2, R]] {
-      override val zlayer: ZLayer[RIn2#InnerPlus[I], E1#Plus[L], XHasTuple2[ROut2, R]] = {
+  )(implicit n1: NatReversePlus[I, RIn2], e: NatEitherReversePlus[L, E1]): XLayer[RIn2#InnerPlus[I], E1#Plus[L], XHas2[ROut2, R]] =
+    new XLayer[RIn2#InnerPlus[I], E1#Plus[L], XHas2[ROut2, R]] {
+      override val zlayer: ZLayer[RIn2#InnerPlus[I], E1#Plus[L], XHas2[ROut2, R]] = {
         val l1: ZLayer[RIn2#InnerPlus[I], E1#Plus[L], R]     = ZLayer.requires[RIn2#InnerPlus[I]].map(r => n1.takeTail(r)).>>>(self.zlayer).mapError(e.takeTail)
         val l2: ZLayer[RIn2#InnerPlus[I], E1#Plus[L], ROut2] = ZLayer.requires[RIn2#InnerPlus[I]].map(r => n1.takeHead(r)).>>>(that.zlayer).mapError(e.takeHead)
-        l1.zipWithPar(l2)((s, t) => XHasTuple2(_1 = t, _2 = s))
+        l1.zipWithPar(l2)((s, t) => XHas2(_1 = t, _2 = s))
       }
     }
 
