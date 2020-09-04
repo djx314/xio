@@ -19,7 +19,7 @@ trait XIO[I <: Nat, L <: NatEither, R] {
   def flatMap[I1 <: Nat, L1 <: NatEither, E1](
     cv: R => XIO[I1, L1, E1]
   )(implicit v: NatReversePlus[I, I1], n: NatEitherReversePlus[L, L1]): XIO[I1#InnerPlus[I], L1#Plus[L], E1] =
-    XIOHelper.simpleFlatMap(XIO.fromFunction[L1#Plus[L]](identity[I1#InnerPlus[I]]))(plus =>
+    XIOHelper.simpleFlatMap(XIOHelper.simpleFromFunction[L1#Plus[L]](identity[I1#InnerPlus[I]]))(plus =>
       XIOHelper.simpleFlatMap(XIOHelper.simpeMapError(XIOHelper.simpleProvide(self)(v.takeTail(plus)))(n.takeTail))(n1 =>
         XIOHelper.simpeMapError(XIOHelper.simpleProvide(cv(n1))(v.takeHead(plus)))(n.takeHead)
       )
@@ -75,11 +75,7 @@ object XIO {
 
   def effect[A](effect: => A): XIO[XHas0, XError1[Throwable], A] = XIO.fromZIO(ZIO.effect(effect).mapError(e => XError1(e)))
 
-  class FunctinManyApply[ErrorType <: NatEither] {
-    def apply[N <: Nat, A](effect: N => A): XIO[N, ErrorType, A] = XIO.fromZIO(ZIO.fromFunction(effect))
-  }
-
-  def fromFunction[NErrorType <: NatEither]: FunctinManyApply[NErrorType] = new FunctinManyApply[NErrorType]
+  def fromFunction[N <: Nat, I](i: N => I): XIO[N, XError0, I] = XIOHelper.simpleFromFunction(i)
 
   class XIOImpl[I <: Nat, L <: NatEither, R](override val zio: ZIO[I, L, R]) extends XIO[I, L, R]
 

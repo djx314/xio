@@ -1,6 +1,6 @@
 package xio
 
-import xio.nat.error.{NatEither, NatEitherPositive}
+import xio.nat.error.NatEither
 import xio.nat.has.{Nat, NatZero}
 import zio._
 
@@ -37,5 +37,10 @@ object XIOHelper {
     in: Collection[A]
   )(f: A => XIO[R, E, B])(implicit bf: BuildFrom[Collection[A], B, Collection[B]]): XIO[R, E, Collection[B]] =
     in.foldLeft[XIO[R, E, mutable.Builder[B, Collection[B]]]](effectTotal(bf.newBuilder(in)))((io, a) => XIOHelper.simpleZipWith(io, f(a))(_ += _)).map(_.result())
+
+  class FunctinManyApply[ErrorType <: NatEither] {
+    def apply[N <: Nat, A](effect: N => A): XIO[N, ErrorType, A] = XIO.fromZIO(ZIO.fromFunction(effect))
+  }
+  def simpleFromFunction[NErrorType <: NatEither]: FunctinManyApply[NErrorType] = new FunctinManyApply[NErrorType]
 
 }
