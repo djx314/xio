@@ -58,7 +58,7 @@ object xlog {
     XIOHelper.simpleFlatMap(XIOHelper.simpleFromFunction[E](n.to))(nn => XIO.fromZIO(nn.locally(fn)(zio.zio)))
 
   def locallyM[R <: Nat, E <: NatEither, A1](fn: LogContext => XIO[R, XError0, LogContext])(zio: XIO[R, E, A1])(implicit n: NatFinder[R, Logger[String]]): XIO[R, E, A1] =
-    XIOHelper.simpleFlatMap(XIOHelper.simpleFromFunction[E](n.to))(nn => XIO.fromZIO(nn.locallyM(p => fn(p).noErrorZIO)(zio.zio)))
+    XIOHelper.simpleFlatMap(XIOHelper.simpleFromFunction[E](n.to))(nn => XIO.fromZIO(nn.locallyM(p => XIOHelper.simpleNoErrorZIO(fn(p)))(zio.zio)))
 
   def throwable(line: => String, t: Throwable): XIO[XLogging, XError0, Unit] =
     XIO.fromZIO(

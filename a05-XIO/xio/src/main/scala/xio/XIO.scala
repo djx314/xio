@@ -12,16 +12,15 @@ trait XIO[I <: Nat, L <: NatEither, R] {
   self =>
 
   def zio: ZIO[I, L, R]
-  def noErrorZIO(implicit ev: L <:< NatEitherZero): ZIO[I, Nothing, R] = self.zio.asInstanceOf[ZIO[I, Nothing, R]]
 
   def map[E1](cv: R => E1): XIO[I, L, E1] = XIO.fromZIO(zio.map(cv))
 
   def flatMap[I1 <: Nat, L1 <: NatEither, E1](
     cv: R => XIO[I1, L1, E1]
-  )(implicit v: NatReversePlus[I, I1], n: NatEitherReversePlus[L, L1]): XIO[I1#InnerPlus[I], L1#Plus[L], E1] =
-    XIOHelper.simpleFlatMap(XIOHelper.simpleFromFunction[L1#Plus[L]](identity[I1#InnerPlus[I]]))(plus =>
-      XIOHelper.simpleFlatMap(XIOHelper.simpeMapError(XIOHelper.simpleProvide(self)(v.takeTail(plus)))(n.takeTail))(n1 =>
-        XIOHelper.simpeMapError(XIOHelper.simpleProvide(cv(n1))(v.takeHead(plus)))(n.takeHead)
+  )(implicit v: NatReversePlus[I1, I], n: NatEitherReversePlus[L, L1]): XIO[I#InnerPlus[I1], L1#Plus[L], E1] =
+    XIOHelper.simpleFlatMap(XIOHelper.simpleFromFunction[L1#Plus[L]](identity[I#InnerPlus[I1]]))(plus =>
+      XIOHelper.simpleFlatMap(XIOHelper.simpeMapError(XIOHelper.simpleProvide(self)(v.takeHead(plus)))(n.takeTail))(n1 =>
+        XIOHelper.simpeMapError(XIOHelper.simpleProvide(cv(n1))(v.takeTail(plus)))(n.takeHead)
       )
     )
 

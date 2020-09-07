@@ -22,7 +22,7 @@ object XManaged {
   def make[R <: Nat, R1 <: Nat, E <: NatEither, A <: Nat](acquire: XIO[R, E, A])(release: A => XIO[R1, XError0, Any])(implicit n: NatToTag[R, R1]): XManaged[R1, E, A] =
     new XManaged[R1, E, A] {
       override val zmanaged: ZManaged[R1, E, A] =
-        ZManaged.make(XIOHelper.simpleProvideLayer(acquire)(XLayer.fromFunctionMany[E](n.tag)).zio)(n1 => release(n1).noErrorZIO)
+        ZManaged.make(XIOHelper.simpleProvideLayer(acquire)(XLayer.fromFunctionMany[E](n.tag)).zio)(n1 => XIOHelper.simpleNoErrorZIO(release(n1)))
     }
 
   implicit def xioImplicit[I1 <: Nat, I2 <: Nat, E1 <: NatEither, E2 <: NatEither, O1 <: Nat, O2 <: Nat](

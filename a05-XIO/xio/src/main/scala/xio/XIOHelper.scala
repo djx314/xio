@@ -1,6 +1,6 @@
 package xio
 
-import xio.nat.error.NatEither
+import xio.nat.error.{NatEither, NatEitherZero}
 import xio.nat.has.{Nat, NatZero}
 import zio._
 
@@ -42,5 +42,7 @@ object XIOHelper {
     def apply[N <: Nat, A](effect: N => A): XIO[N, ErrorType, A] = XIO.fromZIO(ZIO.fromFunction(effect))
   }
   def simpleFromFunction[NErrorType <: NatEither]: FunctinManyApply[NErrorType] = new FunctinManyApply[NErrorType]
+
+  def simpleNoErrorZIO[I <: Nat, P](i: XIO[I, NatEitherZero, P]): ZIO[I, Nothing, P] = i.zio.asInstanceOf[ZIO[I, Nothing, P]]
 
 }

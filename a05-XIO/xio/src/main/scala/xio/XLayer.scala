@@ -39,33 +39,33 @@ trait XLayer[I <: Nat, L <: NatEither, R <: Nat] {
 
   def ++[E1 <: NatEither, RIn2 <: Nat, ROut2 <: Nat](
     that: XLayer[RIn2, E1, ROut2]
-  )(implicit n1: NatReversePlus[I, RIn2], e: NatEitherReversePlus[L, E1]): XLayer[RIn2#InnerPlus[I], E1#Plus[L], ROut2#InnerPlus[R]] =
-    new XLayer[RIn2#InnerPlus[I], E1#Plus[L], ROut2#InnerPlus[R]] {
-      override val zlayer: ZLayer[RIn2#InnerPlus[I], E1#Plus[L], ROut2#InnerPlus[R]] = {
-        val l1: ZLayer[RIn2#InnerPlus[I], E1#Plus[L], R]     = ZLayer.requires[RIn2#InnerPlus[I]].map(r => n1.takeTail(r)).>>>(self.zlayer).mapError(e.takeTail)
-        val l2: ZLayer[RIn2#InnerPlus[I], E1#Plus[L], ROut2] = ZLayer.requires[RIn2#InnerPlus[I]].map(r => n1.takeHead(r)).>>>(that.zlayer).mapError(e.takeHead)
-        l2.zipWithPar(l1)((s, t) => s.innerPlus(t))
+  )(implicit n1: NatReversePlus[RIn2, I], e: NatEitherReversePlus[L, E1]): XLayer[I#InnerPlus[RIn2], E1#Plus[L], R#InnerPlus[ROut2]] =
+    new XLayer[I#InnerPlus[RIn2], E1#Plus[L], R#InnerPlus[ROut2]] {
+      override val zlayer: ZLayer[I#InnerPlus[RIn2], E1#Plus[L], R#InnerPlus[ROut2]] = {
+        val l1: ZLayer[I#InnerPlus[RIn2], E1#Plus[L], R]     = ZLayer.requires[I#InnerPlus[RIn2]].map(r => n1.takeHead(r)).>>>(self.zlayer).mapError(e.takeTail)
+        val l2: ZLayer[I#InnerPlus[RIn2], E1#Plus[L], ROut2] = ZLayer.requires[I#InnerPlus[RIn2]].map(r => n1.takeTail(r)).>>>(that.zlayer).mapError(e.takeHead)
+        l2.zipWithPar(l1)((s, t) => t.innerPlus(s))
       }
     }
 
   final def >+>[E1 <: NatEither, RIn2 <: Nat, ROut2 <: Nat](
     that: XLayer[RIn2, E1, ROut2]
-  )(implicit nt: NatToTag[RIn2, R], e: NatEitherReversePlus[L, E1]): XLayer[I, E1#Plus[L], ROut2#InnerPlus[R]] =
-    new XLayer[I, E1#Plus[L], ROut2#InnerPlus[R]] {
-      override val zlayer: ZLayer[I, E1#Plus[L], ROut2#InnerPlus[R]] = {
+  )(implicit nt: NatToTag[RIn2, R], e: NatEitherReversePlus[L, E1]): XLayer[I, E1#Plus[L], R#InnerPlus[ROut2]] =
+    new XLayer[I, E1#Plus[L], R#InnerPlus[ROut2]] {
+      override val zlayer: ZLayer[I, E1#Plus[L], R#InnerPlus[ROut2]] = {
         val l1: ZLayer[I, E1#Plus[L], R]     = self.zlayer.mapError(e.takeTail)
         val l2: ZLayer[I, E1#Plus[L], ROut2] = l1.map(nt.tag).>>>(that.zlayer.mapError(e.takeHead))
-        l2.zipWithPar(l1)((s, t) => s.innerPlus(t))
+        l2.zipWithPar(l1)((s, t) => t.innerPlus(s))
       }
     }
 
   final def <&>[E1 <: NatEither, RIn2 <: Nat, ROut2 <: Nat](
     that: XLayer[RIn2, E1, ROut2]
-  )(implicit n1: NatReversePlus[I, RIn2], e: NatEitherReversePlus[L, E1]): XLayer[RIn2#InnerPlus[I], E1#Plus[L], XHas2[ROut2, R]] =
-    new XLayer[RIn2#InnerPlus[I], E1#Plus[L], XHas2[ROut2, R]] {
-      override val zlayer: ZLayer[RIn2#InnerPlus[I], E1#Plus[L], XHas2[ROut2, R]] = {
-        val l1: ZLayer[RIn2#InnerPlus[I], E1#Plus[L], R]     = ZLayer.requires[RIn2#InnerPlus[I]].map(r => n1.takeTail(r)).>>>(self.zlayer).mapError(e.takeTail)
-        val l2: ZLayer[RIn2#InnerPlus[I], E1#Plus[L], ROut2] = ZLayer.requires[RIn2#InnerPlus[I]].map(r => n1.takeHead(r)).>>>(that.zlayer).mapError(e.takeHead)
+  )(implicit n1: NatReversePlus[RIn2, I], e: NatEitherReversePlus[L, E1]): XLayer[I#InnerPlus[RIn2], E1#Plus[L], XHas2[ROut2, R]] =
+    new XLayer[I#InnerPlus[RIn2], E1#Plus[L], XHas2[ROut2, R]] {
+      override val zlayer: ZLayer[I#InnerPlus[RIn2], E1#Plus[L], XHas2[ROut2, R]] = {
+        val l1: ZLayer[I#InnerPlus[RIn2], E1#Plus[L], R]     = ZLayer.fromFunctionMany(n1.takeHead).>>>(self.zlayer).mapError(e.takeTail)
+        val l2: ZLayer[I#InnerPlus[RIn2], E1#Plus[L], ROut2] = ZLayer.fromFunctionMany(n1.takeTail).>>>(that.zlayer).mapError(e.takeHead)
         l1.zipWithPar(l2)((s, t) => XHas2(_1 = t, _2 = s))
       }
     }

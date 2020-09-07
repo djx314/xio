@@ -4,11 +4,11 @@ import a10.{自然数容器, 自然数容器I, 自然数对, 自然数标记, �
 
 trait Nat {
   type InnerPlus[I <: Nat] <: Nat
-  type Plus[I <: Nat] <: Nat
+  type Plus[I <: Nat] = InnerPlus[I]
   type 消去标记[T <: 自然数标记] <: 自然数对
 
   def innerPlus[I <: Nat](i: I): InnerPlus[I]
-  def plus[I <: Nat](i: I): Plus[I]
+  def plus[I <: Nat](i: I): Plus[I] = innerPlus(i)
   def 消去标记[T <: 自然数标记](item: T): 消去标记[T]
 
   type _0 <: 自然数容器
@@ -36,12 +36,12 @@ trait Nat {
 class NatZero extends Nat {
   self =>
   override type InnerPlus[I <: Nat] = I
-  override type Plus[I <: Nat]      = I#InnerPlus[NatZero]
-  override type 消去标记[T <: 自然数标记]    = 非正整数自然数对[T]
+  // override type Plus[I <: Nat]      = I#InnerPlus[NatZero]
+  override type 消去标记[T <: 自然数标记] = 非正整数自然数对[T]
 
-  override def innerPlus[I <: Nat](i: I): I               = i
-  override def plus[I <: Nat](i: I): I#InnerPlus[NatZero] = i.innerPlus(self)
-  override def 消去标记[T <: 自然数标记](item: T): 非正整数自然数对[T]     = new 非正整数自然数对(负数部分 = item, 正数部分 = self)
+  override def innerPlus[I <: Nat](i: I): I = i
+  // override def plus[I <: Nat](i: I): I#InnerPlus[NatZero] = i.innerPlus(self)
+  override def 消去标记[T <: 自然数标记](item: T): 非正整数自然数对[T] = new 非正整数自然数对(负数部分 = item, 正数部分 = self)
 
   override type _0 = 自然数容器I[NatZero, 自然数标记零]
   override def _0: _0 = 自然数容器I(self, 自然数标记零.value)
@@ -72,11 +72,11 @@ object NatZero extends NatZero
 class NatPositive[Tail <: Nat, Head](val tail: Tail, val head: Head) extends Nat {
   self =>
   override type InnerPlus[I <: Nat] = NatPositive[Tail#InnerPlus[I], Head]
-  override type Plus[I <: Nat]      = I#InnerPlus[NatPositive[Tail, Head]]
-  override type 消去标记[T <: 自然数标记]    = T#自然数消去[Tail, Head]
+  // override type Plus[I <: Nat]      = I#InnerPlus[NatPositive[Tail, Head]]
+  override type 消去标记[T <: 自然数标记] = T#自然数消去[Tail, Head]
 
   override def innerPlus[I <: Nat](i: I): NatPositive[Tail#InnerPlus[I], Head] = new NatPositive(tail.innerPlus(i), head)
-  override def plus[I <: Nat](i: I): I#InnerPlus[NatPositive[Tail, Head]]      = i.innerPlus(self)
+  // override def plus[I <: Nat](i: I): I#InnerPlus[NatPositive[Tail, Head]]      = i.innerPlus(self)
   override def 消去标记[T <: 自然数标记](item: T): T#自然数消去[Tail, Head]                  = item.自然数消去(tail, head)
   def get[P](implicit headerFunctor: NatFinder[NatPositive[Tail, Head], P]): P = headerFunctor.to(self)
 
