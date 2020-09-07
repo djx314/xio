@@ -533,39 +533,24 @@ trait XHasAlias {
       )
   }
   implicit class XHasTuple1ImplicitClass[T1](private val has: XHas1[T1]) {
-    def _1: T1                       = has.head
     def replace_1[T](i: T): XHas1[T] = XHas1(i)
   }
   implicit class XHasTuple2ImplicitClass[T1, T2](private val has: XHas2[T1, T2]) {
-    def _1: T1                           = has.tail._1
-    def _2: T2                           = has.head
     def replace_1[T](i: T): XHas2[T, T2] = new xio.nat.has.NatPositive(has.tail.replace_1(i), has.head)
     def replace_2[T](i: T): XHas2[T1, T] = new xio.nat.has.NatPositive(has.tail, i)
   }
   implicit class XHasTuple3ImplicitClass[T1, T2, T3](private val has: XHas3[T1, T2, T3]) {
-    def _1: T1                               = has.tail._1
-    def _2: T2                               = has.tail._2
-    def _3: T3                               = has.head
     def replace_1[T](i: T): XHas3[T, T2, T3] = new xio.nat.has.NatPositive(has.tail.replace_1(i), has.head)
     def replace_2[T](i: T): XHas3[T1, T, T3] = new xio.nat.has.NatPositive(has.tail.replace_2(i), has.head)
     def replace_3[T](i: T): XHas3[T1, T2, T] = new xio.nat.has.NatPositive(has.tail, i)
   }
   implicit class XHasTuple4ImplicitClass[T1, T2, T3, T4](private val has: XHas4[T1, T2, T3, T4]) {
-    def _1: T1                                   = has.tail._1
-    def _2: T2                                   = has.tail._2
-    def _3: T3                                   = has.tail._3
-    def _4: T4                                   = has.head
     def replace_1[T](i: T): XHas4[T, T2, T3, T4] = new xio.nat.has.NatPositive(has.tail.replace_1(i), has.head)
     def replace_2[T](i: T): XHas4[T1, T, T3, T4] = new xio.nat.has.NatPositive(has.tail.replace_2(i), has.head)
     def replace_3[T](i: T): XHas4[T1, T2, T, T4] = new xio.nat.has.NatPositive(has.tail.replace_3(i), has.head)
     def replace_4[T](i: T): XHas4[T1, T2, T3, T] = new xio.nat.has.NatPositive(has.tail, i)
   }
   implicit class XHasTuple5ImplicitClass[T1, T2, T3, T4, T5](private val has: XHas5[T1, T2, T3, T4, T5]) {
-    def _1: T1                                       = has.tail._1
-    def _2: T2                                       = has.tail._2
-    def _3: T3                                       = has.tail._3
-    def _4: T4                                       = has.tail._4
-    def _5: T5                                       = has.head
     def replace_1[T](i: T): XHas5[T, T2, T3, T4, T5] = new xio.nat.has.NatPositive(has.tail.replace_1(i), has.head)
     def replace_2[T](i: T): XHas5[T1, T, T3, T4, T5] = new xio.nat.has.NatPositive(has.tail.replace_2(i), has.head)
     def replace_3[T](i: T): XHas5[T1, T2, T, T4, T5] = new xio.nat.has.NatPositive(has.tail.replace_3(i), has.head)
@@ -573,12 +558,6 @@ trait XHasAlias {
     def replace_5[T](i: T): XHas5[T1, T2, T3, T4, T] = new xio.nat.has.NatPositive(has.tail, i)
   }
   implicit class XHasTuple6ImplicitClass[T1, T2, T3, T4, T5, T6](private val has: XHas6[T1, T2, T3, T4, T5, T6]) {
-    def _1: T1                                           = has.tail._1
-    def _2: T2                                           = has.tail._2
-    def _3: T3                                           = has.tail._3
-    def _4: T4                                           = has.tail._4
-    def _5: T5                                           = has.tail._5
-    def _6: T6                                           = has.head
     def replace_1[T](i: T): XHas6[T, T2, T3, T4, T5, T6] = new xio.nat.has.NatPositive(has.tail.replace_1(i), has.head)
     def replace_2[T](i: T): XHas6[T1, T, T3, T4, T5, T6] = new xio.nat.has.NatPositive(has.tail.replace_2(i), has.head)
     def replace_3[T](i: T): XHas6[T1, T2, T, T4, T5, T6] = new xio.nat.has.NatPositive(has.tail.replace_3(i), has.head)
@@ -587,13 +566,6 @@ trait XHasAlias {
     def replace_6[T](i: T): XHas6[T1, T2, T3, T4, T5, T] = new xio.nat.has.NatPositive(has.tail, i)
   }
   implicit class XHasTuple7ImplicitClass[T1, T2, T3, T4, T5, T6, T7](private val has: XHas7[T1, T2, T3, T4, T5, T6, T7]) {
-    def _1: T1                                               = has.tail._1
-    def _2: T2                                               = has.tail._2
-    def _3: T3                                               = has.tail._3
-    def _4: T4                                               = has.tail._4
-    def _5: T5                                               = has.tail._5
-    def _6: T6                                               = has.tail._6
-    def _7: T7                                               = has.head
     def replace_1[T](i: T): XHas7[T, T2, T3, T4, T5, T6, T7] = new xio.nat.has.NatPositive(has.tail.replace_1(i), has.head)
     def replace_2[T](i: T): XHas7[T1, T, T3, T4, T5, T6, T7] = new xio.nat.has.NatPositive(has.tail.replace_2(i), has.head)
     def replace_3[T](i: T): XHas7[T1, T2, T, T4, T5, T6, T7] = new xio.nat.has.NatPositive(has.tail.replace_3(i), has.head)
@@ -603,14 +575,6 @@ trait XHasAlias {
     def replace_7[T](i: T): XHas7[T1, T2, T3, T4, T5, T6, T] = new xio.nat.has.NatPositive(has.tail, i)
   }
   implicit class XHasTuple8ImplicitClass[T1, T2, T3, T4, T5, T6, T7, T8](private val has: XHas8[T1, T2, T3, T4, T5, T6, T7, T8]) {
-    def _1: T1                                                   = has.tail._1
-    def _2: T2                                                   = has.tail._2
-    def _3: T3                                                   = has.tail._3
-    def _4: T4                                                   = has.tail._4
-    def _5: T5                                                   = has.tail._5
-    def _6: T6                                                   = has.tail._6
-    def _7: T7                                                   = has.tail._7
-    def _8: T8                                                   = has.head
     def replace_1[T](i: T): XHas8[T, T2, T3, T4, T5, T6, T7, T8] = new xio.nat.has.NatPositive(has.tail.replace_1(i), has.head)
     def replace_2[T](i: T): XHas8[T1, T, T3, T4, T5, T6, T7, T8] = new xio.nat.has.NatPositive(has.tail.replace_2(i), has.head)
     def replace_3[T](i: T): XHas8[T1, T2, T, T4, T5, T6, T7, T8] = new xio.nat.has.NatPositive(has.tail.replace_3(i), has.head)
@@ -621,15 +585,6 @@ trait XHasAlias {
     def replace_8[T](i: T): XHas8[T1, T2, T3, T4, T5, T6, T7, T] = new xio.nat.has.NatPositive(has.tail, i)
   }
   implicit class XHasTuple9ImplicitClass[T1, T2, T3, T4, T5, T6, T7, T8, T9](private val has: XHas9[T1, T2, T3, T4, T5, T6, T7, T8, T9]) {
-    def _1: T1                                                       = has.tail._1
-    def _2: T2                                                       = has.tail._2
-    def _3: T3                                                       = has.tail._3
-    def _4: T4                                                       = has.tail._4
-    def _5: T5                                                       = has.tail._5
-    def _6: T6                                                       = has.tail._6
-    def _7: T7                                                       = has.tail._7
-    def _8: T8                                                       = has.tail._8
-    def _9: T9                                                       = has.head
     def replace_1[T](i: T): XHas9[T, T2, T3, T4, T5, T6, T7, T8, T9] = new xio.nat.has.NatPositive(has.tail.replace_1(i), has.head)
     def replace_2[T](i: T): XHas9[T1, T, T3, T4, T5, T6, T7, T8, T9] = new xio.nat.has.NatPositive(has.tail.replace_2(i), has.head)
     def replace_3[T](i: T): XHas9[T1, T2, T, T4, T5, T6, T7, T8, T9] = new xio.nat.has.NatPositive(has.tail.replace_3(i), has.head)
@@ -641,16 +596,6 @@ trait XHasAlias {
     def replace_9[T](i: T): XHas9[T1, T2, T3, T4, T5, T6, T7, T8, T] = new xio.nat.has.NatPositive(has.tail, i)
   }
   implicit class XHasTuple10ImplicitClass[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10](private val has: XHas10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]) {
-    def _1: T1                                                             = has.tail._1
-    def _2: T2                                                             = has.tail._2
-    def _3: T3                                                             = has.tail._3
-    def _4: T4                                                             = has.tail._4
-    def _5: T5                                                             = has.tail._5
-    def _6: T6                                                             = has.tail._6
-    def _7: T7                                                             = has.tail._7
-    def _8: T8                                                             = has.tail._8
-    def _9: T9                                                             = has.tail._9
-    def _10: T10                                                           = has.head
     def replace_1[T](i: T): XHas10[T, T2, T3, T4, T5, T6, T7, T8, T9, T10] = new xio.nat.has.NatPositive(has.tail.replace_1(i), has.head)
     def replace_2[T](i: T): XHas10[T1, T, T3, T4, T5, T6, T7, T8, T9, T10] = new xio.nat.has.NatPositive(has.tail.replace_2(i), has.head)
     def replace_3[T](i: T): XHas10[T1, T2, T, T4, T5, T6, T7, T8, T9, T10] = new xio.nat.has.NatPositive(has.tail.replace_3(i), has.head)
@@ -663,17 +608,6 @@ trait XHasAlias {
     def replace_10[T](i: T): XHas10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T] = new xio.nat.has.NatPositive(has.tail, i)
   }
   implicit class XHasTuple11ImplicitClass[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11](private val has: XHas11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11]) {
-    def _1: T1                                                                  = has.tail._1
-    def _2: T2                                                                  = has.tail._2
-    def _3: T3                                                                  = has.tail._3
-    def _4: T4                                                                  = has.tail._4
-    def _5: T5                                                                  = has.tail._5
-    def _6: T6                                                                  = has.tail._6
-    def _7: T7                                                                  = has.tail._7
-    def _8: T8                                                                  = has.tail._8
-    def _9: T9                                                                  = has.tail._9
-    def _10: T10                                                                = has.tail._10
-    def _11: T11                                                                = has.head
     def replace_1[T](i: T): XHas11[T, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11] = new xio.nat.has.NatPositive(has.tail.replace_1(i), has.head)
     def replace_2[T](i: T): XHas11[T1, T, T3, T4, T5, T6, T7, T8, T9, T10, T11] = new xio.nat.has.NatPositive(has.tail.replace_2(i), has.head)
     def replace_3[T](i: T): XHas11[T1, T2, T, T4, T5, T6, T7, T8, T9, T10, T11] = new xio.nat.has.NatPositive(has.tail.replace_3(i), has.head)
@@ -687,18 +621,6 @@ trait XHasAlias {
     def replace_11[T](i: T): XHas11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T] = new xio.nat.has.NatPositive(has.tail, i)
   }
   implicit class XHasTuple12ImplicitClass[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12](private val has: XHas12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12]) {
-    def _1: T1                                                                       = has.tail._1
-    def _2: T2                                                                       = has.tail._2
-    def _3: T3                                                                       = has.tail._3
-    def _4: T4                                                                       = has.tail._4
-    def _5: T5                                                                       = has.tail._5
-    def _6: T6                                                                       = has.tail._6
-    def _7: T7                                                                       = has.tail._7
-    def _8: T8                                                                       = has.tail._8
-    def _9: T9                                                                       = has.tail._9
-    def _10: T10                                                                     = has.tail._10
-    def _11: T11                                                                     = has.tail._11
-    def _12: T12                                                                     = has.head
     def replace_1[T](i: T): XHas12[T, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12] = new xio.nat.has.NatPositive(has.tail.replace_1(i), has.head)
     def replace_2[T](i: T): XHas12[T1, T, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12] = new xio.nat.has.NatPositive(has.tail.replace_2(i), has.head)
     def replace_3[T](i: T): XHas12[T1, T2, T, T4, T5, T6, T7, T8, T9, T10, T11, T12] = new xio.nat.has.NatPositive(has.tail.replace_3(i), has.head)
@@ -715,19 +637,6 @@ trait XHasAlias {
   implicit class XHasTuple13ImplicitClass[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13](
     private val has: XHas13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13]
   ) {
-    def _1: T1                                                                            = has.tail._1
-    def _2: T2                                                                            = has.tail._2
-    def _3: T3                                                                            = has.tail._3
-    def _4: T4                                                                            = has.tail._4
-    def _5: T5                                                                            = has.tail._5
-    def _6: T6                                                                            = has.tail._6
-    def _7: T7                                                                            = has.tail._7
-    def _8: T8                                                                            = has.tail._8
-    def _9: T9                                                                            = has.tail._9
-    def _10: T10                                                                          = has.tail._10
-    def _11: T11                                                                          = has.tail._11
-    def _12: T12                                                                          = has.tail._12
-    def _13: T13                                                                          = has.head
     def replace_1[T](i: T): XHas13[T, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13] = new xio.nat.has.NatPositive(has.tail.replace_1(i), has.head)
     def replace_2[T](i: T): XHas13[T1, T, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13] = new xio.nat.has.NatPositive(has.tail.replace_2(i), has.head)
     def replace_3[T](i: T): XHas13[T1, T2, T, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13] = new xio.nat.has.NatPositive(has.tail.replace_3(i), has.head)
@@ -745,20 +654,6 @@ trait XHasAlias {
   implicit class XHasTuple14ImplicitClass[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14](
     private val has: XHas14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14]
   ) {
-    def _1: T1                                                                                 = has.tail._1
-    def _2: T2                                                                                 = has.tail._2
-    def _3: T3                                                                                 = has.tail._3
-    def _4: T4                                                                                 = has.tail._4
-    def _5: T5                                                                                 = has.tail._5
-    def _6: T6                                                                                 = has.tail._6
-    def _7: T7                                                                                 = has.tail._7
-    def _8: T8                                                                                 = has.tail._8
-    def _9: T9                                                                                 = has.tail._9
-    def _10: T10                                                                               = has.tail._10
-    def _11: T11                                                                               = has.tail._11
-    def _12: T12                                                                               = has.tail._12
-    def _13: T13                                                                               = has.tail._13
-    def _14: T14                                                                               = has.head
     def replace_1[T](i: T): XHas14[T, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14] = new xio.nat.has.NatPositive(has.tail.replace_1(i), has.head)
     def replace_2[T](i: T): XHas14[T1, T, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14] = new xio.nat.has.NatPositive(has.tail.replace_2(i), has.head)
     def replace_3[T](i: T): XHas14[T1, T2, T, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14] = new xio.nat.has.NatPositive(has.tail.replace_3(i), has.head)
@@ -777,21 +672,6 @@ trait XHasAlias {
   implicit class XHasTuple15ImplicitClass[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15](
     private val has: XHas15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15]
   ) {
-    def _1: T1                                                                                      = has.tail._1
-    def _2: T2                                                                                      = has.tail._2
-    def _3: T3                                                                                      = has.tail._3
-    def _4: T4                                                                                      = has.tail._4
-    def _5: T5                                                                                      = has.tail._5
-    def _6: T6                                                                                      = has.tail._6
-    def _7: T7                                                                                      = has.tail._7
-    def _8: T8                                                                                      = has.tail._8
-    def _9: T9                                                                                      = has.tail._9
-    def _10: T10                                                                                    = has.tail._10
-    def _11: T11                                                                                    = has.tail._11
-    def _12: T12                                                                                    = has.tail._12
-    def _13: T13                                                                                    = has.tail._13
-    def _14: T14                                                                                    = has.tail._14
-    def _15: T15                                                                                    = has.head
     def replace_1[T](i: T): XHas15[T, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15] = new xio.nat.has.NatPositive(has.tail.replace_1(i), has.head)
     def replace_2[T](i: T): XHas15[T1, T, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15] = new xio.nat.has.NatPositive(has.tail.replace_2(i), has.head)
     def replace_3[T](i: T): XHas15[T1, T2, T, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15] = new xio.nat.has.NatPositive(has.tail.replace_3(i), has.head)
@@ -811,22 +691,6 @@ trait XHasAlias {
   implicit class XHasTuple16ImplicitClass[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16](
     private val has: XHas16[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16]
   ) {
-    def _1: T1                                                                                           = has.tail._1
-    def _2: T2                                                                                           = has.tail._2
-    def _3: T3                                                                                           = has.tail._3
-    def _4: T4                                                                                           = has.tail._4
-    def _5: T5                                                                                           = has.tail._5
-    def _6: T6                                                                                           = has.tail._6
-    def _7: T7                                                                                           = has.tail._7
-    def _8: T8                                                                                           = has.tail._8
-    def _9: T9                                                                                           = has.tail._9
-    def _10: T10                                                                                         = has.tail._10
-    def _11: T11                                                                                         = has.tail._11
-    def _12: T12                                                                                         = has.tail._12
-    def _13: T13                                                                                         = has.tail._13
-    def _14: T14                                                                                         = has.tail._14
-    def _15: T15                                                                                         = has.tail._15
-    def _16: T16                                                                                         = has.head
     def replace_1[T](i: T): XHas16[T, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16] = new xio.nat.has.NatPositive(has.tail.replace_1(i), has.head)
     def replace_2[T](i: T): XHas16[T1, T, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16] = new xio.nat.has.NatPositive(has.tail.replace_2(i), has.head)
     def replace_3[T](i: T): XHas16[T1, T2, T, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16] = new xio.nat.has.NatPositive(has.tail.replace_3(i), has.head)
@@ -847,23 +711,6 @@ trait XHasAlias {
   implicit class XHasTuple17ImplicitClass[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17](
     private val has: XHas17[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17]
   ) {
-    def _1: T1   = has.tail._1
-    def _2: T2   = has.tail._2
-    def _3: T3   = has.tail._3
-    def _4: T4   = has.tail._4
-    def _5: T5   = has.tail._5
-    def _6: T6   = has.tail._6
-    def _7: T7   = has.tail._7
-    def _8: T8   = has.tail._8
-    def _9: T9   = has.tail._9
-    def _10: T10 = has.tail._10
-    def _11: T11 = has.tail._11
-    def _12: T12 = has.tail._12
-    def _13: T13 = has.tail._13
-    def _14: T14 = has.tail._14
-    def _15: T15 = has.tail._15
-    def _16: T16 = has.tail._16
-    def _17: T17 = has.head
     def replace_1[T](i: T): XHas17[T, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17] =
       new xio.nat.has.NatPositive(has.tail.replace_1(i), has.head)
     def replace_2[T](i: T): XHas17[T1, T, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17] =
@@ -901,24 +748,6 @@ trait XHasAlias {
   implicit class XHasTuple18ImplicitClass[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18](
     private val has: XHas18[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18]
   ) {
-    def _1: T1   = has.tail._1
-    def _2: T2   = has.tail._2
-    def _3: T3   = has.tail._3
-    def _4: T4   = has.tail._4
-    def _5: T5   = has.tail._5
-    def _6: T6   = has.tail._6
-    def _7: T7   = has.tail._7
-    def _8: T8   = has.tail._8
-    def _9: T9   = has.tail._9
-    def _10: T10 = has.tail._10
-    def _11: T11 = has.tail._11
-    def _12: T12 = has.tail._12
-    def _13: T13 = has.tail._13
-    def _14: T14 = has.tail._14
-    def _15: T15 = has.tail._15
-    def _16: T16 = has.tail._16
-    def _17: T17 = has.tail._17
-    def _18: T18 = has.head
     def replace_1[T](i: T): XHas18[T, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18] =
       new xio.nat.has.NatPositive(has.tail.replace_1(i), has.head)
     def replace_2[T](i: T): XHas18[T1, T, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18] =
@@ -958,25 +787,6 @@ trait XHasAlias {
   implicit class XHasTuple19ImplicitClass[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19](
     private val has: XHas19[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19]
   ) {
-    def _1: T1   = has.tail._1
-    def _2: T2   = has.tail._2
-    def _3: T3   = has.tail._3
-    def _4: T4   = has.tail._4
-    def _5: T5   = has.tail._5
-    def _6: T6   = has.tail._6
-    def _7: T7   = has.tail._7
-    def _8: T8   = has.tail._8
-    def _9: T9   = has.tail._9
-    def _10: T10 = has.tail._10
-    def _11: T11 = has.tail._11
-    def _12: T12 = has.tail._12
-    def _13: T13 = has.tail._13
-    def _14: T14 = has.tail._14
-    def _15: T15 = has.tail._15
-    def _16: T16 = has.tail._16
-    def _17: T17 = has.tail._17
-    def _18: T18 = has.tail._18
-    def _19: T19 = has.head
     def replace_1[T](i: T): XHas19[T, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19] =
       new xio.nat.has.NatPositive(has.tail.replace_1(i), has.head)
     def replace_2[T](i: T): XHas19[T1, T, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19] =
@@ -1018,26 +828,6 @@ trait XHasAlias {
   implicit class XHasTuple20ImplicitClass[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20](
     private val has: XHas20[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20]
   ) {
-    def _1: T1   = has.tail._1
-    def _2: T2   = has.tail._2
-    def _3: T3   = has.tail._3
-    def _4: T4   = has.tail._4
-    def _5: T5   = has.tail._5
-    def _6: T6   = has.tail._6
-    def _7: T7   = has.tail._7
-    def _8: T8   = has.tail._8
-    def _9: T9   = has.tail._9
-    def _10: T10 = has.tail._10
-    def _11: T11 = has.tail._11
-    def _12: T12 = has.tail._12
-    def _13: T13 = has.tail._13
-    def _14: T14 = has.tail._14
-    def _15: T15 = has.tail._15
-    def _16: T16 = has.tail._16
-    def _17: T17 = has.tail._17
-    def _18: T18 = has.tail._18
-    def _19: T19 = has.tail._19
-    def _20: T20 = has.head
     def replace_1[T](i: T): XHas20[T, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20] =
       new xio.nat.has.NatPositive(has.tail.replace_1(i), has.head)
     def replace_2[T](i: T): XHas20[T1, T, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20] =
@@ -1081,27 +871,6 @@ trait XHasAlias {
   implicit class XHasTuple21ImplicitClass[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21](
     private val has: XHas21[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21]
   ) {
-    def _1: T1   = has.tail._1
-    def _2: T2   = has.tail._2
-    def _3: T3   = has.tail._3
-    def _4: T4   = has.tail._4
-    def _5: T5   = has.tail._5
-    def _6: T6   = has.tail._6
-    def _7: T7   = has.tail._7
-    def _8: T8   = has.tail._8
-    def _9: T9   = has.tail._9
-    def _10: T10 = has.tail._10
-    def _11: T11 = has.tail._11
-    def _12: T12 = has.tail._12
-    def _13: T13 = has.tail._13
-    def _14: T14 = has.tail._14
-    def _15: T15 = has.tail._15
-    def _16: T16 = has.tail._16
-    def _17: T17 = has.tail._17
-    def _18: T18 = has.tail._18
-    def _19: T19 = has.tail._19
-    def _20: T20 = has.tail._20
-    def _21: T21 = has.head
     def replace_1[T](i: T): XHas21[T, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21] =
       new xio.nat.has.NatPositive(has.tail.replace_1(i), has.head)
     def replace_2[T](i: T): XHas21[T1, T, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21] =
@@ -1148,28 +917,6 @@ trait XHasAlias {
   implicit class XHasTuple22ImplicitClass[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22](
     private val has: XHas22[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22]
   ) {
-    def _1: T1   = has.tail._1
-    def _2: T2   = has.tail._2
-    def _3: T3   = has.tail._3
-    def _4: T4   = has.tail._4
-    def _5: T5   = has.tail._5
-    def _6: T6   = has.tail._6
-    def _7: T7   = has.tail._7
-    def _8: T8   = has.tail._8
-    def _9: T9   = has.tail._9
-    def _10: T10 = has.tail._10
-    def _11: T11 = has.tail._11
-    def _12: T12 = has.tail._12
-    def _13: T13 = has.tail._13
-    def _14: T14 = has.tail._14
-    def _15: T15 = has.tail._15
-    def _16: T16 = has.tail._16
-    def _17: T17 = has.tail._17
-    def _18: T18 = has.tail._18
-    def _19: T19 = has.tail._19
-    def _20: T20 = has.tail._20
-    def _21: T21 = has.tail._21
-    def _22: T22 = has.head
     def replace_1[T](i: T): XHas22[T, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22] =
       new xio.nat.has.NatPositive(has.tail.replace_1(i), has.head)
     def replace_2[T](i: T): XHas22[T1, T, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22] =

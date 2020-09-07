@@ -15,11 +15,11 @@ object xlog {
       log
         .apply(level)(line)
         .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
-          Has(l._1)
+          Has(l._0.get)
         }))
 
   val context: XIO[XLogging, XError0, LogContext] = XIO.fromZIO(Logging.context.provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
-    Has(l._1)
+    Has(l._0.get)
   }))
 
   def debug(line: => String): XIO[XLogging, XError0, Unit] =
@@ -27,7 +27,7 @@ object xlog {
       log
         .debug(line)
         .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
-          Has(l._1)
+          Has(l._0.get)
         }))
 
   def error(line: => String): XIO[XLogging, XError0, Unit] =
@@ -35,7 +35,7 @@ object xlog {
       log
         .error(line)
         .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
-          Has(l._1)
+          Has(l._0.get)
         }))
 
   def error(line: => String, cause: Cause[Any]): XIO[XLogging, XError0, Unit] =
@@ -43,7 +43,7 @@ object xlog {
       log
         .error(line, cause = cause)
         .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
-          Has(l._1)
+          Has(l._0.get)
         }))
 
   def info(line: => String): XIO[XLogging, XError0, Unit] =
@@ -51,7 +51,7 @@ object xlog {
       log
         .info(line)
         .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
-          Has(l._1)
+          Has(l._0.get)
         }))
 
   def locally[R <: Nat, E <: NatEither, A1](fn: LogContext => LogContext)(zio: XIO[R, E, A1])(implicit n: NatFinder[R, Logger[String]]): XIO[R, E, A1] =
@@ -65,7 +65,7 @@ object xlog {
       log
         .throwable(line, t)
         .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
-          Has(l._1)
+          Has(l._0.get)
         }))
 
   def trace(line: => String): XIO[XLogging, XError0, Unit] =
@@ -73,7 +73,7 @@ object xlog {
       log
         .trace(line)
         .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
-          Has(l._1)
+          Has(l._0.get)
         }))
 
   def warn(line: => String): XIO[XLogging, XError0, Unit] =
@@ -81,7 +81,7 @@ object xlog {
       log
         .warn(line)
         .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
-          Has(l._1)
+          Has(l._0.get)
         }))
 
 }
