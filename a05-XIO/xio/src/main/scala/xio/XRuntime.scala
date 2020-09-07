@@ -1,7 +1,7 @@
 package xio
 
 import xio.nat.error.{NatEither, NatEitherPositive, NatEitherToTag, NatEitherZero}
-import xio.nat.has.{Nat, NatPositive, NatToTag, NatZero}
+import xio.nat.has.{Nat, NatToTag, NatZero}
 import zio._
 import zio.internal.Platform
 
@@ -23,7 +23,7 @@ trait XRuntime[R <: Nat] {
   final def unsafeRun[R1 <: Nat, E <: NatEither, A](zio: => XIO[R1, E, A])(implicit n: NatToTag[R1, R]): A = self.zioRuntime.map(n.tag).unsafeRun(zio.zio)
 
   final def unsafeRunTask[R1 <: Nat, A](task: => XIO[R1, NatEitherPositive[NatEitherZero, Throwable], A])(implicit n: NatToTag[R1, R]): A =
-    self.zioRuntime.map(n.tag).unsafeRunTask(task.zio.mapError(_.either.right.getOrElse(throw new NoSuchElementException("Either.right.get on Left"))))
+    self.zioRuntime.map(n.tag).unsafeRunTask(task.zio.mapError(_.sureRight))
 
   final def unsafeRunSync[R1 <: Nat, E <: NatEither, A](zio: => XIO[R1, E, A])(implicit n: NatToTag[R1, R]): Exit[E, A] =
     self.zioRuntime.map(n.tag).unsafeRunSync(zio.zio)
