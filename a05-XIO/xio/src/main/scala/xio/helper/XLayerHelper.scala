@@ -12,11 +12,11 @@ object XLayerHelper {
   def simple_>>>[I <: Nat, L <: NatEither, R <: Nat, ROut2 <: Nat](i: XLayer[I, L, R])(that: XLayer[R, L, ROut2]): XLayer[I, L, ROut2] =
     XLayer.fromZLayer(i.zlayer.>>>(that.zlayer))
 
-  class FunctinManyApply[ErrorType <: NatEither] {
+  class FunctionManyApply[ErrorType <: NatEither] {
     def apply[R <: Nat, A <: Nat](m: R => A): XLayer[R, ErrorType, A] = XLayer.fromZLayer(ZLayer.fromFunctionMany(m))
   }
 
-  def simpleFromFunctionMany[ErrorType <: NatEither]: FunctinManyApply[ErrorType] = new FunctinManyApply[ErrorType]
+  def simpleFromFunctionMany[ErrorType <: NatEither]: FunctionManyApply[ErrorType] = new FunctionManyApply[ErrorType]
 
   final def simpleZipWithPar[E <: NatEither, RIn2 <: Nat, ROut1 <: Nat, ROut2 <: Nat, ROut3 <: Nat](i: XLayer[RIn2, E, ROut1])(that: XLayer[RIn2, E, ROut2])(
     f: (ROut1, ROut2) => ROut3
