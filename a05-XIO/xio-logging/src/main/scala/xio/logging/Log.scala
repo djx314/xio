@@ -3,6 +3,7 @@ package xio.logging
 import xio.nat.error.NatEither
 import xio.nat.has.{Nat, NatFinder}
 import xio._
+import xio.helper.XIOHelper
 import zio._
 import zio.logging._
 

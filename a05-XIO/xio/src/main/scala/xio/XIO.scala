@@ -1,5 +1,6 @@
 package xio
 
+import xio.helper.{XIOHelper, XLayerHelper}
 import xio.nat.error.{NatEither, NatEitherPositive, NatEitherReversePlus, NatEitherSetter, NatEitherToTag, NatEitherZero}
 import xio.nat.has.{Nat, NatReversePlus, NatToTag, NatZero}
 
@@ -32,7 +33,7 @@ trait XIO[I <: Nat, L <: NatEither, R] {
   final def provideLayer[E1 <: NatEither, R0 <: Nat, R1 <: Nat](
     layer: XLayer[R0, E1, R1]
   )(implicit ev1: NatToTag[I, R1], ev2: NatEitherReversePlus[L, E1]): XIO[R0, E1#Plus[L], R] =
-    XIOHelper.simpleProvideLayer(XIOHelper.simpeMapError(self)(ev2.takeTail))(layer.map(ev1.tag).scalax_simpeMapError(ev2.takeHead))
+    XIOHelper.simpleProvideLayer(XIOHelper.simpeMapError(self)(ev2.takeTail))(XLayerHelper.simpeMapError(layer.map(ev1.tag))(ev2.takeHead))
 
   final def provide[R1 <: Nat](r: R1)(implicit ev: NatToTag[I, R1]): XIO[NatZero, L, R] = XIOHelper.simpleProvide(self)(ev.tag(r))
 
@@ -42,7 +43,7 @@ trait XIO[I <: Nat, L <: NatEither, R] {
     }
 
   final def catchAll[R1 <: Nat, E2 <: NatEither, A1 >: R](h: L => XIO[R1, E2, A1])(implicit n: NatToTag[I, R1]): XIO[R1, E2, A1] =
-    XIOHelper.simpleCatchAll(XIOHelper.simpleProvideLayer(self)(XLayer.fromFunctionMany[L](n.tag)))(h)
+    XIOHelper.simpleCatchAll(XIOHelper.simpleProvideLayer(self)(XLayerHelper.simpleFromFunctionMany[L](n.tag)))(h)
 
   final def retryN(n: Int): XIO[I, L, R] =
     XIOHelper.simpleCatchAll(self)(e => if (n <= 0) XIOHelper.simpleFail(e) else self.retryN(n - 1))
@@ -56,7 +57,7 @@ object XIO {
   implicit def xioImplicit[I1 <: Nat, I2 <: Nat, E1 <: NatEither, E2 <: NatEither, O1, O2](
     i: XIO[I1, E1, O1]
   )(implicit cv: NatToTag[I1, I2], v: NatEitherToTag[E1, E2], cv3: O1 <:< O2): XIO[I2, E2, O2] =
-    XIOHelper.simpleProvideLayer(XIOHelper.simpeMapError(i)(v.tag).map(cv3))(XLayer.fromFunctionMany[E2](cv.tag))
+    XIOHelper.simpleProvideLayer(XIOHelper.simpeMapError(i)(v.tag).map(cv3))(XLayerHelper.simpleFromFunctionMany[E2](cv.tag))
 
   def identity[T <: Nat]: XIO[T, XError0, T] = XIO.fromFunction(identityFn)
 

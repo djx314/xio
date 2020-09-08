@@ -1,5 +1,6 @@
-package xio
+package xio.helper
 
+import xio.{XError1, XIO, XLayer}
 import xio.nat.error.{NatEither, NatEitherZero}
 import xio.nat.has.{Nat, NatZero}
 import zio._
