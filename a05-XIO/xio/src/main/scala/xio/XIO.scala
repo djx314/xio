@@ -1,7 +1,7 @@
 package xio
 
 import xio.helper.{XIOHelper, XLayerHelper}
-import xio.nat.error.{NatEither, NatEitherPositive, NatEitherReversePlus, NatEitherSetter, NatEitherToTag, NatEitherZero}
+import xio.nat.error.{NatEither, NatEitherPositive, NatEitherReversePlus, NatEitherSetter, NatEitherToTag}
 import xio.nat.has.{Nat, NatReversePlus, NatToTag, NatZero}
 
 import scala.language.implicitConversions
@@ -21,7 +21,9 @@ trait XIO[I <: Nat, L <: NatEither, R] {
   )(implicit v: NatReversePlus[I1, I], n: NatEitherReversePlus[L, L1]): XIO[I#InnerPlus[I1], L1#Plus[L], E1] =
     XIOHelper.simpleFlatMap(XIOHelper.simpleFromFunction[L1#Plus[L]](identity[I#InnerPlus[I1]]))(plus =>
       XIOHelper.simpleFlatMap(XIOHelper.simpeMapError(XIOHelper.simpleProvide(self)(v.takeHead(plus)))(n.takeTail))(n1 =>
-        XIOHelper.simpeMapError(XIOHelper.simpleProvide(cv(n1))(v.takeTail(plus)))(n.takeHead)))
+        XIOHelper.simpeMapError(XIOHelper.simpleProvide(cv(n1))(v.takeTail(plus)))(n.takeHead)
+      )
+    )
 
   def mapError[E1, ESUM <: NatEither](
     n: (E1, NatEitherSetter.NatEitherApply[ESUM]) => ESUM
@@ -35,10 +37,7 @@ trait XIO[I <: Nat, L <: NatEither, R] {
 
   final def provide[R1 <: Nat](r: R1)(implicit ev: NatToTag[I, R1]): XIO[NatZero, L, R] = XIOHelper.simpleProvide(self)(ev.tag(r))
 
-  final def either: XIO[I, XError0, Either[L, R]] =
-    new XIO[I, XError0, Either[L, R]] {
-      override val zio: ZIO[I, XError0, Either[L, R]] = self.zio.either
-    }
+  final def either: XIO[I, XError0, Either[L, R]] = XIO.fromZIO(self.zio.either)
 
   final def catchAll[R1 <: Nat, E2 <: NatEither, A1 >: R](h: L => XIO[R1, E2, A1])(implicit n: NatToTag[I, R1]): XIO[R1, E2, A1] =
     XIOHelper.simpleCatchAll(XIOHelper.simpleProvideLayer(self)(XLayerHelper.simpleFromFunctionMany[L](n.tag)))(h)
