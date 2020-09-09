@@ -21,9 +21,7 @@ trait XIO[I <: Nat, L <: NatEither, R] {
   )(implicit v: NatReversePlus[I1, I], n: NatEitherReversePlus[L, L1]): XIO[I#InnerPlus[I1], L1#Plus[L], E1] =
     XIOHelper.simpleFlatMap(XIOHelper.simpleFromFunction[L1#Plus[L]](identity[I#InnerPlus[I1]]))(plus =>
       XIOHelper.simpleFlatMap(XIOHelper.simpeMapError(XIOHelper.simpleProvide(self)(v.takeHead(plus)))(n.takeTail))(n1 =>
-        XIOHelper.simpeMapError(XIOHelper.simpleProvide(cv(n1))(v.takeTail(plus)))(n.takeHead)
-      )
-    )
+        XIOHelper.simpeMapError(XIOHelper.simpleProvide(cv(n1))(v.takeTail(plus)))(n.takeHead)))
 
   def mapError[E1, ESUM <: NatEither](
     n: (E1, NatEitherSetter.NatEitherApply[ESUM]) => ESUM
