@@ -1,6 +1,6 @@
 package xio
 
-import xio.helper.{XIOHelper, XLayerHelper}
+import xio.helper.{XIOErrorHelper, XIOHelper, XLayerHelper}
 import xio.nat.error.{NatEither, NatEitherPositive, NatEitherReversePlus, NatEitherSetter, NatEitherToTag}
 import xio.nat.has.{Nat, NatReversePlus, NatToTag, NatZero}
 
@@ -47,7 +47,7 @@ trait XIO[I <: Nat, L <: NatEither, R] {
 
 }
 
-object XIO {
+object XIO extends XIOErrorHelper {
 
   private def identityFn[A]: A => A = s => s
 
