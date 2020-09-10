@@ -15,7 +15,7 @@ trait XRuntime[R <: Nat] {
       override val zioRuntime: Runtime[R1] = self.zioRuntime.map(f)
     }
 
-  def mapPlatform(f: Platform => Platform): XRuntime[R] with Object =
+  def mapPlatform(f: Platform => Platform): XRuntime[R] =
     new XRuntime[R] {
       override val zioRuntime: Runtime[R] = self.zioRuntime.mapPlatform(f)
     }

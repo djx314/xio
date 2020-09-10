@@ -71,6 +71,7 @@ object XIO {
   def fromIO[E <: NatEither, I](i: IO[E, I]): XIO[NatZero, E, I]        = XIO.fromZIO(i)
 
   def effect[A](effect: => A): XIO[XHas0, XError1[Throwable], A] = XIO.fromZIO(ZIO.effect(effect).mapError(e => XError1(e)))
+  def effectTotal[A](effect: => A): XIO[XHas0, XError0, A]       = XIO.fromZIO(ZIO.effectTotal(effect))
 
   def fromFunction[N <: Nat, I](i: N => I): XIO[N, XError0, I] = XIOHelper.simpleFromFunction(i)
 

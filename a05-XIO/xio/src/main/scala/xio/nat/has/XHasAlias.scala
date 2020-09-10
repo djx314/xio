@@ -1,36 +1,299 @@
 package xio
 trait XHasAlias {
-  type XHas0                                                               = nat.has.NatZero
-  type XHas1[T1]                                                           = nat.has.NatPositive[nat.has.NatZero, T1]
-  type XHas2[T1, T2]                                                       = nat.has.NatPositive[XHas1[T2], T1]
-  type XHas3[T1, T2, T3]                                                   = nat.has.NatPositive[XHas2[T2, T3], T1]
-  type XHas4[T1, T2, T3, T4]                                               = nat.has.NatPositive[XHas3[T2, T3, T4], T1]
-  type XHas5[T1, T2, T3, T4, T5]                                           = nat.has.NatPositive[XHas4[T2, T3, T4, T5], T1]
-  type XHas6[T1, T2, T3, T4, T5, T6]                                       = nat.has.NatPositive[XHas5[T2, T3, T4, T5, T6], T1]
-  type XHas7[T1, T2, T3, T4, T5, T6, T7]                                   = nat.has.NatPositive[XHas6[T2, T3, T4, T5, T6, T7], T1]
-  type XHas8[T1, T2, T3, T4, T5, T6, T7, T8]                               = nat.has.NatPositive[XHas7[T2, T3, T4, T5, T6, T7, T8], T1]
-  type XHas9[T1, T2, T3, T4, T5, T6, T7, T8, T9]                           = nat.has.NatPositive[XHas8[T2, T3, T4, T5, T6, T7, T8, T9], T1]
-  type XHas10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]                     = nat.has.NatPositive[XHas9[T2, T3, T4, T5, T6, T7, T8, T9, T10], T1]
-  type XHas11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11]                = nat.has.NatPositive[XHas10[T2, T3, T4, T5, T6, T7, T8, T9, T10, T11], T1]
-  type XHas12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12]           = nat.has.NatPositive[XHas11[T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12], T1]
-  type XHas13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13]      = nat.has.NatPositive[XHas12[T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13], T1]
+  type XHas0                                                                                                 = nat.has.NatZero
+  type XHas1[T1]                                                                                             = nat.has.NatPositive[nat.has.NatZero, T1]
+  type XHas2[T1, T2]                                                                                         = nat.has.NatPositive[XHas1[T2], T1]
+  type XHasM2[T1 <: nat.has.Nat, T2 <: nat.has.Nat]                                                          = T1#Plus[T2]
+  type XHas3[T1, T2, T3]                                                                                     = nat.has.NatPositive[XHas2[T2, T3], T1]
+  type XHasM3[T1 <: nat.has.Nat, T2 <: nat.has.Nat, T3 <: nat.has.Nat]                                       = T1#Plus[T2]#Plus[T3]
+  type XHas4[T1, T2, T3, T4]                                                                                 = nat.has.NatPositive[XHas3[T2, T3, T4], T1]
+  type XHasM4[T1 <: nat.has.Nat, T2 <: nat.has.Nat, T3 <: nat.has.Nat, T4 <: nat.has.Nat]                    = T1#Plus[T2]#Plus[T3]#Plus[T4]
+  type XHas5[T1, T2, T3, T4, T5]                                                                             = nat.has.NatPositive[XHas4[T2, T3, T4, T5], T1]
+  type XHasM5[T1 <: nat.has.Nat, T2 <: nat.has.Nat, T3 <: nat.has.Nat, T4 <: nat.has.Nat, T5 <: nat.has.Nat] = T1#Plus[T2]#Plus[T3]#Plus[T4]#Plus[T5]
+  type XHas6[T1, T2, T3, T4, T5, T6]                                                                         = nat.has.NatPositive[XHas5[T2, T3, T4, T5, T6], T1]
+  type XHasM6[T1 <: nat.has.Nat, T2 <: nat.has.Nat, T3 <: nat.has.Nat, T4 <: nat.has.Nat, T5 <: nat.has.Nat, T6 <: nat.has.Nat] =
+    T1#Plus[T2]#Plus[T3]#Plus[T4]#Plus[T5]#Plus[T6]
+  type XHas7[T1, T2, T3, T4, T5, T6, T7] = nat.has.NatPositive[XHas6[T2, T3, T4, T5, T6, T7], T1]
+  type XHasM7[T1 <: nat.has.Nat, T2 <: nat.has.Nat, T3 <: nat.has.Nat, T4 <: nat.has.Nat, T5 <: nat.has.Nat, T6 <: nat.has.Nat, T7 <: nat.has.Nat] =
+    T1#Plus[T2]#Plus[T3]#Plus[T4]#Plus[T5]#Plus[T6]#Plus[T7]
+  type XHas8[T1, T2, T3, T4, T5, T6, T7, T8] = nat.has.NatPositive[XHas7[T2, T3, T4, T5, T6, T7, T8], T1]
+  type XHasM8[T1 <: nat.has.Nat, T2 <: nat.has.Nat, T3 <: nat.has.Nat, T4 <: nat.has.Nat, T5 <: nat.has.Nat, T6 <: nat.has.Nat, T7 <: nat.has.Nat, T8 <: nat.has.Nat] =
+    T1#Plus[T2]#Plus[T3]#Plus[T4]#Plus[T5]#Plus[T6]#Plus[T7]#Plus[T8]
+  type XHas9[T1, T2, T3, T4, T5, T6, T7, T8, T9] = nat.has.NatPositive[XHas8[T2, T3, T4, T5, T6, T7, T8, T9], T1]
+  type XHasM9[
+    T1 <: nat.has.Nat,
+    T2 <: nat.has.Nat,
+    T3 <: nat.has.Nat,
+    T4 <: nat.has.Nat,
+    T5 <: nat.has.Nat,
+    T6 <: nat.has.Nat,
+    T7 <: nat.has.Nat,
+    T8 <: nat.has.Nat,
+    T9 <: nat.has.Nat
+  ]                                                    = T1#Plus[T2]#Plus[T3]#Plus[T4]#Plus[T5]#Plus[T6]#Plus[T7]#Plus[T8]#Plus[T9]
+  type XHas10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10] = nat.has.NatPositive[XHas9[T2, T3, T4, T5, T6, T7, T8, T9, T10], T1]
+  type XHasM10[
+    T1 <: nat.has.Nat,
+    T2 <: nat.has.Nat,
+    T3 <: nat.has.Nat,
+    T4 <: nat.has.Nat,
+    T5 <: nat.has.Nat,
+    T6 <: nat.has.Nat,
+    T7 <: nat.has.Nat,
+    T8 <: nat.has.Nat,
+    T9 <: nat.has.Nat,
+    T10 <: nat.has.Nat
+  ]                                                         = T1#Plus[T2]#Plus[T3]#Plus[T4]#Plus[T5]#Plus[T6]#Plus[T7]#Plus[T8]#Plus[T9]#Plus[T10]
+  type XHas11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11] = nat.has.NatPositive[XHas10[T2, T3, T4, T5, T6, T7, T8, T9, T10, T11], T1]
+  type XHasM11[
+    T1 <: nat.has.Nat,
+    T2 <: nat.has.Nat,
+    T3 <: nat.has.Nat,
+    T4 <: nat.has.Nat,
+    T5 <: nat.has.Nat,
+    T6 <: nat.has.Nat,
+    T7 <: nat.has.Nat,
+    T8 <: nat.has.Nat,
+    T9 <: nat.has.Nat,
+    T10 <: nat.has.Nat,
+    T11 <: nat.has.Nat
+  ]                                                              = T1#Plus[T2]#Plus[T3]#Plus[T4]#Plus[T5]#Plus[T6]#Plus[T7]#Plus[T8]#Plus[T9]#Plus[T10]#Plus[T11]
+  type XHas12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12] = nat.has.NatPositive[XHas11[T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12], T1]
+  type XHasM12[
+    T1 <: nat.has.Nat,
+    T2 <: nat.has.Nat,
+    T3 <: nat.has.Nat,
+    T4 <: nat.has.Nat,
+    T5 <: nat.has.Nat,
+    T6 <: nat.has.Nat,
+    T7 <: nat.has.Nat,
+    T8 <: nat.has.Nat,
+    T9 <: nat.has.Nat,
+    T10 <: nat.has.Nat,
+    T11 <: nat.has.Nat,
+    T12 <: nat.has.Nat
+  ]                                                                   = T1#Plus[T2]#Plus[T3]#Plus[T4]#Plus[T5]#Plus[T6]#Plus[T7]#Plus[T8]#Plus[T9]#Plus[T10]#Plus[T11]#Plus[T12]
+  type XHas13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13] = nat.has.NatPositive[XHas12[T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13], T1]
+  type XHasM13[
+    T1 <: nat.has.Nat,
+    T2 <: nat.has.Nat,
+    T3 <: nat.has.Nat,
+    T4 <: nat.has.Nat,
+    T5 <: nat.has.Nat,
+    T6 <: nat.has.Nat,
+    T7 <: nat.has.Nat,
+    T8 <: nat.has.Nat,
+    T9 <: nat.has.Nat,
+    T10 <: nat.has.Nat,
+    T11 <: nat.has.Nat,
+    T12 <: nat.has.Nat,
+    T13 <: nat.has.Nat
+  ]                                                                        = T1#Plus[T2]#Plus[T3]#Plus[T4]#Plus[T5]#Plus[T6]#Plus[T7]#Plus[T8]#Plus[T9]#Plus[T10]#Plus[T11]#Plus[T12]#Plus[T13]
   type XHas14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14] = nat.has.NatPositive[XHas13[T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14], T1]
+  type XHasM14[
+    T1 <: nat.has.Nat,
+    T2 <: nat.has.Nat,
+    T3 <: nat.has.Nat,
+    T4 <: nat.has.Nat,
+    T5 <: nat.has.Nat,
+    T6 <: nat.has.Nat,
+    T7 <: nat.has.Nat,
+    T8 <: nat.has.Nat,
+    T9 <: nat.has.Nat,
+    T10 <: nat.has.Nat,
+    T11 <: nat.has.Nat,
+    T12 <: nat.has.Nat,
+    T13 <: nat.has.Nat,
+    T14 <: nat.has.Nat
+  ] = T1#Plus[T2]#Plus[T3]#Plus[T4]#Plus[T5]#Plus[T6]#Plus[T7]#Plus[T8]#Plus[T9]#Plus[T10]#Plus[T11]#Plus[T12]#Plus[T13]#Plus[T14]
   type XHas15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15] =
     nat.has.NatPositive[XHas14[T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15], T1]
+  type XHasM15[
+    T1 <: nat.has.Nat,
+    T2 <: nat.has.Nat,
+    T3 <: nat.has.Nat,
+    T4 <: nat.has.Nat,
+    T5 <: nat.has.Nat,
+    T6 <: nat.has.Nat,
+    T7 <: nat.has.Nat,
+    T8 <: nat.has.Nat,
+    T9 <: nat.has.Nat,
+    T10 <: nat.has.Nat,
+    T11 <: nat.has.Nat,
+    T12 <: nat.has.Nat,
+    T13 <: nat.has.Nat,
+    T14 <: nat.has.Nat,
+    T15 <: nat.has.Nat
+  ] = T1#Plus[T2]#Plus[T3]#Plus[T4]#Plus[T5]#Plus[T6]#Plus[T7]#Plus[T8]#Plus[T9]#Plus[T10]#Plus[T11]#Plus[T12]#Plus[T13]#Plus[T14]#Plus[T15]
   type XHas16[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16] =
     nat.has.NatPositive[XHas15[T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16], T1]
+  type XHasM16[
+    T1 <: nat.has.Nat,
+    T2 <: nat.has.Nat,
+    T3 <: nat.has.Nat,
+    T4 <: nat.has.Nat,
+    T5 <: nat.has.Nat,
+    T6 <: nat.has.Nat,
+    T7 <: nat.has.Nat,
+    T8 <: nat.has.Nat,
+    T9 <: nat.has.Nat,
+    T10 <: nat.has.Nat,
+    T11 <: nat.has.Nat,
+    T12 <: nat.has.Nat,
+    T13 <: nat.has.Nat,
+    T14 <: nat.has.Nat,
+    T15 <: nat.has.Nat,
+    T16 <: nat.has.Nat
+  ] = T1#Plus[T2]#Plus[T3]#Plus[T4]#Plus[T5]#Plus[T6]#Plus[T7]#Plus[T8]#Plus[T9]#Plus[T10]#Plus[T11]#Plus[T12]#Plus[T13]#Plus[T14]#Plus[T15]#Plus[T16]
   type XHas17[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17] =
     nat.has.NatPositive[XHas16[T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17], T1]
+  type XHasM17[
+    T1 <: nat.has.Nat,
+    T2 <: nat.has.Nat,
+    T3 <: nat.has.Nat,
+    T4 <: nat.has.Nat,
+    T5 <: nat.has.Nat,
+    T6 <: nat.has.Nat,
+    T7 <: nat.has.Nat,
+    T8 <: nat.has.Nat,
+    T9 <: nat.has.Nat,
+    T10 <: nat.has.Nat,
+    T11 <: nat.has.Nat,
+    T12 <: nat.has.Nat,
+    T13 <: nat.has.Nat,
+    T14 <: nat.has.Nat,
+    T15 <: nat.has.Nat,
+    T16 <: nat.has.Nat,
+    T17 <: nat.has.Nat
+  ] = T1#Plus[T2]#Plus[T3]#Plus[T4]#Plus[T5]#Plus[T6]#Plus[T7]#Plus[T8]#Plus[T9]#Plus[T10]#Plus[T11]#Plus[T12]#Plus[T13]#Plus[T14]#Plus[T15]#Plus[T16]#Plus[T17]
   type XHas18[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18] =
     nat.has.NatPositive[XHas17[T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18], T1]
+  type XHasM18[
+    T1 <: nat.has.Nat,
+    T2 <: nat.has.Nat,
+    T3 <: nat.has.Nat,
+    T4 <: nat.has.Nat,
+    T5 <: nat.has.Nat,
+    T6 <: nat.has.Nat,
+    T7 <: nat.has.Nat,
+    T8 <: nat.has.Nat,
+    T9 <: nat.has.Nat,
+    T10 <: nat.has.Nat,
+    T11 <: nat.has.Nat,
+    T12 <: nat.has.Nat,
+    T13 <: nat.has.Nat,
+    T14 <: nat.has.Nat,
+    T15 <: nat.has.Nat,
+    T16 <: nat.has.Nat,
+    T17 <: nat.has.Nat,
+    T18 <: nat.has.Nat
+  ] = T1#Plus[T2]#Plus[T3]#Plus[T4]#Plus[T5]#Plus[T6]#Plus[T7]#Plus[T8]#Plus[T9]#Plus[T10]#Plus[T11]#Plus[T12]#Plus[T13]#Plus[T14]#Plus[T15]#Plus[T16]#Plus[T17]#Plus[T18]
   type XHas19[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19] =
     nat.has.NatPositive[XHas18[T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19], T1]
+  type XHasM19[
+    T1 <: nat.has.Nat,
+    T2 <: nat.has.Nat,
+    T3 <: nat.has.Nat,
+    T4 <: nat.has.Nat,
+    T5 <: nat.has.Nat,
+    T6 <: nat.has.Nat,
+    T7 <: nat.has.Nat,
+    T8 <: nat.has.Nat,
+    T9 <: nat.has.Nat,
+    T10 <: nat.has.Nat,
+    T11 <: nat.has.Nat,
+    T12 <: nat.has.Nat,
+    T13 <: nat.has.Nat,
+    T14 <: nat.has.Nat,
+    T15 <: nat.has.Nat,
+    T16 <: nat.has.Nat,
+    T17 <: nat.has.Nat,
+    T18 <: nat.has.Nat,
+    T19 <: nat.has.Nat
+  ] = T1#Plus[T2]#Plus[T3]#Plus[T4]#Plus[T5]#Plus[T6]#Plus[T7]#Plus[T8]#Plus[T9]#Plus[T10]#Plus[T11]#Plus[T12]#Plus[T13]#Plus[T14]#Plus[T15]#Plus[T16]#Plus[T17]#Plus[
+    T18
+  ]#Plus[T19]
   type XHas20[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20] =
     nat.has.NatPositive[XHas19[T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20], T1]
+  type XHasM20[
+    T1 <: nat.has.Nat,
+    T2 <: nat.has.Nat,
+    T3 <: nat.has.Nat,
+    T4 <: nat.has.Nat,
+    T5 <: nat.has.Nat,
+    T6 <: nat.has.Nat,
+    T7 <: nat.has.Nat,
+    T8 <: nat.has.Nat,
+    T9 <: nat.has.Nat,
+    T10 <: nat.has.Nat,
+    T11 <: nat.has.Nat,
+    T12 <: nat.has.Nat,
+    T13 <: nat.has.Nat,
+    T14 <: nat.has.Nat,
+    T15 <: nat.has.Nat,
+    T16 <: nat.has.Nat,
+    T17 <: nat.has.Nat,
+    T18 <: nat.has.Nat,
+    T19 <: nat.has.Nat,
+    T20 <: nat.has.Nat
+  ] = T1#Plus[T2]#Plus[T3]#Plus[T4]#Plus[T5]#Plus[T6]#Plus[T7]#Plus[T8]#Plus[T9]#Plus[T10]#Plus[T11]#Plus[T12]#Plus[T13]#Plus[T14]#Plus[T15]#Plus[T16]#Plus[T17]#Plus[
+    T18
+  ]#Plus[T19]#Plus[T20]
   type XHas21[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21] =
     nat.has.NatPositive[XHas20[T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21], T1]
+  type XHasM21[
+    T1 <: nat.has.Nat,
+    T2 <: nat.has.Nat,
+    T3 <: nat.has.Nat,
+    T4 <: nat.has.Nat,
+    T5 <: nat.has.Nat,
+    T6 <: nat.has.Nat,
+    T7 <: nat.has.Nat,
+    T8 <: nat.has.Nat,
+    T9 <: nat.has.Nat,
+    T10 <: nat.has.Nat,
+    T11 <: nat.has.Nat,
+    T12 <: nat.has.Nat,
+    T13 <: nat.has.Nat,
+    T14 <: nat.has.Nat,
+    T15 <: nat.has.Nat,
+    T16 <: nat.has.Nat,
+    T17 <: nat.has.Nat,
+    T18 <: nat.has.Nat,
+    T19 <: nat.has.Nat,
+    T20 <: nat.has.Nat,
+    T21 <: nat.has.Nat
+  ] = T1#Plus[T2]#Plus[T3]#Plus[T4]#Plus[T5]#Plus[T6]#Plus[T7]#Plus[T8]#Plus[T9]#Plus[T10]#Plus[T11]#Plus[T12]#Plus[T13]#Plus[T14]#Plus[T15]#Plus[T16]#Plus[T17]#Plus[
+    T18
+  ]#Plus[T19]#Plus[T20]#Plus[T21]
   type XHas22[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22] =
     nat.has.NatPositive[XHas21[T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22], T1]
+  type XHasM22[
+    T1 <: nat.has.Nat,
+    T2 <: nat.has.Nat,
+    T3 <: nat.has.Nat,
+    T4 <: nat.has.Nat,
+    T5 <: nat.has.Nat,
+    T6 <: nat.has.Nat,
+    T7 <: nat.has.Nat,
+    T8 <: nat.has.Nat,
+    T9 <: nat.has.Nat,
+    T10 <: nat.has.Nat,
+    T11 <: nat.has.Nat,
+    T12 <: nat.has.Nat,
+    T13 <: nat.has.Nat,
+    T14 <: nat.has.Nat,
+    T15 <: nat.has.Nat,
+    T16 <: nat.has.Nat,
+    T17 <: nat.has.Nat,
+    T18 <: nat.has.Nat,
+    T19 <: nat.has.Nat,
+    T20 <: nat.has.Nat,
+    T21 <: nat.has.Nat,
+    T22 <: nat.has.Nat
+  ] = T1#Plus[T2]#Plus[T3]#Plus[T4]#Plus[T5]#Plus[T6]#Plus[T7]#Plus[T8]#Plus[T9]#Plus[T10]#Plus[T11]#Plus[T12]#Plus[T13]#Plus[T14]#Plus[T15]#Plus[T16]#Plus[T17]#Plus[
+    T18
+  ]#Plus[T19]#Plus[T20]#Plus[T21]#Plus[T22]
   val XHas0: XHas0 = nat.has.NatZero
   object XHas1 {
     def apply[T1](t1: T1): XHas1[T1]            = new nat.has.NatPositive(nat.has.NatZero, t1)
