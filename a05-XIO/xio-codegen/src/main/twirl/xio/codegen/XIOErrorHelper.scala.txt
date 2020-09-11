@@ -10,22 +10,35 @@ object XIOErrorHelperInstance {
         }
     }
 
+    def errorCompat1[P <: xio.nat.error.NatEither, E1, Input <: xio.nat.has.Nat, Out](
+        e1: xio.ErrorContent[E1, P, Input, Out] => xio.XIO[Input, P, Out], u: xio.XError1[E1]
+    ): xio.XIO[Input, P, Out] = e1(new xio.ErrorContentImpl(u.sureRight))
+    @for(i <- 2 to maxItem) {
+        def errorCompat@{i}[P <: xio.nat.error.NatEither @for(ii <- 1 to i) { , E@{ii} }, Input <: xio.nat.has.Nat, Out](
+            @for(ii <- 1 to i) {
+                e@{ii}: xio.ErrorContent[E@{ii}, P, Input, Out] => xio.XIO[Input, P, Out],
+            }
+            u: xio.XError@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } E@{ii} }]
+        ): xio.XIO[Input, P, Out] = u.either.fold(ii1 => errorCompat@{i - 1}(@for(ii <- 1 to i - 1) { e@{ii} , }ii1), ii2 => e@{i}(new xio.ErrorContentImpl(ii2)))
+    }
+
 }
 
 trait XIOErrorHelper {
 
     implicit class XIOErrorMatchAll1ImplicitClass1[X <: xio.nat.has.Nat, E1, I](i: xio.XIO[X, xio.XError1[E1], I]) {
-        def allError[P <: xio.nat.error.NatEither]: XIOErrorHelperInstance.MatchAll1Apply1[P, E1, X, I] =
+        def allErrorTo[P <: xio.nat.error.NatEither]: XIOErrorHelperInstance.MatchAll1Apply1[P, E1, X, I] =
             new XIOErrorHelperInstance.MatchAll1Apply1[P, E1, X, I] {
                 override def input1(e1: xio.ErrorContent[E1, P, X, I] => xio.XIO[X, P, I]): xio.XIO[X, P, I] =
-            XIOHelper.simpleCatchAll(i) { n => e1(new xio.ErrorContentImpl(n.sureRight)) }
+                XIOHelper.simpleCatchAll(i)(ii => XIOErrorHelperInstance.errorCompat1(e1, ii))
         }
     }
 
     @for(i <- 2 to maxItem) {
         implicit class XIOErrorMatchAll1ImplicitClass@{i}[X <: xio.nat.has.Nat @for(ii <- 1 to i) { , E@{ii} }, I](i: xio.XIO[X, xio.XError@{i}[ @for(ii <- 1 to i) { @if(ii > 1) { , } E@{ii} } ], I]) {
-            def allError[P <: xio.nat.error.NatEither]: XIOErrorHelperInstance.MatchAll1Apply@{i}[P @for(ii <- 1 to i) { , E@{ii} }, X, I] = new XIOErrorHelperInstance.MatchAll1Apply@{i}[P @for(ii <- 1 to i) { , E@{ii} }, X, I] {
-                override def input@{i}(@for(ii <- 1 to i) { @if(ii > 1) { , } e@{ii}: xio.ErrorContent[E@{ii}, P, X, I] => xio.XIO[X, P, I] }): xio.XIO[X, P, I] = 1.asInstanceOf[xio.XIO[X, P, I]]
+            def allErrorTo[P <: xio.nat.error.NatEither]: XIOErrorHelperInstance.MatchAll1Apply@{i}[P @for(ii <- 1 to i) { , E@{ii} }, X, I] = new XIOErrorHelperInstance.MatchAll1Apply@{i}[P @for(ii <- 1 to i) { , E@{ii} }, X, I] {
+                override def input@{i}(@for(ii <- 1 to i) { @if(ii > 1) { , } e@{ii}: xio.ErrorContent[E@{ii}, P, X, I] => xio.XIO[X, P, I] }): xio.XIO[X, P, I] =
+                XIOHelper.simpleCatchAll(i)(ii1 => XIOErrorHelperInstance.errorCompat@{i}(@for(ii <- 1 to i) { e@{ii} , } ii1))
             }
         }
     }
