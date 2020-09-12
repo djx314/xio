@@ -9,7 +9,7 @@ import zio._
 
 import scala.concurrent.ExecutionContext
 
-trait XIO[I <: Nat, L <: NatEither, R] {
+trait XIO[I <: Nat, L <: NatEither, +R] {
   self =>
 
   def zio: ZIO[I, L, R]
@@ -51,10 +51,10 @@ object XIO extends XIOErrorHelper {
 
   private def identityFn[A]: A => A = s => s
 
-  implicit def xioImplicit[I1 <: Nat, I2 <: Nat, E1 <: NatEither, E2 <: NatEither, O1, O2](
+  implicit def xioImplicit[I1 <: Nat, I2 <: Nat, E1 <: NatEither, E2 <: NatEither, O1 <: O2, O2](
     i: XIO[I1, E1, O1]
-  )(implicit cv: NatToTag[I1, I2], v: NatEitherToTag[E1, E2], cv3: O1 <:< O2): XIO[I2, E2, O2] =
-    XIOHelper.simpleProvideLayer(XIOHelper.simpeMapError(i)(v.tag).map(cv3))(XLayerHelper.simpleFromFunctionMany[E2](cv.tag))
+  )(implicit cv: NatToTag[I1, I2], v: NatEitherToTag[E1, E2]): XIO[I2, E2, O2] =
+    XIOHelper.simpleProvideLayer(XIOHelper.simpeMapError(i)(v.tag))(XLayerHelper.simpleFromFunctionMany[E2](cv.tag))
 
   def identity[T <: Nat]: XIO[T, XError0, T] = XIO.fromFunction(identityFn)
 
