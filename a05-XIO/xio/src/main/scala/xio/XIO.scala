@@ -18,12 +18,16 @@ trait XIO[I <: Nat, L <: NatEither, +R] {
 
   def flatMap[I1 <: Nat, L1 <: NatEither, E1](
     cv: R => XIO[I1, L1, E1]
-  )(implicit v: NatReversePlus[I1, I], n: NatEitherReversePlus[L, L1]): XIO[I#InnerPlus[I1], L1#Plus[L], E1] =
-    XIOHelper.simpleFlatMap(XIOHelper.simpleFromFunction[L1#Plus[L]](identity[I#InnerPlus[I1]]))(plus =>
+  )(implicit v: NatReversePlus[I1, I], n: NatEitherReversePlus[L, L1]): XIO[I#InnerPlus[I1], L1#Plus[L], E1] = {
+    val init = XIOHelper.simpleFromFunction[L1#Plus[L]](identity[I#InnerPlus[I1]])
+    XIOHelper.simpleFlatMap(init)(plus =>
       XIOHelper.simpleFlatMap(XIOHelper.simpeMapError(XIOHelper.simpleProvide(self)(v.takeHead(plus)))(n.takeTail))(n1 =>
         XIOHelper.simpeMapError(XIOHelper.simpleProvide(cv(n1))(v.takeTail(plus)))(n.takeHead)
       )
     )
+  }
+
+  def liftError[E1 <: NatEither](implicit nm: NatEitherToTag[L, E1]): XIO[I, E1, R] = XIOHelper.simpeMapError(self)(nm.tag)
 
   def mapError[E1, ESUM <: NatEither](
     n: (E1, NatEitherSetter.NatEitherApply[ESUM]) => ESUM

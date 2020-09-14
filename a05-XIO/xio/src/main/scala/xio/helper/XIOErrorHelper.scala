@@ -1,1647 +1,18 @@
 package xio.helper
-object XIOErrorHelperInstance {
-  trait MatchAll1Apply1[P <: xio.nat.error.NatEither, E1, Input <: xio.nat.has.Nat, Out] {
-    def input1[Out1 <: Out, Input1 <: xio.nat.has.Nat](e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1])(implicit
-      natToTag1: xio.nat.has.NatToTag[Input1, Input]
-    ): xio.XIO[Input, P, Out]
-  }
-  trait MatchAll1Apply2[P <: xio.nat.error.NatEither, E1, E2, Input <: xio.nat.has.Nat, Out] {
-    def input2[Out1 <: Out, Input1 <: xio.nat.has.Nat, Out2 <: Out, Input2 <: xio.nat.has.Nat](
-      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2]
-    )(implicit natToTag1: xio.nat.has.NatToTag[Input1, Input], natToTag2: xio.nat.has.NatToTag[Input2, Input]): xio.XIO[Input, P, Out]
-  }
-  trait MatchAll1Apply3[P <: xio.nat.error.NatEither, E1, E2, E3, Input <: xio.nat.has.Nat, Out] {
-    def input3[Out1 <: Out, Input1 <: xio.nat.has.Nat, Out2 <: Out, Input2 <: xio.nat.has.Nat, Out3 <: Out, Input3 <: xio.nat.has.Nat](
-      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3]
-    )(implicit
-      natToTag1: xio.nat.has.NatToTag[Input1, Input],
-      natToTag2: xio.nat.has.NatToTag[Input2, Input],
-      natToTag3: xio.nat.has.NatToTag[Input3, Input]
-    ): xio.XIO[Input, P, Out]
-  }
-  trait MatchAll1Apply4[P <: xio.nat.error.NatEither, E1, E2, E3, E4, Input <: xio.nat.has.Nat, Out] {
-    def input4[
-      Out1 <: Out,
-      Input1 <: xio.nat.has.Nat,
-      Out2 <: Out,
-      Input2 <: xio.nat.has.Nat,
-      Out3 <: Out,
-      Input3 <: xio.nat.has.Nat,
-      Out4 <: Out,
-      Input4 <: xio.nat.has.Nat
-    ](
-      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4]
-    )(implicit
-      natToTag1: xio.nat.has.NatToTag[Input1, Input],
-      natToTag2: xio.nat.has.NatToTag[Input2, Input],
-      natToTag3: xio.nat.has.NatToTag[Input3, Input],
-      natToTag4: xio.nat.has.NatToTag[Input4, Input]
-    ): xio.XIO[Input, P, Out]
-  }
-  trait MatchAll1Apply5[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, Input <: xio.nat.has.Nat, Out] {
-    def input5[
-      Out1 <: Out,
-      Input1 <: xio.nat.has.Nat,
-      Out2 <: Out,
-      Input2 <: xio.nat.has.Nat,
-      Out3 <: Out,
-      Input3 <: xio.nat.has.Nat,
-      Out4 <: Out,
-      Input4 <: xio.nat.has.Nat,
-      Out5 <: Out,
-      Input5 <: xio.nat.has.Nat
-    ](
-      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5]
-    )(implicit
-      natToTag1: xio.nat.has.NatToTag[Input1, Input],
-      natToTag2: xio.nat.has.NatToTag[Input2, Input],
-      natToTag3: xio.nat.has.NatToTag[Input3, Input],
-      natToTag4: xio.nat.has.NatToTag[Input4, Input],
-      natToTag5: xio.nat.has.NatToTag[Input5, Input]
-    ): xio.XIO[Input, P, Out]
-  }
-  trait MatchAll1Apply6[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, Input <: xio.nat.has.Nat, Out] {
-    def input6[
-      Out1 <: Out,
-      Input1 <: xio.nat.has.Nat,
-      Out2 <: Out,
-      Input2 <: xio.nat.has.Nat,
-      Out3 <: Out,
-      Input3 <: xio.nat.has.Nat,
-      Out4 <: Out,
-      Input4 <: xio.nat.has.Nat,
-      Out5 <: Out,
-      Input5 <: xio.nat.has.Nat,
-      Out6 <: Out,
-      Input6 <: xio.nat.has.Nat
-    ](
-      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6]
-    )(implicit
-      natToTag1: xio.nat.has.NatToTag[Input1, Input],
-      natToTag2: xio.nat.has.NatToTag[Input2, Input],
-      natToTag3: xio.nat.has.NatToTag[Input3, Input],
-      natToTag4: xio.nat.has.NatToTag[Input4, Input],
-      natToTag5: xio.nat.has.NatToTag[Input5, Input],
-      natToTag6: xio.nat.has.NatToTag[Input6, Input]
-    ): xio.XIO[Input, P, Out]
-  }
-  trait MatchAll1Apply7[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, Input <: xio.nat.has.Nat, Out] {
-    def input7[
-      Out1 <: Out,
-      Input1 <: xio.nat.has.Nat,
-      Out2 <: Out,
-      Input2 <: xio.nat.has.Nat,
-      Out3 <: Out,
-      Input3 <: xio.nat.has.Nat,
-      Out4 <: Out,
-      Input4 <: xio.nat.has.Nat,
-      Out5 <: Out,
-      Input5 <: xio.nat.has.Nat,
-      Out6 <: Out,
-      Input6 <: xio.nat.has.Nat,
-      Out7 <: Out,
-      Input7 <: xio.nat.has.Nat
-    ](
-      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7]
-    )(implicit
-      natToTag1: xio.nat.has.NatToTag[Input1, Input],
-      natToTag2: xio.nat.has.NatToTag[Input2, Input],
-      natToTag3: xio.nat.has.NatToTag[Input3, Input],
-      natToTag4: xio.nat.has.NatToTag[Input4, Input],
-      natToTag5: xio.nat.has.NatToTag[Input5, Input],
-      natToTag6: xio.nat.has.NatToTag[Input6, Input],
-      natToTag7: xio.nat.has.NatToTag[Input7, Input]
-    ): xio.XIO[Input, P, Out]
-  }
-  trait MatchAll1Apply8[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, Input <: xio.nat.has.Nat, Out] {
-    def input8[
-      Out1 <: Out,
-      Input1 <: xio.nat.has.Nat,
-      Out2 <: Out,
-      Input2 <: xio.nat.has.Nat,
-      Out3 <: Out,
-      Input3 <: xio.nat.has.Nat,
-      Out4 <: Out,
-      Input4 <: xio.nat.has.Nat,
-      Out5 <: Out,
-      Input5 <: xio.nat.has.Nat,
-      Out6 <: Out,
-      Input6 <: xio.nat.has.Nat,
-      Out7 <: Out,
-      Input7 <: xio.nat.has.Nat,
-      Out8 <: Out,
-      Input8 <: xio.nat.has.Nat
-    ](
-      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8]
-    )(implicit
-      natToTag1: xio.nat.has.NatToTag[Input1, Input],
-      natToTag2: xio.nat.has.NatToTag[Input2, Input],
-      natToTag3: xio.nat.has.NatToTag[Input3, Input],
-      natToTag4: xio.nat.has.NatToTag[Input4, Input],
-      natToTag5: xio.nat.has.NatToTag[Input5, Input],
-      natToTag6: xio.nat.has.NatToTag[Input6, Input],
-      natToTag7: xio.nat.has.NatToTag[Input7, Input],
-      natToTag8: xio.nat.has.NatToTag[Input8, Input]
-    ): xio.XIO[Input, P, Out]
-  }
-  trait MatchAll1Apply9[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, Input <: xio.nat.has.Nat, Out] {
-    def input9[
-      Out1 <: Out,
-      Input1 <: xio.nat.has.Nat,
-      Out2 <: Out,
-      Input2 <: xio.nat.has.Nat,
-      Out3 <: Out,
-      Input3 <: xio.nat.has.Nat,
-      Out4 <: Out,
-      Input4 <: xio.nat.has.Nat,
-      Out5 <: Out,
-      Input5 <: xio.nat.has.Nat,
-      Out6 <: Out,
-      Input6 <: xio.nat.has.Nat,
-      Out7 <: Out,
-      Input7 <: xio.nat.has.Nat,
-      Out8 <: Out,
-      Input8 <: xio.nat.has.Nat,
-      Out9 <: Out,
-      Input9 <: xio.nat.has.Nat
-    ](
-      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9]
-    )(implicit
-      natToTag1: xio.nat.has.NatToTag[Input1, Input],
-      natToTag2: xio.nat.has.NatToTag[Input2, Input],
-      natToTag3: xio.nat.has.NatToTag[Input3, Input],
-      natToTag4: xio.nat.has.NatToTag[Input4, Input],
-      natToTag5: xio.nat.has.NatToTag[Input5, Input],
-      natToTag6: xio.nat.has.NatToTag[Input6, Input],
-      natToTag7: xio.nat.has.NatToTag[Input7, Input],
-      natToTag8: xio.nat.has.NatToTag[Input8, Input],
-      natToTag9: xio.nat.has.NatToTag[Input9, Input]
-    ): xio.XIO[Input, P, Out]
-  }
-  trait MatchAll1Apply10[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, Input <: xio.nat.has.Nat, Out] {
-    def input10[
-      Out1 <: Out,
-      Input1 <: xio.nat.has.Nat,
-      Out2 <: Out,
-      Input2 <: xio.nat.has.Nat,
-      Out3 <: Out,
-      Input3 <: xio.nat.has.Nat,
-      Out4 <: Out,
-      Input4 <: xio.nat.has.Nat,
-      Out5 <: Out,
-      Input5 <: xio.nat.has.Nat,
-      Out6 <: Out,
-      Input6 <: xio.nat.has.Nat,
-      Out7 <: Out,
-      Input7 <: xio.nat.has.Nat,
-      Out8 <: Out,
-      Input8 <: xio.nat.has.Nat,
-      Out9 <: Out,
-      Input9 <: xio.nat.has.Nat,
-      Out10 <: Out,
-      Input10 <: xio.nat.has.Nat
-    ](
-      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10]
-    )(implicit
-      natToTag1: xio.nat.has.NatToTag[Input1, Input],
-      natToTag2: xio.nat.has.NatToTag[Input2, Input],
-      natToTag3: xio.nat.has.NatToTag[Input3, Input],
-      natToTag4: xio.nat.has.NatToTag[Input4, Input],
-      natToTag5: xio.nat.has.NatToTag[Input5, Input],
-      natToTag6: xio.nat.has.NatToTag[Input6, Input],
-      natToTag7: xio.nat.has.NatToTag[Input7, Input],
-      natToTag8: xio.nat.has.NatToTag[Input8, Input],
-      natToTag9: xio.nat.has.NatToTag[Input9, Input],
-      natToTag10: xio.nat.has.NatToTag[Input10, Input]
-    ): xio.XIO[Input, P, Out]
-  }
-  trait MatchAll1Apply11[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, Input <: xio.nat.has.Nat, Out] {
-    def input11[
-      Out1 <: Out,
-      Input1 <: xio.nat.has.Nat,
-      Out2 <: Out,
-      Input2 <: xio.nat.has.Nat,
-      Out3 <: Out,
-      Input3 <: xio.nat.has.Nat,
-      Out4 <: Out,
-      Input4 <: xio.nat.has.Nat,
-      Out5 <: Out,
-      Input5 <: xio.nat.has.Nat,
-      Out6 <: Out,
-      Input6 <: xio.nat.has.Nat,
-      Out7 <: Out,
-      Input7 <: xio.nat.has.Nat,
-      Out8 <: Out,
-      Input8 <: xio.nat.has.Nat,
-      Out9 <: Out,
-      Input9 <: xio.nat.has.Nat,
-      Out10 <: Out,
-      Input10 <: xio.nat.has.Nat,
-      Out11 <: Out,
-      Input11 <: xio.nat.has.Nat
-    ](
-      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11]
-    )(implicit
-      natToTag1: xio.nat.has.NatToTag[Input1, Input],
-      natToTag2: xio.nat.has.NatToTag[Input2, Input],
-      natToTag3: xio.nat.has.NatToTag[Input3, Input],
-      natToTag4: xio.nat.has.NatToTag[Input4, Input],
-      natToTag5: xio.nat.has.NatToTag[Input5, Input],
-      natToTag6: xio.nat.has.NatToTag[Input6, Input],
-      natToTag7: xio.nat.has.NatToTag[Input7, Input],
-      natToTag8: xio.nat.has.NatToTag[Input8, Input],
-      natToTag9: xio.nat.has.NatToTag[Input9, Input],
-      natToTag10: xio.nat.has.NatToTag[Input10, Input],
-      natToTag11: xio.nat.has.NatToTag[Input11, Input]
-    ): xio.XIO[Input, P, Out]
-  }
-  trait MatchAll1Apply12[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, Input <: xio.nat.has.Nat, Out] {
-    def input12[
-      Out1 <: Out,
-      Input1 <: xio.nat.has.Nat,
-      Out2 <: Out,
-      Input2 <: xio.nat.has.Nat,
-      Out3 <: Out,
-      Input3 <: xio.nat.has.Nat,
-      Out4 <: Out,
-      Input4 <: xio.nat.has.Nat,
-      Out5 <: Out,
-      Input5 <: xio.nat.has.Nat,
-      Out6 <: Out,
-      Input6 <: xio.nat.has.Nat,
-      Out7 <: Out,
-      Input7 <: xio.nat.has.Nat,
-      Out8 <: Out,
-      Input8 <: xio.nat.has.Nat,
-      Out9 <: Out,
-      Input9 <: xio.nat.has.Nat,
-      Out10 <: Out,
-      Input10 <: xio.nat.has.Nat,
-      Out11 <: Out,
-      Input11 <: xio.nat.has.Nat,
-      Out12 <: Out,
-      Input12 <: xio.nat.has.Nat
-    ](
-      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
-      e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12]
-    )(implicit
-      natToTag1: xio.nat.has.NatToTag[Input1, Input],
-      natToTag2: xio.nat.has.NatToTag[Input2, Input],
-      natToTag3: xio.nat.has.NatToTag[Input3, Input],
-      natToTag4: xio.nat.has.NatToTag[Input4, Input],
-      natToTag5: xio.nat.has.NatToTag[Input5, Input],
-      natToTag6: xio.nat.has.NatToTag[Input6, Input],
-      natToTag7: xio.nat.has.NatToTag[Input7, Input],
-      natToTag8: xio.nat.has.NatToTag[Input8, Input],
-      natToTag9: xio.nat.has.NatToTag[Input9, Input],
-      natToTag10: xio.nat.has.NatToTag[Input10, Input],
-      natToTag11: xio.nat.has.NatToTag[Input11, Input],
-      natToTag12: xio.nat.has.NatToTag[Input12, Input]
-    ): xio.XIO[Input, P, Out]
-  }
-  trait MatchAll1Apply13[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, Input <: xio.nat.has.Nat, Out] {
-    def input13[
-      Out1 <: Out,
-      Input1 <: xio.nat.has.Nat,
-      Out2 <: Out,
-      Input2 <: xio.nat.has.Nat,
-      Out3 <: Out,
-      Input3 <: xio.nat.has.Nat,
-      Out4 <: Out,
-      Input4 <: xio.nat.has.Nat,
-      Out5 <: Out,
-      Input5 <: xio.nat.has.Nat,
-      Out6 <: Out,
-      Input6 <: xio.nat.has.Nat,
-      Out7 <: Out,
-      Input7 <: xio.nat.has.Nat,
-      Out8 <: Out,
-      Input8 <: xio.nat.has.Nat,
-      Out9 <: Out,
-      Input9 <: xio.nat.has.Nat,
-      Out10 <: Out,
-      Input10 <: xio.nat.has.Nat,
-      Out11 <: Out,
-      Input11 <: xio.nat.has.Nat,
-      Out12 <: Out,
-      Input12 <: xio.nat.has.Nat,
-      Out13 <: Out,
-      Input13 <: xio.nat.has.Nat
-    ](
-      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
-      e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12],
-      e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13]
-    )(implicit
-      natToTag1: xio.nat.has.NatToTag[Input1, Input],
-      natToTag2: xio.nat.has.NatToTag[Input2, Input],
-      natToTag3: xio.nat.has.NatToTag[Input3, Input],
-      natToTag4: xio.nat.has.NatToTag[Input4, Input],
-      natToTag5: xio.nat.has.NatToTag[Input5, Input],
-      natToTag6: xio.nat.has.NatToTag[Input6, Input],
-      natToTag7: xio.nat.has.NatToTag[Input7, Input],
-      natToTag8: xio.nat.has.NatToTag[Input8, Input],
-      natToTag9: xio.nat.has.NatToTag[Input9, Input],
-      natToTag10: xio.nat.has.NatToTag[Input10, Input],
-      natToTag11: xio.nat.has.NatToTag[Input11, Input],
-      natToTag12: xio.nat.has.NatToTag[Input12, Input],
-      natToTag13: xio.nat.has.NatToTag[Input13, Input]
-    ): xio.XIO[Input, P, Out]
-  }
-  trait MatchAll1Apply14[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, Input <: xio.nat.has.Nat, Out] {
-    def input14[
-      Out1 <: Out,
-      Input1 <: xio.nat.has.Nat,
-      Out2 <: Out,
-      Input2 <: xio.nat.has.Nat,
-      Out3 <: Out,
-      Input3 <: xio.nat.has.Nat,
-      Out4 <: Out,
-      Input4 <: xio.nat.has.Nat,
-      Out5 <: Out,
-      Input5 <: xio.nat.has.Nat,
-      Out6 <: Out,
-      Input6 <: xio.nat.has.Nat,
-      Out7 <: Out,
-      Input7 <: xio.nat.has.Nat,
-      Out8 <: Out,
-      Input8 <: xio.nat.has.Nat,
-      Out9 <: Out,
-      Input9 <: xio.nat.has.Nat,
-      Out10 <: Out,
-      Input10 <: xio.nat.has.Nat,
-      Out11 <: Out,
-      Input11 <: xio.nat.has.Nat,
-      Out12 <: Out,
-      Input12 <: xio.nat.has.Nat,
-      Out13 <: Out,
-      Input13 <: xio.nat.has.Nat,
-      Out14 <: Out,
-      Input14 <: xio.nat.has.Nat
-    ](
-      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
-      e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12],
-      e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13],
-      e14: xio.ErrorContent[E14, P] => xio.XIO[Input14, P, Out14]
-    )(implicit
-      natToTag1: xio.nat.has.NatToTag[Input1, Input],
-      natToTag2: xio.nat.has.NatToTag[Input2, Input],
-      natToTag3: xio.nat.has.NatToTag[Input3, Input],
-      natToTag4: xio.nat.has.NatToTag[Input4, Input],
-      natToTag5: xio.nat.has.NatToTag[Input5, Input],
-      natToTag6: xio.nat.has.NatToTag[Input6, Input],
-      natToTag7: xio.nat.has.NatToTag[Input7, Input],
-      natToTag8: xio.nat.has.NatToTag[Input8, Input],
-      natToTag9: xio.nat.has.NatToTag[Input9, Input],
-      natToTag10: xio.nat.has.NatToTag[Input10, Input],
-      natToTag11: xio.nat.has.NatToTag[Input11, Input],
-      natToTag12: xio.nat.has.NatToTag[Input12, Input],
-      natToTag13: xio.nat.has.NatToTag[Input13, Input],
-      natToTag14: xio.nat.has.NatToTag[Input14, Input]
-    ): xio.XIO[Input, P, Out]
-  }
-  trait MatchAll1Apply15[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, Input <: xio.nat.has.Nat, Out] {
-    def input15[
-      Out1 <: Out,
-      Input1 <: xio.nat.has.Nat,
-      Out2 <: Out,
-      Input2 <: xio.nat.has.Nat,
-      Out3 <: Out,
-      Input3 <: xio.nat.has.Nat,
-      Out4 <: Out,
-      Input4 <: xio.nat.has.Nat,
-      Out5 <: Out,
-      Input5 <: xio.nat.has.Nat,
-      Out6 <: Out,
-      Input6 <: xio.nat.has.Nat,
-      Out7 <: Out,
-      Input7 <: xio.nat.has.Nat,
-      Out8 <: Out,
-      Input8 <: xio.nat.has.Nat,
-      Out9 <: Out,
-      Input9 <: xio.nat.has.Nat,
-      Out10 <: Out,
-      Input10 <: xio.nat.has.Nat,
-      Out11 <: Out,
-      Input11 <: xio.nat.has.Nat,
-      Out12 <: Out,
-      Input12 <: xio.nat.has.Nat,
-      Out13 <: Out,
-      Input13 <: xio.nat.has.Nat,
-      Out14 <: Out,
-      Input14 <: xio.nat.has.Nat,
-      Out15 <: Out,
-      Input15 <: xio.nat.has.Nat
-    ](
-      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
-      e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12],
-      e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13],
-      e14: xio.ErrorContent[E14, P] => xio.XIO[Input14, P, Out14],
-      e15: xio.ErrorContent[E15, P] => xio.XIO[Input15, P, Out15]
-    )(implicit
-      natToTag1: xio.nat.has.NatToTag[Input1, Input],
-      natToTag2: xio.nat.has.NatToTag[Input2, Input],
-      natToTag3: xio.nat.has.NatToTag[Input3, Input],
-      natToTag4: xio.nat.has.NatToTag[Input4, Input],
-      natToTag5: xio.nat.has.NatToTag[Input5, Input],
-      natToTag6: xio.nat.has.NatToTag[Input6, Input],
-      natToTag7: xio.nat.has.NatToTag[Input7, Input],
-      natToTag8: xio.nat.has.NatToTag[Input8, Input],
-      natToTag9: xio.nat.has.NatToTag[Input9, Input],
-      natToTag10: xio.nat.has.NatToTag[Input10, Input],
-      natToTag11: xio.nat.has.NatToTag[Input11, Input],
-      natToTag12: xio.nat.has.NatToTag[Input12, Input],
-      natToTag13: xio.nat.has.NatToTag[Input13, Input],
-      natToTag14: xio.nat.has.NatToTag[Input14, Input],
-      natToTag15: xio.nat.has.NatToTag[Input15, Input]
-    ): xio.XIO[Input, P, Out]
-  }
-  trait MatchAll1Apply16[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, Input <: xio.nat.has.Nat, Out] {
-    def input16[
-      Out1 <: Out,
-      Input1 <: xio.nat.has.Nat,
-      Out2 <: Out,
-      Input2 <: xio.nat.has.Nat,
-      Out3 <: Out,
-      Input3 <: xio.nat.has.Nat,
-      Out4 <: Out,
-      Input4 <: xio.nat.has.Nat,
-      Out5 <: Out,
-      Input5 <: xio.nat.has.Nat,
-      Out6 <: Out,
-      Input6 <: xio.nat.has.Nat,
-      Out7 <: Out,
-      Input7 <: xio.nat.has.Nat,
-      Out8 <: Out,
-      Input8 <: xio.nat.has.Nat,
-      Out9 <: Out,
-      Input9 <: xio.nat.has.Nat,
-      Out10 <: Out,
-      Input10 <: xio.nat.has.Nat,
-      Out11 <: Out,
-      Input11 <: xio.nat.has.Nat,
-      Out12 <: Out,
-      Input12 <: xio.nat.has.Nat,
-      Out13 <: Out,
-      Input13 <: xio.nat.has.Nat,
-      Out14 <: Out,
-      Input14 <: xio.nat.has.Nat,
-      Out15 <: Out,
-      Input15 <: xio.nat.has.Nat,
-      Out16 <: Out,
-      Input16 <: xio.nat.has.Nat
-    ](
-      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
-      e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12],
-      e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13],
-      e14: xio.ErrorContent[E14, P] => xio.XIO[Input14, P, Out14],
-      e15: xio.ErrorContent[E15, P] => xio.XIO[Input15, P, Out15],
-      e16: xio.ErrorContent[E16, P] => xio.XIO[Input16, P, Out16]
-    )(implicit
-      natToTag1: xio.nat.has.NatToTag[Input1, Input],
-      natToTag2: xio.nat.has.NatToTag[Input2, Input],
-      natToTag3: xio.nat.has.NatToTag[Input3, Input],
-      natToTag4: xio.nat.has.NatToTag[Input4, Input],
-      natToTag5: xio.nat.has.NatToTag[Input5, Input],
-      natToTag6: xio.nat.has.NatToTag[Input6, Input],
-      natToTag7: xio.nat.has.NatToTag[Input7, Input],
-      natToTag8: xio.nat.has.NatToTag[Input8, Input],
-      natToTag9: xio.nat.has.NatToTag[Input9, Input],
-      natToTag10: xio.nat.has.NatToTag[Input10, Input],
-      natToTag11: xio.nat.has.NatToTag[Input11, Input],
-      natToTag12: xio.nat.has.NatToTag[Input12, Input],
-      natToTag13: xio.nat.has.NatToTag[Input13, Input],
-      natToTag14: xio.nat.has.NatToTag[Input14, Input],
-      natToTag15: xio.nat.has.NatToTag[Input15, Input],
-      natToTag16: xio.nat.has.NatToTag[Input16, Input]
-    ): xio.XIO[Input, P, Out]
-  }
-  trait MatchAll1Apply17[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, Input <: xio.nat.has.Nat, Out] {
-    def input17[
-      Out1 <: Out,
-      Input1 <: xio.nat.has.Nat,
-      Out2 <: Out,
-      Input2 <: xio.nat.has.Nat,
-      Out3 <: Out,
-      Input3 <: xio.nat.has.Nat,
-      Out4 <: Out,
-      Input4 <: xio.nat.has.Nat,
-      Out5 <: Out,
-      Input5 <: xio.nat.has.Nat,
-      Out6 <: Out,
-      Input6 <: xio.nat.has.Nat,
-      Out7 <: Out,
-      Input7 <: xio.nat.has.Nat,
-      Out8 <: Out,
-      Input8 <: xio.nat.has.Nat,
-      Out9 <: Out,
-      Input9 <: xio.nat.has.Nat,
-      Out10 <: Out,
-      Input10 <: xio.nat.has.Nat,
-      Out11 <: Out,
-      Input11 <: xio.nat.has.Nat,
-      Out12 <: Out,
-      Input12 <: xio.nat.has.Nat,
-      Out13 <: Out,
-      Input13 <: xio.nat.has.Nat,
-      Out14 <: Out,
-      Input14 <: xio.nat.has.Nat,
-      Out15 <: Out,
-      Input15 <: xio.nat.has.Nat,
-      Out16 <: Out,
-      Input16 <: xio.nat.has.Nat,
-      Out17 <: Out,
-      Input17 <: xio.nat.has.Nat
-    ](
-      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
-      e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12],
-      e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13],
-      e14: xio.ErrorContent[E14, P] => xio.XIO[Input14, P, Out14],
-      e15: xio.ErrorContent[E15, P] => xio.XIO[Input15, P, Out15],
-      e16: xio.ErrorContent[E16, P] => xio.XIO[Input16, P, Out16],
-      e17: xio.ErrorContent[E17, P] => xio.XIO[Input17, P, Out17]
-    )(implicit
-      natToTag1: xio.nat.has.NatToTag[Input1, Input],
-      natToTag2: xio.nat.has.NatToTag[Input2, Input],
-      natToTag3: xio.nat.has.NatToTag[Input3, Input],
-      natToTag4: xio.nat.has.NatToTag[Input4, Input],
-      natToTag5: xio.nat.has.NatToTag[Input5, Input],
-      natToTag6: xio.nat.has.NatToTag[Input6, Input],
-      natToTag7: xio.nat.has.NatToTag[Input7, Input],
-      natToTag8: xio.nat.has.NatToTag[Input8, Input],
-      natToTag9: xio.nat.has.NatToTag[Input9, Input],
-      natToTag10: xio.nat.has.NatToTag[Input10, Input],
-      natToTag11: xio.nat.has.NatToTag[Input11, Input],
-      natToTag12: xio.nat.has.NatToTag[Input12, Input],
-      natToTag13: xio.nat.has.NatToTag[Input13, Input],
-      natToTag14: xio.nat.has.NatToTag[Input14, Input],
-      natToTag15: xio.nat.has.NatToTag[Input15, Input],
-      natToTag16: xio.nat.has.NatToTag[Input16, Input],
-      natToTag17: xio.nat.has.NatToTag[Input17, Input]
-    ): xio.XIO[Input, P, Out]
-  }
-  trait MatchAll1Apply18[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, Input <: xio.nat.has.Nat, Out] {
-    def input18[
-      Out1 <: Out,
-      Input1 <: xio.nat.has.Nat,
-      Out2 <: Out,
-      Input2 <: xio.nat.has.Nat,
-      Out3 <: Out,
-      Input3 <: xio.nat.has.Nat,
-      Out4 <: Out,
-      Input4 <: xio.nat.has.Nat,
-      Out5 <: Out,
-      Input5 <: xio.nat.has.Nat,
-      Out6 <: Out,
-      Input6 <: xio.nat.has.Nat,
-      Out7 <: Out,
-      Input7 <: xio.nat.has.Nat,
-      Out8 <: Out,
-      Input8 <: xio.nat.has.Nat,
-      Out9 <: Out,
-      Input9 <: xio.nat.has.Nat,
-      Out10 <: Out,
-      Input10 <: xio.nat.has.Nat,
-      Out11 <: Out,
-      Input11 <: xio.nat.has.Nat,
-      Out12 <: Out,
-      Input12 <: xio.nat.has.Nat,
-      Out13 <: Out,
-      Input13 <: xio.nat.has.Nat,
-      Out14 <: Out,
-      Input14 <: xio.nat.has.Nat,
-      Out15 <: Out,
-      Input15 <: xio.nat.has.Nat,
-      Out16 <: Out,
-      Input16 <: xio.nat.has.Nat,
-      Out17 <: Out,
-      Input17 <: xio.nat.has.Nat,
-      Out18 <: Out,
-      Input18 <: xio.nat.has.Nat
-    ](
-      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
-      e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12],
-      e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13],
-      e14: xio.ErrorContent[E14, P] => xio.XIO[Input14, P, Out14],
-      e15: xio.ErrorContent[E15, P] => xio.XIO[Input15, P, Out15],
-      e16: xio.ErrorContent[E16, P] => xio.XIO[Input16, P, Out16],
-      e17: xio.ErrorContent[E17, P] => xio.XIO[Input17, P, Out17],
-      e18: xio.ErrorContent[E18, P] => xio.XIO[Input18, P, Out18]
-    )(implicit
-      natToTag1: xio.nat.has.NatToTag[Input1, Input],
-      natToTag2: xio.nat.has.NatToTag[Input2, Input],
-      natToTag3: xio.nat.has.NatToTag[Input3, Input],
-      natToTag4: xio.nat.has.NatToTag[Input4, Input],
-      natToTag5: xio.nat.has.NatToTag[Input5, Input],
-      natToTag6: xio.nat.has.NatToTag[Input6, Input],
-      natToTag7: xio.nat.has.NatToTag[Input7, Input],
-      natToTag8: xio.nat.has.NatToTag[Input8, Input],
-      natToTag9: xio.nat.has.NatToTag[Input9, Input],
-      natToTag10: xio.nat.has.NatToTag[Input10, Input],
-      natToTag11: xio.nat.has.NatToTag[Input11, Input],
-      natToTag12: xio.nat.has.NatToTag[Input12, Input],
-      natToTag13: xio.nat.has.NatToTag[Input13, Input],
-      natToTag14: xio.nat.has.NatToTag[Input14, Input],
-      natToTag15: xio.nat.has.NatToTag[Input15, Input],
-      natToTag16: xio.nat.has.NatToTag[Input16, Input],
-      natToTag17: xio.nat.has.NatToTag[Input17, Input],
-      natToTag18: xio.nat.has.NatToTag[Input18, Input]
-    ): xio.XIO[Input, P, Out]
-  }
-  trait MatchAll1Apply19[
-    P <: xio.nat.error.NatEither,
-    E1,
-    E2,
-    E3,
-    E4,
-    E5,
-    E6,
-    E7,
-    E8,
-    E9,
-    E10,
-    E11,
-    E12,
-    E13,
-    E14,
-    E15,
-    E16,
-    E17,
-    E18,
-    E19,
-    Input <: xio.nat.has.Nat,
-    Out
-  ] {
-    def input19[
-      Out1 <: Out,
-      Input1 <: xio.nat.has.Nat,
-      Out2 <: Out,
-      Input2 <: xio.nat.has.Nat,
-      Out3 <: Out,
-      Input3 <: xio.nat.has.Nat,
-      Out4 <: Out,
-      Input4 <: xio.nat.has.Nat,
-      Out5 <: Out,
-      Input5 <: xio.nat.has.Nat,
-      Out6 <: Out,
-      Input6 <: xio.nat.has.Nat,
-      Out7 <: Out,
-      Input7 <: xio.nat.has.Nat,
-      Out8 <: Out,
-      Input8 <: xio.nat.has.Nat,
-      Out9 <: Out,
-      Input9 <: xio.nat.has.Nat,
-      Out10 <: Out,
-      Input10 <: xio.nat.has.Nat,
-      Out11 <: Out,
-      Input11 <: xio.nat.has.Nat,
-      Out12 <: Out,
-      Input12 <: xio.nat.has.Nat,
-      Out13 <: Out,
-      Input13 <: xio.nat.has.Nat,
-      Out14 <: Out,
-      Input14 <: xio.nat.has.Nat,
-      Out15 <: Out,
-      Input15 <: xio.nat.has.Nat,
-      Out16 <: Out,
-      Input16 <: xio.nat.has.Nat,
-      Out17 <: Out,
-      Input17 <: xio.nat.has.Nat,
-      Out18 <: Out,
-      Input18 <: xio.nat.has.Nat,
-      Out19 <: Out,
-      Input19 <: xio.nat.has.Nat
-    ](
-      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
-      e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12],
-      e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13],
-      e14: xio.ErrorContent[E14, P] => xio.XIO[Input14, P, Out14],
-      e15: xio.ErrorContent[E15, P] => xio.XIO[Input15, P, Out15],
-      e16: xio.ErrorContent[E16, P] => xio.XIO[Input16, P, Out16],
-      e17: xio.ErrorContent[E17, P] => xio.XIO[Input17, P, Out17],
-      e18: xio.ErrorContent[E18, P] => xio.XIO[Input18, P, Out18],
-      e19: xio.ErrorContent[E19, P] => xio.XIO[Input19, P, Out19]
-    )(implicit
-      natToTag1: xio.nat.has.NatToTag[Input1, Input],
-      natToTag2: xio.nat.has.NatToTag[Input2, Input],
-      natToTag3: xio.nat.has.NatToTag[Input3, Input],
-      natToTag4: xio.nat.has.NatToTag[Input4, Input],
-      natToTag5: xio.nat.has.NatToTag[Input5, Input],
-      natToTag6: xio.nat.has.NatToTag[Input6, Input],
-      natToTag7: xio.nat.has.NatToTag[Input7, Input],
-      natToTag8: xio.nat.has.NatToTag[Input8, Input],
-      natToTag9: xio.nat.has.NatToTag[Input9, Input],
-      natToTag10: xio.nat.has.NatToTag[Input10, Input],
-      natToTag11: xio.nat.has.NatToTag[Input11, Input],
-      natToTag12: xio.nat.has.NatToTag[Input12, Input],
-      natToTag13: xio.nat.has.NatToTag[Input13, Input],
-      natToTag14: xio.nat.has.NatToTag[Input14, Input],
-      natToTag15: xio.nat.has.NatToTag[Input15, Input],
-      natToTag16: xio.nat.has.NatToTag[Input16, Input],
-      natToTag17: xio.nat.has.NatToTag[Input17, Input],
-      natToTag18: xio.nat.has.NatToTag[Input18, Input],
-      natToTag19: xio.nat.has.NatToTag[Input19, Input]
-    ): xio.XIO[Input, P, Out]
-  }
-  trait MatchAll1Apply20[
-    P <: xio.nat.error.NatEither,
-    E1,
-    E2,
-    E3,
-    E4,
-    E5,
-    E6,
-    E7,
-    E8,
-    E9,
-    E10,
-    E11,
-    E12,
-    E13,
-    E14,
-    E15,
-    E16,
-    E17,
-    E18,
-    E19,
-    E20,
-    Input <: xio.nat.has.Nat,
-    Out
-  ] {
-    def input20[
-      Out1 <: Out,
-      Input1 <: xio.nat.has.Nat,
-      Out2 <: Out,
-      Input2 <: xio.nat.has.Nat,
-      Out3 <: Out,
-      Input3 <: xio.nat.has.Nat,
-      Out4 <: Out,
-      Input4 <: xio.nat.has.Nat,
-      Out5 <: Out,
-      Input5 <: xio.nat.has.Nat,
-      Out6 <: Out,
-      Input6 <: xio.nat.has.Nat,
-      Out7 <: Out,
-      Input7 <: xio.nat.has.Nat,
-      Out8 <: Out,
-      Input8 <: xio.nat.has.Nat,
-      Out9 <: Out,
-      Input9 <: xio.nat.has.Nat,
-      Out10 <: Out,
-      Input10 <: xio.nat.has.Nat,
-      Out11 <: Out,
-      Input11 <: xio.nat.has.Nat,
-      Out12 <: Out,
-      Input12 <: xio.nat.has.Nat,
-      Out13 <: Out,
-      Input13 <: xio.nat.has.Nat,
-      Out14 <: Out,
-      Input14 <: xio.nat.has.Nat,
-      Out15 <: Out,
-      Input15 <: xio.nat.has.Nat,
-      Out16 <: Out,
-      Input16 <: xio.nat.has.Nat,
-      Out17 <: Out,
-      Input17 <: xio.nat.has.Nat,
-      Out18 <: Out,
-      Input18 <: xio.nat.has.Nat,
-      Out19 <: Out,
-      Input19 <: xio.nat.has.Nat,
-      Out20 <: Out,
-      Input20 <: xio.nat.has.Nat
-    ](
-      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
-      e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12],
-      e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13],
-      e14: xio.ErrorContent[E14, P] => xio.XIO[Input14, P, Out14],
-      e15: xio.ErrorContent[E15, P] => xio.XIO[Input15, P, Out15],
-      e16: xio.ErrorContent[E16, P] => xio.XIO[Input16, P, Out16],
-      e17: xio.ErrorContent[E17, P] => xio.XIO[Input17, P, Out17],
-      e18: xio.ErrorContent[E18, P] => xio.XIO[Input18, P, Out18],
-      e19: xio.ErrorContent[E19, P] => xio.XIO[Input19, P, Out19],
-      e20: xio.ErrorContent[E20, P] => xio.XIO[Input20, P, Out20]
-    )(implicit
-      natToTag1: xio.nat.has.NatToTag[Input1, Input],
-      natToTag2: xio.nat.has.NatToTag[Input2, Input],
-      natToTag3: xio.nat.has.NatToTag[Input3, Input],
-      natToTag4: xio.nat.has.NatToTag[Input4, Input],
-      natToTag5: xio.nat.has.NatToTag[Input5, Input],
-      natToTag6: xio.nat.has.NatToTag[Input6, Input],
-      natToTag7: xio.nat.has.NatToTag[Input7, Input],
-      natToTag8: xio.nat.has.NatToTag[Input8, Input],
-      natToTag9: xio.nat.has.NatToTag[Input9, Input],
-      natToTag10: xio.nat.has.NatToTag[Input10, Input],
-      natToTag11: xio.nat.has.NatToTag[Input11, Input],
-      natToTag12: xio.nat.has.NatToTag[Input12, Input],
-      natToTag13: xio.nat.has.NatToTag[Input13, Input],
-      natToTag14: xio.nat.has.NatToTag[Input14, Input],
-      natToTag15: xio.nat.has.NatToTag[Input15, Input],
-      natToTag16: xio.nat.has.NatToTag[Input16, Input],
-      natToTag17: xio.nat.has.NatToTag[Input17, Input],
-      natToTag18: xio.nat.has.NatToTag[Input18, Input],
-      natToTag19: xio.nat.has.NatToTag[Input19, Input],
-      natToTag20: xio.nat.has.NatToTag[Input20, Input]
-    ): xio.XIO[Input, P, Out]
-  }
-  trait MatchAll1Apply21[
-    P <: xio.nat.error.NatEither,
-    E1,
-    E2,
-    E3,
-    E4,
-    E5,
-    E6,
-    E7,
-    E8,
-    E9,
-    E10,
-    E11,
-    E12,
-    E13,
-    E14,
-    E15,
-    E16,
-    E17,
-    E18,
-    E19,
-    E20,
-    E21,
-    Input <: xio.nat.has.Nat,
-    Out
-  ] {
-    def input21[
-      Out1 <: Out,
-      Input1 <: xio.nat.has.Nat,
-      Out2 <: Out,
-      Input2 <: xio.nat.has.Nat,
-      Out3 <: Out,
-      Input3 <: xio.nat.has.Nat,
-      Out4 <: Out,
-      Input4 <: xio.nat.has.Nat,
-      Out5 <: Out,
-      Input5 <: xio.nat.has.Nat,
-      Out6 <: Out,
-      Input6 <: xio.nat.has.Nat,
-      Out7 <: Out,
-      Input7 <: xio.nat.has.Nat,
-      Out8 <: Out,
-      Input8 <: xio.nat.has.Nat,
-      Out9 <: Out,
-      Input9 <: xio.nat.has.Nat,
-      Out10 <: Out,
-      Input10 <: xio.nat.has.Nat,
-      Out11 <: Out,
-      Input11 <: xio.nat.has.Nat,
-      Out12 <: Out,
-      Input12 <: xio.nat.has.Nat,
-      Out13 <: Out,
-      Input13 <: xio.nat.has.Nat,
-      Out14 <: Out,
-      Input14 <: xio.nat.has.Nat,
-      Out15 <: Out,
-      Input15 <: xio.nat.has.Nat,
-      Out16 <: Out,
-      Input16 <: xio.nat.has.Nat,
-      Out17 <: Out,
-      Input17 <: xio.nat.has.Nat,
-      Out18 <: Out,
-      Input18 <: xio.nat.has.Nat,
-      Out19 <: Out,
-      Input19 <: xio.nat.has.Nat,
-      Out20 <: Out,
-      Input20 <: xio.nat.has.Nat,
-      Out21 <: Out,
-      Input21 <: xio.nat.has.Nat
-    ](
-      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
-      e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12],
-      e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13],
-      e14: xio.ErrorContent[E14, P] => xio.XIO[Input14, P, Out14],
-      e15: xio.ErrorContent[E15, P] => xio.XIO[Input15, P, Out15],
-      e16: xio.ErrorContent[E16, P] => xio.XIO[Input16, P, Out16],
-      e17: xio.ErrorContent[E17, P] => xio.XIO[Input17, P, Out17],
-      e18: xio.ErrorContent[E18, P] => xio.XIO[Input18, P, Out18],
-      e19: xio.ErrorContent[E19, P] => xio.XIO[Input19, P, Out19],
-      e20: xio.ErrorContent[E20, P] => xio.XIO[Input20, P, Out20],
-      e21: xio.ErrorContent[E21, P] => xio.XIO[Input21, P, Out21]
-    )(implicit
-      natToTag1: xio.nat.has.NatToTag[Input1, Input],
-      natToTag2: xio.nat.has.NatToTag[Input2, Input],
-      natToTag3: xio.nat.has.NatToTag[Input3, Input],
-      natToTag4: xio.nat.has.NatToTag[Input4, Input],
-      natToTag5: xio.nat.has.NatToTag[Input5, Input],
-      natToTag6: xio.nat.has.NatToTag[Input6, Input],
-      natToTag7: xio.nat.has.NatToTag[Input7, Input],
-      natToTag8: xio.nat.has.NatToTag[Input8, Input],
-      natToTag9: xio.nat.has.NatToTag[Input9, Input],
-      natToTag10: xio.nat.has.NatToTag[Input10, Input],
-      natToTag11: xio.nat.has.NatToTag[Input11, Input],
-      natToTag12: xio.nat.has.NatToTag[Input12, Input],
-      natToTag13: xio.nat.has.NatToTag[Input13, Input],
-      natToTag14: xio.nat.has.NatToTag[Input14, Input],
-      natToTag15: xio.nat.has.NatToTag[Input15, Input],
-      natToTag16: xio.nat.has.NatToTag[Input16, Input],
-      natToTag17: xio.nat.has.NatToTag[Input17, Input],
-      natToTag18: xio.nat.has.NatToTag[Input18, Input],
-      natToTag19: xio.nat.has.NatToTag[Input19, Input],
-      natToTag20: xio.nat.has.NatToTag[Input20, Input],
-      natToTag21: xio.nat.has.NatToTag[Input21, Input]
-    ): xio.XIO[Input, P, Out]
-  }
-  trait MatchAll1Apply22[
-    P <: xio.nat.error.NatEither,
-    E1,
-    E2,
-    E3,
-    E4,
-    E5,
-    E6,
-    E7,
-    E8,
-    E9,
-    E10,
-    E11,
-    E12,
-    E13,
-    E14,
-    E15,
-    E16,
-    E17,
-    E18,
-    E19,
-    E20,
-    E21,
-    E22,
-    Input <: xio.nat.has.Nat,
-    Out
-  ] {
-    def input22[
-      Out1 <: Out,
-      Input1 <: xio.nat.has.Nat,
-      Out2 <: Out,
-      Input2 <: xio.nat.has.Nat,
-      Out3 <: Out,
-      Input3 <: xio.nat.has.Nat,
-      Out4 <: Out,
-      Input4 <: xio.nat.has.Nat,
-      Out5 <: Out,
-      Input5 <: xio.nat.has.Nat,
-      Out6 <: Out,
-      Input6 <: xio.nat.has.Nat,
-      Out7 <: Out,
-      Input7 <: xio.nat.has.Nat,
-      Out8 <: Out,
-      Input8 <: xio.nat.has.Nat,
-      Out9 <: Out,
-      Input9 <: xio.nat.has.Nat,
-      Out10 <: Out,
-      Input10 <: xio.nat.has.Nat,
-      Out11 <: Out,
-      Input11 <: xio.nat.has.Nat,
-      Out12 <: Out,
-      Input12 <: xio.nat.has.Nat,
-      Out13 <: Out,
-      Input13 <: xio.nat.has.Nat,
-      Out14 <: Out,
-      Input14 <: xio.nat.has.Nat,
-      Out15 <: Out,
-      Input15 <: xio.nat.has.Nat,
-      Out16 <: Out,
-      Input16 <: xio.nat.has.Nat,
-      Out17 <: Out,
-      Input17 <: xio.nat.has.Nat,
-      Out18 <: Out,
-      Input18 <: xio.nat.has.Nat,
-      Out19 <: Out,
-      Input19 <: xio.nat.has.Nat,
-      Out20 <: Out,
-      Input20 <: xio.nat.has.Nat,
-      Out21 <: Out,
-      Input21 <: xio.nat.has.Nat,
-      Out22 <: Out,
-      Input22 <: xio.nat.has.Nat
-    ](
-      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
-      e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12],
-      e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13],
-      e14: xio.ErrorContent[E14, P] => xio.XIO[Input14, P, Out14],
-      e15: xio.ErrorContent[E15, P] => xio.XIO[Input15, P, Out15],
-      e16: xio.ErrorContent[E16, P] => xio.XIO[Input16, P, Out16],
-      e17: xio.ErrorContent[E17, P] => xio.XIO[Input17, P, Out17],
-      e18: xio.ErrorContent[E18, P] => xio.XIO[Input18, P, Out18],
-      e19: xio.ErrorContent[E19, P] => xio.XIO[Input19, P, Out19],
-      e20: xio.ErrorContent[E20, P] => xio.XIO[Input20, P, Out20],
-      e21: xio.ErrorContent[E21, P] => xio.XIO[Input21, P, Out21],
-      e22: xio.ErrorContent[E22, P] => xio.XIO[Input22, P, Out22]
-    )(implicit
-      natToTag1: xio.nat.has.NatToTag[Input1, Input],
-      natToTag2: xio.nat.has.NatToTag[Input2, Input],
-      natToTag3: xio.nat.has.NatToTag[Input3, Input],
-      natToTag4: xio.nat.has.NatToTag[Input4, Input],
-      natToTag5: xio.nat.has.NatToTag[Input5, Input],
-      natToTag6: xio.nat.has.NatToTag[Input6, Input],
-      natToTag7: xio.nat.has.NatToTag[Input7, Input],
-      natToTag8: xio.nat.has.NatToTag[Input8, Input],
-      natToTag9: xio.nat.has.NatToTag[Input9, Input],
-      natToTag10: xio.nat.has.NatToTag[Input10, Input],
-      natToTag11: xio.nat.has.NatToTag[Input11, Input],
-      natToTag12: xio.nat.has.NatToTag[Input12, Input],
-      natToTag13: xio.nat.has.NatToTag[Input13, Input],
-      natToTag14: xio.nat.has.NatToTag[Input14, Input],
-      natToTag15: xio.nat.has.NatToTag[Input15, Input],
-      natToTag16: xio.nat.has.NatToTag[Input16, Input],
-      natToTag17: xio.nat.has.NatToTag[Input17, Input],
-      natToTag18: xio.nat.has.NatToTag[Input18, Input],
-      natToTag19: xio.nat.has.NatToTag[Input19, Input],
-      natToTag20: xio.nat.has.NatToTag[Input20, Input],
-      natToTag21: xio.nat.has.NatToTag[Input21, Input],
-      natToTag22: xio.nat.has.NatToTag[Input22, Input]
-    ): xio.XIO[Input, P, Out]
-  }
-  def errorCompat1[P <: xio.nat.error.NatEither, E1, Input <: xio.nat.has.Nat, Out](
-    e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
-    u: xio.XError1[E1]
-  ): xio.XIO[Input, P, Out] = e1(new xio.ErrorContentImpl(u.sureRight))
-  def errorCompat2[P <: xio.nat.error.NatEither, E1, E2, Input <: xio.nat.has.Nat, Out](
-    e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
-    e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
-    u: xio.XError2[E1, E2]
-  ): xio.XIO[Input, P, Out] = u.either.fold(ii1 => errorCompat1(e1, ii1), ii2 => e2(new xio.ErrorContentImpl(ii2)))
-  def errorCompat3[P <: xio.nat.error.NatEither, E1, E2, E3, Input <: xio.nat.has.Nat, Out](
-    e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
-    e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
-    e3: xio.ErrorContent[E3, P] => xio.XIO[Input, P, Out],
-    u: xio.XError3[E1, E2, E3]
-  ): xio.XIO[Input, P, Out] = u.either.fold(ii1 => errorCompat2(e1, e2, ii1), ii2 => e3(new xio.ErrorContentImpl(ii2)))
-  def errorCompat4[P <: xio.nat.error.NatEither, E1, E2, E3, E4, Input <: xio.nat.has.Nat, Out](
-    e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
-    e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
-    e3: xio.ErrorContent[E3, P] => xio.XIO[Input, P, Out],
-    e4: xio.ErrorContent[E4, P] => xio.XIO[Input, P, Out],
-    u: xio.XError4[E1, E2, E3, E4]
-  ): xio.XIO[Input, P, Out] = u.either.fold(ii1 => errorCompat3(e1, e2, e3, ii1), ii2 => e4(new xio.ErrorContentImpl(ii2)))
-  def errorCompat5[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, Input <: xio.nat.has.Nat, Out](
-    e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
-    e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
-    e3: xio.ErrorContent[E3, P] => xio.XIO[Input, P, Out],
-    e4: xio.ErrorContent[E4, P] => xio.XIO[Input, P, Out],
-    e5: xio.ErrorContent[E5, P] => xio.XIO[Input, P, Out],
-    u: xio.XError5[E1, E2, E3, E4, E5]
-  ): xio.XIO[Input, P, Out] = u.either.fold(ii1 => errorCompat4(e1, e2, e3, e4, ii1), ii2 => e5(new xio.ErrorContentImpl(ii2)))
-  def errorCompat6[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, Input <: xio.nat.has.Nat, Out](
-    e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
-    e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
-    e3: xio.ErrorContent[E3, P] => xio.XIO[Input, P, Out],
-    e4: xio.ErrorContent[E4, P] => xio.XIO[Input, P, Out],
-    e5: xio.ErrorContent[E5, P] => xio.XIO[Input, P, Out],
-    e6: xio.ErrorContent[E6, P] => xio.XIO[Input, P, Out],
-    u: xio.XError6[E1, E2, E3, E4, E5, E6]
-  ): xio.XIO[Input, P, Out] = u.either.fold(ii1 => errorCompat5(e1, e2, e3, e4, e5, ii1), ii2 => e6(new xio.ErrorContentImpl(ii2)))
-  def errorCompat7[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, Input <: xio.nat.has.Nat, Out](
-    e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
-    e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
-    e3: xio.ErrorContent[E3, P] => xio.XIO[Input, P, Out],
-    e4: xio.ErrorContent[E4, P] => xio.XIO[Input, P, Out],
-    e5: xio.ErrorContent[E5, P] => xio.XIO[Input, P, Out],
-    e6: xio.ErrorContent[E6, P] => xio.XIO[Input, P, Out],
-    e7: xio.ErrorContent[E7, P] => xio.XIO[Input, P, Out],
-    u: xio.XError7[E1, E2, E3, E4, E5, E6, E7]
-  ): xio.XIO[Input, P, Out] = u.either.fold(ii1 => errorCompat6(e1, e2, e3, e4, e5, e6, ii1), ii2 => e7(new xio.ErrorContentImpl(ii2)))
-  def errorCompat8[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, Input <: xio.nat.has.Nat, Out](
-    e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
-    e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
-    e3: xio.ErrorContent[E3, P] => xio.XIO[Input, P, Out],
-    e4: xio.ErrorContent[E4, P] => xio.XIO[Input, P, Out],
-    e5: xio.ErrorContent[E5, P] => xio.XIO[Input, P, Out],
-    e6: xio.ErrorContent[E6, P] => xio.XIO[Input, P, Out],
-    e7: xio.ErrorContent[E7, P] => xio.XIO[Input, P, Out],
-    e8: xio.ErrorContent[E8, P] => xio.XIO[Input, P, Out],
-    u: xio.XError8[E1, E2, E3, E4, E5, E6, E7, E8]
-  ): xio.XIO[Input, P, Out] = u.either.fold(ii1 => errorCompat7(e1, e2, e3, e4, e5, e6, e7, ii1), ii2 => e8(new xio.ErrorContentImpl(ii2)))
-  def errorCompat9[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, Input <: xio.nat.has.Nat, Out](
-    e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
-    e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
-    e3: xio.ErrorContent[E3, P] => xio.XIO[Input, P, Out],
-    e4: xio.ErrorContent[E4, P] => xio.XIO[Input, P, Out],
-    e5: xio.ErrorContent[E5, P] => xio.XIO[Input, P, Out],
-    e6: xio.ErrorContent[E6, P] => xio.XIO[Input, P, Out],
-    e7: xio.ErrorContent[E7, P] => xio.XIO[Input, P, Out],
-    e8: xio.ErrorContent[E8, P] => xio.XIO[Input, P, Out],
-    e9: xio.ErrorContent[E9, P] => xio.XIO[Input, P, Out],
-    u: xio.XError9[E1, E2, E3, E4, E5, E6, E7, E8, E9]
-  ): xio.XIO[Input, P, Out] = u.either.fold(ii1 => errorCompat8(e1, e2, e3, e4, e5, e6, e7, e8, ii1), ii2 => e9(new xio.ErrorContentImpl(ii2)))
-  def errorCompat10[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, Input <: xio.nat.has.Nat, Out](
-    e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
-    e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
-    e3: xio.ErrorContent[E3, P] => xio.XIO[Input, P, Out],
-    e4: xio.ErrorContent[E4, P] => xio.XIO[Input, P, Out],
-    e5: xio.ErrorContent[E5, P] => xio.XIO[Input, P, Out],
-    e6: xio.ErrorContent[E6, P] => xio.XIO[Input, P, Out],
-    e7: xio.ErrorContent[E7, P] => xio.XIO[Input, P, Out],
-    e8: xio.ErrorContent[E8, P] => xio.XIO[Input, P, Out],
-    e9: xio.ErrorContent[E9, P] => xio.XIO[Input, P, Out],
-    e10: xio.ErrorContent[E10, P] => xio.XIO[Input, P, Out],
-    u: xio.XError10[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10]
-  ): xio.XIO[Input, P, Out] = u.either.fold(ii1 => errorCompat9(e1, e2, e3, e4, e5, e6, e7, e8, e9, ii1), ii2 => e10(new xio.ErrorContentImpl(ii2)))
-  def errorCompat11[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, Input <: xio.nat.has.Nat, Out](
-    e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
-    e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
-    e3: xio.ErrorContent[E3, P] => xio.XIO[Input, P, Out],
-    e4: xio.ErrorContent[E4, P] => xio.XIO[Input, P, Out],
-    e5: xio.ErrorContent[E5, P] => xio.XIO[Input, P, Out],
-    e6: xio.ErrorContent[E6, P] => xio.XIO[Input, P, Out],
-    e7: xio.ErrorContent[E7, P] => xio.XIO[Input, P, Out],
-    e8: xio.ErrorContent[E8, P] => xio.XIO[Input, P, Out],
-    e9: xio.ErrorContent[E9, P] => xio.XIO[Input, P, Out],
-    e10: xio.ErrorContent[E10, P] => xio.XIO[Input, P, Out],
-    e11: xio.ErrorContent[E11, P] => xio.XIO[Input, P, Out],
-    u: xio.XError11[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11]
-  ): xio.XIO[Input, P, Out] = u.either.fold(ii1 => errorCompat10(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, ii1), ii2 => e11(new xio.ErrorContentImpl(ii2)))
-  def errorCompat12[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, Input <: xio.nat.has.Nat, Out](
-    e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
-    e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
-    e3: xio.ErrorContent[E3, P] => xio.XIO[Input, P, Out],
-    e4: xio.ErrorContent[E4, P] => xio.XIO[Input, P, Out],
-    e5: xio.ErrorContent[E5, P] => xio.XIO[Input, P, Out],
-    e6: xio.ErrorContent[E6, P] => xio.XIO[Input, P, Out],
-    e7: xio.ErrorContent[E7, P] => xio.XIO[Input, P, Out],
-    e8: xio.ErrorContent[E8, P] => xio.XIO[Input, P, Out],
-    e9: xio.ErrorContent[E9, P] => xio.XIO[Input, P, Out],
-    e10: xio.ErrorContent[E10, P] => xio.XIO[Input, P, Out],
-    e11: xio.ErrorContent[E11, P] => xio.XIO[Input, P, Out],
-    e12: xio.ErrorContent[E12, P] => xio.XIO[Input, P, Out],
-    u: xio.XError12[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12]
-  ): xio.XIO[Input, P, Out] = u.either.fold(ii1 => errorCompat11(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, ii1), ii2 => e12(new xio.ErrorContentImpl(ii2)))
-  def errorCompat13[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, Input <: xio.nat.has.Nat, Out](
-    e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
-    e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
-    e3: xio.ErrorContent[E3, P] => xio.XIO[Input, P, Out],
-    e4: xio.ErrorContent[E4, P] => xio.XIO[Input, P, Out],
-    e5: xio.ErrorContent[E5, P] => xio.XIO[Input, P, Out],
-    e6: xio.ErrorContent[E6, P] => xio.XIO[Input, P, Out],
-    e7: xio.ErrorContent[E7, P] => xio.XIO[Input, P, Out],
-    e8: xio.ErrorContent[E8, P] => xio.XIO[Input, P, Out],
-    e9: xio.ErrorContent[E9, P] => xio.XIO[Input, P, Out],
-    e10: xio.ErrorContent[E10, P] => xio.XIO[Input, P, Out],
-    e11: xio.ErrorContent[E11, P] => xio.XIO[Input, P, Out],
-    e12: xio.ErrorContent[E12, P] => xio.XIO[Input, P, Out],
-    e13: xio.ErrorContent[E13, P] => xio.XIO[Input, P, Out],
-    u: xio.XError13[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13]
-  ): xio.XIO[Input, P, Out] = u.either.fold(ii1 => errorCompat12(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, ii1), ii2 => e13(new xio.ErrorContentImpl(ii2)))
-  def errorCompat14[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, Input <: xio.nat.has.Nat, Out](
-    e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
-    e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
-    e3: xio.ErrorContent[E3, P] => xio.XIO[Input, P, Out],
-    e4: xio.ErrorContent[E4, P] => xio.XIO[Input, P, Out],
-    e5: xio.ErrorContent[E5, P] => xio.XIO[Input, P, Out],
-    e6: xio.ErrorContent[E6, P] => xio.XIO[Input, P, Out],
-    e7: xio.ErrorContent[E7, P] => xio.XIO[Input, P, Out],
-    e8: xio.ErrorContent[E8, P] => xio.XIO[Input, P, Out],
-    e9: xio.ErrorContent[E9, P] => xio.XIO[Input, P, Out],
-    e10: xio.ErrorContent[E10, P] => xio.XIO[Input, P, Out],
-    e11: xio.ErrorContent[E11, P] => xio.XIO[Input, P, Out],
-    e12: xio.ErrorContent[E12, P] => xio.XIO[Input, P, Out],
-    e13: xio.ErrorContent[E13, P] => xio.XIO[Input, P, Out],
-    e14: xio.ErrorContent[E14, P] => xio.XIO[Input, P, Out],
-    u: xio.XError14[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14]
-  ): xio.XIO[Input, P, Out] = u.either.fold(ii1 => errorCompat13(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, ii1), ii2 => e14(new xio.ErrorContentImpl(ii2)))
-  def errorCompat15[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, Input <: xio.nat.has.Nat, Out](
-    e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
-    e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
-    e3: xio.ErrorContent[E3, P] => xio.XIO[Input, P, Out],
-    e4: xio.ErrorContent[E4, P] => xio.XIO[Input, P, Out],
-    e5: xio.ErrorContent[E5, P] => xio.XIO[Input, P, Out],
-    e6: xio.ErrorContent[E6, P] => xio.XIO[Input, P, Out],
-    e7: xio.ErrorContent[E7, P] => xio.XIO[Input, P, Out],
-    e8: xio.ErrorContent[E8, P] => xio.XIO[Input, P, Out],
-    e9: xio.ErrorContent[E9, P] => xio.XIO[Input, P, Out],
-    e10: xio.ErrorContent[E10, P] => xio.XIO[Input, P, Out],
-    e11: xio.ErrorContent[E11, P] => xio.XIO[Input, P, Out],
-    e12: xio.ErrorContent[E12, P] => xio.XIO[Input, P, Out],
-    e13: xio.ErrorContent[E13, P] => xio.XIO[Input, P, Out],
-    e14: xio.ErrorContent[E14, P] => xio.XIO[Input, P, Out],
-    e15: xio.ErrorContent[E15, P] => xio.XIO[Input, P, Out],
-    u: xio.XError15[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15]
-  ): xio.XIO[Input, P, Out] =
-    u.either.fold(ii1 => errorCompat14(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, ii1), ii2 => e15(new xio.ErrorContentImpl(ii2)))
-  def errorCompat16[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, Input <: xio.nat.has.Nat, Out](
-    e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
-    e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
-    e3: xio.ErrorContent[E3, P] => xio.XIO[Input, P, Out],
-    e4: xio.ErrorContent[E4, P] => xio.XIO[Input, P, Out],
-    e5: xio.ErrorContent[E5, P] => xio.XIO[Input, P, Out],
-    e6: xio.ErrorContent[E6, P] => xio.XIO[Input, P, Out],
-    e7: xio.ErrorContent[E7, P] => xio.XIO[Input, P, Out],
-    e8: xio.ErrorContent[E8, P] => xio.XIO[Input, P, Out],
-    e9: xio.ErrorContent[E9, P] => xio.XIO[Input, P, Out],
-    e10: xio.ErrorContent[E10, P] => xio.XIO[Input, P, Out],
-    e11: xio.ErrorContent[E11, P] => xio.XIO[Input, P, Out],
-    e12: xio.ErrorContent[E12, P] => xio.XIO[Input, P, Out],
-    e13: xio.ErrorContent[E13, P] => xio.XIO[Input, P, Out],
-    e14: xio.ErrorContent[E14, P] => xio.XIO[Input, P, Out],
-    e15: xio.ErrorContent[E15, P] => xio.XIO[Input, P, Out],
-    e16: xio.ErrorContent[E16, P] => xio.XIO[Input, P, Out],
-    u: xio.XError16[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16]
-  ): xio.XIO[Input, P, Out] =
-    u.either.fold(ii1 => errorCompat15(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, ii1), ii2 => e16(new xio.ErrorContentImpl(ii2)))
-  def errorCompat17[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, Input <: xio.nat.has.Nat, Out](
-    e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
-    e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
-    e3: xio.ErrorContent[E3, P] => xio.XIO[Input, P, Out],
-    e4: xio.ErrorContent[E4, P] => xio.XIO[Input, P, Out],
-    e5: xio.ErrorContent[E5, P] => xio.XIO[Input, P, Out],
-    e6: xio.ErrorContent[E6, P] => xio.XIO[Input, P, Out],
-    e7: xio.ErrorContent[E7, P] => xio.XIO[Input, P, Out],
-    e8: xio.ErrorContent[E8, P] => xio.XIO[Input, P, Out],
-    e9: xio.ErrorContent[E9, P] => xio.XIO[Input, P, Out],
-    e10: xio.ErrorContent[E10, P] => xio.XIO[Input, P, Out],
-    e11: xio.ErrorContent[E11, P] => xio.XIO[Input, P, Out],
-    e12: xio.ErrorContent[E12, P] => xio.XIO[Input, P, Out],
-    e13: xio.ErrorContent[E13, P] => xio.XIO[Input, P, Out],
-    e14: xio.ErrorContent[E14, P] => xio.XIO[Input, P, Out],
-    e15: xio.ErrorContent[E15, P] => xio.XIO[Input, P, Out],
-    e16: xio.ErrorContent[E16, P] => xio.XIO[Input, P, Out],
-    e17: xio.ErrorContent[E17, P] => xio.XIO[Input, P, Out],
-    u: xio.XError17[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17]
-  ): xio.XIO[Input, P, Out] =
-    u.either.fold(ii1 => errorCompat16(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, ii1), ii2 => e17(new xio.ErrorContentImpl(ii2)))
-  def errorCompat18[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, Input <: xio.nat.has.Nat, Out](
-    e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
-    e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
-    e3: xio.ErrorContent[E3, P] => xio.XIO[Input, P, Out],
-    e4: xio.ErrorContent[E4, P] => xio.XIO[Input, P, Out],
-    e5: xio.ErrorContent[E5, P] => xio.XIO[Input, P, Out],
-    e6: xio.ErrorContent[E6, P] => xio.XIO[Input, P, Out],
-    e7: xio.ErrorContent[E7, P] => xio.XIO[Input, P, Out],
-    e8: xio.ErrorContent[E8, P] => xio.XIO[Input, P, Out],
-    e9: xio.ErrorContent[E9, P] => xio.XIO[Input, P, Out],
-    e10: xio.ErrorContent[E10, P] => xio.XIO[Input, P, Out],
-    e11: xio.ErrorContent[E11, P] => xio.XIO[Input, P, Out],
-    e12: xio.ErrorContent[E12, P] => xio.XIO[Input, P, Out],
-    e13: xio.ErrorContent[E13, P] => xio.XIO[Input, P, Out],
-    e14: xio.ErrorContent[E14, P] => xio.XIO[Input, P, Out],
-    e15: xio.ErrorContent[E15, P] => xio.XIO[Input, P, Out],
-    e16: xio.ErrorContent[E16, P] => xio.XIO[Input, P, Out],
-    e17: xio.ErrorContent[E17, P] => xio.XIO[Input, P, Out],
-    e18: xio.ErrorContent[E18, P] => xio.XIO[Input, P, Out],
-    u: xio.XError18[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18]
-  ): xio.XIO[Input, P, Out] =
-    u.either.fold(ii1 => errorCompat17(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, ii1), ii2 => e18(new xio.ErrorContentImpl(ii2)))
-  def errorCompat19[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, Input <: xio.nat.has.Nat, Out](
-    e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
-    e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
-    e3: xio.ErrorContent[E3, P] => xio.XIO[Input, P, Out],
-    e4: xio.ErrorContent[E4, P] => xio.XIO[Input, P, Out],
-    e5: xio.ErrorContent[E5, P] => xio.XIO[Input, P, Out],
-    e6: xio.ErrorContent[E6, P] => xio.XIO[Input, P, Out],
-    e7: xio.ErrorContent[E7, P] => xio.XIO[Input, P, Out],
-    e8: xio.ErrorContent[E8, P] => xio.XIO[Input, P, Out],
-    e9: xio.ErrorContent[E9, P] => xio.XIO[Input, P, Out],
-    e10: xio.ErrorContent[E10, P] => xio.XIO[Input, P, Out],
-    e11: xio.ErrorContent[E11, P] => xio.XIO[Input, P, Out],
-    e12: xio.ErrorContent[E12, P] => xio.XIO[Input, P, Out],
-    e13: xio.ErrorContent[E13, P] => xio.XIO[Input, P, Out],
-    e14: xio.ErrorContent[E14, P] => xio.XIO[Input, P, Out],
-    e15: xio.ErrorContent[E15, P] => xio.XIO[Input, P, Out],
-    e16: xio.ErrorContent[E16, P] => xio.XIO[Input, P, Out],
-    e17: xio.ErrorContent[E17, P] => xio.XIO[Input, P, Out],
-    e18: xio.ErrorContent[E18, P] => xio.XIO[Input, P, Out],
-    e19: xio.ErrorContent[E19, P] => xio.XIO[Input, P, Out],
-    u: xio.XError19[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19]
-  ): xio.XIO[Input, P, Out] =
-    u.either.fold(ii1 => errorCompat18(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, ii1), ii2 => e19(new xio.ErrorContentImpl(ii2)))
-  def errorCompat20[
-    P <: xio.nat.error.NatEither,
-    E1,
-    E2,
-    E3,
-    E4,
-    E5,
-    E6,
-    E7,
-    E8,
-    E9,
-    E10,
-    E11,
-    E12,
-    E13,
-    E14,
-    E15,
-    E16,
-    E17,
-    E18,
-    E19,
-    E20,
-    Input <: xio.nat.has.Nat,
-    Out
-  ](
-    e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
-    e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
-    e3: xio.ErrorContent[E3, P] => xio.XIO[Input, P, Out],
-    e4: xio.ErrorContent[E4, P] => xio.XIO[Input, P, Out],
-    e5: xio.ErrorContent[E5, P] => xio.XIO[Input, P, Out],
-    e6: xio.ErrorContent[E6, P] => xio.XIO[Input, P, Out],
-    e7: xio.ErrorContent[E7, P] => xio.XIO[Input, P, Out],
-    e8: xio.ErrorContent[E8, P] => xio.XIO[Input, P, Out],
-    e9: xio.ErrorContent[E9, P] => xio.XIO[Input, P, Out],
-    e10: xio.ErrorContent[E10, P] => xio.XIO[Input, P, Out],
-    e11: xio.ErrorContent[E11, P] => xio.XIO[Input, P, Out],
-    e12: xio.ErrorContent[E12, P] => xio.XIO[Input, P, Out],
-    e13: xio.ErrorContent[E13, P] => xio.XIO[Input, P, Out],
-    e14: xio.ErrorContent[E14, P] => xio.XIO[Input, P, Out],
-    e15: xio.ErrorContent[E15, P] => xio.XIO[Input, P, Out],
-    e16: xio.ErrorContent[E16, P] => xio.XIO[Input, P, Out],
-    e17: xio.ErrorContent[E17, P] => xio.XIO[Input, P, Out],
-    e18: xio.ErrorContent[E18, P] => xio.XIO[Input, P, Out],
-    e19: xio.ErrorContent[E19, P] => xio.XIO[Input, P, Out],
-    e20: xio.ErrorContent[E20, P] => xio.XIO[Input, P, Out],
-    u: xio.XError20[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, E20]
-  ): xio.XIO[Input, P, Out] =
-    u.either
-      .fold(ii1 => errorCompat19(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, e19, ii1), ii2 => e20(new xio.ErrorContentImpl(ii2)))
-  def errorCompat21[
-    P <: xio.nat.error.NatEither,
-    E1,
-    E2,
-    E3,
-    E4,
-    E5,
-    E6,
-    E7,
-    E8,
-    E9,
-    E10,
-    E11,
-    E12,
-    E13,
-    E14,
-    E15,
-    E16,
-    E17,
-    E18,
-    E19,
-    E20,
-    E21,
-    Input <: xio.nat.has.Nat,
-    Out
-  ](
-    e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
-    e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
-    e3: xio.ErrorContent[E3, P] => xio.XIO[Input, P, Out],
-    e4: xio.ErrorContent[E4, P] => xio.XIO[Input, P, Out],
-    e5: xio.ErrorContent[E5, P] => xio.XIO[Input, P, Out],
-    e6: xio.ErrorContent[E6, P] => xio.XIO[Input, P, Out],
-    e7: xio.ErrorContent[E7, P] => xio.XIO[Input, P, Out],
-    e8: xio.ErrorContent[E8, P] => xio.XIO[Input, P, Out],
-    e9: xio.ErrorContent[E9, P] => xio.XIO[Input, P, Out],
-    e10: xio.ErrorContent[E10, P] => xio.XIO[Input, P, Out],
-    e11: xio.ErrorContent[E11, P] => xio.XIO[Input, P, Out],
-    e12: xio.ErrorContent[E12, P] => xio.XIO[Input, P, Out],
-    e13: xio.ErrorContent[E13, P] => xio.XIO[Input, P, Out],
-    e14: xio.ErrorContent[E14, P] => xio.XIO[Input, P, Out],
-    e15: xio.ErrorContent[E15, P] => xio.XIO[Input, P, Out],
-    e16: xio.ErrorContent[E16, P] => xio.XIO[Input, P, Out],
-    e17: xio.ErrorContent[E17, P] => xio.XIO[Input, P, Out],
-    e18: xio.ErrorContent[E18, P] => xio.XIO[Input, P, Out],
-    e19: xio.ErrorContent[E19, P] => xio.XIO[Input, P, Out],
-    e20: xio.ErrorContent[E20, P] => xio.XIO[Input, P, Out],
-    e21: xio.ErrorContent[E21, P] => xio.XIO[Input, P, Out],
-    u: xio.XError21[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, E20, E21]
-  ): xio.XIO[Input, P, Out] =
-    u.either.fold(
-      ii1 => errorCompat20(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, e19, e20, ii1),
-      ii2 => e21(new xio.ErrorContentImpl(ii2))
-    )
-  def errorCompat22[
-    P <: xio.nat.error.NatEither,
-    E1,
-    E2,
-    E3,
-    E4,
-    E5,
-    E6,
-    E7,
-    E8,
-    E9,
-    E10,
-    E11,
-    E12,
-    E13,
-    E14,
-    E15,
-    E16,
-    E17,
-    E18,
-    E19,
-    E20,
-    E21,
-    E22,
-    Input <: xio.nat.has.Nat,
-    Out
-  ](
-    e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
-    e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
-    e3: xio.ErrorContent[E3, P] => xio.XIO[Input, P, Out],
-    e4: xio.ErrorContent[E4, P] => xio.XIO[Input, P, Out],
-    e5: xio.ErrorContent[E5, P] => xio.XIO[Input, P, Out],
-    e6: xio.ErrorContent[E6, P] => xio.XIO[Input, P, Out],
-    e7: xio.ErrorContent[E7, P] => xio.XIO[Input, P, Out],
-    e8: xio.ErrorContent[E8, P] => xio.XIO[Input, P, Out],
-    e9: xio.ErrorContent[E9, P] => xio.XIO[Input, P, Out],
-    e10: xio.ErrorContent[E10, P] => xio.XIO[Input, P, Out],
-    e11: xio.ErrorContent[E11, P] => xio.XIO[Input, P, Out],
-    e12: xio.ErrorContent[E12, P] => xio.XIO[Input, P, Out],
-    e13: xio.ErrorContent[E13, P] => xio.XIO[Input, P, Out],
-    e14: xio.ErrorContent[E14, P] => xio.XIO[Input, P, Out],
-    e15: xio.ErrorContent[E15, P] => xio.XIO[Input, P, Out],
-    e16: xio.ErrorContent[E16, P] => xio.XIO[Input, P, Out],
-    e17: xio.ErrorContent[E17, P] => xio.XIO[Input, P, Out],
-    e18: xio.ErrorContent[E18, P] => xio.XIO[Input, P, Out],
-    e19: xio.ErrorContent[E19, P] => xio.XIO[Input, P, Out],
-    e20: xio.ErrorContent[E20, P] => xio.XIO[Input, P, Out],
-    e21: xio.ErrorContent[E21, P] => xio.XIO[Input, P, Out],
-    e22: xio.ErrorContent[E22, P] => xio.XIO[Input, P, Out],
-    u: xio.XError22[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, E20, E21, E22]
-  ): xio.XIO[Input, P, Out] =
-    u.either.fold(
-      ii1 => errorCompat21(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, e19, e20, e21, ii1),
-      ii2 => e22(new xio.ErrorContentImpl(ii2))
-    )
-}
 trait XIOErrorHelper {
   implicit class XIOErrorMatchAll1ImplicitClass1[X <: xio.nat.has.Nat, E1, I](i: xio.XIO[X, xio.XError1[E1], I]) {
     def allErrorTo[P <: xio.nat.error.NatEither]: XIOErrorHelperInstance.MatchAll1Apply1[P, E1, X, I] =
       new XIOErrorHelperInstance.MatchAll1Apply1[P, E1, X, I] {
         override def input1[Out1 <: I, Input1 <: xio.nat.has.Nat](
           e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1]
-        )(implicit natToTag1: xio.nat.has.NatToTag[Input1, X]): xio.XIO[X, P, I] =
-          XIOHelper.simpleCatchAll(i)(ii =>
-            XIOErrorHelperInstance.errorCompat1(e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag1.tag))), ii)
+        )(implicit natReversePlus1: xio.nat.has.NatReversePlus[Input1, X]): xio.XIO[X#InnerPlus[Input1], P, I] = {
+          val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError1[E1]](XIOPlusHelper.take1Plus1(natReversePlus1))
+          val preXIO   = XIOHelper.simpleProvideLayer(i)(preLayer)
+          XIOHelper.simpleCatchAll(preXIO)(ii =>
+            XIOErrorHelperInstance
+              .errorCompat1(e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus1)))), ii)
           )
+        }
       }
   }
   implicit class XIOErrorMatchAll1ImplicitClass2[X <: xio.nat.has.Nat, E1, E2, I](i: xio.XIO[X, xio.XError2[E1, E2], I]) {
@@ -1650,14 +21,20 @@ trait XIOErrorHelper {
         override def input2[Out1 <: I, Input1 <: xio.nat.has.Nat, Out2 <: I, Input2 <: xio.nat.has.Nat](
           e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
           e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2]
-        )(implicit natToTag1: xio.nat.has.NatToTag[Input1, X], natToTag2: xio.nat.has.NatToTag[Input2, X]): xio.XIO[X, P, I] =
-          XIOHelper.simpleCatchAll(i)(ii =>
+        )(implicit
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]]
+        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2], P, I] = {
+          val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError2[E1, E2]](XIOPlusHelper.take1Plus2(natReversePlus1, natReversePlus2))
+          val preXIO   = XIOHelper.simpleProvideLayer(i)(preLayer)
+          XIOHelper.simpleCatchAll(preXIO)(ii =>
             XIOErrorHelperInstance.errorCompat2(
-              e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag1.tag))),
-              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag2.tag))),
+              e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus2(natReversePlus1, natReversePlus2)))),
+              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus2)))),
               ii
             )
           )
+        }
       }
   }
   implicit class XIOErrorMatchAll1ImplicitClass3[X <: xio.nat.has.Nat, E1, E2, E3, I](i: xio.XIO[X, xio.XError3[E1, E2, E3], I]) {
@@ -1667,15 +44,24 @@ trait XIOErrorHelper {
           e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
           e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
           e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3]
-        )(implicit natToTag1: xio.nat.has.NatToTag[Input1, X], natToTag2: xio.nat.has.NatToTag[Input2, X], natToTag3: xio.nat.has.NatToTag[Input3, X]): xio.XIO[X, P, I] =
-          XIOHelper.simpleCatchAll(i)(ii =>
+        )(implicit
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]]
+        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3], P, I] = {
+          val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError3[E1, E2, E3]](XIOPlusHelper.take1Plus3(natReversePlus1, natReversePlus2, natReversePlus3))
+          val preXIO   = XIOHelper.simpleProvideLayer(i)(preLayer)
+          XIOHelper.simpleCatchAll(preXIO)(ii =>
             XIOErrorHelperInstance.errorCompat3(
-              e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag1.tag))),
-              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag2.tag))),
-              e3.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag3.tag))),
+              e1.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus3(natReversePlus1, natReversePlus2, natReversePlus3)))
+              ),
+              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus2(natReversePlus2, natReversePlus3)))),
+              e3.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus3)))),
               ii
             )
           )
+        }
       }
   }
   implicit class XIOErrorMatchAll1ImplicitClass4[X <: xio.nat.has.Nat, E1, E2, E3, E4, I](i: xio.XIO[X, xio.XError4[E1, E2, E3, E4], I]) {
@@ -1696,20 +82,30 @@ trait XIOErrorHelper {
           e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
           e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4]
         )(implicit
-          natToTag1: xio.nat.has.NatToTag[Input1, X],
-          natToTag2: xio.nat.has.NatToTag[Input2, X],
-          natToTag3: xio.nat.has.NatToTag[Input3, X],
-          natToTag4: xio.nat.has.NatToTag[Input4, X]
-        ): xio.XIO[X, P, I] =
-          XIOHelper.simpleCatchAll(i)(ii =>
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]]
+        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4], P, I] = {
+          val preLayer =
+            XLayerHelper.simpleFromFunctionMany[xio.XError4[E1, E2, E3, E4]](XIOPlusHelper.take1Plus4(natReversePlus1, natReversePlus2, natReversePlus3, natReversePlus4))
+          val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
+          XIOHelper.simpleCatchAll(preXIO)(ii =>
             XIOErrorHelperInstance.errorCompat4(
-              e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag1.tag))),
-              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag2.tag))),
-              e3.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag3.tag))),
-              e4.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag4.tag))),
+              e1.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus4(natReversePlus1, natReversePlus2, natReversePlus3, natReversePlus4))
+                )
+              ),
+              e2.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus3(natReversePlus2, natReversePlus3, natReversePlus4)))
+              ),
+              e3.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus2(natReversePlus3, natReversePlus4)))),
+              e4.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus4)))),
               ii
             )
           )
+        }
       }
   }
   implicit class XIOErrorMatchAll1ImplicitClass5[X <: xio.nat.has.Nat, E1, E2, E3, E4, E5, I](i: xio.XIO[X, xio.XError5[E1, E2, E3, E4, E5], I]) {
@@ -1733,22 +129,37 @@ trait XIOErrorHelper {
           e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
           e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5]
         )(implicit
-          natToTag1: xio.nat.has.NatToTag[Input1, X],
-          natToTag2: xio.nat.has.NatToTag[Input2, X],
-          natToTag3: xio.nat.has.NatToTag[Input3, X],
-          natToTag4: xio.nat.has.NatToTag[Input4, X],
-          natToTag5: xio.nat.has.NatToTag[Input5, X]
-        ): xio.XIO[X, P, I] =
-          XIOHelper.simpleCatchAll(i)(ii =>
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]]
+        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5], P, I] = {
+          val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError5[E1, E2, E3, E4, E5]](
+            XIOPlusHelper.take1Plus5(natReversePlus1, natReversePlus2, natReversePlus3, natReversePlus4, natReversePlus5)
+          )
+          val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
+          XIOHelper.simpleCatchAll(preXIO)(ii =>
             XIOErrorHelperInstance.errorCompat5(
-              e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag1.tag))),
-              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag2.tag))),
-              e3.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag3.tag))),
-              e4.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag4.tag))),
-              e5.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag5.tag))),
+              e1.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus5(natReversePlus1, natReversePlus2, natReversePlus3, natReversePlus4, natReversePlus5))
+                )
+              ),
+              e2.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus4(natReversePlus2, natReversePlus3, natReversePlus4, natReversePlus5))
+                )
+              ),
+              e3.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus3(natReversePlus3, natReversePlus4, natReversePlus5)))
+              ),
+              e4.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus2(natReversePlus4, natReversePlus5)))),
+              e5.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus5)))),
               ii
             )
           )
+        }
       }
   }
   implicit class XIOErrorMatchAll1ImplicitClass6[X <: xio.nat.has.Nat, E1, E2, E3, E4, E5, E6, I](i: xio.XIO[X, xio.XError6[E1, E2, E3, E4, E5, E6], I]) {
@@ -1775,24 +186,45 @@ trait XIOErrorHelper {
           e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
           e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6]
         )(implicit
-          natToTag1: xio.nat.has.NatToTag[Input1, X],
-          natToTag2: xio.nat.has.NatToTag[Input2, X],
-          natToTag3: xio.nat.has.NatToTag[Input3, X],
-          natToTag4: xio.nat.has.NatToTag[Input4, X],
-          natToTag5: xio.nat.has.NatToTag[Input5, X],
-          natToTag6: xio.nat.has.NatToTag[Input6, X]
-        ): xio.XIO[X, P, I] =
-          XIOHelper.simpleCatchAll(i)(ii =>
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]]
+        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6], P, I] = {
+          val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError6[E1, E2, E3, E4, E5, E6]](
+            XIOPlusHelper.take1Plus6(natReversePlus1, natReversePlus2, natReversePlus3, natReversePlus4, natReversePlus5, natReversePlus6)
+          )
+          val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
+          XIOHelper.simpleCatchAll(preXIO)(ii =>
             XIOErrorHelperInstance.errorCompat6(
-              e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag1.tag))),
-              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag2.tag))),
-              e3.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag3.tag))),
-              e4.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag4.tag))),
-              e5.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag5.tag))),
-              e6.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag6.tag))),
+              e1.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus6(natReversePlus1, natReversePlus2, natReversePlus3, natReversePlus4, natReversePlus5, natReversePlus6)
+                  )
+                )
+              ),
+              e2.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus5(natReversePlus2, natReversePlus3, natReversePlus4, natReversePlus5, natReversePlus6))
+                )
+              ),
+              e3.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus4(natReversePlus3, natReversePlus4, natReversePlus5, natReversePlus6))
+                )
+              ),
+              e4.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus3(natReversePlus4, natReversePlus5, natReversePlus6)))
+              ),
+              e5.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus2(natReversePlus5, natReversePlus6)))),
+              e6.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus6)))),
               ii
             )
           )
+        }
       }
   }
   implicit class XIOErrorMatchAll1ImplicitClass7[X <: xio.nat.has.Nat, E1, E2, E3, E4, E5, E6, E7, I](i: xio.XIO[X, xio.XError7[E1, E2, E3, E4, E5, E6, E7], I]) {
@@ -1822,26 +254,56 @@ trait XIOErrorHelper {
           e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
           e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7]
         )(implicit
-          natToTag1: xio.nat.has.NatToTag[Input1, X],
-          natToTag2: xio.nat.has.NatToTag[Input2, X],
-          natToTag3: xio.nat.has.NatToTag[Input3, X],
-          natToTag4: xio.nat.has.NatToTag[Input4, X],
-          natToTag5: xio.nat.has.NatToTag[Input5, X],
-          natToTag6: xio.nat.has.NatToTag[Input6, X],
-          natToTag7: xio.nat.has.NatToTag[Input7, X]
-        ): xio.XIO[X, P, I] =
-          XIOHelper.simpleCatchAll(i)(ii =>
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[
+            Input7,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
+          ]
+        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7], P, I] = {
+          val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError7[E1, E2, E3, E4, E5, E6, E7]](
+            XIOPlusHelper.take1Plus7(natReversePlus1, natReversePlus2, natReversePlus3, natReversePlus4, natReversePlus5, natReversePlus6, natReversePlus7)
+          )
+          val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
+          XIOHelper.simpleCatchAll(preXIO)(ii =>
             XIOErrorHelperInstance.errorCompat7(
-              e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag1.tag))),
-              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag2.tag))),
-              e3.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag3.tag))),
-              e4.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag4.tag))),
-              e5.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag5.tag))),
-              e6.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag6.tag))),
-              e7.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag7.tag))),
+              e1.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus7(natReversePlus1, natReversePlus2, natReversePlus3, natReversePlus4, natReversePlus5, natReversePlus6, natReversePlus7)
+                  )
+                )
+              ),
+              e2.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus6(natReversePlus2, natReversePlus3, natReversePlus4, natReversePlus5, natReversePlus6, natReversePlus7)
+                  )
+                )
+              ),
+              e3.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus5(natReversePlus3, natReversePlus4, natReversePlus5, natReversePlus6, natReversePlus7))
+                )
+              ),
+              e4.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus4(natReversePlus4, natReversePlus5, natReversePlus6, natReversePlus7))
+                )
+              ),
+              e5.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus3(natReversePlus5, natReversePlus6, natReversePlus7)))
+              ),
+              e6.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus2(natReversePlus6, natReversePlus7)))),
+              e7.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus7)))),
               ii
             )
           )
+        }
       }
   }
   implicit class XIOErrorMatchAll1ImplicitClass8[X <: xio.nat.has.Nat, E1, E2, E3, E4, E5, E6, E7, E8, I](i: xio.XIO[X, xio.XError8[E1, E2, E3, E4, E5, E6, E7, E8], I]) {
@@ -1874,28 +336,73 @@ trait XIOErrorHelper {
           e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
           e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8]
         )(implicit
-          natToTag1: xio.nat.has.NatToTag[Input1, X],
-          natToTag2: xio.nat.has.NatToTag[Input2, X],
-          natToTag3: xio.nat.has.NatToTag[Input3, X],
-          natToTag4: xio.nat.has.NatToTag[Input4, X],
-          natToTag5: xio.nat.has.NatToTag[Input5, X],
-          natToTag6: xio.nat.has.NatToTag[Input6, X],
-          natToTag7: xio.nat.has.NatToTag[Input7, X],
-          natToTag8: xio.nat.has.NatToTag[Input8, X]
-        ): xio.XIO[X, P, I] =
-          XIOHelper.simpleCatchAll(i)(ii =>
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[
+            Input7,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
+          ],
+          natReversePlus8: xio.nat.has.NatReversePlus[
+            Input8,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
+          ]
+        ): xio.XIO[
+          X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8],
+          P,
+          I
+        ] = {
+          val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError8[E1, E2, E3, E4, E5, E6, E7, E8]](
+            XIOPlusHelper
+              .take1Plus8(natReversePlus1, natReversePlus2, natReversePlus3, natReversePlus4, natReversePlus5, natReversePlus6, natReversePlus7, natReversePlus8)
+          )
+          val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
+          XIOHelper.simpleCatchAll(preXIO)(ii =>
             XIOErrorHelperInstance.errorCompat8(
-              e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag1.tag))),
-              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag2.tag))),
-              e3.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag3.tag))),
-              e4.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag4.tag))),
-              e5.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag5.tag))),
-              e6.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag6.tag))),
-              e7.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag7.tag))),
-              e8.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag8.tag))),
+              e1.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper
+                      .takePlus8(natReversePlus1, natReversePlus2, natReversePlus3, natReversePlus4, natReversePlus5, natReversePlus6, natReversePlus7, natReversePlus8)
+                  )
+                )
+              ),
+              e2.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus7(natReversePlus2, natReversePlus3, natReversePlus4, natReversePlus5, natReversePlus6, natReversePlus7, natReversePlus8)
+                  )
+                )
+              ),
+              e3.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus6(natReversePlus3, natReversePlus4, natReversePlus5, natReversePlus6, natReversePlus7, natReversePlus8)
+                  )
+                )
+              ),
+              e4.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus5(natReversePlus4, natReversePlus5, natReversePlus6, natReversePlus7, natReversePlus8))
+                )
+              ),
+              e5.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus4(natReversePlus5, natReversePlus6, natReversePlus7, natReversePlus8))
+                )
+              ),
+              e6.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus3(natReversePlus6, natReversePlus7, natReversePlus8)))
+              ),
+              e7.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus2(natReversePlus7, natReversePlus8)))),
+              e8.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus8)))),
               ii
             )
           )
+        }
       }
   }
   implicit class XIOErrorMatchAll1ImplicitClass9[X <: xio.nat.has.Nat, E1, E2, E3, E4, E5, E6, E7, E8, E9, I](
@@ -1933,30 +440,101 @@ trait XIOErrorHelper {
           e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
           e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9]
         )(implicit
-          natToTag1: xio.nat.has.NatToTag[Input1, X],
-          natToTag2: xio.nat.has.NatToTag[Input2, X],
-          natToTag3: xio.nat.has.NatToTag[Input3, X],
-          natToTag4: xio.nat.has.NatToTag[Input4, X],
-          natToTag5: xio.nat.has.NatToTag[Input5, X],
-          natToTag6: xio.nat.has.NatToTag[Input6, X],
-          natToTag7: xio.nat.has.NatToTag[Input7, X],
-          natToTag8: xio.nat.has.NatToTag[Input8, X],
-          natToTag9: xio.nat.has.NatToTag[Input9, X]
-        ): xio.XIO[X, P, I] =
-          XIOHelper.simpleCatchAll(i)(ii =>
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[
+            Input7,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
+          ],
+          natReversePlus8: xio.nat.has.NatReversePlus[
+            Input8,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
+          ],
+          natReversePlus9: xio.nat.has.NatReversePlus[
+            Input9,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
+          ]
+        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
+          Input8
+        ]#InnerPlus[Input9], P, I] = {
+          val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError9[E1, E2, E3, E4, E5, E6, E7, E8, E9]](
+            XIOPlusHelper.take1Plus9(
+              natReversePlus1,
+              natReversePlus2,
+              natReversePlus3,
+              natReversePlus4,
+              natReversePlus5,
+              natReversePlus6,
+              natReversePlus7,
+              natReversePlus8,
+              natReversePlus9
+            )
+          )
+          val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
+          XIOHelper.simpleCatchAll(preXIO)(ii =>
             XIOErrorHelperInstance.errorCompat9(
-              e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag1.tag))),
-              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag2.tag))),
-              e3.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag3.tag))),
-              e4.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag4.tag))),
-              e5.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag5.tag))),
-              e6.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag6.tag))),
-              e7.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag7.tag))),
-              e8.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag8.tag))),
-              e9.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag9.tag))),
+              e1.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus9(
+                      natReversePlus1,
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9
+                    )
+                  )
+                )
+              ),
+              e2.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper
+                      .takePlus8(natReversePlus2, natReversePlus3, natReversePlus4, natReversePlus5, natReversePlus6, natReversePlus7, natReversePlus8, natReversePlus9)
+                  )
+                )
+              ),
+              e3.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus7(natReversePlus3, natReversePlus4, natReversePlus5, natReversePlus6, natReversePlus7, natReversePlus8, natReversePlus9)
+                  )
+                )
+              ),
+              e4.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus6(natReversePlus4, natReversePlus5, natReversePlus6, natReversePlus7, natReversePlus8, natReversePlus9)
+                  )
+                )
+              ),
+              e5.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus5(natReversePlus5, natReversePlus6, natReversePlus7, natReversePlus8, natReversePlus9))
+                )
+              ),
+              e6.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus4(natReversePlus6, natReversePlus7, natReversePlus8, natReversePlus9))
+                )
+              ),
+              e7.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus3(natReversePlus7, natReversePlus8, natReversePlus9)))
+              ),
+              e8.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus2(natReversePlus8, natReversePlus9)))),
+              e9.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus9)))),
               ii
             )
           )
+        }
       }
   }
   implicit class XIOErrorMatchAll1ImplicitClass10[X <: xio.nat.has.Nat, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, I](
@@ -1997,32 +575,123 @@ trait XIOErrorHelper {
           e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
           e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10]
         )(implicit
-          natToTag1: xio.nat.has.NatToTag[Input1, X],
-          natToTag2: xio.nat.has.NatToTag[Input2, X],
-          natToTag3: xio.nat.has.NatToTag[Input3, X],
-          natToTag4: xio.nat.has.NatToTag[Input4, X],
-          natToTag5: xio.nat.has.NatToTag[Input5, X],
-          natToTag6: xio.nat.has.NatToTag[Input6, X],
-          natToTag7: xio.nat.has.NatToTag[Input7, X],
-          natToTag8: xio.nat.has.NatToTag[Input8, X],
-          natToTag9: xio.nat.has.NatToTag[Input9, X],
-          natToTag10: xio.nat.has.NatToTag[Input10, X]
-        ): xio.XIO[X, P, I] =
-          XIOHelper.simpleCatchAll(i)(ii =>
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[
+            Input7,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
+          ],
+          natReversePlus8: xio.nat.has.NatReversePlus[
+            Input8,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
+          ],
+          natReversePlus9: xio.nat.has.NatReversePlus[
+            Input9,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
+          ],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]]
+        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
+          Input8
+        ]#InnerPlus[Input9]#InnerPlus[Input10], P, I] = {
+          val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError10[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10]](
+            XIOPlusHelper.take1Plus10(
+              natReversePlus1,
+              natReversePlus2,
+              natReversePlus3,
+              natReversePlus4,
+              natReversePlus5,
+              natReversePlus6,
+              natReversePlus7,
+              natReversePlus8,
+              natReversePlus9,
+              natReversePlus10
+            )
+          )
+          val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
+          XIOHelper.simpleCatchAll(preXIO)(ii =>
             XIOErrorHelperInstance.errorCompat10(
-              e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag1.tag))),
-              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag2.tag))),
-              e3.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag3.tag))),
-              e4.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag4.tag))),
-              e5.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag5.tag))),
-              e6.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag6.tag))),
-              e7.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag7.tag))),
-              e8.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag8.tag))),
-              e9.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag9.tag))),
-              e10.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag10.tag))),
+              e1.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus10(
+                      natReversePlus1,
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10
+                    )
+                  )
+                )
+              ),
+              e2.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus9(
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10
+                    )
+                  )
+                )
+              ),
+              e3.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper
+                      .takePlus8(natReversePlus3, natReversePlus4, natReversePlus5, natReversePlus6, natReversePlus7, natReversePlus8, natReversePlus9, natReversePlus10)
+                  )
+                )
+              ),
+              e4.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus7(natReversePlus4, natReversePlus5, natReversePlus6, natReversePlus7, natReversePlus8, natReversePlus9, natReversePlus10)
+                  )
+                )
+              ),
+              e5.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus6(natReversePlus5, natReversePlus6, natReversePlus7, natReversePlus8, natReversePlus9, natReversePlus10)
+                  )
+                )
+              ),
+              e6.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus5(natReversePlus6, natReversePlus7, natReversePlus8, natReversePlus9, natReversePlus10))
+                )
+              ),
+              e7.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus4(natReversePlus7, natReversePlus8, natReversePlus9, natReversePlus10))
+                )
+              ),
+              e8.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus3(natReversePlus8, natReversePlus9, natReversePlus10)))
+              ),
+              e9.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus2(natReversePlus9, natReversePlus10)))),
+              e10.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus10)))),
               ii
             )
           )
+        }
       }
   }
   implicit class XIOErrorMatchAll1ImplicitClass11[X <: xio.nat.has.Nat, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, I](
@@ -2066,34 +735,146 @@ trait XIOErrorHelper {
           e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
           e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11]
         )(implicit
-          natToTag1: xio.nat.has.NatToTag[Input1, X],
-          natToTag2: xio.nat.has.NatToTag[Input2, X],
-          natToTag3: xio.nat.has.NatToTag[Input3, X],
-          natToTag4: xio.nat.has.NatToTag[Input4, X],
-          natToTag5: xio.nat.has.NatToTag[Input5, X],
-          natToTag6: xio.nat.has.NatToTag[Input6, X],
-          natToTag7: xio.nat.has.NatToTag[Input7, X],
-          natToTag8: xio.nat.has.NatToTag[Input8, X],
-          natToTag9: xio.nat.has.NatToTag[Input9, X],
-          natToTag10: xio.nat.has.NatToTag[Input10, X],
-          natToTag11: xio.nat.has.NatToTag[Input11, X]
-        ): xio.XIO[X, P, I] =
-          XIOHelper.simpleCatchAll(i)(ii =>
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[
+            Input7,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
+          ],
+          natReversePlus8: xio.nat.has.NatReversePlus[
+            Input8,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
+          ],
+          natReversePlus9: xio.nat.has.NatReversePlus[
+            Input9,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
+          ],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]]
+        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
+          Input8
+        ]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11], P, I] = {
+          val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError11[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11]](
+            XIOPlusHelper.take1Plus11(
+              natReversePlus1,
+              natReversePlus2,
+              natReversePlus3,
+              natReversePlus4,
+              natReversePlus5,
+              natReversePlus6,
+              natReversePlus7,
+              natReversePlus8,
+              natReversePlus9,
+              natReversePlus10,
+              natReversePlus11
+            )
+          )
+          val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
+          XIOHelper.simpleCatchAll(preXIO)(ii =>
             XIOErrorHelperInstance.errorCompat11(
-              e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag1.tag))),
-              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag2.tag))),
-              e3.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag3.tag))),
-              e4.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag4.tag))),
-              e5.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag5.tag))),
-              e6.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag6.tag))),
-              e7.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag7.tag))),
-              e8.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag8.tag))),
-              e9.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag9.tag))),
-              e10.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag10.tag))),
-              e11.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag11.tag))),
+              e1.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus11(
+                      natReversePlus1,
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11
+                    )
+                  )
+                )
+              ),
+              e2.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus10(
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11
+                    )
+                  )
+                )
+              ),
+              e3.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus9(
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11
+                    )
+                  )
+                )
+              ),
+              e4.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper
+                      .takePlus8(natReversePlus4, natReversePlus5, natReversePlus6, natReversePlus7, natReversePlus8, natReversePlus9, natReversePlus10, natReversePlus11)
+                  )
+                )
+              ),
+              e5.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus7(natReversePlus5, natReversePlus6, natReversePlus7, natReversePlus8, natReversePlus9, natReversePlus10, natReversePlus11)
+                  )
+                )
+              ),
+              e6.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus6(natReversePlus6, natReversePlus7, natReversePlus8, natReversePlus9, natReversePlus10, natReversePlus11)
+                  )
+                )
+              ),
+              e7.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus5(natReversePlus7, natReversePlus8, natReversePlus9, natReversePlus10, natReversePlus11))
+                )
+              ),
+              e8.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus4(natReversePlus8, natReversePlus9, natReversePlus10, natReversePlus11))
+                )
+              ),
+              e9.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus3(natReversePlus9, natReversePlus10, natReversePlus11)))
+              ),
+              e10.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus2(natReversePlus10, natReversePlus11)))),
+              e11.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus11)))),
               ii
             )
           )
+        }
       }
   }
   implicit class XIOErrorMatchAll1ImplicitClass12[X <: xio.nat.has.Nat, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, I](
@@ -2140,36 +921,178 @@ trait XIOErrorHelper {
           e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
           e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12]
         )(implicit
-          natToTag1: xio.nat.has.NatToTag[Input1, X],
-          natToTag2: xio.nat.has.NatToTag[Input2, X],
-          natToTag3: xio.nat.has.NatToTag[Input3, X],
-          natToTag4: xio.nat.has.NatToTag[Input4, X],
-          natToTag5: xio.nat.has.NatToTag[Input5, X],
-          natToTag6: xio.nat.has.NatToTag[Input6, X],
-          natToTag7: xio.nat.has.NatToTag[Input7, X],
-          natToTag8: xio.nat.has.NatToTag[Input8, X],
-          natToTag9: xio.nat.has.NatToTag[Input9, X],
-          natToTag10: xio.nat.has.NatToTag[Input10, X],
-          natToTag11: xio.nat.has.NatToTag[Input11, X],
-          natToTag12: xio.nat.has.NatToTag[Input12, X]
-        ): xio.XIO[X, P, I] =
-          XIOHelper.simpleCatchAll(i)(ii =>
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[
+            Input7,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
+          ],
+          natReversePlus8: xio.nat.has.NatReversePlus[
+            Input8,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
+          ],
+          natReversePlus9: xio.nat.has.NatReversePlus[
+            Input9,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
+          ],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]],
+          natReversePlus12: xio.nat.has.NatReversePlus[Input12, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]]
+        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
+          Input8
+        ]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12], P, I] = {
+          val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError12[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12]](
+            XIOPlusHelper.take1Plus12(
+              natReversePlus1,
+              natReversePlus2,
+              natReversePlus3,
+              natReversePlus4,
+              natReversePlus5,
+              natReversePlus6,
+              natReversePlus7,
+              natReversePlus8,
+              natReversePlus9,
+              natReversePlus10,
+              natReversePlus11,
+              natReversePlus12
+            )
+          )
+          val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
+          XIOHelper.simpleCatchAll(preXIO)(ii =>
             XIOErrorHelperInstance.errorCompat12(
-              e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag1.tag))),
-              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag2.tag))),
-              e3.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag3.tag))),
-              e4.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag4.tag))),
-              e5.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag5.tag))),
-              e6.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag6.tag))),
-              e7.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag7.tag))),
-              e8.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag8.tag))),
-              e9.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag9.tag))),
-              e10.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag10.tag))),
-              e11.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag11.tag))),
-              e12.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag12.tag))),
+              e1.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus12(
+                      natReversePlus1,
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12
+                    )
+                  )
+                )
+              ),
+              e2.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus11(
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12
+                    )
+                  )
+                )
+              ),
+              e3.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus10(
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12
+                    )
+                  )
+                )
+              ),
+              e4.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus9(
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12
+                    )
+                  )
+                )
+              ),
+              e5.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus8(
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12
+                    )
+                  )
+                )
+              ),
+              e6.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus7(natReversePlus6, natReversePlus7, natReversePlus8, natReversePlus9, natReversePlus10, natReversePlus11, natReversePlus12)
+                  )
+                )
+              ),
+              e7.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus6(natReversePlus7, natReversePlus8, natReversePlus9, natReversePlus10, natReversePlus11, natReversePlus12)
+                  )
+                )
+              ),
+              e8.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus5(natReversePlus8, natReversePlus9, natReversePlus10, natReversePlus11, natReversePlus12))
+                )
+              ),
+              e9.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus4(natReversePlus9, natReversePlus10, natReversePlus11, natReversePlus12))
+                )
+              ),
+              e10.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus3(natReversePlus10, natReversePlus11, natReversePlus12)))
+              ),
+              e11.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus2(natReversePlus11, natReversePlus12)))),
+              e12.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus12)))),
               ii
             )
           )
+        }
       }
   }
   implicit class XIOErrorMatchAll1ImplicitClass13[X <: xio.nat.has.Nat, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, I](
@@ -2219,38 +1142,203 @@ trait XIOErrorHelper {
           e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12],
           e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13]
         )(implicit
-          natToTag1: xio.nat.has.NatToTag[Input1, X],
-          natToTag2: xio.nat.has.NatToTag[Input2, X],
-          natToTag3: xio.nat.has.NatToTag[Input3, X],
-          natToTag4: xio.nat.has.NatToTag[Input4, X],
-          natToTag5: xio.nat.has.NatToTag[Input5, X],
-          natToTag6: xio.nat.has.NatToTag[Input6, X],
-          natToTag7: xio.nat.has.NatToTag[Input7, X],
-          natToTag8: xio.nat.has.NatToTag[Input8, X],
-          natToTag9: xio.nat.has.NatToTag[Input9, X],
-          natToTag10: xio.nat.has.NatToTag[Input10, X],
-          natToTag11: xio.nat.has.NatToTag[Input11, X],
-          natToTag12: xio.nat.has.NatToTag[Input12, X],
-          natToTag13: xio.nat.has.NatToTag[Input13, X]
-        ): xio.XIO[X, P, I] =
-          XIOHelper.simpleCatchAll(i)(ii =>
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[
+            Input7,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
+          ],
+          natReversePlus8: xio.nat.has.NatReversePlus[
+            Input8,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
+          ],
+          natReversePlus9: xio.nat.has.NatReversePlus[
+            Input9,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
+          ],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]],
+          natReversePlus12: xio.nat.has.NatReversePlus[Input12, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]],
+          natReversePlus13: xio.nat.has.NatReversePlus[Input13, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]]
+        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
+          Input8
+        ]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13], P, I] = {
+          val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError13[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13]](
+            XIOPlusHelper.take1Plus13(
+              natReversePlus1,
+              natReversePlus2,
+              natReversePlus3,
+              natReversePlus4,
+              natReversePlus5,
+              natReversePlus6,
+              natReversePlus7,
+              natReversePlus8,
+              natReversePlus9,
+              natReversePlus10,
+              natReversePlus11,
+              natReversePlus12,
+              natReversePlus13
+            )
+          )
+          val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
+          XIOHelper.simpleCatchAll(preXIO)(ii =>
             XIOErrorHelperInstance.errorCompat13(
-              e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag1.tag))),
-              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag2.tag))),
-              e3.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag3.tag))),
-              e4.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag4.tag))),
-              e5.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag5.tag))),
-              e6.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag6.tag))),
-              e7.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag7.tag))),
-              e8.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag8.tag))),
-              e9.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag9.tag))),
-              e10.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag10.tag))),
-              e11.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag11.tag))),
-              e12.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag12.tag))),
-              e13.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag13.tag))),
+              e1.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus13(
+                      natReversePlus1,
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13
+                    )
+                  )
+                )
+              ),
+              e2.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus12(
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13
+                    )
+                  )
+                )
+              ),
+              e3.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus11(
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13
+                    )
+                  )
+                )
+              ),
+              e4.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus10(
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13
+                    )
+                  )
+                )
+              ),
+              e5.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus9(
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13
+                    )
+                  )
+                )
+              ),
+              e6.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus8(
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13
+                    )
+                  )
+                )
+              ),
+              e7.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus7(natReversePlus7, natReversePlus8, natReversePlus9, natReversePlus10, natReversePlus11, natReversePlus12, natReversePlus13)
+                  )
+                )
+              ),
+              e8.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus6(natReversePlus8, natReversePlus9, natReversePlus10, natReversePlus11, natReversePlus12, natReversePlus13)
+                  )
+                )
+              ),
+              e9.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus5(natReversePlus9, natReversePlus10, natReversePlus11, natReversePlus12, natReversePlus13))
+                )
+              ),
+              e10.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus4(natReversePlus10, natReversePlus11, natReversePlus12, natReversePlus13))
+                )
+              ),
+              e11.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus3(natReversePlus11, natReversePlus12, natReversePlus13)))
+              ),
+              e12.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus2(natReversePlus12, natReversePlus13)))),
+              e13.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus13)))),
               ii
             )
           )
+        }
       }
   }
   implicit class XIOErrorMatchAll1ImplicitClass14[X <: xio.nat.has.Nat, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, I](
@@ -2303,40 +1391,230 @@ trait XIOErrorHelper {
           e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13],
           e14: xio.ErrorContent[E14, P] => xio.XIO[Input14, P, Out14]
         )(implicit
-          natToTag1: xio.nat.has.NatToTag[Input1, X],
-          natToTag2: xio.nat.has.NatToTag[Input2, X],
-          natToTag3: xio.nat.has.NatToTag[Input3, X],
-          natToTag4: xio.nat.has.NatToTag[Input4, X],
-          natToTag5: xio.nat.has.NatToTag[Input5, X],
-          natToTag6: xio.nat.has.NatToTag[Input6, X],
-          natToTag7: xio.nat.has.NatToTag[Input7, X],
-          natToTag8: xio.nat.has.NatToTag[Input8, X],
-          natToTag9: xio.nat.has.NatToTag[Input9, X],
-          natToTag10: xio.nat.has.NatToTag[Input10, X],
-          natToTag11: xio.nat.has.NatToTag[Input11, X],
-          natToTag12: xio.nat.has.NatToTag[Input12, X],
-          natToTag13: xio.nat.has.NatToTag[Input13, X],
-          natToTag14: xio.nat.has.NatToTag[Input14, X]
-        ): xio.XIO[X, P, I] =
-          XIOHelper.simpleCatchAll(i)(ii =>
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[
+            Input7,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
+          ],
+          natReversePlus8: xio.nat.has.NatReversePlus[
+            Input8,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
+          ],
+          natReversePlus9: xio.nat.has.NatReversePlus[
+            Input9,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
+          ],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]],
+          natReversePlus12: xio.nat.has.NatReversePlus[Input12, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]],
+          natReversePlus13: xio.nat.has.NatReversePlus[Input13, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]],
+          natReversePlus14: xio.nat.has.NatReversePlus[Input14, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]]
+        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
+          Input8
+        ]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14], P, I] = {
+          val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError14[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14]](
+            XIOPlusHelper.take1Plus14(
+              natReversePlus1,
+              natReversePlus2,
+              natReversePlus3,
+              natReversePlus4,
+              natReversePlus5,
+              natReversePlus6,
+              natReversePlus7,
+              natReversePlus8,
+              natReversePlus9,
+              natReversePlus10,
+              natReversePlus11,
+              natReversePlus12,
+              natReversePlus13,
+              natReversePlus14
+            )
+          )
+          val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
+          XIOHelper.simpleCatchAll(preXIO)(ii =>
             XIOErrorHelperInstance.errorCompat14(
-              e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag1.tag))),
-              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag2.tag))),
-              e3.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag3.tag))),
-              e4.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag4.tag))),
-              e5.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag5.tag))),
-              e6.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag6.tag))),
-              e7.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag7.tag))),
-              e8.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag8.tag))),
-              e9.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag9.tag))),
-              e10.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag10.tag))),
-              e11.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag11.tag))),
-              e12.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag12.tag))),
-              e13.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag13.tag))),
-              e14.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag14.tag))),
+              e1.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus14(
+                      natReversePlus1,
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14
+                    )
+                  )
+                )
+              ),
+              e2.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus13(
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14
+                    )
+                  )
+                )
+              ),
+              e3.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus12(
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14
+                    )
+                  )
+                )
+              ),
+              e4.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus11(
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14
+                    )
+                  )
+                )
+              ),
+              e5.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus10(
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14
+                    )
+                  )
+                )
+              ),
+              e6.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus9(
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14
+                    )
+                  )
+                )
+              ),
+              e7.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus8(
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14
+                    )
+                  )
+                )
+              ),
+              e8.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus7(natReversePlus8, natReversePlus9, natReversePlus10, natReversePlus11, natReversePlus12, natReversePlus13, natReversePlus14)
+                  )
+                )
+              ),
+              e9.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus6(natReversePlus9, natReversePlus10, natReversePlus11, natReversePlus12, natReversePlus13, natReversePlus14)
+                  )
+                )
+              ),
+              e10.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper
+                    .simpleFromFunctionMany[P](XIOPlusHelper.takePlus5(natReversePlus10, natReversePlus11, natReversePlus12, natReversePlus13, natReversePlus14))
+                )
+              ),
+              e11.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus4(natReversePlus11, natReversePlus12, natReversePlus13, natReversePlus14))
+                )
+              ),
+              e12.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus3(natReversePlus12, natReversePlus13, natReversePlus14)))
+              ),
+              e13.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus2(natReversePlus13, natReversePlus14)))),
+              e14.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus14)))),
               ii
             )
           )
+        }
       }
   }
   implicit class XIOErrorMatchAll1ImplicitClass15[X <: xio.nat.has.Nat, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, I](
@@ -2392,42 +1670,257 @@ trait XIOErrorHelper {
           e14: xio.ErrorContent[E14, P] => xio.XIO[Input14, P, Out14],
           e15: xio.ErrorContent[E15, P] => xio.XIO[Input15, P, Out15]
         )(implicit
-          natToTag1: xio.nat.has.NatToTag[Input1, X],
-          natToTag2: xio.nat.has.NatToTag[Input2, X],
-          natToTag3: xio.nat.has.NatToTag[Input3, X],
-          natToTag4: xio.nat.has.NatToTag[Input4, X],
-          natToTag5: xio.nat.has.NatToTag[Input5, X],
-          natToTag6: xio.nat.has.NatToTag[Input6, X],
-          natToTag7: xio.nat.has.NatToTag[Input7, X],
-          natToTag8: xio.nat.has.NatToTag[Input8, X],
-          natToTag9: xio.nat.has.NatToTag[Input9, X],
-          natToTag10: xio.nat.has.NatToTag[Input10, X],
-          natToTag11: xio.nat.has.NatToTag[Input11, X],
-          natToTag12: xio.nat.has.NatToTag[Input12, X],
-          natToTag13: xio.nat.has.NatToTag[Input13, X],
-          natToTag14: xio.nat.has.NatToTag[Input14, X],
-          natToTag15: xio.nat.has.NatToTag[Input15, X]
-        ): xio.XIO[X, P, I] =
-          XIOHelper.simpleCatchAll(i)(ii =>
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[
+            Input7,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
+          ],
+          natReversePlus8: xio.nat.has.NatReversePlus[
+            Input8,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
+          ],
+          natReversePlus9: xio.nat.has.NatReversePlus[
+            Input9,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
+          ],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]],
+          natReversePlus12: xio.nat.has.NatReversePlus[Input12, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]],
+          natReversePlus13: xio.nat.has.NatReversePlus[Input13, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]],
+          natReversePlus14: xio.nat.has.NatReversePlus[Input14, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]],
+          natReversePlus15: xio.nat.has.NatReversePlus[Input15, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]]
+        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
+          Input8
+        ]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15], P, I] = {
+          val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError15[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15]](
+            XIOPlusHelper.take1Plus15(
+              natReversePlus1,
+              natReversePlus2,
+              natReversePlus3,
+              natReversePlus4,
+              natReversePlus5,
+              natReversePlus6,
+              natReversePlus7,
+              natReversePlus8,
+              natReversePlus9,
+              natReversePlus10,
+              natReversePlus11,
+              natReversePlus12,
+              natReversePlus13,
+              natReversePlus14,
+              natReversePlus15
+            )
+          )
+          val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
+          XIOHelper.simpleCatchAll(preXIO)(ii =>
             XIOErrorHelperInstance.errorCompat15(
-              e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag1.tag))),
-              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag2.tag))),
-              e3.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag3.tag))),
-              e4.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag4.tag))),
-              e5.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag5.tag))),
-              e6.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag6.tag))),
-              e7.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag7.tag))),
-              e8.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag8.tag))),
-              e9.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag9.tag))),
-              e10.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag10.tag))),
-              e11.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag11.tag))),
-              e12.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag12.tag))),
-              e13.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag13.tag))),
-              e14.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag14.tag))),
-              e15.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag15.tag))),
+              e1.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus15(
+                      natReversePlus1,
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15
+                    )
+                  )
+                )
+              ),
+              e2.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus14(
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15
+                    )
+                  )
+                )
+              ),
+              e3.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus13(
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15
+                    )
+                  )
+                )
+              ),
+              e4.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus12(
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15
+                    )
+                  )
+                )
+              ),
+              e5.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus11(
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15
+                    )
+                  )
+                )
+              ),
+              e6.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus10(
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15
+                    )
+                  )
+                )
+              ),
+              e7.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus9(
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15
+                    )
+                  )
+                )
+              ),
+              e8.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus8(
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15
+                    )
+                  )
+                )
+              ),
+              e9.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus7(natReversePlus9, natReversePlus10, natReversePlus11, natReversePlus12, natReversePlus13, natReversePlus14, natReversePlus15)
+                  )
+                )
+              ),
+              e10.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus6(natReversePlus10, natReversePlus11, natReversePlus12, natReversePlus13, natReversePlus14, natReversePlus15)
+                  )
+                )
+              ),
+              e11.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper
+                    .simpleFromFunctionMany[P](XIOPlusHelper.takePlus5(natReversePlus11, natReversePlus12, natReversePlus13, natReversePlus14, natReversePlus15))
+                )
+              ),
+              e12.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus4(natReversePlus12, natReversePlus13, natReversePlus14, natReversePlus15))
+                )
+              ),
+              e13.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus3(natReversePlus13, natReversePlus14, natReversePlus15)))
+              ),
+              e14.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus2(natReversePlus14, natReversePlus15)))),
+              e15.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus15)))),
               ii
             )
           )
+        }
       }
   }
   implicit class XIOErrorMatchAll1ImplicitClass16[X <: xio.nat.has.Nat, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, I](
@@ -2487,44 +1980,292 @@ trait XIOErrorHelper {
           e15: xio.ErrorContent[E15, P] => xio.XIO[Input15, P, Out15],
           e16: xio.ErrorContent[E16, P] => xio.XIO[Input16, P, Out16]
         )(implicit
-          natToTag1: xio.nat.has.NatToTag[Input1, X],
-          natToTag2: xio.nat.has.NatToTag[Input2, X],
-          natToTag3: xio.nat.has.NatToTag[Input3, X],
-          natToTag4: xio.nat.has.NatToTag[Input4, X],
-          natToTag5: xio.nat.has.NatToTag[Input5, X],
-          natToTag6: xio.nat.has.NatToTag[Input6, X],
-          natToTag7: xio.nat.has.NatToTag[Input7, X],
-          natToTag8: xio.nat.has.NatToTag[Input8, X],
-          natToTag9: xio.nat.has.NatToTag[Input9, X],
-          natToTag10: xio.nat.has.NatToTag[Input10, X],
-          natToTag11: xio.nat.has.NatToTag[Input11, X],
-          natToTag12: xio.nat.has.NatToTag[Input12, X],
-          natToTag13: xio.nat.has.NatToTag[Input13, X],
-          natToTag14: xio.nat.has.NatToTag[Input14, X],
-          natToTag15: xio.nat.has.NatToTag[Input15, X],
-          natToTag16: xio.nat.has.NatToTag[Input16, X]
-        ): xio.XIO[X, P, I] =
-          XIOHelper.simpleCatchAll(i)(ii =>
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[
+            Input7,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
+          ],
+          natReversePlus8: xio.nat.has.NatReversePlus[
+            Input8,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
+          ],
+          natReversePlus9: xio.nat.has.NatReversePlus[
+            Input9,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
+          ],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]],
+          natReversePlus12: xio.nat.has.NatReversePlus[Input12, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]],
+          natReversePlus13: xio.nat.has.NatReversePlus[Input13, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]],
+          natReversePlus14: xio.nat.has.NatReversePlus[Input14, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]],
+          natReversePlus15: xio.nat.has.NatReversePlus[Input15, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]],
+          natReversePlus16: xio.nat.has.NatReversePlus[
+            Input16,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
+              Input9
+            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]
+          ]
+        ): xio.XIO[
+          X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
+            Input9
+          ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16],
+          P,
+          I
+        ] = {
+          val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError16[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16]](
+            XIOPlusHelper.take1Plus16(
+              natReversePlus1,
+              natReversePlus2,
+              natReversePlus3,
+              natReversePlus4,
+              natReversePlus5,
+              natReversePlus6,
+              natReversePlus7,
+              natReversePlus8,
+              natReversePlus9,
+              natReversePlus10,
+              natReversePlus11,
+              natReversePlus12,
+              natReversePlus13,
+              natReversePlus14,
+              natReversePlus15,
+              natReversePlus16
+            )
+          )
+          val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
+          XIOHelper.simpleCatchAll(preXIO)(ii =>
             XIOErrorHelperInstance.errorCompat16(
-              e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag1.tag))),
-              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag2.tag))),
-              e3.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag3.tag))),
-              e4.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag4.tag))),
-              e5.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag5.tag))),
-              e6.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag6.tag))),
-              e7.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag7.tag))),
-              e8.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag8.tag))),
-              e9.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag9.tag))),
-              e10.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag10.tag))),
-              e11.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag11.tag))),
-              e12.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag12.tag))),
-              e13.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag13.tag))),
-              e14.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag14.tag))),
-              e15.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag15.tag))),
-              e16.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag16.tag))),
+              e1.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus16(
+                      natReversePlus1,
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16
+                    )
+                  )
+                )
+              ),
+              e2.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus15(
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16
+                    )
+                  )
+                )
+              ),
+              e3.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus14(
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16
+                    )
+                  )
+                )
+              ),
+              e4.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus13(
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16
+                    )
+                  )
+                )
+              ),
+              e5.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus12(
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16
+                    )
+                  )
+                )
+              ),
+              e6.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus11(
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16
+                    )
+                  )
+                )
+              ),
+              e7.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus10(
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16
+                    )
+                  )
+                )
+              ),
+              e8.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus9(
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16
+                    )
+                  )
+                )
+              ),
+              e9.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus8(
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16
+                    )
+                  )
+                )
+              ),
+              e10.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus7(natReversePlus10, natReversePlus11, natReversePlus12, natReversePlus13, natReversePlus14, natReversePlus15, natReversePlus16)
+                  )
+                )
+              ),
+              e11.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus6(natReversePlus11, natReversePlus12, natReversePlus13, natReversePlus14, natReversePlus15, natReversePlus16)
+                  )
+                )
+              ),
+              e12.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper
+                    .simpleFromFunctionMany[P](XIOPlusHelper.takePlus5(natReversePlus12, natReversePlus13, natReversePlus14, natReversePlus15, natReversePlus16))
+                )
+              ),
+              e13.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus4(natReversePlus13, natReversePlus14, natReversePlus15, natReversePlus16))
+                )
+              ),
+              e14.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus3(natReversePlus14, natReversePlus15, natReversePlus16)))
+              ),
+              e15.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus2(natReversePlus15, natReversePlus16)))),
+              e16.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus16)))),
               ii
             )
           )
+        }
       }
   }
   implicit class XIOErrorMatchAll1ImplicitClass17[X <: xio.nat.has.Nat, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, I](
@@ -2587,46 +2328,324 @@ trait XIOErrorHelper {
           e16: xio.ErrorContent[E16, P] => xio.XIO[Input16, P, Out16],
           e17: xio.ErrorContent[E17, P] => xio.XIO[Input17, P, Out17]
         )(implicit
-          natToTag1: xio.nat.has.NatToTag[Input1, X],
-          natToTag2: xio.nat.has.NatToTag[Input2, X],
-          natToTag3: xio.nat.has.NatToTag[Input3, X],
-          natToTag4: xio.nat.has.NatToTag[Input4, X],
-          natToTag5: xio.nat.has.NatToTag[Input5, X],
-          natToTag6: xio.nat.has.NatToTag[Input6, X],
-          natToTag7: xio.nat.has.NatToTag[Input7, X],
-          natToTag8: xio.nat.has.NatToTag[Input8, X],
-          natToTag9: xio.nat.has.NatToTag[Input9, X],
-          natToTag10: xio.nat.has.NatToTag[Input10, X],
-          natToTag11: xio.nat.has.NatToTag[Input11, X],
-          natToTag12: xio.nat.has.NatToTag[Input12, X],
-          natToTag13: xio.nat.has.NatToTag[Input13, X],
-          natToTag14: xio.nat.has.NatToTag[Input14, X],
-          natToTag15: xio.nat.has.NatToTag[Input15, X],
-          natToTag16: xio.nat.has.NatToTag[Input16, X],
-          natToTag17: xio.nat.has.NatToTag[Input17, X]
-        ): xio.XIO[X, P, I] =
-          XIOHelper.simpleCatchAll(i)(ii =>
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[
+            Input7,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
+          ],
+          natReversePlus8: xio.nat.has.NatReversePlus[
+            Input8,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
+          ],
+          natReversePlus9: xio.nat.has.NatReversePlus[
+            Input9,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
+          ],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]],
+          natReversePlus12: xio.nat.has.NatReversePlus[Input12, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]],
+          natReversePlus13: xio.nat.has.NatReversePlus[Input13, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]],
+          natReversePlus14: xio.nat.has.NatReversePlus[Input14, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]],
+          natReversePlus15: xio.nat.has.NatReversePlus[Input15, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]],
+          natReversePlus16: xio.nat.has.NatReversePlus[
+            Input16,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
+              Input9
+            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]
+          ],
+          natReversePlus17: xio.nat.has.NatReversePlus[
+            Input17,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
+              Input9
+            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]
+          ]
+        ): xio.XIO[
+          X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
+            Input9
+          ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17],
+          P,
+          I
+        ] = {
+          val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError17[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17]](
+            XIOPlusHelper.take1Plus17(
+              natReversePlus1,
+              natReversePlus2,
+              natReversePlus3,
+              natReversePlus4,
+              natReversePlus5,
+              natReversePlus6,
+              natReversePlus7,
+              natReversePlus8,
+              natReversePlus9,
+              natReversePlus10,
+              natReversePlus11,
+              natReversePlus12,
+              natReversePlus13,
+              natReversePlus14,
+              natReversePlus15,
+              natReversePlus16,
+              natReversePlus17
+            )
+          )
+          val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
+          XIOHelper.simpleCatchAll(preXIO)(ii =>
             XIOErrorHelperInstance.errorCompat17(
-              e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag1.tag))),
-              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag2.tag))),
-              e3.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag3.tag))),
-              e4.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag4.tag))),
-              e5.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag5.tag))),
-              e6.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag6.tag))),
-              e7.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag7.tag))),
-              e8.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag8.tag))),
-              e9.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag9.tag))),
-              e10.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag10.tag))),
-              e11.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag11.tag))),
-              e12.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag12.tag))),
-              e13.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag13.tag))),
-              e14.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag14.tag))),
-              e15.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag15.tag))),
-              e16.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag16.tag))),
-              e17.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag17.tag))),
+              e1.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus17(
+                      natReversePlus1,
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17
+                    )
+                  )
+                )
+              ),
+              e2.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus16(
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17
+                    )
+                  )
+                )
+              ),
+              e3.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus15(
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17
+                    )
+                  )
+                )
+              ),
+              e4.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus14(
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17
+                    )
+                  )
+                )
+              ),
+              e5.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus13(
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17
+                    )
+                  )
+                )
+              ),
+              e6.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus12(
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17
+                    )
+                  )
+                )
+              ),
+              e7.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus11(
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17
+                    )
+                  )
+                )
+              ),
+              e8.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus10(
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17
+                    )
+                  )
+                )
+              ),
+              e9.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus9(
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17
+                    )
+                  )
+                )
+              ),
+              e10.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus8(
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17
+                    )
+                  )
+                )
+              ),
+              e11.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus7(natReversePlus11, natReversePlus12, natReversePlus13, natReversePlus14, natReversePlus15, natReversePlus16, natReversePlus17)
+                  )
+                )
+              ),
+              e12.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus6(natReversePlus12, natReversePlus13, natReversePlus14, natReversePlus15, natReversePlus16, natReversePlus17)
+                  )
+                )
+              ),
+              e13.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper
+                    .simpleFromFunctionMany[P](XIOPlusHelper.takePlus5(natReversePlus13, natReversePlus14, natReversePlus15, natReversePlus16, natReversePlus17))
+                )
+              ),
+              e14.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus4(natReversePlus14, natReversePlus15, natReversePlus16, natReversePlus17))
+                )
+              ),
+              e15.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus3(natReversePlus15, natReversePlus16, natReversePlus17)))
+              ),
+              e16.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus2(natReversePlus16, natReversePlus17)))),
+              e17.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus17)))),
               ii
             )
           )
+        }
       }
   }
   implicit class XIOErrorMatchAll1ImplicitClass18[X <: xio.nat.has.Nat, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, I](
@@ -2692,48 +2711,355 @@ trait XIOErrorHelper {
           e17: xio.ErrorContent[E17, P] => xio.XIO[Input17, P, Out17],
           e18: xio.ErrorContent[E18, P] => xio.XIO[Input18, P, Out18]
         )(implicit
-          natToTag1: xio.nat.has.NatToTag[Input1, X],
-          natToTag2: xio.nat.has.NatToTag[Input2, X],
-          natToTag3: xio.nat.has.NatToTag[Input3, X],
-          natToTag4: xio.nat.has.NatToTag[Input4, X],
-          natToTag5: xio.nat.has.NatToTag[Input5, X],
-          natToTag6: xio.nat.has.NatToTag[Input6, X],
-          natToTag7: xio.nat.has.NatToTag[Input7, X],
-          natToTag8: xio.nat.has.NatToTag[Input8, X],
-          natToTag9: xio.nat.has.NatToTag[Input9, X],
-          natToTag10: xio.nat.has.NatToTag[Input10, X],
-          natToTag11: xio.nat.has.NatToTag[Input11, X],
-          natToTag12: xio.nat.has.NatToTag[Input12, X],
-          natToTag13: xio.nat.has.NatToTag[Input13, X],
-          natToTag14: xio.nat.has.NatToTag[Input14, X],
-          natToTag15: xio.nat.has.NatToTag[Input15, X],
-          natToTag16: xio.nat.has.NatToTag[Input16, X],
-          natToTag17: xio.nat.has.NatToTag[Input17, X],
-          natToTag18: xio.nat.has.NatToTag[Input18, X]
-        ): xio.XIO[X, P, I] =
-          XIOHelper.simpleCatchAll(i)(ii =>
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[
+            Input7,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
+          ],
+          natReversePlus8: xio.nat.has.NatReversePlus[
+            Input8,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
+          ],
+          natReversePlus9: xio.nat.has.NatReversePlus[
+            Input9,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
+          ],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]],
+          natReversePlus12: xio.nat.has.NatReversePlus[Input12, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]],
+          natReversePlus13: xio.nat.has.NatReversePlus[Input13, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]],
+          natReversePlus14: xio.nat.has.NatReversePlus[Input14, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]],
+          natReversePlus15: xio.nat.has.NatReversePlus[Input15, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]],
+          natReversePlus16: xio.nat.has.NatReversePlus[
+            Input16,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
+              Input9
+            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]
+          ],
+          natReversePlus17: xio.nat.has.NatReversePlus[
+            Input17,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
+              Input9
+            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]
+          ],
+          natReversePlus18: xio.nat.has.NatReversePlus[
+            Input18,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
+              Input9
+            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]
+          ]
+        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
+          Input8
+        ]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[
+          Input16
+        ]#InnerPlus[Input17]#InnerPlus[Input18], P, I] = {
+          val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError18[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18]](
+            XIOPlusHelper.take1Plus18(
+              natReversePlus1,
+              natReversePlus2,
+              natReversePlus3,
+              natReversePlus4,
+              natReversePlus5,
+              natReversePlus6,
+              natReversePlus7,
+              natReversePlus8,
+              natReversePlus9,
+              natReversePlus10,
+              natReversePlus11,
+              natReversePlus12,
+              natReversePlus13,
+              natReversePlus14,
+              natReversePlus15,
+              natReversePlus16,
+              natReversePlus17,
+              natReversePlus18
+            )
+          )
+          val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
+          XIOHelper.simpleCatchAll(preXIO)(ii =>
             XIOErrorHelperInstance.errorCompat18(
-              e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag1.tag))),
-              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag2.tag))),
-              e3.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag3.tag))),
-              e4.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag4.tag))),
-              e5.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag5.tag))),
-              e6.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag6.tag))),
-              e7.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag7.tag))),
-              e8.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag8.tag))),
-              e9.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag9.tag))),
-              e10.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag10.tag))),
-              e11.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag11.tag))),
-              e12.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag12.tag))),
-              e13.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag13.tag))),
-              e14.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag14.tag))),
-              e15.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag15.tag))),
-              e16.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag16.tag))),
-              e17.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag17.tag))),
-              e18.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag18.tag))),
+              e1.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus18(
+                      natReversePlus1,
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18
+                    )
+                  )
+                )
+              ),
+              e2.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus17(
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18
+                    )
+                  )
+                )
+              ),
+              e3.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus16(
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18
+                    )
+                  )
+                )
+              ),
+              e4.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus15(
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18
+                    )
+                  )
+                )
+              ),
+              e5.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus14(
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18
+                    )
+                  )
+                )
+              ),
+              e6.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus13(
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18
+                    )
+                  )
+                )
+              ),
+              e7.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus12(
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18
+                    )
+                  )
+                )
+              ),
+              e8.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus11(
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18
+                    )
+                  )
+                )
+              ),
+              e9.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus10(
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18
+                    )
+                  )
+                )
+              ),
+              e10.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus9(
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18
+                    )
+                  )
+                )
+              ),
+              e11.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus8(
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18
+                    )
+                  )
+                )
+              ),
+              e12.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus7(natReversePlus12, natReversePlus13, natReversePlus14, natReversePlus15, natReversePlus16, natReversePlus17, natReversePlus18)
+                  )
+                )
+              ),
+              e13.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus6(natReversePlus13, natReversePlus14, natReversePlus15, natReversePlus16, natReversePlus17, natReversePlus18)
+                  )
+                )
+              ),
+              e14.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper
+                    .simpleFromFunctionMany[P](XIOPlusHelper.takePlus5(natReversePlus14, natReversePlus15, natReversePlus16, natReversePlus17, natReversePlus18))
+                )
+              ),
+              e15.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus4(natReversePlus15, natReversePlus16, natReversePlus17, natReversePlus18))
+                )
+              ),
+              e16.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus3(natReversePlus16, natReversePlus17, natReversePlus18)))
+              ),
+              e17.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus2(natReversePlus17, natReversePlus18)))),
+              e18.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus18)))),
               ii
             )
           )
+        }
       }
   }
   implicit class XIOErrorMatchAll1ImplicitClass19[X <: xio.nat.has.Nat, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, I](
@@ -2802,50 +3128,388 @@ trait XIOErrorHelper {
           e18: xio.ErrorContent[E18, P] => xio.XIO[Input18, P, Out18],
           e19: xio.ErrorContent[E19, P] => xio.XIO[Input19, P, Out19]
         )(implicit
-          natToTag1: xio.nat.has.NatToTag[Input1, X],
-          natToTag2: xio.nat.has.NatToTag[Input2, X],
-          natToTag3: xio.nat.has.NatToTag[Input3, X],
-          natToTag4: xio.nat.has.NatToTag[Input4, X],
-          natToTag5: xio.nat.has.NatToTag[Input5, X],
-          natToTag6: xio.nat.has.NatToTag[Input6, X],
-          natToTag7: xio.nat.has.NatToTag[Input7, X],
-          natToTag8: xio.nat.has.NatToTag[Input8, X],
-          natToTag9: xio.nat.has.NatToTag[Input9, X],
-          natToTag10: xio.nat.has.NatToTag[Input10, X],
-          natToTag11: xio.nat.has.NatToTag[Input11, X],
-          natToTag12: xio.nat.has.NatToTag[Input12, X],
-          natToTag13: xio.nat.has.NatToTag[Input13, X],
-          natToTag14: xio.nat.has.NatToTag[Input14, X],
-          natToTag15: xio.nat.has.NatToTag[Input15, X],
-          natToTag16: xio.nat.has.NatToTag[Input16, X],
-          natToTag17: xio.nat.has.NatToTag[Input17, X],
-          natToTag18: xio.nat.has.NatToTag[Input18, X],
-          natToTag19: xio.nat.has.NatToTag[Input19, X]
-        ): xio.XIO[X, P, I] =
-          XIOHelper.simpleCatchAll(i)(ii =>
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[
+            Input7,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
+          ],
+          natReversePlus8: xio.nat.has.NatReversePlus[
+            Input8,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
+          ],
+          natReversePlus9: xio.nat.has.NatReversePlus[
+            Input9,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
+          ],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]],
+          natReversePlus12: xio.nat.has.NatReversePlus[Input12, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]],
+          natReversePlus13: xio.nat.has.NatReversePlus[Input13, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]],
+          natReversePlus14: xio.nat.has.NatReversePlus[Input14, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]],
+          natReversePlus15: xio.nat.has.NatReversePlus[Input15, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]],
+          natReversePlus16: xio.nat.has.NatReversePlus[
+            Input16,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
+              Input9
+            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]
+          ],
+          natReversePlus17: xio.nat.has.NatReversePlus[
+            Input17,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
+              Input9
+            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]
+          ],
+          natReversePlus18: xio.nat.has.NatReversePlus[
+            Input18,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
+              Input9
+            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]
+          ],
+          natReversePlus19: xio.nat.has.NatReversePlus[Input19, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[
+            Input14
+          ]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]#InnerPlus[Input18]]
+        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
+          Input8
+        ]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[
+          Input16
+        ]#InnerPlus[Input17]#InnerPlus[Input18]#InnerPlus[Input19], P, I] = {
+          val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError19[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19]](
+            XIOPlusHelper.take1Plus19(
+              natReversePlus1,
+              natReversePlus2,
+              natReversePlus3,
+              natReversePlus4,
+              natReversePlus5,
+              natReversePlus6,
+              natReversePlus7,
+              natReversePlus8,
+              natReversePlus9,
+              natReversePlus10,
+              natReversePlus11,
+              natReversePlus12,
+              natReversePlus13,
+              natReversePlus14,
+              natReversePlus15,
+              natReversePlus16,
+              natReversePlus17,
+              natReversePlus18,
+              natReversePlus19
+            )
+          )
+          val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
+          XIOHelper.simpleCatchAll(preXIO)(ii =>
             XIOErrorHelperInstance.errorCompat19(
-              e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag1.tag))),
-              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag2.tag))),
-              e3.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag3.tag))),
-              e4.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag4.tag))),
-              e5.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag5.tag))),
-              e6.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag6.tag))),
-              e7.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag7.tag))),
-              e8.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag8.tag))),
-              e9.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag9.tag))),
-              e10.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag10.tag))),
-              e11.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag11.tag))),
-              e12.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag12.tag))),
-              e13.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag13.tag))),
-              e14.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag14.tag))),
-              e15.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag15.tag))),
-              e16.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag16.tag))),
-              e17.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag17.tag))),
-              e18.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag18.tag))),
-              e19.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag19.tag))),
+              e1.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus19(
+                      natReversePlus1,
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19
+                    )
+                  )
+                )
+              ),
+              e2.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus18(
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19
+                    )
+                  )
+                )
+              ),
+              e3.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus17(
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19
+                    )
+                  )
+                )
+              ),
+              e4.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus16(
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19
+                    )
+                  )
+                )
+              ),
+              e5.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus15(
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19
+                    )
+                  )
+                )
+              ),
+              e6.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus14(
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19
+                    )
+                  )
+                )
+              ),
+              e7.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus13(
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19
+                    )
+                  )
+                )
+              ),
+              e8.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus12(
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19
+                    )
+                  )
+                )
+              ),
+              e9.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus11(
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19
+                    )
+                  )
+                )
+              ),
+              e10.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus10(
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19
+                    )
+                  )
+                )
+              ),
+              e11.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus9(
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19
+                    )
+                  )
+                )
+              ),
+              e12.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus8(
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19
+                    )
+                  )
+                )
+              ),
+              e13.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus7(natReversePlus13, natReversePlus14, natReversePlus15, natReversePlus16, natReversePlus17, natReversePlus18, natReversePlus19)
+                  )
+                )
+              ),
+              e14.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus6(natReversePlus14, natReversePlus15, natReversePlus16, natReversePlus17, natReversePlus18, natReversePlus19)
+                  )
+                )
+              ),
+              e15.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper
+                    .simpleFromFunctionMany[P](XIOPlusHelper.takePlus5(natReversePlus15, natReversePlus16, natReversePlus17, natReversePlus18, natReversePlus19))
+                )
+              ),
+              e16.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus4(natReversePlus16, natReversePlus17, natReversePlus18, natReversePlus19))
+                )
+              ),
+              e17.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus3(natReversePlus17, natReversePlus18, natReversePlus19)))
+              ),
+              e18.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus2(natReversePlus18, natReversePlus19)))),
+              e19.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus19)))),
               ii
             )
           )
+        }
       }
   }
   implicit class XIOErrorMatchAll1ImplicitClass20[X <: xio.nat.has.Nat, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, E20, I](
@@ -2917,52 +3581,422 @@ trait XIOErrorHelper {
           e19: xio.ErrorContent[E19, P] => xio.XIO[Input19, P, Out19],
           e20: xio.ErrorContent[E20, P] => xio.XIO[Input20, P, Out20]
         )(implicit
-          natToTag1: xio.nat.has.NatToTag[Input1, X],
-          natToTag2: xio.nat.has.NatToTag[Input2, X],
-          natToTag3: xio.nat.has.NatToTag[Input3, X],
-          natToTag4: xio.nat.has.NatToTag[Input4, X],
-          natToTag5: xio.nat.has.NatToTag[Input5, X],
-          natToTag6: xio.nat.has.NatToTag[Input6, X],
-          natToTag7: xio.nat.has.NatToTag[Input7, X],
-          natToTag8: xio.nat.has.NatToTag[Input8, X],
-          natToTag9: xio.nat.has.NatToTag[Input9, X],
-          natToTag10: xio.nat.has.NatToTag[Input10, X],
-          natToTag11: xio.nat.has.NatToTag[Input11, X],
-          natToTag12: xio.nat.has.NatToTag[Input12, X],
-          natToTag13: xio.nat.has.NatToTag[Input13, X],
-          natToTag14: xio.nat.has.NatToTag[Input14, X],
-          natToTag15: xio.nat.has.NatToTag[Input15, X],
-          natToTag16: xio.nat.has.NatToTag[Input16, X],
-          natToTag17: xio.nat.has.NatToTag[Input17, X],
-          natToTag18: xio.nat.has.NatToTag[Input18, X],
-          natToTag19: xio.nat.has.NatToTag[Input19, X],
-          natToTag20: xio.nat.has.NatToTag[Input20, X]
-        ): xio.XIO[X, P, I] =
-          XIOHelper.simpleCatchAll(i)(ii =>
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[
+            Input7,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
+          ],
+          natReversePlus8: xio.nat.has.NatReversePlus[
+            Input8,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
+          ],
+          natReversePlus9: xio.nat.has.NatReversePlus[
+            Input9,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
+          ],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]],
+          natReversePlus12: xio.nat.has.NatReversePlus[Input12, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]],
+          natReversePlus13: xio.nat.has.NatReversePlus[Input13, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]],
+          natReversePlus14: xio.nat.has.NatReversePlus[Input14, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]],
+          natReversePlus15: xio.nat.has.NatReversePlus[Input15, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]],
+          natReversePlus16: xio.nat.has.NatReversePlus[
+            Input16,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
+              Input9
+            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]
+          ],
+          natReversePlus17: xio.nat.has.NatReversePlus[
+            Input17,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
+              Input9
+            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]
+          ],
+          natReversePlus18: xio.nat.has.NatReversePlus[
+            Input18,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
+              Input9
+            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]
+          ],
+          natReversePlus19: xio.nat.has.NatReversePlus[Input19, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[
+            Input14
+          ]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]#InnerPlus[Input18]],
+          natReversePlus20: xio.nat.has.NatReversePlus[Input20, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[
+            Input14
+          ]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]#InnerPlus[Input18]#InnerPlus[Input19]]
+        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
+          Input8
+        ]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[
+          Input16
+        ]#InnerPlus[Input17]#InnerPlus[Input18]#InnerPlus[Input19]#InnerPlus[Input20], P, I] = {
+          val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError20[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, E20]](
+            XIOPlusHelper.take1Plus20(
+              natReversePlus1,
+              natReversePlus2,
+              natReversePlus3,
+              natReversePlus4,
+              natReversePlus5,
+              natReversePlus6,
+              natReversePlus7,
+              natReversePlus8,
+              natReversePlus9,
+              natReversePlus10,
+              natReversePlus11,
+              natReversePlus12,
+              natReversePlus13,
+              natReversePlus14,
+              natReversePlus15,
+              natReversePlus16,
+              natReversePlus17,
+              natReversePlus18,
+              natReversePlus19,
+              natReversePlus20
+            )
+          )
+          val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
+          XIOHelper.simpleCatchAll(preXIO)(ii =>
             XIOErrorHelperInstance.errorCompat20(
-              e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag1.tag))),
-              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag2.tag))),
-              e3.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag3.tag))),
-              e4.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag4.tag))),
-              e5.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag5.tag))),
-              e6.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag6.tag))),
-              e7.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag7.tag))),
-              e8.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag8.tag))),
-              e9.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag9.tag))),
-              e10.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag10.tag))),
-              e11.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag11.tag))),
-              e12.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag12.tag))),
-              e13.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag13.tag))),
-              e14.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag14.tag))),
-              e15.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag15.tag))),
-              e16.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag16.tag))),
-              e17.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag17.tag))),
-              e18.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag18.tag))),
-              e19.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag19.tag))),
-              e20.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag20.tag))),
+              e1.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus20(
+                      natReversePlus1,
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20
+                    )
+                  )
+                )
+              ),
+              e2.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus19(
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20
+                    )
+                  )
+                )
+              ),
+              e3.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus18(
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20
+                    )
+                  )
+                )
+              ),
+              e4.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus17(
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20
+                    )
+                  )
+                )
+              ),
+              e5.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus16(
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20
+                    )
+                  )
+                )
+              ),
+              e6.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus15(
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20
+                    )
+                  )
+                )
+              ),
+              e7.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus14(
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20
+                    )
+                  )
+                )
+              ),
+              e8.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus13(
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20
+                    )
+                  )
+                )
+              ),
+              e9.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus12(
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20
+                    )
+                  )
+                )
+              ),
+              e10.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus11(
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20
+                    )
+                  )
+                )
+              ),
+              e11.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus10(
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20
+                    )
+                  )
+                )
+              ),
+              e12.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus9(
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20
+                    )
+                  )
+                )
+              ),
+              e13.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus8(
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20
+                    )
+                  )
+                )
+              ),
+              e14.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus7(natReversePlus14, natReversePlus15, natReversePlus16, natReversePlus17, natReversePlus18, natReversePlus19, natReversePlus20)
+                  )
+                )
+              ),
+              e15.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus6(natReversePlus15, natReversePlus16, natReversePlus17, natReversePlus18, natReversePlus19, natReversePlus20)
+                  )
+                )
+              ),
+              e16.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper
+                    .simpleFromFunctionMany[P](XIOPlusHelper.takePlus5(natReversePlus16, natReversePlus17, natReversePlus18, natReversePlus19, natReversePlus20))
+                )
+              ),
+              e17.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus4(natReversePlus17, natReversePlus18, natReversePlus19, natReversePlus20))
+                )
+              ),
+              e18.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus3(natReversePlus18, natReversePlus19, natReversePlus20)))
+              ),
+              e19.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus2(natReversePlus19, natReversePlus20)))),
+              e20.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus20)))),
               ii
             )
           )
+        }
       }
   }
   implicit class XIOErrorMatchAll1ImplicitClass21[
@@ -3059,54 +4093,458 @@ trait XIOErrorHelper {
           e20: xio.ErrorContent[E20, P] => xio.XIO[Input20, P, Out20],
           e21: xio.ErrorContent[E21, P] => xio.XIO[Input21, P, Out21]
         )(implicit
-          natToTag1: xio.nat.has.NatToTag[Input1, X],
-          natToTag2: xio.nat.has.NatToTag[Input2, X],
-          natToTag3: xio.nat.has.NatToTag[Input3, X],
-          natToTag4: xio.nat.has.NatToTag[Input4, X],
-          natToTag5: xio.nat.has.NatToTag[Input5, X],
-          natToTag6: xio.nat.has.NatToTag[Input6, X],
-          natToTag7: xio.nat.has.NatToTag[Input7, X],
-          natToTag8: xio.nat.has.NatToTag[Input8, X],
-          natToTag9: xio.nat.has.NatToTag[Input9, X],
-          natToTag10: xio.nat.has.NatToTag[Input10, X],
-          natToTag11: xio.nat.has.NatToTag[Input11, X],
-          natToTag12: xio.nat.has.NatToTag[Input12, X],
-          natToTag13: xio.nat.has.NatToTag[Input13, X],
-          natToTag14: xio.nat.has.NatToTag[Input14, X],
-          natToTag15: xio.nat.has.NatToTag[Input15, X],
-          natToTag16: xio.nat.has.NatToTag[Input16, X],
-          natToTag17: xio.nat.has.NatToTag[Input17, X],
-          natToTag18: xio.nat.has.NatToTag[Input18, X],
-          natToTag19: xio.nat.has.NatToTag[Input19, X],
-          natToTag20: xio.nat.has.NatToTag[Input20, X],
-          natToTag21: xio.nat.has.NatToTag[Input21, X]
-        ): xio.XIO[X, P, I] =
-          XIOHelper.simpleCatchAll(i)(ii =>
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[
+            Input7,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
+          ],
+          natReversePlus8: xio.nat.has.NatReversePlus[
+            Input8,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
+          ],
+          natReversePlus9: xio.nat.has.NatReversePlus[
+            Input9,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
+          ],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]],
+          natReversePlus12: xio.nat.has.NatReversePlus[Input12, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]],
+          natReversePlus13: xio.nat.has.NatReversePlus[Input13, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]],
+          natReversePlus14: xio.nat.has.NatReversePlus[Input14, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]],
+          natReversePlus15: xio.nat.has.NatReversePlus[Input15, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]],
+          natReversePlus16: xio.nat.has.NatReversePlus[
+            Input16,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
+              Input9
+            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]
+          ],
+          natReversePlus17: xio.nat.has.NatReversePlus[
+            Input17,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
+              Input9
+            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]
+          ],
+          natReversePlus18: xio.nat.has.NatReversePlus[
+            Input18,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
+              Input9
+            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]
+          ],
+          natReversePlus19: xio.nat.has.NatReversePlus[Input19, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[
+            Input14
+          ]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]#InnerPlus[Input18]],
+          natReversePlus20: xio.nat.has.NatReversePlus[Input20, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[
+            Input14
+          ]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]#InnerPlus[Input18]#InnerPlus[Input19]],
+          natReversePlus21: xio.nat.has.NatReversePlus[Input21, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[
+            Input14
+          ]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]#InnerPlus[Input18]#InnerPlus[Input19]#InnerPlus[Input20]]
+        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
+          Input8
+        ]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[
+          Input16
+        ]#InnerPlus[Input17]#InnerPlus[Input18]#InnerPlus[Input19]#InnerPlus[Input20]#InnerPlus[Input21], P, I] = {
+          val preLayer =
+            XLayerHelper.simpleFromFunctionMany[xio.XError21[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, E20, E21]](
+              XIOPlusHelper.take1Plus21(
+                natReversePlus1,
+                natReversePlus2,
+                natReversePlus3,
+                natReversePlus4,
+                natReversePlus5,
+                natReversePlus6,
+                natReversePlus7,
+                natReversePlus8,
+                natReversePlus9,
+                natReversePlus10,
+                natReversePlus11,
+                natReversePlus12,
+                natReversePlus13,
+                natReversePlus14,
+                natReversePlus15,
+                natReversePlus16,
+                natReversePlus17,
+                natReversePlus18,
+                natReversePlus19,
+                natReversePlus20,
+                natReversePlus21
+              )
+            )
+          val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
+          XIOHelper.simpleCatchAll(preXIO)(ii =>
             XIOErrorHelperInstance.errorCompat21(
-              e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag1.tag))),
-              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag2.tag))),
-              e3.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag3.tag))),
-              e4.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag4.tag))),
-              e5.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag5.tag))),
-              e6.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag6.tag))),
-              e7.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag7.tag))),
-              e8.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag8.tag))),
-              e9.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag9.tag))),
-              e10.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag10.tag))),
-              e11.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag11.tag))),
-              e12.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag12.tag))),
-              e13.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag13.tag))),
-              e14.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag14.tag))),
-              e15.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag15.tag))),
-              e16.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag16.tag))),
-              e17.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag17.tag))),
-              e18.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag18.tag))),
-              e19.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag19.tag))),
-              e20.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag20.tag))),
-              e21.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag21.tag))),
+              e1.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus21(
+                      natReversePlus1,
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21
+                    )
+                  )
+                )
+              ),
+              e2.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus20(
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21
+                    )
+                  )
+                )
+              ),
+              e3.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus19(
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21
+                    )
+                  )
+                )
+              ),
+              e4.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus18(
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21
+                    )
+                  )
+                )
+              ),
+              e5.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus17(
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21
+                    )
+                  )
+                )
+              ),
+              e6.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus16(
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21
+                    )
+                  )
+                )
+              ),
+              e7.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus15(
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21
+                    )
+                  )
+                )
+              ),
+              e8.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus14(
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21
+                    )
+                  )
+                )
+              ),
+              e9.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus13(
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21
+                    )
+                  )
+                )
+              ),
+              e10.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus12(
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21
+                    )
+                  )
+                )
+              ),
+              e11.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus11(
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21
+                    )
+                  )
+                )
+              ),
+              e12.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus10(
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21
+                    )
+                  )
+                )
+              ),
+              e13.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus9(
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21
+                    )
+                  )
+                )
+              ),
+              e14.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus8(
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21
+                    )
+                  )
+                )
+              ),
+              e15.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus7(natReversePlus15, natReversePlus16, natReversePlus17, natReversePlus18, natReversePlus19, natReversePlus20, natReversePlus21)
+                  )
+                )
+              ),
+              e16.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus6(natReversePlus16, natReversePlus17, natReversePlus18, natReversePlus19, natReversePlus20, natReversePlus21)
+                  )
+                )
+              ),
+              e17.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper
+                    .simpleFromFunctionMany[P](XIOPlusHelper.takePlus5(natReversePlus17, natReversePlus18, natReversePlus19, natReversePlus20, natReversePlus21))
+                )
+              ),
+              e18.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus4(natReversePlus18, natReversePlus19, natReversePlus20, natReversePlus21))
+                )
+              ),
+              e19.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus3(natReversePlus19, natReversePlus20, natReversePlus21)))
+              ),
+              e20.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus2(natReversePlus20, natReversePlus21)))),
+              e21.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus21)))),
               ii
             )
           )
+        }
       }
   }
   implicit class XIOErrorMatchAll1ImplicitClass22[
@@ -3207,56 +4645,494 @@ trait XIOErrorHelper {
           e21: xio.ErrorContent[E21, P] => xio.XIO[Input21, P, Out21],
           e22: xio.ErrorContent[E22, P] => xio.XIO[Input22, P, Out22]
         )(implicit
-          natToTag1: xio.nat.has.NatToTag[Input1, X],
-          natToTag2: xio.nat.has.NatToTag[Input2, X],
-          natToTag3: xio.nat.has.NatToTag[Input3, X],
-          natToTag4: xio.nat.has.NatToTag[Input4, X],
-          natToTag5: xio.nat.has.NatToTag[Input5, X],
-          natToTag6: xio.nat.has.NatToTag[Input6, X],
-          natToTag7: xio.nat.has.NatToTag[Input7, X],
-          natToTag8: xio.nat.has.NatToTag[Input8, X],
-          natToTag9: xio.nat.has.NatToTag[Input9, X],
-          natToTag10: xio.nat.has.NatToTag[Input10, X],
-          natToTag11: xio.nat.has.NatToTag[Input11, X],
-          natToTag12: xio.nat.has.NatToTag[Input12, X],
-          natToTag13: xio.nat.has.NatToTag[Input13, X],
-          natToTag14: xio.nat.has.NatToTag[Input14, X],
-          natToTag15: xio.nat.has.NatToTag[Input15, X],
-          natToTag16: xio.nat.has.NatToTag[Input16, X],
-          natToTag17: xio.nat.has.NatToTag[Input17, X],
-          natToTag18: xio.nat.has.NatToTag[Input18, X],
-          natToTag19: xio.nat.has.NatToTag[Input19, X],
-          natToTag20: xio.nat.has.NatToTag[Input20, X],
-          natToTag21: xio.nat.has.NatToTag[Input21, X],
-          natToTag22: xio.nat.has.NatToTag[Input22, X]
-        ): xio.XIO[X, P, I] =
-          XIOHelper.simpleCatchAll(i)(ii =>
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[
+            Input7,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
+          ],
+          natReversePlus8: xio.nat.has.NatReversePlus[
+            Input8,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
+          ],
+          natReversePlus9: xio.nat.has.NatReversePlus[
+            Input9,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
+          ],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]],
+          natReversePlus12: xio.nat.has.NatReversePlus[Input12, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]],
+          natReversePlus13: xio.nat.has.NatReversePlus[Input13, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]],
+          natReversePlus14: xio.nat.has.NatReversePlus[Input14, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]],
+          natReversePlus15: xio.nat.has.NatReversePlus[Input15, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]],
+          natReversePlus16: xio.nat.has.NatReversePlus[
+            Input16,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
+              Input9
+            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]
+          ],
+          natReversePlus17: xio.nat.has.NatReversePlus[
+            Input17,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
+              Input9
+            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]
+          ],
+          natReversePlus18: xio.nat.has.NatReversePlus[
+            Input18,
+            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
+              Input9
+            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]
+          ],
+          natReversePlus19: xio.nat.has.NatReversePlus[Input19, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[
+            Input14
+          ]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]#InnerPlus[Input18]],
+          natReversePlus20: xio.nat.has.NatReversePlus[Input20, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[
+            Input14
+          ]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]#InnerPlus[Input18]#InnerPlus[Input19]],
+          natReversePlus21: xio.nat.has.NatReversePlus[Input21, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[
+            Input14
+          ]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]#InnerPlus[Input18]#InnerPlus[Input19]#InnerPlus[Input20]],
+          natReversePlus22: xio.nat.has.NatReversePlus[Input22, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
+            Input6
+          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[
+            Input14
+          ]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]#InnerPlus[Input18]#InnerPlus[Input19]#InnerPlus[Input20]#InnerPlus[Input21]]
+        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
+          Input8
+        ]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[
+          Input16
+        ]#InnerPlus[Input17]#InnerPlus[Input18]#InnerPlus[Input19]#InnerPlus[Input20]#InnerPlus[Input21]#InnerPlus[Input22], P, I] = {
+          val preLayer =
+            XLayerHelper.simpleFromFunctionMany[xio.XError22[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, E20, E21, E22]](
+              XIOPlusHelper.take1Plus22(
+                natReversePlus1,
+                natReversePlus2,
+                natReversePlus3,
+                natReversePlus4,
+                natReversePlus5,
+                natReversePlus6,
+                natReversePlus7,
+                natReversePlus8,
+                natReversePlus9,
+                natReversePlus10,
+                natReversePlus11,
+                natReversePlus12,
+                natReversePlus13,
+                natReversePlus14,
+                natReversePlus15,
+                natReversePlus16,
+                natReversePlus17,
+                natReversePlus18,
+                natReversePlus19,
+                natReversePlus20,
+                natReversePlus21,
+                natReversePlus22
+              )
+            )
+          val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
+          XIOHelper.simpleCatchAll(preXIO)(ii =>
             XIOErrorHelperInstance.errorCompat22(
-              e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag1.tag))),
-              e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag2.tag))),
-              e3.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag3.tag))),
-              e4.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag4.tag))),
-              e5.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag5.tag))),
-              e6.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag6.tag))),
-              e7.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag7.tag))),
-              e8.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag8.tag))),
-              e9.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag9.tag))),
-              e10.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag10.tag))),
-              e11.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag11.tag))),
-              e12.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag12.tag))),
-              e13.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag13.tag))),
-              e14.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag14.tag))),
-              e15.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag15.tag))),
-              e16.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag16.tag))),
-              e17.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag17.tag))),
-              e18.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag18.tag))),
-              e19.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag19.tag))),
-              e20.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag20.tag))),
-              e21.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag21.tag))),
-              e22.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](natToTag22.tag))),
+              e1.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus22(
+                      natReversePlus1,
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21,
+                      natReversePlus22
+                    )
+                  )
+                )
+              ),
+              e2.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus21(
+                      natReversePlus2,
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21,
+                      natReversePlus22
+                    )
+                  )
+                )
+              ),
+              e3.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus20(
+                      natReversePlus3,
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21,
+                      natReversePlus22
+                    )
+                  )
+                )
+              ),
+              e4.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus19(
+                      natReversePlus4,
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21,
+                      natReversePlus22
+                    )
+                  )
+                )
+              ),
+              e5.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus18(
+                      natReversePlus5,
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21,
+                      natReversePlus22
+                    )
+                  )
+                )
+              ),
+              e6.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus17(
+                      natReversePlus6,
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21,
+                      natReversePlus22
+                    )
+                  )
+                )
+              ),
+              e7.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus16(
+                      natReversePlus7,
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21,
+                      natReversePlus22
+                    )
+                  )
+                )
+              ),
+              e8.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus15(
+                      natReversePlus8,
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21,
+                      natReversePlus22
+                    )
+                  )
+                )
+              ),
+              e9.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus14(
+                      natReversePlus9,
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21,
+                      natReversePlus22
+                    )
+                  )
+                )
+              ),
+              e10.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus13(
+                      natReversePlus10,
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21,
+                      natReversePlus22
+                    )
+                  )
+                )
+              ),
+              e11.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus12(
+                      natReversePlus11,
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21,
+                      natReversePlus22
+                    )
+                  )
+                )
+              ),
+              e12.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus11(
+                      natReversePlus12,
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21,
+                      natReversePlus22
+                    )
+                  )
+                )
+              ),
+              e13.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus10(
+                      natReversePlus13,
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21,
+                      natReversePlus22
+                    )
+                  )
+                )
+              ),
+              e14.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus9(
+                      natReversePlus14,
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21,
+                      natReversePlus22
+                    )
+                  )
+                )
+              ),
+              e15.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus8(
+                      natReversePlus15,
+                      natReversePlus16,
+                      natReversePlus17,
+                      natReversePlus18,
+                      natReversePlus19,
+                      natReversePlus20,
+                      natReversePlus21,
+                      natReversePlus22
+                    )
+                  )
+                )
+              ),
+              e16.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus7(natReversePlus16, natReversePlus17, natReversePlus18, natReversePlus19, natReversePlus20, natReversePlus21, natReversePlus22)
+                  )
+                )
+              ),
+              e17.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](
+                    XIOPlusHelper.takePlus6(natReversePlus17, natReversePlus18, natReversePlus19, natReversePlus20, natReversePlus21, natReversePlus22)
+                  )
+                )
+              ),
+              e18.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper
+                    .simpleFromFunctionMany[P](XIOPlusHelper.takePlus5(natReversePlus18, natReversePlus19, natReversePlus20, natReversePlus21, natReversePlus22))
+                )
+              ),
+              e19.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(
+                  XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus4(natReversePlus19, natReversePlus20, natReversePlus21, natReversePlus22))
+                )
+              ),
+              e20.andThen(p =>
+                XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus3(natReversePlus20, natReversePlus21, natReversePlus22)))
+              ),
+              e21.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus2(natReversePlus21, natReversePlus22)))),
+              e22.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus22)))),
               ii
             )
           )
+        }
       }
   }
 }

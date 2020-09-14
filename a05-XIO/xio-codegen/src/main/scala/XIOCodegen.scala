@@ -10,6 +10,8 @@ object XIOCodegen {
   val filePath1 = Paths.get(".", "a05-XIO", "xio", "src", "main", "scala", "xio", "nat", "has", "XHasAlias.scala")
   val filePath2 = Paths.get(".", "a05-XIO", "xio", "src", "main", "scala", "xio", "nat", "error", "XErrorAlias.scala")
   val filePath3 = Paths.get(".", "a05-XIO", "xio", "src", "main", "scala", "xio", "helper", "XIOErrorHelper.scala")
+  val filePath4 = Paths.get(".", "a05-XIO", "xio", "src", "main", "scala", "xio", "helper", "XIOPlusHelper.scala")
+  val filePath5 = Paths.get(".", "a05-XIO", "xio", "src", "main", "scala", "xio", "helper", "XIOErrorHelperInstance.scala")
 
   def main(i: Array[String]): Unit = {
     Files.createDirectories(filePath1.getParent)
@@ -27,6 +29,18 @@ object XIOCodegen {
     Files.createDirectories(filePath3.getParent)
     Using(new PrintWriter(filePath3.toFile, "utf-8")) { writer =>
       val content = StringUtil.trimLines(xio.codegen.txt.XIOErrorHelper(maxItem = XIOParam.maxItem).body)
+      writer.println(content)
+    }
+
+    Files.createDirectories(filePath4.getParent)
+    Using(new PrintWriter(filePath4.toFile, "utf-8")) { writer =>
+      val content = StringUtil.trimLines(xio.codegen.txt.XIOPlusHelper(maxItem = XIOParam.maxItem).body)
+      writer.println(content)
+    }
+
+    Files.createDirectories(filePath5.getParent)
+    Using(new PrintWriter(filePath5.toFile, "utf-8")) { writer =>
+      val content = StringUtil.trimLines(xio.codegen.txt.XIOErrorHelperInstance(maxItem = XIOParam.maxItem).body)
       writer.println(content)
     }
   }
