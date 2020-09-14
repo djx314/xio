@@ -2,6 +2,7 @@ package xio
 trait XHasAlias {
   type XHas0                                                                                                 = nat.has.NatZero
   type XHas1[T1]                                                                                             = nat.has.NatPositive[nat.has.NatZero, T1]
+  type XHasM1[T1 <: nat.has.Nat]                                                                             = T1
   type XHas2[T1, T2]                                                                                         = nat.has.NatPositive[XHas1[T2], T1]
   type XHasM2[T1 <: nat.has.Nat, T2 <: nat.has.Nat]                                                          = T1#Plus[T2]
   type XHas3[T1, T2, T3]                                                                                     = nat.has.NatPositive[XHas2[T2, T3], T1]

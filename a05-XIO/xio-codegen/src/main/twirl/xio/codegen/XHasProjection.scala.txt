@@ -6,6 +6,7 @@ trait XHasAlias {
 
     type XHas0 = nat.has.NatZero
     type XHas1[T1] = nat.has.NatPositive[nat.has.NatZero, T1]
+    type XHasM1[T1 <: nat.has.Nat] = T1
     @for(i <- 2 to maxItem) {
         type XHas@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }] = nat.has.NatPositive[XHas@{i - 1}[@for(ii <- 2 to i) { @if(ii > 2) { , } T@{ii} }], T1]
         type XHasM@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} <: nat.has.Nat }] = @for(ii <- 1 to i) { @if(ii > 1) { #Plus[ } T@{ii} @if(ii > 1) { ] } }
