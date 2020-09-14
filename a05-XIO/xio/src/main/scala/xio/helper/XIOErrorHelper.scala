@@ -5,11 +5,11 @@ trait XIOErrorHelper {
       new XIOErrorHelperInstance.MatchAll1Apply1[P, E1, X, I] {
         override def input1[Out1 <: I, Input1 <: xio.nat.has.Nat](
           e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1]
-        )(implicit natReversePlus1: xio.nat.has.NatReversePlus[Input1, X]): xio.XIO[X#InnerPlus[Input1], P, I] = {
+        )(implicit natReversePlus1: xio.nat.has.NatReversePlus[Input1, X]): xio.XIO[xio.XHasM2[X, Input1], P, I] = {
           val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError1[E1]](XIOPlusHelper.take1Plus1(natReversePlus1))
           val preXIO   = XIOHelper.simpleProvideLayer(i)(preLayer)
           XIOHelper.simpleCatchAll(preXIO)(ii =>
-            XIOErrorHelperInstance
+            XIOErrorHelperInstance2
               .errorCompat1(e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus1)))), ii)
           )
         }
@@ -22,13 +22,13 @@ trait XIOErrorHelper {
           e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
           e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2]
         )(implicit
-          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
-          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]]
-        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2], P, I] = {
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, xio.XHasM1[X]],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, xio.XHasM2[X, Input1]]
+        ): xio.XIO[xio.XHasM2[xio.XHasM2[X, Input1], Input2], P, I] = {
           val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError2[E1, E2]](XIOPlusHelper.take1Plus2(natReversePlus1, natReversePlus2))
           val preXIO   = XIOHelper.simpleProvideLayer(i)(preLayer)
           XIOHelper.simpleCatchAll(preXIO)(ii =>
-            XIOErrorHelperInstance.errorCompat2(
+            XIOErrorHelperInstance2.errorCompat2(
               e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus2(natReversePlus1, natReversePlus2)))),
               e2.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus2)))),
               ii
@@ -45,14 +45,14 @@ trait XIOErrorHelper {
           e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
           e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3]
         )(implicit
-          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
-          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
-          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]]
-        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3], P, I] = {
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, xio.XHasM1[X]],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, xio.XHasM2[X, Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, xio.XHasM3[X, Input1, Input2]]
+        ): xio.XIO[xio.XHasM2[xio.XHasM3[X, Input1, Input2], Input3], P, I] = {
           val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError3[E1, E2, E3]](XIOPlusHelper.take1Plus3(natReversePlus1, natReversePlus2, natReversePlus3))
           val preXIO   = XIOHelper.simpleProvideLayer(i)(preLayer)
           XIOHelper.simpleCatchAll(preXIO)(ii =>
-            XIOErrorHelperInstance.errorCompat3(
+            XIOErrorHelperInstance2.errorCompat3(
               e1.andThen(p =>
                 XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus3(natReversePlus1, natReversePlus2, natReversePlus3)))
               ),
@@ -82,16 +82,16 @@ trait XIOErrorHelper {
           e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
           e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4]
         )(implicit
-          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
-          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
-          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
-          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]]
-        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4], P, I] = {
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, xio.XHasM1[X]],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, xio.XHasM2[X, Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, xio.XHasM3[X, Input1, Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, xio.XHasM4[X, Input1, Input2, Input3]]
+        ): xio.XIO[xio.XHasM2[xio.XHasM4[X, Input1, Input2, Input3], Input4], P, I] = {
           val preLayer =
             XLayerHelper.simpleFromFunctionMany[xio.XError4[E1, E2, E3, E4]](XIOPlusHelper.take1Plus4(natReversePlus1, natReversePlus2, natReversePlus3, natReversePlus4))
           val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
           XIOHelper.simpleCatchAll(preXIO)(ii =>
-            XIOErrorHelperInstance.errorCompat4(
+            XIOErrorHelperInstance2.errorCompat4(
               e1.andThen(p =>
                 XIOHelper.simpleProvideLayer(p)(
                   XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus4(natReversePlus1, natReversePlus2, natReversePlus3, natReversePlus4))
@@ -129,18 +129,18 @@ trait XIOErrorHelper {
           e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
           e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5]
         )(implicit
-          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
-          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
-          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
-          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
-          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]]
-        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5], P, I] = {
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, xio.XHasM1[X]],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, xio.XHasM2[X, Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, xio.XHasM3[X, Input1, Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, xio.XHasM4[X, Input1, Input2, Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, xio.XHasM5[X, Input1, Input2, Input3, Input4]]
+        ): xio.XIO[xio.XHasM2[xio.XHasM5[X, Input1, Input2, Input3, Input4], Input5], P, I] = {
           val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError5[E1, E2, E3, E4, E5]](
             XIOPlusHelper.take1Plus5(natReversePlus1, natReversePlus2, natReversePlus3, natReversePlus4, natReversePlus5)
           )
           val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
           XIOHelper.simpleCatchAll(preXIO)(ii =>
-            XIOErrorHelperInstance.errorCompat5(
+            XIOErrorHelperInstance2.errorCompat5(
               e1.andThen(p =>
                 XIOHelper.simpleProvideLayer(p)(
                   XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus5(natReversePlus1, natReversePlus2, natReversePlus3, natReversePlus4, natReversePlus5))
@@ -186,19 +186,19 @@ trait XIOErrorHelper {
           e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
           e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6]
         )(implicit
-          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
-          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
-          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
-          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
-          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
-          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]]
-        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6], P, I] = {
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, xio.XHasM1[X]],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, xio.XHasM2[X, Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, xio.XHasM3[X, Input1, Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, xio.XHasM4[X, Input1, Input2, Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, xio.XHasM5[X, Input1, Input2, Input3, Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, xio.XHasM6[X, Input1, Input2, Input3, Input4, Input5]]
+        ): xio.XIO[xio.XHasM2[xio.XHasM6[X, Input1, Input2, Input3, Input4, Input5], Input6], P, I] = {
           val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError6[E1, E2, E3, E4, E5, E6]](
             XIOPlusHelper.take1Plus6(natReversePlus1, natReversePlus2, natReversePlus3, natReversePlus4, natReversePlus5, natReversePlus6)
           )
           val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
           XIOHelper.simpleCatchAll(preXIO)(ii =>
-            XIOErrorHelperInstance.errorCompat6(
+            XIOErrorHelperInstance2.errorCompat6(
               e1.andThen(p =>
                 XIOHelper.simpleProvideLayer(p)(
                   XLayerHelper.simpleFromFunctionMany[P](
@@ -254,23 +254,20 @@ trait XIOErrorHelper {
           e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
           e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7]
         )(implicit
-          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
-          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
-          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
-          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
-          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
-          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
-          natReversePlus7: xio.nat.has.NatReversePlus[
-            Input7,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
-          ]
-        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7], P, I] = {
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, xio.XHasM1[X]],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, xio.XHasM2[X, Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, xio.XHasM3[X, Input1, Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, xio.XHasM4[X, Input1, Input2, Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, xio.XHasM5[X, Input1, Input2, Input3, Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, xio.XHasM6[X, Input1, Input2, Input3, Input4, Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[Input7, xio.XHasM7[X, Input1, Input2, Input3, Input4, Input5, Input6]]
+        ): xio.XIO[xio.XHasM2[xio.XHasM7[X, Input1, Input2, Input3, Input4, Input5, Input6], Input7], P, I] = {
           val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError7[E1, E2, E3, E4, E5, E6, E7]](
             XIOPlusHelper.take1Plus7(natReversePlus1, natReversePlus2, natReversePlus3, natReversePlus4, natReversePlus5, natReversePlus6, natReversePlus7)
           )
           val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
           XIOHelper.simpleCatchAll(preXIO)(ii =>
-            XIOErrorHelperInstance.errorCompat7(
+            XIOErrorHelperInstance2.errorCompat7(
               e1.andThen(p =>
                 XIOHelper.simpleProvideLayer(p)(
                   XLayerHelper.simpleFromFunctionMany[P](
@@ -336,32 +333,22 @@ trait XIOErrorHelper {
           e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
           e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8]
         )(implicit
-          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
-          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
-          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
-          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
-          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
-          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
-          natReversePlus7: xio.nat.has.NatReversePlus[
-            Input7,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
-          ],
-          natReversePlus8: xio.nat.has.NatReversePlus[
-            Input8,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
-          ]
-        ): xio.XIO[
-          X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8],
-          P,
-          I
-        ] = {
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, xio.XHasM1[X]],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, xio.XHasM2[X, Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, xio.XHasM3[X, Input1, Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, xio.XHasM4[X, Input1, Input2, Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, xio.XHasM5[X, Input1, Input2, Input3, Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, xio.XHasM6[X, Input1, Input2, Input3, Input4, Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[Input7, xio.XHasM7[X, Input1, Input2, Input3, Input4, Input5, Input6]],
+          natReversePlus8: xio.nat.has.NatReversePlus[Input8, xio.XHasM8[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7]]
+        ): xio.XIO[xio.XHasM2[xio.XHasM8[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7], Input8], P, I] = {
           val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError8[E1, E2, E3, E4, E5, E6, E7, E8]](
             XIOPlusHelper
               .take1Plus8(natReversePlus1, natReversePlus2, natReversePlus3, natReversePlus4, natReversePlus5, natReversePlus6, natReversePlus7, natReversePlus8)
           )
           val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
           XIOHelper.simpleCatchAll(preXIO)(ii =>
-            XIOErrorHelperInstance.errorCompat8(
+            XIOErrorHelperInstance2.errorCompat8(
               e1.andThen(p =>
                 XIOHelper.simpleProvideLayer(p)(
                   XLayerHelper.simpleFromFunctionMany[P](
@@ -440,27 +427,16 @@ trait XIOErrorHelper {
           e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
           e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9]
         )(implicit
-          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
-          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
-          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
-          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
-          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
-          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
-          natReversePlus7: xio.nat.has.NatReversePlus[
-            Input7,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
-          ],
-          natReversePlus8: xio.nat.has.NatReversePlus[
-            Input8,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
-          ],
-          natReversePlus9: xio.nat.has.NatReversePlus[
-            Input9,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
-          ]
-        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
-          Input8
-        ]#InnerPlus[Input9], P, I] = {
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, xio.XHasM1[X]],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, xio.XHasM2[X, Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, xio.XHasM3[X, Input1, Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, xio.XHasM4[X, Input1, Input2, Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, xio.XHasM5[X, Input1, Input2, Input3, Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, xio.XHasM6[X, Input1, Input2, Input3, Input4, Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[Input7, xio.XHasM7[X, Input1, Input2, Input3, Input4, Input5, Input6]],
+          natReversePlus8: xio.nat.has.NatReversePlus[Input8, xio.XHasM8[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7]],
+          natReversePlus9: xio.nat.has.NatReversePlus[Input9, xio.XHasM9[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8]]
+        ): xio.XIO[xio.XHasM2[xio.XHasM9[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8], Input9], P, I] = {
           val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError9[E1, E2, E3, E4, E5, E6, E7, E8, E9]](
             XIOPlusHelper.take1Plus9(
               natReversePlus1,
@@ -476,7 +452,7 @@ trait XIOErrorHelper {
           )
           val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
           XIOHelper.simpleCatchAll(preXIO)(ii =>
-            XIOErrorHelperInstance.errorCompat9(
+            XIOErrorHelperInstance2.errorCompat9(
               e1.andThen(p =>
                 XIOHelper.simpleProvideLayer(p)(
                   XLayerHelper.simpleFromFunctionMany[P](
@@ -575,30 +551,17 @@ trait XIOErrorHelper {
           e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
           e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10]
         )(implicit
-          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
-          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
-          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
-          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
-          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
-          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
-          natReversePlus7: xio.nat.has.NatReversePlus[
-            Input7,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
-          ],
-          natReversePlus8: xio.nat.has.NatReversePlus[
-            Input8,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
-          ],
-          natReversePlus9: xio.nat.has.NatReversePlus[
-            Input9,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
-          ],
-          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]]
-        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
-          Input8
-        ]#InnerPlus[Input9]#InnerPlus[Input10], P, I] = {
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, xio.XHasM1[X]],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, xio.XHasM2[X, Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, xio.XHasM3[X, Input1, Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, xio.XHasM4[X, Input1, Input2, Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, xio.XHasM5[X, Input1, Input2, Input3, Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, xio.XHasM6[X, Input1, Input2, Input3, Input4, Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[Input7, xio.XHasM7[X, Input1, Input2, Input3, Input4, Input5, Input6]],
+          natReversePlus8: xio.nat.has.NatReversePlus[Input8, xio.XHasM8[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7]],
+          natReversePlus9: xio.nat.has.NatReversePlus[Input9, xio.XHasM9[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8]],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, xio.XHasM10[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9]]
+        ): xio.XIO[xio.XHasM2[xio.XHasM10[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9], Input10], P, I] = {
           val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError10[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10]](
             XIOPlusHelper.take1Plus10(
               natReversePlus1,
@@ -615,7 +578,7 @@ trait XIOErrorHelper {
           )
           val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
           XIOHelper.simpleCatchAll(preXIO)(ii =>
-            XIOErrorHelperInstance.errorCompat10(
+            XIOErrorHelperInstance2.errorCompat10(
               e1.andThen(p =>
                 XIOHelper.simpleProvideLayer(p)(
                   XLayerHelper.simpleFromFunctionMany[P](
@@ -735,33 +698,18 @@ trait XIOErrorHelper {
           e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
           e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11]
         )(implicit
-          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
-          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
-          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
-          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
-          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
-          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
-          natReversePlus7: xio.nat.has.NatReversePlus[
-            Input7,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
-          ],
-          natReversePlus8: xio.nat.has.NatReversePlus[
-            Input8,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
-          ],
-          natReversePlus9: xio.nat.has.NatReversePlus[
-            Input9,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
-          ],
-          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
-          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]]
-        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
-          Input8
-        ]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11], P, I] = {
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, xio.XHasM1[X]],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, xio.XHasM2[X, Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, xio.XHasM3[X, Input1, Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, xio.XHasM4[X, Input1, Input2, Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, xio.XHasM5[X, Input1, Input2, Input3, Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, xio.XHasM6[X, Input1, Input2, Input3, Input4, Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[Input7, xio.XHasM7[X, Input1, Input2, Input3, Input4, Input5, Input6]],
+          natReversePlus8: xio.nat.has.NatReversePlus[Input8, xio.XHasM8[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7]],
+          natReversePlus9: xio.nat.has.NatReversePlus[Input9, xio.XHasM9[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8]],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, xio.XHasM10[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, xio.XHasM11[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10]]
+        ): xio.XIO[xio.XHasM2[xio.XHasM11[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10], Input11], P, I] = {
           val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError11[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11]](
             XIOPlusHelper.take1Plus11(
               natReversePlus1,
@@ -779,7 +727,7 @@ trait XIOErrorHelper {
           )
           val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
           XIOHelper.simpleCatchAll(preXIO)(ii =>
-            XIOErrorHelperInstance.errorCompat11(
+            XIOErrorHelperInstance2.errorCompat11(
               e1.andThen(p =>
                 XIOHelper.simpleProvideLayer(p)(
                   XLayerHelper.simpleFromFunctionMany[P](
@@ -921,36 +869,19 @@ trait XIOErrorHelper {
           e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
           e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12]
         )(implicit
-          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
-          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
-          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
-          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
-          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
-          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
-          natReversePlus7: xio.nat.has.NatReversePlus[
-            Input7,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
-          ],
-          natReversePlus8: xio.nat.has.NatReversePlus[
-            Input8,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
-          ],
-          natReversePlus9: xio.nat.has.NatReversePlus[
-            Input9,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
-          ],
-          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
-          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]],
-          natReversePlus12: xio.nat.has.NatReversePlus[Input12, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]]
-        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
-          Input8
-        ]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12], P, I] = {
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, xio.XHasM1[X]],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, xio.XHasM2[X, Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, xio.XHasM3[X, Input1, Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, xio.XHasM4[X, Input1, Input2, Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, xio.XHasM5[X, Input1, Input2, Input3, Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, xio.XHasM6[X, Input1, Input2, Input3, Input4, Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[Input7, xio.XHasM7[X, Input1, Input2, Input3, Input4, Input5, Input6]],
+          natReversePlus8: xio.nat.has.NatReversePlus[Input8, xio.XHasM8[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7]],
+          natReversePlus9: xio.nat.has.NatReversePlus[Input9, xio.XHasM9[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8]],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, xio.XHasM10[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, xio.XHasM11[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10]],
+          natReversePlus12: xio.nat.has.NatReversePlus[Input12, xio.XHasM12[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10, Input11]]
+        ): xio.XIO[xio.XHasM2[xio.XHasM12[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10, Input11], Input12], P, I] = {
           val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError12[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12]](
             XIOPlusHelper.take1Plus12(
               natReversePlus1,
@@ -969,7 +900,7 @@ trait XIOErrorHelper {
           )
           val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
           XIOHelper.simpleCatchAll(preXIO)(ii =>
-            XIOErrorHelperInstance.errorCompat12(
+            XIOErrorHelperInstance2.errorCompat12(
               e1.andThen(p =>
                 XIOHelper.simpleProvideLayer(p)(
                   XLayerHelper.simpleFromFunctionMany[P](
@@ -1142,39 +1073,34 @@ trait XIOErrorHelper {
           e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12],
           e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13]
         )(implicit
-          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
-          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
-          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
-          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
-          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
-          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
-          natReversePlus7: xio.nat.has.NatReversePlus[
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, xio.XHasM1[X]],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, xio.XHasM2[X, Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, xio.XHasM3[X, Input1, Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, xio.XHasM4[X, Input1, Input2, Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, xio.XHasM5[X, Input1, Input2, Input3, Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, xio.XHasM6[X, Input1, Input2, Input3, Input4, Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[Input7, xio.XHasM7[X, Input1, Input2, Input3, Input4, Input5, Input6]],
+          natReversePlus8: xio.nat.has.NatReversePlus[Input8, xio.XHasM8[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7]],
+          natReversePlus9: xio.nat.has.NatReversePlus[Input9, xio.XHasM9[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8]],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, xio.XHasM10[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, xio.XHasM11[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10]],
+          natReversePlus12: xio.nat.has.NatReversePlus[Input12, xio.XHasM12[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10, Input11]],
+          natReversePlus13: xio.nat.has.NatReversePlus[Input13, xio.XHasM13[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
             Input7,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
-          ],
-          natReversePlus8: xio.nat.has.NatReversePlus[
             Input8,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
-          ],
-          natReversePlus9: xio.nat.has.NatReversePlus[
             Input9,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
-          ],
-          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
-          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]],
-          natReversePlus12: xio.nat.has.NatReversePlus[Input12, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]],
-          natReversePlus13: xio.nat.has.NatReversePlus[Input13, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]]
-        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
-          Input8
-        ]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13], P, I] = {
+            Input10,
+            Input11,
+            Input12
+          ]]
+        ): xio.XIO[xio.XHasM2[xio.XHasM13[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10, Input11, Input12], Input13], P, I] = {
           val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError13[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13]](
             XIOPlusHelper.take1Plus13(
               natReversePlus1,
@@ -1194,7 +1120,7 @@ trait XIOErrorHelper {
           )
           val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
           XIOHelper.simpleCatchAll(preXIO)(ii =>
-            XIOErrorHelperInstance.errorCompat13(
+            XIOErrorHelperInstance2.errorCompat13(
               e1.andThen(p =>
                 XIOHelper.simpleProvideLayer(p)(
                   XLayerHelper.simpleFromFunctionMany[P](
@@ -1391,42 +1317,54 @@ trait XIOErrorHelper {
           e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13],
           e14: xio.ErrorContent[E14, P] => xio.XIO[Input14, P, Out14]
         )(implicit
-          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
-          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
-          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
-          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
-          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
-          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
-          natReversePlus7: xio.nat.has.NatReversePlus[
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, xio.XHasM1[X]],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, xio.XHasM2[X, Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, xio.XHasM3[X, Input1, Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, xio.XHasM4[X, Input1, Input2, Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, xio.XHasM5[X, Input1, Input2, Input3, Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, xio.XHasM6[X, Input1, Input2, Input3, Input4, Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[Input7, xio.XHasM7[X, Input1, Input2, Input3, Input4, Input5, Input6]],
+          natReversePlus8: xio.nat.has.NatReversePlus[Input8, xio.XHasM8[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7]],
+          natReversePlus9: xio.nat.has.NatReversePlus[Input9, xio.XHasM9[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8]],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, xio.XHasM10[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, xio.XHasM11[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10]],
+          natReversePlus12: xio.nat.has.NatReversePlus[Input12, xio.XHasM12[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10, Input11]],
+          natReversePlus13: xio.nat.has.NatReversePlus[Input13, xio.XHasM13[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
             Input7,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
-          ],
-          natReversePlus8: xio.nat.has.NatReversePlus[
             Input8,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
-          ],
-          natReversePlus9: xio.nat.has.NatReversePlus[
             Input9,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
-          ],
-          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
-          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]],
-          natReversePlus12: xio.nat.has.NatReversePlus[Input12, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]],
-          natReversePlus13: xio.nat.has.NatReversePlus[Input13, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]],
-          natReversePlus14: xio.nat.has.NatReversePlus[Input14, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]]
-        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
-          Input8
-        ]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14], P, I] = {
+            Input10,
+            Input11,
+            Input12
+          ]],
+          natReversePlus14: xio.nat.has.NatReversePlus[Input14, xio.XHasM14[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13
+          ]]
+        ): xio.XIO[
+          xio.XHasM2[xio.XHasM14[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10, Input11, Input12, Input13], Input14],
+          P,
+          I
+        ] = {
           val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError14[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14]](
             XIOPlusHelper.take1Plus14(
               natReversePlus1,
@@ -1447,7 +1385,7 @@ trait XIOErrorHelper {
           )
           val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
           XIOHelper.simpleCatchAll(preXIO)(ii =>
-            XIOErrorHelperInstance.errorCompat14(
+            XIOErrorHelperInstance2.errorCompat14(
               e1.andThen(p =>
                 XIOHelper.simpleProvideLayer(p)(
                   XLayerHelper.simpleFromFunctionMany[P](
@@ -1670,45 +1608,71 @@ trait XIOErrorHelper {
           e14: xio.ErrorContent[E14, P] => xio.XIO[Input14, P, Out14],
           e15: xio.ErrorContent[E15, P] => xio.XIO[Input15, P, Out15]
         )(implicit
-          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
-          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
-          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
-          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
-          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
-          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
-          natReversePlus7: xio.nat.has.NatReversePlus[
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, xio.XHasM1[X]],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, xio.XHasM2[X, Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, xio.XHasM3[X, Input1, Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, xio.XHasM4[X, Input1, Input2, Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, xio.XHasM5[X, Input1, Input2, Input3, Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, xio.XHasM6[X, Input1, Input2, Input3, Input4, Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[Input7, xio.XHasM7[X, Input1, Input2, Input3, Input4, Input5, Input6]],
+          natReversePlus8: xio.nat.has.NatReversePlus[Input8, xio.XHasM8[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7]],
+          natReversePlus9: xio.nat.has.NatReversePlus[Input9, xio.XHasM9[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8]],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, xio.XHasM10[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, xio.XHasM11[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10]],
+          natReversePlus12: xio.nat.has.NatReversePlus[Input12, xio.XHasM12[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10, Input11]],
+          natReversePlus13: xio.nat.has.NatReversePlus[Input13, xio.XHasM13[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
             Input7,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
-          ],
-          natReversePlus8: xio.nat.has.NatReversePlus[
             Input8,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
-          ],
-          natReversePlus9: xio.nat.has.NatReversePlus[
             Input9,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
-          ],
-          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
-          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]],
-          natReversePlus12: xio.nat.has.NatReversePlus[Input12, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]],
-          natReversePlus13: xio.nat.has.NatReversePlus[Input13, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]],
-          natReversePlus14: xio.nat.has.NatReversePlus[Input14, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]],
-          natReversePlus15: xio.nat.has.NatReversePlus[Input15, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]]
-        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
-          Input8
-        ]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15], P, I] = {
+            Input10,
+            Input11,
+            Input12
+          ]],
+          natReversePlus14: xio.nat.has.NatReversePlus[Input14, xio.XHasM14[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13
+          ]],
+          natReversePlus15: xio.nat.has.NatReversePlus[Input15, xio.XHasM15[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14
+          ]]
+        ): xio.XIO[
+          xio.XHasM2[xio.XHasM15[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10, Input11, Input12, Input13, Input14], Input15],
+          P,
+          I
+        ] = {
           val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError15[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15]](
             XIOPlusHelper.take1Plus15(
               natReversePlus1,
@@ -1730,7 +1694,7 @@ trait XIOErrorHelper {
           )
           val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
           XIOHelper.simpleCatchAll(preXIO)(ii =>
-            XIOErrorHelperInstance.errorCompat15(
+            XIOErrorHelperInstance2.errorCompat15(
               e1.andThen(p =>
                 XIOHelper.simpleProvideLayer(p)(
                   XLayerHelper.simpleFromFunctionMany[P](
@@ -1980,55 +1944,88 @@ trait XIOErrorHelper {
           e15: xio.ErrorContent[E15, P] => xio.XIO[Input15, P, Out15],
           e16: xio.ErrorContent[E16, P] => xio.XIO[Input16, P, Out16]
         )(implicit
-          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
-          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
-          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
-          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
-          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
-          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
-          natReversePlus7: xio.nat.has.NatReversePlus[
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, xio.XHasM1[X]],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, xio.XHasM2[X, Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, xio.XHasM3[X, Input1, Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, xio.XHasM4[X, Input1, Input2, Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, xio.XHasM5[X, Input1, Input2, Input3, Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, xio.XHasM6[X, Input1, Input2, Input3, Input4, Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[Input7, xio.XHasM7[X, Input1, Input2, Input3, Input4, Input5, Input6]],
+          natReversePlus8: xio.nat.has.NatReversePlus[Input8, xio.XHasM8[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7]],
+          natReversePlus9: xio.nat.has.NatReversePlus[Input9, xio.XHasM9[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8]],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, xio.XHasM10[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, xio.XHasM11[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10]],
+          natReversePlus12: xio.nat.has.NatReversePlus[Input12, xio.XHasM12[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10, Input11]],
+          natReversePlus13: xio.nat.has.NatReversePlus[Input13, xio.XHasM13[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
             Input7,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
-          ],
-          natReversePlus8: xio.nat.has.NatReversePlus[
             Input8,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
-          ],
-          natReversePlus9: xio.nat.has.NatReversePlus[
             Input9,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
-          ],
-          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
-          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]],
-          natReversePlus12: xio.nat.has.NatReversePlus[Input12, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]],
-          natReversePlus13: xio.nat.has.NatReversePlus[Input13, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]],
-          natReversePlus14: xio.nat.has.NatReversePlus[Input14, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]],
-          natReversePlus15: xio.nat.has.NatReversePlus[Input15, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]],
-          natReversePlus16: xio.nat.has.NatReversePlus[
-            Input16,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
-              Input9
-            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]
-          ]
-        ): xio.XIO[
-          X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
-            Input9
-          ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16],
-          P,
-          I
-        ] = {
+            Input10,
+            Input11,
+            Input12
+          ]],
+          natReversePlus14: xio.nat.has.NatReversePlus[Input14, xio.XHasM14[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13
+          ]],
+          natReversePlus15: xio.nat.has.NatReversePlus[Input15, xio.XHasM15[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14
+          ]],
+          natReversePlus16: xio.nat.has.NatReversePlus[Input16, xio.XHasM16[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15
+          ]]
+        ): xio.XIO[xio.XHasM2[
+          xio.XHasM16[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10, Input11, Input12, Input13, Input14, Input15],
+          Input16
+        ], P, I] = {
           val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError16[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16]](
             XIOPlusHelper.take1Plus16(
               natReversePlus1,
@@ -2051,7 +2048,7 @@ trait XIOErrorHelper {
           )
           val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
           XIOHelper.simpleCatchAll(preXIO)(ii =>
-            XIOErrorHelperInstance.errorCompat16(
+            XIOErrorHelperInstance2.errorCompat16(
               e1.andThen(p =>
                 XIOHelper.simpleProvideLayer(p)(
                   XLayerHelper.simpleFromFunctionMany[P](
@@ -2328,61 +2325,107 @@ trait XIOErrorHelper {
           e16: xio.ErrorContent[E16, P] => xio.XIO[Input16, P, Out16],
           e17: xio.ErrorContent[E17, P] => xio.XIO[Input17, P, Out17]
         )(implicit
-          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
-          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
-          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
-          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
-          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
-          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
-          natReversePlus7: xio.nat.has.NatReversePlus[
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, xio.XHasM1[X]],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, xio.XHasM2[X, Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, xio.XHasM3[X, Input1, Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, xio.XHasM4[X, Input1, Input2, Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, xio.XHasM5[X, Input1, Input2, Input3, Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, xio.XHasM6[X, Input1, Input2, Input3, Input4, Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[Input7, xio.XHasM7[X, Input1, Input2, Input3, Input4, Input5, Input6]],
+          natReversePlus8: xio.nat.has.NatReversePlus[Input8, xio.XHasM8[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7]],
+          natReversePlus9: xio.nat.has.NatReversePlus[Input9, xio.XHasM9[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8]],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, xio.XHasM10[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, xio.XHasM11[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10]],
+          natReversePlus12: xio.nat.has.NatReversePlus[Input12, xio.XHasM12[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10, Input11]],
+          natReversePlus13: xio.nat.has.NatReversePlus[Input13, xio.XHasM13[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
             Input7,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
-          ],
-          natReversePlus8: xio.nat.has.NatReversePlus[
             Input8,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
-          ],
-          natReversePlus9: xio.nat.has.NatReversePlus[
             Input9,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
-          ],
-          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
-          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]],
-          natReversePlus12: xio.nat.has.NatReversePlus[Input12, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]],
-          natReversePlus13: xio.nat.has.NatReversePlus[Input13, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]],
-          natReversePlus14: xio.nat.has.NatReversePlus[Input14, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]],
-          natReversePlus15: xio.nat.has.NatReversePlus[Input15, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]],
-          natReversePlus16: xio.nat.has.NatReversePlus[
-            Input16,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
-              Input9
-            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]
-          ],
-          natReversePlus17: xio.nat.has.NatReversePlus[
-            Input17,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
-              Input9
-            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]
-          ]
-        ): xio.XIO[
-          X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
-            Input9
-          ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17],
-          P,
-          I
-        ] = {
+            Input10,
+            Input11,
+            Input12
+          ]],
+          natReversePlus14: xio.nat.has.NatReversePlus[Input14, xio.XHasM14[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13
+          ]],
+          natReversePlus15: xio.nat.has.NatReversePlus[Input15, xio.XHasM15[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14
+          ]],
+          natReversePlus16: xio.nat.has.NatReversePlus[Input16, xio.XHasM16[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15
+          ]],
+          natReversePlus17: xio.nat.has.NatReversePlus[Input17, xio.XHasM17[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15,
+            Input16
+          ]]
+        ): xio.XIO[xio.XHasM2[
+          xio.XHasM17[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10, Input11, Input12, Input13, Input14, Input15, Input16],
+          Input17
+        ], P, I] = {
           val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError17[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17]](
             XIOPlusHelper.take1Plus17(
               natReversePlus1,
@@ -2406,7 +2449,7 @@ trait XIOErrorHelper {
           )
           val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
           XIOHelper.simpleCatchAll(preXIO)(ii =>
-            XIOErrorHelperInstance.errorCompat17(
+            XIOErrorHelperInstance2.errorCompat17(
               e1.andThen(p =>
                 XIOHelper.simpleProvideLayer(p)(
                   XLayerHelper.simpleFromFunctionMany[P](
@@ -2711,65 +2754,127 @@ trait XIOErrorHelper {
           e17: xio.ErrorContent[E17, P] => xio.XIO[Input17, P, Out17],
           e18: xio.ErrorContent[E18, P] => xio.XIO[Input18, P, Out18]
         )(implicit
-          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
-          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
-          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
-          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
-          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
-          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
-          natReversePlus7: xio.nat.has.NatReversePlus[
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, xio.XHasM1[X]],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, xio.XHasM2[X, Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, xio.XHasM3[X, Input1, Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, xio.XHasM4[X, Input1, Input2, Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, xio.XHasM5[X, Input1, Input2, Input3, Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, xio.XHasM6[X, Input1, Input2, Input3, Input4, Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[Input7, xio.XHasM7[X, Input1, Input2, Input3, Input4, Input5, Input6]],
+          natReversePlus8: xio.nat.has.NatReversePlus[Input8, xio.XHasM8[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7]],
+          natReversePlus9: xio.nat.has.NatReversePlus[Input9, xio.XHasM9[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8]],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, xio.XHasM10[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, xio.XHasM11[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10]],
+          natReversePlus12: xio.nat.has.NatReversePlus[Input12, xio.XHasM12[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10, Input11]],
+          natReversePlus13: xio.nat.has.NatReversePlus[Input13, xio.XHasM13[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
             Input7,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
-          ],
-          natReversePlus8: xio.nat.has.NatReversePlus[
             Input8,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
-          ],
-          natReversePlus9: xio.nat.has.NatReversePlus[
             Input9,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
-          ],
-          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
-          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]],
-          natReversePlus12: xio.nat.has.NatReversePlus[Input12, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]],
-          natReversePlus13: xio.nat.has.NatReversePlus[Input13, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]],
-          natReversePlus14: xio.nat.has.NatReversePlus[Input14, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]],
-          natReversePlus15: xio.nat.has.NatReversePlus[Input15, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]],
-          natReversePlus16: xio.nat.has.NatReversePlus[
+            Input10,
+            Input11,
+            Input12
+          ]],
+          natReversePlus14: xio.nat.has.NatReversePlus[Input14, xio.XHasM14[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13
+          ]],
+          natReversePlus15: xio.nat.has.NatReversePlus[Input15, xio.XHasM15[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14
+          ]],
+          natReversePlus16: xio.nat.has.NatReversePlus[Input16, xio.XHasM16[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15
+          ]],
+          natReversePlus17: xio.nat.has.NatReversePlus[Input17, xio.XHasM17[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15,
+            Input16
+          ]],
+          natReversePlus18: xio.nat.has.NatReversePlus[Input18, xio.XHasM18[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15,
             Input16,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
-              Input9
-            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]
-          ],
-          natReversePlus17: xio.nat.has.NatReversePlus[
-            Input17,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
-              Input9
-            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]
-          ],
-          natReversePlus18: xio.nat.has.NatReversePlus[
-            Input18,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
-              Input9
-            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]
-          ]
-        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
-          Input8
-        ]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[
-          Input16
-        ]#InnerPlus[Input17]#InnerPlus[Input18], P, I] = {
+            Input17
+          ]]
+        ): xio.XIO[xio.XHasM2[
+          xio.XHasM18[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10, Input11, Input12, Input13, Input14, Input15, Input16, Input17],
+          Input18
+        ], P, I] = {
           val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError18[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18]](
             XIOPlusHelper.take1Plus18(
               natReversePlus1,
@@ -2794,7 +2899,7 @@ trait XIOErrorHelper {
           )
           val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
           XIOHelper.simpleCatchAll(preXIO)(ii =>
-            XIOErrorHelperInstance.errorCompat18(
+            XIOErrorHelperInstance2.errorCompat18(
               e1.andThen(p =>
                 XIOHelper.simpleProvideLayer(p)(
                   XLayerHelper.simpleFromFunctionMany[P](
@@ -3128,70 +3233,165 @@ trait XIOErrorHelper {
           e18: xio.ErrorContent[E18, P] => xio.XIO[Input18, P, Out18],
           e19: xio.ErrorContent[E19, P] => xio.XIO[Input19, P, Out19]
         )(implicit
-          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
-          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
-          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
-          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
-          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
-          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
-          natReversePlus7: xio.nat.has.NatReversePlus[
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, xio.XHasM1[X]],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, xio.XHasM2[X, Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, xio.XHasM3[X, Input1, Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, xio.XHasM4[X, Input1, Input2, Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, xio.XHasM5[X, Input1, Input2, Input3, Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, xio.XHasM6[X, Input1, Input2, Input3, Input4, Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[Input7, xio.XHasM7[X, Input1, Input2, Input3, Input4, Input5, Input6]],
+          natReversePlus8: xio.nat.has.NatReversePlus[Input8, xio.XHasM8[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7]],
+          natReversePlus9: xio.nat.has.NatReversePlus[Input9, xio.XHasM9[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8]],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, xio.XHasM10[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, xio.XHasM11[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10]],
+          natReversePlus12: xio.nat.has.NatReversePlus[Input12, xio.XHasM12[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10, Input11]],
+          natReversePlus13: xio.nat.has.NatReversePlus[Input13, xio.XHasM13[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
             Input7,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
-          ],
-          natReversePlus8: xio.nat.has.NatReversePlus[
             Input8,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
-          ],
-          natReversePlus9: xio.nat.has.NatReversePlus[
             Input9,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
-          ],
-          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
-          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]],
-          natReversePlus12: xio.nat.has.NatReversePlus[Input12, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]],
-          natReversePlus13: xio.nat.has.NatReversePlus[Input13, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]],
-          natReversePlus14: xio.nat.has.NatReversePlus[Input14, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]],
-          natReversePlus15: xio.nat.has.NatReversePlus[Input15, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]],
-          natReversePlus16: xio.nat.has.NatReversePlus[
-            Input16,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
-              Input9
-            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]
-          ],
-          natReversePlus17: xio.nat.has.NatReversePlus[
-            Input17,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
-              Input9
-            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]
-          ],
-          natReversePlus18: xio.nat.has.NatReversePlus[
-            Input18,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
-              Input9
-            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]
-          ],
-          natReversePlus19: xio.nat.has.NatReversePlus[Input19, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[
+            Input10,
+            Input11,
+            Input12
+          ]],
+          natReversePlus14: xio.nat.has.NatReversePlus[Input14, xio.XHasM14[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13
+          ]],
+          natReversePlus15: xio.nat.has.NatReversePlus[Input15, xio.XHasM15[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
             Input14
-          ]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]#InnerPlus[Input18]]
-        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
-          Input8
-        ]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[
-          Input16
-        ]#InnerPlus[Input17]#InnerPlus[Input18]#InnerPlus[Input19], P, I] = {
+          ]],
+          natReversePlus16: xio.nat.has.NatReversePlus[Input16, xio.XHasM16[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15
+          ]],
+          natReversePlus17: xio.nat.has.NatReversePlus[Input17, xio.XHasM17[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15,
+            Input16
+          ]],
+          natReversePlus18: xio.nat.has.NatReversePlus[Input18, xio.XHasM18[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15,
+            Input16,
+            Input17
+          ]],
+          natReversePlus19: xio.nat.has.NatReversePlus[Input19, xio.XHasM19[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15,
+            Input16,
+            Input17,
+            Input18
+          ]]
+        ): xio.XIO[xio.XHasM2[xio.XHasM19[
+          X,
+          Input1,
+          Input2,
+          Input3,
+          Input4,
+          Input5,
+          Input6,
+          Input7,
+          Input8,
+          Input9,
+          Input10,
+          Input11,
+          Input12,
+          Input13,
+          Input14,
+          Input15,
+          Input16,
+          Input17,
+          Input18
+        ], Input19], P, I] = {
           val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError19[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19]](
             XIOPlusHelper.take1Plus19(
               natReversePlus1,
@@ -3217,7 +3417,7 @@ trait XIOErrorHelper {
           )
           val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
           XIOHelper.simpleCatchAll(preXIO)(ii =>
-            XIOErrorHelperInstance.errorCompat19(
+            XIOErrorHelperInstance2.errorCompat19(
               e1.andThen(p =>
                 XIOHelper.simpleProvideLayer(p)(
                   XLayerHelper.simpleFromFunctionMany[P](
@@ -3581,75 +3781,188 @@ trait XIOErrorHelper {
           e19: xio.ErrorContent[E19, P] => xio.XIO[Input19, P, Out19],
           e20: xio.ErrorContent[E20, P] => xio.XIO[Input20, P, Out20]
         )(implicit
-          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
-          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
-          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
-          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
-          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
-          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
-          natReversePlus7: xio.nat.has.NatReversePlus[
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, xio.XHasM1[X]],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, xio.XHasM2[X, Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, xio.XHasM3[X, Input1, Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, xio.XHasM4[X, Input1, Input2, Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, xio.XHasM5[X, Input1, Input2, Input3, Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, xio.XHasM6[X, Input1, Input2, Input3, Input4, Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[Input7, xio.XHasM7[X, Input1, Input2, Input3, Input4, Input5, Input6]],
+          natReversePlus8: xio.nat.has.NatReversePlus[Input8, xio.XHasM8[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7]],
+          natReversePlus9: xio.nat.has.NatReversePlus[Input9, xio.XHasM9[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8]],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, xio.XHasM10[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, xio.XHasM11[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10]],
+          natReversePlus12: xio.nat.has.NatReversePlus[Input12, xio.XHasM12[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10, Input11]],
+          natReversePlus13: xio.nat.has.NatReversePlus[Input13, xio.XHasM13[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
             Input7,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
-          ],
-          natReversePlus8: xio.nat.has.NatReversePlus[
             Input8,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
-          ],
-          natReversePlus9: xio.nat.has.NatReversePlus[
             Input9,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
-          ],
-          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
-          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]],
-          natReversePlus12: xio.nat.has.NatReversePlus[Input12, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]],
-          natReversePlus13: xio.nat.has.NatReversePlus[Input13, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]],
-          natReversePlus14: xio.nat.has.NatReversePlus[Input14, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]],
-          natReversePlus15: xio.nat.has.NatReversePlus[Input15, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]],
-          natReversePlus16: xio.nat.has.NatReversePlus[
+            Input10,
+            Input11,
+            Input12
+          ]],
+          natReversePlus14: xio.nat.has.NatReversePlus[Input14, xio.XHasM14[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13
+          ]],
+          natReversePlus15: xio.nat.has.NatReversePlus[Input15, xio.XHasM15[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14
+          ]],
+          natReversePlus16: xio.nat.has.NatReversePlus[Input16, xio.XHasM16[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15
+          ]],
+          natReversePlus17: xio.nat.has.NatReversePlus[Input17, xio.XHasM17[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15,
+            Input16
+          ]],
+          natReversePlus18: xio.nat.has.NatReversePlus[Input18, xio.XHasM18[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15,
             Input16,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
-              Input9
-            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]
-          ],
-          natReversePlus17: xio.nat.has.NatReversePlus[
+            Input17
+          ]],
+          natReversePlus19: xio.nat.has.NatReversePlus[Input19, xio.XHasM19[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15,
+            Input16,
             Input17,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
-              Input9
-            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]
-          ],
-          natReversePlus18: xio.nat.has.NatReversePlus[
+            Input18
+          ]],
+          natReversePlus20: xio.nat.has.NatReversePlus[Input20, xio.XHasM20[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15,
+            Input16,
+            Input17,
             Input18,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
-              Input9
-            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]
-          ],
-          natReversePlus19: xio.nat.has.NatReversePlus[Input19, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[
-            Input14
-          ]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]#InnerPlus[Input18]],
-          natReversePlus20: xio.nat.has.NatReversePlus[Input20, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[
-            Input14
-          ]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]#InnerPlus[Input18]#InnerPlus[Input19]]
-        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
-          Input8
-        ]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[
-          Input16
-        ]#InnerPlus[Input17]#InnerPlus[Input18]#InnerPlus[Input19]#InnerPlus[Input20], P, I] = {
+            Input19
+          ]]
+        ): xio.XIO[xio.XHasM2[xio.XHasM20[
+          X,
+          Input1,
+          Input2,
+          Input3,
+          Input4,
+          Input5,
+          Input6,
+          Input7,
+          Input8,
+          Input9,
+          Input10,
+          Input11,
+          Input12,
+          Input13,
+          Input14,
+          Input15,
+          Input16,
+          Input17,
+          Input18,
+          Input19
+        ], Input20], P, I] = {
           val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError20[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, E20]](
             XIOPlusHelper.take1Plus20(
               natReversePlus1,
@@ -3676,7 +3989,7 @@ trait XIOErrorHelper {
           )
           val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
           XIOHelper.simpleCatchAll(preXIO)(ii =>
-            XIOErrorHelperInstance.errorCompat20(
+            XIOErrorHelperInstance2.errorCompat20(
               e1.andThen(p =>
                 XIOHelper.simpleProvideLayer(p)(
                   XLayerHelper.simpleFromFunctionMany[P](
@@ -4093,80 +4406,212 @@ trait XIOErrorHelper {
           e20: xio.ErrorContent[E20, P] => xio.XIO[Input20, P, Out20],
           e21: xio.ErrorContent[E21, P] => xio.XIO[Input21, P, Out21]
         )(implicit
-          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
-          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
-          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
-          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
-          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
-          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
-          natReversePlus7: xio.nat.has.NatReversePlus[
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, xio.XHasM1[X]],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, xio.XHasM2[X, Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, xio.XHasM3[X, Input1, Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, xio.XHasM4[X, Input1, Input2, Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, xio.XHasM5[X, Input1, Input2, Input3, Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, xio.XHasM6[X, Input1, Input2, Input3, Input4, Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[Input7, xio.XHasM7[X, Input1, Input2, Input3, Input4, Input5, Input6]],
+          natReversePlus8: xio.nat.has.NatReversePlus[Input8, xio.XHasM8[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7]],
+          natReversePlus9: xio.nat.has.NatReversePlus[Input9, xio.XHasM9[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8]],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, xio.XHasM10[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, xio.XHasM11[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10]],
+          natReversePlus12: xio.nat.has.NatReversePlus[Input12, xio.XHasM12[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10, Input11]],
+          natReversePlus13: xio.nat.has.NatReversePlus[Input13, xio.XHasM13[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
             Input7,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
-          ],
-          natReversePlus8: xio.nat.has.NatReversePlus[
             Input8,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
-          ],
-          natReversePlus9: xio.nat.has.NatReversePlus[
             Input9,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
-          ],
-          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
-          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]],
-          natReversePlus12: xio.nat.has.NatReversePlus[Input12, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]],
-          natReversePlus13: xio.nat.has.NatReversePlus[Input13, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]],
-          natReversePlus14: xio.nat.has.NatReversePlus[Input14, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]],
-          natReversePlus15: xio.nat.has.NatReversePlus[Input15, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]],
-          natReversePlus16: xio.nat.has.NatReversePlus[
+            Input10,
+            Input11,
+            Input12
+          ]],
+          natReversePlus14: xio.nat.has.NatReversePlus[Input14, xio.XHasM14[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13
+          ]],
+          natReversePlus15: xio.nat.has.NatReversePlus[Input15, xio.XHasM15[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14
+          ]],
+          natReversePlus16: xio.nat.has.NatReversePlus[Input16, xio.XHasM16[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15
+          ]],
+          natReversePlus17: xio.nat.has.NatReversePlus[Input17, xio.XHasM17[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15,
+            Input16
+          ]],
+          natReversePlus18: xio.nat.has.NatReversePlus[Input18, xio.XHasM18[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15,
             Input16,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
-              Input9
-            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]
-          ],
-          natReversePlus17: xio.nat.has.NatReversePlus[
+            Input17
+          ]],
+          natReversePlus19: xio.nat.has.NatReversePlus[Input19, xio.XHasM19[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15,
+            Input16,
             Input17,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
-              Input9
-            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]
-          ],
-          natReversePlus18: xio.nat.has.NatReversePlus[
+            Input18
+          ]],
+          natReversePlus20: xio.nat.has.NatReversePlus[Input20, xio.XHasM20[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15,
+            Input16,
+            Input17,
             Input18,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
-              Input9
-            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]
-          ],
-          natReversePlus19: xio.nat.has.NatReversePlus[Input19, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[
-            Input14
-          ]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]#InnerPlus[Input18]],
-          natReversePlus20: xio.nat.has.NatReversePlus[Input20, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[
-            Input14
-          ]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]#InnerPlus[Input18]#InnerPlus[Input19]],
-          natReversePlus21: xio.nat.has.NatReversePlus[Input21, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[
-            Input14
-          ]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]#InnerPlus[Input18]#InnerPlus[Input19]#InnerPlus[Input20]]
-        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
-          Input8
-        ]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[
-          Input16
-        ]#InnerPlus[Input17]#InnerPlus[Input18]#InnerPlus[Input19]#InnerPlus[Input20]#InnerPlus[Input21], P, I] = {
+            Input19
+          ]],
+          natReversePlus21: xio.nat.has.NatReversePlus[Input21, xio.XHasM21[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15,
+            Input16,
+            Input17,
+            Input18,
+            Input19,
+            Input20
+          ]]
+        ): xio.XIO[xio.XHasM2[xio.XHasM21[
+          X,
+          Input1,
+          Input2,
+          Input3,
+          Input4,
+          Input5,
+          Input6,
+          Input7,
+          Input8,
+          Input9,
+          Input10,
+          Input11,
+          Input12,
+          Input13,
+          Input14,
+          Input15,
+          Input16,
+          Input17,
+          Input18,
+          Input19,
+          Input20
+        ], Input21], P, I] = {
           val preLayer =
             XLayerHelper.simpleFromFunctionMany[xio.XError21[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, E20, E21]](
               XIOPlusHelper.take1Plus21(
@@ -4195,7 +4640,7 @@ trait XIOErrorHelper {
             )
           val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
           XIOHelper.simpleCatchAll(preXIO)(ii =>
-            XIOErrorHelperInstance.errorCompat21(
+            XIOErrorHelperInstance2.errorCompat21(
               e1.andThen(p =>
                 XIOHelper.simpleProvideLayer(p)(
                   XLayerHelper.simpleFromFunctionMany[P](
@@ -4645,85 +5090,237 @@ trait XIOErrorHelper {
           e21: xio.ErrorContent[E21, P] => xio.XIO[Input21, P, Out21],
           e22: xio.ErrorContent[E22, P] => xio.XIO[Input22, P, Out22]
         )(implicit
-          natReversePlus1: xio.nat.has.NatReversePlus[Input1, X],
-          natReversePlus2: xio.nat.has.NatReversePlus[Input2, X#InnerPlus[Input1]],
-          natReversePlus3: xio.nat.has.NatReversePlus[Input3, X#InnerPlus[Input1]#InnerPlus[Input2]],
-          natReversePlus4: xio.nat.has.NatReversePlus[Input4, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]],
-          natReversePlus5: xio.nat.has.NatReversePlus[Input5, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]],
-          natReversePlus6: xio.nat.has.NatReversePlus[Input6, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]],
-          natReversePlus7: xio.nat.has.NatReversePlus[
+          natReversePlus1: xio.nat.has.NatReversePlus[Input1, xio.XHasM1[X]],
+          natReversePlus2: xio.nat.has.NatReversePlus[Input2, xio.XHasM2[X, Input1]],
+          natReversePlus3: xio.nat.has.NatReversePlus[Input3, xio.XHasM3[X, Input1, Input2]],
+          natReversePlus4: xio.nat.has.NatReversePlus[Input4, xio.XHasM4[X, Input1, Input2, Input3]],
+          natReversePlus5: xio.nat.has.NatReversePlus[Input5, xio.XHasM5[X, Input1, Input2, Input3, Input4]],
+          natReversePlus6: xio.nat.has.NatReversePlus[Input6, xio.XHasM6[X, Input1, Input2, Input3, Input4, Input5]],
+          natReversePlus7: xio.nat.has.NatReversePlus[Input7, xio.XHasM7[X, Input1, Input2, Input3, Input4, Input5, Input6]],
+          natReversePlus8: xio.nat.has.NatReversePlus[Input8, xio.XHasM8[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7]],
+          natReversePlus9: xio.nat.has.NatReversePlus[Input9, xio.XHasM9[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8]],
+          natReversePlus10: xio.nat.has.NatReversePlus[Input10, xio.XHasM10[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9]],
+          natReversePlus11: xio.nat.has.NatReversePlus[Input11, xio.XHasM11[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10]],
+          natReversePlus12: xio.nat.has.NatReversePlus[Input12, xio.XHasM12[X, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10, Input11]],
+          natReversePlus13: xio.nat.has.NatReversePlus[Input13, xio.XHasM13[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
             Input7,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]
-          ],
-          natReversePlus8: xio.nat.has.NatReversePlus[
             Input8,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]
-          ],
-          natReversePlus9: xio.nat.has.NatReversePlus[
             Input9,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]
-          ],
-          natReversePlus10: xio.nat.has.NatReversePlus[Input10, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]],
-          natReversePlus11: xio.nat.has.NatReversePlus[Input11, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]],
-          natReversePlus12: xio.nat.has.NatReversePlus[Input12, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]],
-          natReversePlus13: xio.nat.has.NatReversePlus[Input13, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]],
-          natReversePlus14: xio.nat.has.NatReversePlus[Input14, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]],
-          natReversePlus15: xio.nat.has.NatReversePlus[Input15, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]],
-          natReversePlus16: xio.nat.has.NatReversePlus[
+            Input10,
+            Input11,
+            Input12
+          ]],
+          natReversePlus14: xio.nat.has.NatReversePlus[Input14, xio.XHasM14[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13
+          ]],
+          natReversePlus15: xio.nat.has.NatReversePlus[Input15, xio.XHasM15[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14
+          ]],
+          natReversePlus16: xio.nat.has.NatReversePlus[Input16, xio.XHasM16[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15
+          ]],
+          natReversePlus17: xio.nat.has.NatReversePlus[Input17, xio.XHasM17[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15,
+            Input16
+          ]],
+          natReversePlus18: xio.nat.has.NatReversePlus[Input18, xio.XHasM18[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15,
             Input16,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
-              Input9
-            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]
-          ],
-          natReversePlus17: xio.nat.has.NatReversePlus[
+            Input17
+          ]],
+          natReversePlus19: xio.nat.has.NatReversePlus[Input19, xio.XHasM19[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15,
+            Input16,
             Input17,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
-              Input9
-            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]
-          ],
-          natReversePlus18: xio.nat.has.NatReversePlus[
+            Input18
+          ]],
+          natReversePlus20: xio.nat.has.NatReversePlus[Input20, xio.XHasM20[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15,
+            Input16,
+            Input17,
             Input18,
-            X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[
-              Input9
-            ]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]
-          ],
-          natReversePlus19: xio.nat.has.NatReversePlus[Input19, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[
-            Input14
-          ]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]#InnerPlus[Input18]],
-          natReversePlus20: xio.nat.has.NatReversePlus[Input20, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[
-            Input14
-          ]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]#InnerPlus[Input18]#InnerPlus[Input19]],
-          natReversePlus21: xio.nat.has.NatReversePlus[Input21, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[
-            Input14
-          ]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]#InnerPlus[Input18]#InnerPlus[Input19]#InnerPlus[Input20]],
-          natReversePlus22: xio.nat.has.NatReversePlus[Input22, X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[
-            Input6
-          ]#InnerPlus[Input7]#InnerPlus[Input8]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[
-            Input14
-          ]#InnerPlus[Input15]#InnerPlus[Input16]#InnerPlus[Input17]#InnerPlus[Input18]#InnerPlus[Input19]#InnerPlus[Input20]#InnerPlus[Input21]]
-        ): xio.XIO[X#InnerPlus[Input1]#InnerPlus[Input2]#InnerPlus[Input3]#InnerPlus[Input4]#InnerPlus[Input5]#InnerPlus[Input6]#InnerPlus[Input7]#InnerPlus[
-          Input8
-        ]#InnerPlus[Input9]#InnerPlus[Input10]#InnerPlus[Input11]#InnerPlus[Input12]#InnerPlus[Input13]#InnerPlus[Input14]#InnerPlus[Input15]#InnerPlus[
-          Input16
-        ]#InnerPlus[Input17]#InnerPlus[Input18]#InnerPlus[Input19]#InnerPlus[Input20]#InnerPlus[Input21]#InnerPlus[Input22], P, I] = {
+            Input19
+          ]],
+          natReversePlus21: xio.nat.has.NatReversePlus[Input21, xio.XHasM21[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15,
+            Input16,
+            Input17,
+            Input18,
+            Input19,
+            Input20
+          ]],
+          natReversePlus22: xio.nat.has.NatReversePlus[Input22, xio.XHasM22[
+            X,
+            Input1,
+            Input2,
+            Input3,
+            Input4,
+            Input5,
+            Input6,
+            Input7,
+            Input8,
+            Input9,
+            Input10,
+            Input11,
+            Input12,
+            Input13,
+            Input14,
+            Input15,
+            Input16,
+            Input17,
+            Input18,
+            Input19,
+            Input20,
+            Input21
+          ]]
+        ): xio.XIO[xio.XHasM2[xio.XHasM22[
+          X,
+          Input1,
+          Input2,
+          Input3,
+          Input4,
+          Input5,
+          Input6,
+          Input7,
+          Input8,
+          Input9,
+          Input10,
+          Input11,
+          Input12,
+          Input13,
+          Input14,
+          Input15,
+          Input16,
+          Input17,
+          Input18,
+          Input19,
+          Input20,
+          Input21
+        ], Input22], P, I] = {
           val preLayer =
             XLayerHelper.simpleFromFunctionMany[xio.XError22[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, E20, E21, E22]](
               XIOPlusHelper.take1Plus22(
@@ -4753,7 +5350,7 @@ trait XIOErrorHelper {
             )
           val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
           XIOHelper.simpleCatchAll(preXIO)(ii =>
-            XIOErrorHelperInstance.errorCompat22(
+            XIOErrorHelperInstance2.errorCompat22(
               e1.andThen(p =>
                 XIOHelper.simpleProvideLayer(p)(
                   XLayerHelper.simpleFromFunctionMany[P](
