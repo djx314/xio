@@ -10,9 +10,11 @@ trait CustomSettings {
     crossScalaVersions := List("2.11.12", "2.12.12", scala_213_Version)
   )
 
+  protected val higherKindsParam = "-language:higherKinds"
+
   protected val scalaOption1 = scalacOptions ++= {
     if (scalaVersion.value startsWith "2.13") List.empty
-    else List("-Ypartial-unification")
+    else List("-Ypartial-unification", higherKindsParam)
   }
 
   // addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full)
