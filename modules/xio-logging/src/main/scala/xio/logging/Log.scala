@@ -17,7 +17,8 @@ object xlog {
         .apply(level)(line)
         .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
           Has(l._0.get)
-        }))
+        })
+    )
 
   val context: XIO[XLogging, XError0, LogContext] = XIO.fromZIO(Logging.context.provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
     Has(l._0.get)
@@ -29,7 +30,8 @@ object xlog {
         .debug(line)
         .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
           Has(l._0.get)
-        }))
+        })
+    )
 
   def error(line: => String): XIO[XLogging, XError0, Unit] =
     XIO.fromZIO(
@@ -37,7 +39,8 @@ object xlog {
         .error(line)
         .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
           Has(l._0.get)
-        }))
+        })
+    )
 
   def error(line: => String, cause: Cause[Any]): XIO[XLogging, XError0, Unit] =
     XIO.fromZIO(
@@ -45,7 +48,8 @@ object xlog {
         .error(line, cause = cause)
         .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
           Has(l._0.get)
-        }))
+        })
+    )
 
   def info(line: => String): XIO[XLogging, XError0, Unit] =
     XIO.fromZIO(
@@ -53,7 +57,8 @@ object xlog {
         .info(line)
         .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
           Has(l._0.get)
-        }))
+        })
+    )
 
   def locally[R <: Nat, E <: NatEither, A1](fn: LogContext => LogContext)(zio: XIO[R, E, A1])(implicit n: NatFinder[R, Logger[String]]): XIO[R, E, A1] =
     XIOHelper.simpleFlatMap(XIOHelper.simpleFromFunction[E](n.to))(nn => XIO.fromZIO(nn.locally(fn)(zio.zio)))
@@ -67,7 +72,8 @@ object xlog {
         .throwable(line, t)
         .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
           Has(l._0.get)
-        }))
+        })
+    )
 
   def trace(line: => String): XIO[XLogging, XError0, Unit] =
     XIO.fromZIO(
@@ -75,7 +81,8 @@ object xlog {
         .trace(line)
         .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
           Has(l._0.get)
-        }))
+        })
+    )
 
   def warn(line: => String): XIO[XLogging, XError0, Unit] =
     XIO.fromZIO(
@@ -83,6 +90,7 @@ object xlog {
         .warn(line)
         .provideLayer(ZLayer.fromFunctionMany { l: XLogging =>
           Has(l._0.get)
-        }))
+        })
+    )
 
 }
