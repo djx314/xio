@@ -7,7 +7,7 @@ trait CustomSettings {
   val scalaSettings = Seq(
     scalacOptions ++= Seq("-feature", "-deprecation"),
     scalaVersion := scala_213_Version,
-    crossScalaVersions := List("2.11.12", "2.12.12", scala_213_Version),
+    crossScalaVersions := List("2.11.12", "2.12.12", scala_213_Version)
   )
 
   protected val scalaOption1 = scalacOptions ++= {
@@ -15,13 +15,13 @@ trait CustomSettings {
     else List("-Ypartial-unification")
   }
 
-  val scaladocSetting = publishArtifact in packageDoc := false
-
   // addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full)
 
-  val fmt = org.scalafmt.sbt.ScalafmtPlugin.autoImport.scalafmtOnCompile := true
+  val scaladocSetting = publishArtifact in packageDoc := false
+  val fmt             = org.scalafmt.sbt.ScalafmtPlugin.autoImport.scalafmtOnCompile := true
+  val orgSetting      = organization := "org.scalax.xio"
 
-  val notFmtCompilerSettings = List(scalaOption1, scaladocSetting)
+  val notFmtCompilerSettings = List(scalaOption1, scaladocSetting, orgSetting)
   val compilerSettings       = List(notFmtCompilerSettings, List(fmt)).flatten
 
 }
