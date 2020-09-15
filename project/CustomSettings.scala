@@ -21,9 +21,11 @@ trait CustomSettings {
 
   val scaladocSetting = publishArtifact in packageDoc := false
   val fmt             = org.scalafmt.sbt.ScalafmtPlugin.autoImport.scalafmtOnCompile := true
-  val orgSetting      = organization := "org.scalax.xio"
+  val _orgSetting     = organization := "org.scalax.xio"
+  val _versionSetting = version := "0.0.1-SNAPSHOT"
 
-  val notFmtCompilerSettings = List(scalaOption1, scaladocSetting, orgSetting)
+  val vSetting               = List(_orgSetting, _versionSetting)
+  val notFmtCompilerSettings = List(scalaOption1, scaladocSetting)
   val compilerSettings       = List(notFmtCompilerSettings, List(fmt)).flatten
 
 }

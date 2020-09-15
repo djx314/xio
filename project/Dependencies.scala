@@ -21,6 +21,8 @@ trait Dependencies {
     //"io.circe" %% "circe-generic-extras"
   ).map(_ % circeVersion)
 
+  val j2v8 = "com.eclipsesource.j2v8" % "j2v8" % "6.2.0"
+
 }
 
 object Dependencies extends Dependencies
