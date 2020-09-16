@@ -21,4 +21,4 @@ val xio_codegen   = project in modulesDir / "xio-codegen"
 val xio_sttp   = (project in modulesDir / "xio-sttp").dependsOn(xio_logging)
 
 addCommandAlias("codegen", "xio_codegen/runMain xio.codegen.XIOCodegen")
-addCommandAlias("p", ";+xio/publishLocal;+xio_logging/publishLocal")
+addCommandAlias("p", ";+xio/publishLocal;+xio_logging/publishLocal;+xio_sttp/publishLocal")
