@@ -18,6 +18,7 @@ val a05_xio           = project in a05ParentDir / "xio"
 val a05_xio_logging   = (project in a05ParentDir / "xio-logging").dependsOn(a05_xio)
 val a05_xio_async_sql = (project in a05ParentDir / "xio-async-sql").dependsOn(a05_xio_logging)
 val a05_xio_codegen   = project in a05ParentDir / "xio-codegen"
+val a05_xio_sttp   = (project in a05ParentDir / "xio-sttp").dependsOn(a05_xio_logging)
 
 val modulesDir    = baseDir / "modules"
 val xio           = project in modulesDir / "xio"

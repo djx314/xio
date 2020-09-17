@@ -77,7 +77,8 @@ object XIO extends XIOErrorHelper {
   def effect[A](effect: => A): XIO[XHas0, XError1[Throwable], A] = XIO.fromZIO(ZIO.effect(effect).mapError(e => XError1(e)))
   def effectTotal[A](effect: => A): XIO[XHas0, XError0, A]       = XIO.fromZIO(ZIO.effectTotal(effect))
 
-  def fromFunction[N <: Nat, I](i: N => I): XIO[N, XError0, I] = XIOHelper.simpleFromFunction(i)
+  def fromFunction[N <: Nat, I](i: N => I): XIO[N, XError0, I]     = XIOHelper.simpleFromFunction(i)
+  def fromEither[N, I](i: Either[N, I]): XIO[XHas0, XError1[N], I] = XIOHelper.simpleFromEither(i)
 
   class XIOImpl[I <: Nat, L <: NatEither, R](override val zio: ZIO[I, L, R]) extends XIO[I, L, R]
 

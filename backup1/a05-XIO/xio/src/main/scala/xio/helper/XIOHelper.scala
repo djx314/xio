@@ -46,4 +46,9 @@ object XIOHelper {
 
   def simpleNoErrorZIO[I <: Nat, P](i: XIO[I, NatEitherZero, P]): ZIO[I, Nothing, P] = i.zio.asInstanceOf[ZIO[I, Nothing, P]]
 
+  class FunctinEitherApply[Input <: Nat] {
+    def apply[N, A](effect: Either[N, A]): XIO[Input, XError1[N], A] = XIO.fromZIO(ZIO.fromEither(effect).mapError(XError1.apply))
+  }
+  def simpleFromEither[Input <: Nat]: FunctinEitherApply[Input] = new FunctinEitherApply[Input]
+
 }
