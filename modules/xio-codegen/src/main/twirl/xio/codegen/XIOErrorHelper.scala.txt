@@ -4,24 +4,20 @@ package xio.helper
 
 trait XIOErrorHelper {
 
-    implicit class XIOErrorMatchAll1ImplicitClass1[X <: xio.nat.has.Nat, E1, I](i: xio.XIO[X, xio.XError1[E1], I]) {
+    implicit class XIOErrorMatchAll1ImplicitClass1[X, E1, I](i: xio.XIO[X, xio.XError1[E1], I]) {
         def allErrorTo[P <: xio.nat.error.NatEither]: XIOErrorHelperInstance.MatchAll1Apply1[P, E1, X, I] =
             new XIOErrorHelperInstance.MatchAll1Apply1[P, E1, X, I] {
-                override def input1[Out1 <: I, Input1 <: xio.nat.has.Nat](e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1])(implicit natReversePlus1: xio.nat.has.NatReversePlus[Input1, X]): xio.XIO[xio.XHasM2[X, Input1], P, I] = {
-                    val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError1[E1]](XIOPlusHelper.take1Plus1(natReversePlus1))
-                    val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
-                    XIOHelper.simpleCatchAll(preXIO)(ii => XIOErrorHelperInstance2.errorCompat1(e1.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus1(natReversePlus1)))), ii))
+                override def input1[Out1 <: I, Input1](e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1]): xio.XIO[X with Input1, P, I] = {
+                    i.catchAll(ii => XIOErrorHelperInstance2.errorCompat1(e1, ii))
                 }
             }
     }
 
     @for(i <- 2 to maxItem) {
-        implicit class XIOErrorMatchAll1ImplicitClass@{i}[X <: xio.nat.has.Nat @for(ii <- 1 to i) { , E@{ii} }, I](i: xio.XIO[X, xio.XError@{i}[ @for(ii <- 1 to i) { @if(ii > 1) { , } E@{ii} } ], I]) {
+        implicit class XIOErrorMatchAll1ImplicitClass@{i}[X @for(ii <- 1 to i) { , E@{ii} }, I](i: xio.XIO[X, xio.XError@{i}[ @for(ii <- 1 to i) { @if(ii > 1) { , } E@{ii} } ], I]) {
             def allErrorTo[P <: xio.nat.error.NatEither]: XIOErrorHelperInstance.MatchAll1Apply@{i}[P @for(ii <- 1 to i) { , E@{ii} }, X, I] = new XIOErrorHelperInstance.MatchAll1Apply@{i}[P @for(ii <- 1 to i) { , E@{ii} }, X, I] {
-                override def input@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } Out@{ii} <: I, Input@{ii} <: xio.nat.has.Nat }](@for(ii <- 1 to i) { @if(ii > 1) { , } e@{ii}: xio.ErrorContent[E@{ii}, P] => xio.XIO[Input@{ii}, P, Out@{ii}] })(implicit @for(ii <- 1 to i) { @if(ii > 1) { , } natReversePlus@{ii}: xio.nat.has.NatReversePlus[Input@{ii}, xio.XHasM@{ii}[X @for(iii <- 1 to ii - 1) { , Input@{iii} }]] }): xio.XIO[xio.XHasM2[xio.XHasM@{i}[X @for(ii <- 1 to i - 1) { , Input@{ii} }], Input@{i}], P, I] = {
-                    val preLayer = XLayerHelper.simpleFromFunctionMany[xio.XError@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } E@{ii} } ]](XIOPlusHelper.take1Plus@{i}(@for(ii <- 1 to i) { @if(ii > 1) { , } natReversePlus@{ii} }))
-                    val preXIO = XIOHelper.simpleProvideLayer(i)(preLayer)
-                    XIOHelper.simpleCatchAll(preXIO)(ii => XIOErrorHelperInstance2.errorCompat@{i}(@for(ii <- 1 to i) { e@{ii}.andThen(p => XIOHelper.simpleProvideLayer(p)(XLayerHelper.simpleFromFunctionMany[P](XIOPlusHelper.takePlus@{i - ii + 1}(@for(iii <- ii to i) { natReversePlus@{iii} @if(iii < i) { , } })))) , } ii))
+                override def input@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } Out@{ii} <: I, Input@{ii} }](@for(ii <- 1 to i) { @if(ii > 1) { , } e@{ii}: xio.ErrorContent[E@{ii}, P] => xio.XIO[Input@{ii}, P, Out@{ii}] }): xio.XIO[X @for(ii <- 1 to i) { with Input@{ii} }, P, I] = {
+                    i.catchAll(ii => XIOErrorHelperInstance2.errorCompat@{i}(@for(ii <- 1 to i) { e@{ii} , } ii))
                 }
             }
         }

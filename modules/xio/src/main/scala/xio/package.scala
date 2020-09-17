@@ -1,1 +1,1 @@
-package object xio extends XErrorAlias with XHasAlias
+package object xio extends XErrorAlias

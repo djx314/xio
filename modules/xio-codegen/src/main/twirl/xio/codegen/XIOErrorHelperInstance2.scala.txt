@@ -4,16 +4,16 @@ package xio.helper
 
 object XIOErrorHelperInstance2 {
 
-    def errorCompat1[P <: xio.nat.error.NatEither, E1, Input1 <: xio.nat.has.Nat, Input <: xio.nat.has.Nat, Out](
-        e1: xio.ErrorContent[E1, P] => xio.XIO[xio.XHasM2[Input, Input1], P, Out], u: xio.XError1[E1]
-    ): xio.XIO[Input#InnerPlus[Input1], P, Out] = e1(new xio.ErrorContentImpl(u.sureRight))
+    def errorCompat1[P <: xio.nat.error.NatEither, E1, Input, Out](
+        e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out], u: xio.XError1[E1]
+    ): xio.XIO[Input, P, Out] = e1(new xio.ErrorContentImpl(u.sureRight))
     @for(i <- 2 to maxItem) {
-        def errorCompat@{i}[P <: xio.nat.error.NatEither @for(ii <- 1 to i) { , E@{ii} , Input@{ii} <: xio.nat.has.Nat }, Input <: xio.nat.has.Nat, Out](
+        def errorCompat@{i}[P <: xio.nat.error.NatEither @for(ii <- 1 to i) { , E@{ii} }, Input, Out](
             @for(ii <- 1 to i) {
-                e@{ii}: xio.ErrorContent[E@{ii}, P] => xio.XIO[xio.XHasM@{i}[Input @for(ii <- 1 to i - 1) { , Input@{ii} }]#InnerPlus[Input@{i}], P, Out],
+                e@{ii}: xio.ErrorContent[E@{ii}, P] => xio.XIO[Input, P, Out],
             }
             u: xio.XError@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } E@{ii} }]
-        ): xio.XIO[xio.XHasM@{i}[Input @for(ii <- 1 to i - 1) { , Input@{ii} }]#InnerPlus[Input@{i}], P, Out] = u.either.fold(ii1 => errorCompat@{i - 1}(@for(ii <- 1 to i - 1) { e@{ii}, } ii1), ii2 => e@{i}(new xio.ErrorContentImpl(ii2)))
+        ): xio.XIO[Input, P, Out] = u.either.fold(ii1 => errorCompat@{i - 1}(@for(ii <- 1 to i - 1) { e@{ii}, } ii1), ii2 => e@{i}(new xio.ErrorContentImpl(ii2)))
     }
 
 }
