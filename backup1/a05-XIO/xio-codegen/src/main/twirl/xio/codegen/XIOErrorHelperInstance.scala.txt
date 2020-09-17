@@ -1,0 +1,13 @@
+@(maxItem: Int)
+
+package xio.helper
+
+object XIOErrorHelperInstance {
+
+    @for(i <- 1 to maxItem) {
+        trait MatchAll1Apply@{i}[P <: xio.nat.error.NatEither @for(ii <- 1 to i) { , E@{ii} }, Input <: xio.nat.has.Nat, Out] {
+            def input@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } Out@{ii} <: Out, Input@{ii} <: xio.nat.has.Nat }](@for(ii <- 1 to i) { @if(ii > 1) { , } e@{ii}: xio.ErrorContent[E@{ii}, P] => xio.XIO[Input@{ii}, P, Out@{ii}] })(implicit @for(ii <- 1 to i) { @if(ii > 1) { , } natReversePlus@{ii}: xio.nat.has.NatReversePlus[Input@{ii}, xio.XHasM@{ii}[Input @for(iii <- 1 to ii - 1) { , Input@{iii} }]] }): xio.XIO[xio.XHasM@{i}[Input @for(ii <- 1 to i - 1) { , Input@{ii} }]#InnerPlus[Input@{i}], P, Out]
+        }
+    }
+
+}
