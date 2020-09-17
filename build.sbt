@@ -13,6 +13,12 @@ val a04          = (project in file04 / "xio").dependsOn(a04_implicit)
 val a04_codegen  = project in file04 / "xio-codegen"
 addCommandAlias("codegen1", "a04_codegen/runMain xio.codegen.XIOCodegen")
 
+val a05ParentDir    = backup1Dir / "a05-XIO"
+val a05_xio           = project in a05ParentDir / "xio"
+val a05_xio_logging   = (project in a05ParentDir / "xio-logging").dependsOn(a05_xio)
+val a05_xio_async_sql = (project in a05ParentDir / "xio-async-sql").dependsOn(a05_xio_logging)
+val a05_xio_codegen   = project in a05ParentDir / "xio-codegen"
+
 val modulesDir    = baseDir / "modules"
 val xio           = project in modulesDir / "xio"
 val xio_logging   = (project in modulesDir / "xio-logging").dependsOn(xio)
