@@ -23,6 +23,8 @@ trait Dependencies {
 
   val j2v8 = "com.eclipsesource.j2v8" % "j2v8" % "6.2.0"
 
+  val sttp = "com.softwaremill.sttp.client" %% "async-http-client-backend-zio" % "2.2.8"
+
 }
 
 object Dependencies extends Dependencies

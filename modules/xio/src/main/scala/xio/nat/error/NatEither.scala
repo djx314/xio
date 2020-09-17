@@ -19,6 +19,6 @@ class NatEitherPositive[Pre <: NatEither, I](val either: Either[Pre, I]) extends
 
 object NatEitherPositive {
   implicit class sureRightImplicitClass[I](i: NatEitherPositive[NatEitherZero, I]) {
-    def sureRight: I = i.either.right.get
+    def sureRight: I = xio.helper.EitherHelper.getRight(i.either)
   }
 }
