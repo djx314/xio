@@ -7,22 +7,14 @@ import sttp.client.ws.{WebSocket, WebSocketResponse}
 
 package object xio {
 
-  type SttpClient = sttp.client.asynchttpclient.zio.SttpClient
-
   object SttpClient {
-    def send[T](request: Request[T, stream.Stream[Throwable, Byte]]): XIO[SttpClient, XError1[Throwable], Response[T]] = {
-      val zio1 = sttp.client.asynchttpclient.zio.SttpClient.send(request)
-      val zio3 = zio1.mapError(i => XError1(i))
-      XIO.fromZIO(zio3)
-    }
+    def send[T](request: Request[T, stream.Stream[Throwable, Byte]]): XIO[sttp.client.asynchttpclient.zio.SttpClient, XError1[Throwable], Response[T]] =
+      sttp.client.asynchttpclient.zio.SttpClient.send(request).startError
 
     def openWebsocket[T, WS_RESULT](
       request: Request[T, Nothing]
-    ): XIO[SttpClient, XError1[Throwable], WebSocketResponse[WebSocket[Task]]] = {
-      val zio1 = sttp.client.asynchttpclient.zio.SttpClient.openWebsocket(request)
-      val zio3 = zio1.mapError(i => XError1(i))
-      XIO.fromZIO(zio3)
-    }
+    ): XIO[sttp.client.asynchttpclient.zio.SttpClient, XError1[Throwable], WebSocketResponse[WebSocket[Task]]] =
+      sttp.client.asynchttpclient.zio.SttpClient.openWebsocket(request).startError
   }
 
 }

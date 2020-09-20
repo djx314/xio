@@ -4,19 +4,19 @@ package xio.helper
 
 trait XIOErrorHelper {
 
-    implicit class XIOErrorMatchAll1ImplicitClass1[X, E1, I](i: xio.XIO[X, xio.XError1[E1], I]) {
+    implicit class XIOErrorMatchAll1ImplicitClass1[X, E1, I](i: zio.ZIO[X, xio.XError1[E1], I]) {
         def allErrorTo[P <: xio.nat.error.NatEither]: XIOErrorHelperInstance.MatchAll1Apply1[P, E1, X, I] =
             new XIOErrorHelperInstance.MatchAll1Apply1[P, E1, X, I] {
-                override def input1[Out1 <: I, Input1](e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1]): xio.XIO[X with Input1, P, I] = {
+                override def input1[Out1 <: I, Input1](e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1]): zio.ZIO[X with Input1, P, I] = {
                     i.catchAll(ii => XIOErrorHelperInstance2.errorCompat1(e1, ii))
                 }
             }
     }
 
     @for(i <- 2 to maxItem) {
-        implicit class XIOErrorMatchAll1ImplicitClass@{i}[X @for(ii <- 1 to i) { , E@{ii} }, I](i: xio.XIO[X, xio.XError@{i}[ @for(ii <- 1 to i) { @if(ii > 1) { , } E@{ii} } ], I]) {
+        implicit class XIOErrorMatchAll1ImplicitClass@{i}[X @for(ii <- 1 to i) { , E@{ii} }, I](i: zio.ZIO[X, xio.XError@{i}[ @for(ii <- 1 to i) { @if(ii > 1) { , } E@{ii} } ], I]) {
             def allErrorTo[P <: xio.nat.error.NatEither]: XIOErrorHelperInstance.MatchAll1Apply@{i}[P @for(ii <- 1 to i) { , E@{ii} }, X, I] = new XIOErrorHelperInstance.MatchAll1Apply@{i}[P @for(ii <- 1 to i) { , E@{ii} }, X, I] {
-                override def input@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } Out@{ii} <: I, Input@{ii} }](@for(ii <- 1 to i) { @if(ii > 1) { , } e@{ii}: xio.ErrorContent[E@{ii}, P] => xio.XIO[Input@{ii}, P, Out@{ii}] }): xio.XIO[X @for(ii <- 1 to i) { with Input@{ii} }, P, I] = {
+                override def input@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } Out@{ii} <: I, Input@{ii} }](@for(ii <- 1 to i) { @if(ii > 1) { , } e@{ii}: xio.ErrorContent[E@{ii}, P] => zio.ZIO[Input@{ii}, P, Out@{ii}] }): zio.ZIO[X @for(ii <- 1 to i) { with Input@{ii} }, P, I] = {
                     i.catchAll(ii => XIOErrorHelperInstance2.errorCompat@{i}(@for(ii <- 1 to i) { e@{ii} , } ii))
                 }
             }

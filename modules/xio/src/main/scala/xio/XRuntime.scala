@@ -19,18 +19,18 @@ trait XRuntime[R] {
       override val zioRuntime: Runtime[R] = self.zioRuntime.mapPlatform(f)
     }
 
-  final def unsafeRun[E <: NatEither, A](zio: => XIO[R, E, A]): A = self.zioRuntime.unsafeRun(zio.zio)
+  final def unsafeRun[E <: NatEither, A](zio: => ZIO[R, E, A]): A = self.zioRuntime.unsafeRun(zio)
 
-  final def unsafeRunTask[A, E <: NatEither](task: => XIO[R, E, A])(implicit nn: NatEitherToTag[E, NatEitherPositive[NatEitherZero, Throwable]]): A =
-    self.zioRuntime.unsafeRunTask(task.zio.mapError(nn.tag).mapError(_.sureRight))
+  final def unsafeRunTask[A, E <: NatEither](task: => ZIO[R, E, A])(implicit nn: NatEitherToTag[E, NatEitherPositive[NatEitherZero, Throwable]]): A =
+    self.zioRuntime.unsafeRunTask(task.mapError(nn.tag).endError)
 
-  final def unsafeRunSync[E <: NatEither, A](zio: => XIO[R, E, A]): Exit[E, A] =
-    self.zioRuntime.unsafeRunSync(zio.zio)
+  final def unsafeRunSync[E <: NatEither, A](zio: => ZIO[R, E, A]): Exit[E, A] =
+    self.zioRuntime.unsafeRunSync(zio)
 
   final def unsafeRunToFuture[E <: NatEither, A](
-    zio: XIO[R, E, A]
+    zio: ZIO[R, E, A]
   )(implicit nn: NatEitherToTag[E, NatEitherPositive[NatEitherZero, Throwable]]): CancelableFuture[A] = {
-    self.zioRuntime.unsafeRunToFuture(zio.zio.mapError(s => nn.tag(s).sureRight))
+    self.zioRuntime.unsafeRunToFuture(zio.mapError(s => nn.tag(s).sureRight))
   }
 
 }
