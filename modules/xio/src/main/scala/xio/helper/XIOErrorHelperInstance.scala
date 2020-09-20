@@ -1,58 +1,58 @@
 package xio.helper
 object XIOErrorHelperInstance {
   trait MatchAll1Apply1[P <: xio.nat.error.NatEither, E1, Input, Out] {
-    def input1[Out1 <: Out, Input1](e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1]): zio.ZIO[Input with Input1, P, Out]
+    def input1[Out1 <: Out, Input1](e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1]): xio.XIO[Input with Input1, P, Out]
   }
   trait MatchAll1Apply2[P <: xio.nat.error.NatEither, E1, E2, Input, Out] {
     def input2[Out1 <: Out, Input1, Out2 <: Out, Input2](
-      e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => zio.ZIO[Input2, P, Out2]
-    ): zio.ZIO[Input with Input1 with Input2, P, Out]
+      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
+      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2]
+    ): xio.XIO[Input with Input1 with Input2, P, Out]
   }
   trait MatchAll1Apply3[P <: xio.nat.error.NatEither, E1, E2, E3, Input, Out] {
     def input3[Out1 <: Out, Input1, Out2 <: Out, Input2, Out3 <: Out, Input3](
-      e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => zio.ZIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => zio.ZIO[Input3, P, Out3]
-    ): zio.ZIO[Input with Input1 with Input2 with Input3, P, Out]
+      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
+      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
+      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3]
+    ): xio.XIO[Input with Input1 with Input2 with Input3, P, Out]
   }
   trait MatchAll1Apply4[P <: xio.nat.error.NatEither, E1, E2, E3, E4, Input, Out] {
     def input4[Out1 <: Out, Input1, Out2 <: Out, Input2, Out3 <: Out, Input3, Out4 <: Out, Input4](
-      e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => zio.ZIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => zio.ZIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => zio.ZIO[Input4, P, Out4]
-    ): zio.ZIO[Input with Input1 with Input2 with Input3 with Input4, P, Out]
+      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
+      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
+      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
+      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4]
+    ): xio.XIO[Input with Input1 with Input2 with Input3 with Input4, P, Out]
   }
   trait MatchAll1Apply5[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, Input, Out] {
     def input5[Out1 <: Out, Input1, Out2 <: Out, Input2, Out3 <: Out, Input3, Out4 <: Out, Input4, Out5 <: Out, Input5](
-      e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => zio.ZIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => zio.ZIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => zio.ZIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => zio.ZIO[Input5, P, Out5]
-    ): zio.ZIO[Input with Input1 with Input2 with Input3 with Input4 with Input5, P, Out]
+      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
+      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
+      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
+      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
+      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5]
+    ): xio.XIO[Input with Input1 with Input2 with Input3 with Input4 with Input5, P, Out]
   }
   trait MatchAll1Apply6[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, Input, Out] {
     def input6[Out1 <: Out, Input1, Out2 <: Out, Input2, Out3 <: Out, Input3, Out4 <: Out, Input4, Out5 <: Out, Input5, Out6 <: Out, Input6](
-      e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => zio.ZIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => zio.ZIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => zio.ZIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => zio.ZIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => zio.ZIO[Input6, P, Out6]
-    ): zio.ZIO[Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6, P, Out]
+      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
+      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
+      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
+      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
+      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
+      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6]
+    ): xio.XIO[Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6, P, Out]
   }
   trait MatchAll1Apply7[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, Input, Out] {
     def input7[Out1 <: Out, Input1, Out2 <: Out, Input2, Out3 <: Out, Input3, Out4 <: Out, Input4, Out5 <: Out, Input5, Out6 <: Out, Input6, Out7 <: Out, Input7](
-      e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => zio.ZIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => zio.ZIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => zio.ZIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => zio.ZIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => zio.ZIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => zio.ZIO[Input7, P, Out7]
-    ): zio.ZIO[Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7, P, Out]
+      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
+      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
+      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
+      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
+      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
+      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
+      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7]
+    ): xio.XIO[Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7, P, Out]
   }
   trait MatchAll1Apply8[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, Input, Out] {
     def input8[
@@ -73,15 +73,15 @@ object XIOErrorHelperInstance {
       Out8 <: Out,
       Input8
     ](
-      e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => zio.ZIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => zio.ZIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => zio.ZIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => zio.ZIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => zio.ZIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => zio.ZIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => zio.ZIO[Input8, P, Out8]
-    ): zio.ZIO[Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8, P, Out]
+      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
+      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
+      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
+      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
+      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
+      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
+      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
+      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8]
+    ): xio.XIO[Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8, P, Out]
   }
   trait MatchAll1Apply9[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, Input, Out] {
     def input9[
@@ -104,16 +104,16 @@ object XIOErrorHelperInstance {
       Out9 <: Out,
       Input9
     ](
-      e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => zio.ZIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => zio.ZIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => zio.ZIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => zio.ZIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => zio.ZIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => zio.ZIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => zio.ZIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => zio.ZIO[Input9, P, Out9]
-    ): zio.ZIO[Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8 with Input9, P, Out]
+      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
+      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
+      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
+      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
+      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
+      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
+      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
+      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
+      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9]
+    ): xio.XIO[Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8 with Input9, P, Out]
   }
   trait MatchAll1Apply10[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, Input, Out] {
     def input10[
@@ -138,17 +138,17 @@ object XIOErrorHelperInstance {
       Out10 <: Out,
       Input10
     ](
-      e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => zio.ZIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => zio.ZIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => zio.ZIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => zio.ZIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => zio.ZIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => zio.ZIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => zio.ZIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => zio.ZIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => zio.ZIO[Input10, P, Out10]
-    ): zio.ZIO[Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8 with Input9 with Input10, P, Out]
+      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
+      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
+      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
+      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
+      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
+      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
+      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
+      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
+      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
+      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10]
+    ): xio.XIO[Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8 with Input9 with Input10, P, Out]
   }
   trait MatchAll1Apply11[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, Input, Out] {
     def input11[
@@ -175,18 +175,18 @@ object XIOErrorHelperInstance {
       Out11 <: Out,
       Input11
     ](
-      e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => zio.ZIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => zio.ZIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => zio.ZIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => zio.ZIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => zio.ZIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => zio.ZIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => zio.ZIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => zio.ZIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => zio.ZIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => zio.ZIO[Input11, P, Out11]
-    ): zio.ZIO[Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8 with Input9 with Input10 with Input11, P, Out]
+      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
+      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
+      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
+      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
+      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
+      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
+      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
+      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
+      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
+      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
+      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11]
+    ): xio.XIO[Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8 with Input9 with Input10 with Input11, P, Out]
   }
   trait MatchAll1Apply12[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, Input, Out] {
     def input12[
@@ -215,19 +215,19 @@ object XIOErrorHelperInstance {
       Out12 <: Out,
       Input12
     ](
-      e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => zio.ZIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => zio.ZIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => zio.ZIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => zio.ZIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => zio.ZIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => zio.ZIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => zio.ZIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => zio.ZIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => zio.ZIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => zio.ZIO[Input11, P, Out11],
-      e12: xio.ErrorContent[E12, P] => zio.ZIO[Input12, P, Out12]
-    ): zio.ZIO[
+      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
+      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
+      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
+      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
+      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
+      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
+      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
+      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
+      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
+      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
+      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
+      e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12]
+    ): xio.XIO[
       Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8 with Input9 with Input10 with Input11 with Input12,
       P,
       Out
@@ -262,20 +262,20 @@ object XIOErrorHelperInstance {
       Out13 <: Out,
       Input13
     ](
-      e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => zio.ZIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => zio.ZIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => zio.ZIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => zio.ZIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => zio.ZIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => zio.ZIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => zio.ZIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => zio.ZIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => zio.ZIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => zio.ZIO[Input11, P, Out11],
-      e12: xio.ErrorContent[E12, P] => zio.ZIO[Input12, P, Out12],
-      e13: xio.ErrorContent[E13, P] => zio.ZIO[Input13, P, Out13]
-    ): zio.ZIO[
+      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
+      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
+      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
+      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
+      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
+      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
+      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
+      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
+      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
+      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
+      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
+      e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12],
+      e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13]
+    ): xio.XIO[
       Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8 with Input9 with Input10 with Input11 with Input12 with Input13,
       P,
       Out
@@ -312,21 +312,21 @@ object XIOErrorHelperInstance {
       Out14 <: Out,
       Input14
     ](
-      e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => zio.ZIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => zio.ZIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => zio.ZIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => zio.ZIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => zio.ZIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => zio.ZIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => zio.ZIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => zio.ZIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => zio.ZIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => zio.ZIO[Input11, P, Out11],
-      e12: xio.ErrorContent[E12, P] => zio.ZIO[Input12, P, Out12],
-      e13: xio.ErrorContent[E13, P] => zio.ZIO[Input13, P, Out13],
-      e14: xio.ErrorContent[E14, P] => zio.ZIO[Input14, P, Out14]
-    ): zio.ZIO[
+      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
+      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
+      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
+      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
+      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
+      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
+      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
+      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
+      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
+      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
+      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
+      e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12],
+      e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13],
+      e14: xio.ErrorContent[E14, P] => xio.XIO[Input14, P, Out14]
+    ): xio.XIO[
       Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8 with Input9 with Input10 with Input11 with Input12 with Input13 with Input14,
       P,
       Out
@@ -365,22 +365,22 @@ object XIOErrorHelperInstance {
       Out15 <: Out,
       Input15
     ](
-      e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => zio.ZIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => zio.ZIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => zio.ZIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => zio.ZIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => zio.ZIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => zio.ZIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => zio.ZIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => zio.ZIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => zio.ZIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => zio.ZIO[Input11, P, Out11],
-      e12: xio.ErrorContent[E12, P] => zio.ZIO[Input12, P, Out12],
-      e13: xio.ErrorContent[E13, P] => zio.ZIO[Input13, P, Out13],
-      e14: xio.ErrorContent[E14, P] => zio.ZIO[Input14, P, Out14],
-      e15: xio.ErrorContent[E15, P] => zio.ZIO[Input15, P, Out15]
-    ): zio.ZIO[
+      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
+      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
+      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
+      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
+      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
+      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
+      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
+      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
+      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
+      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
+      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
+      e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12],
+      e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13],
+      e14: xio.ErrorContent[E14, P] => xio.XIO[Input14, P, Out14],
+      e15: xio.ErrorContent[E15, P] => xio.XIO[Input15, P, Out15]
+    ): xio.XIO[
       Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8 with Input9 with Input10 with Input11 with Input12 with Input13 with Input14 with Input15,
       P,
       Out
@@ -421,23 +421,23 @@ object XIOErrorHelperInstance {
       Out16 <: Out,
       Input16
     ](
-      e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => zio.ZIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => zio.ZIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => zio.ZIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => zio.ZIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => zio.ZIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => zio.ZIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => zio.ZIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => zio.ZIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => zio.ZIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => zio.ZIO[Input11, P, Out11],
-      e12: xio.ErrorContent[E12, P] => zio.ZIO[Input12, P, Out12],
-      e13: xio.ErrorContent[E13, P] => zio.ZIO[Input13, P, Out13],
-      e14: xio.ErrorContent[E14, P] => zio.ZIO[Input14, P, Out14],
-      e15: xio.ErrorContent[E15, P] => zio.ZIO[Input15, P, Out15],
-      e16: xio.ErrorContent[E16, P] => zio.ZIO[Input16, P, Out16]
-    ): zio.ZIO[
+      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
+      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
+      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
+      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
+      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
+      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
+      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
+      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
+      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
+      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
+      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
+      e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12],
+      e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13],
+      e14: xio.ErrorContent[E14, P] => xio.XIO[Input14, P, Out14],
+      e15: xio.ErrorContent[E15, P] => xio.XIO[Input15, P, Out15],
+      e16: xio.ErrorContent[E16, P] => xio.XIO[Input16, P, Out16]
+    ): xio.XIO[
       Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8 with Input9 with Input10 with Input11 with Input12 with Input13 with Input14 with Input15 with Input16,
       P,
       Out
@@ -480,24 +480,24 @@ object XIOErrorHelperInstance {
       Out17 <: Out,
       Input17
     ](
-      e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => zio.ZIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => zio.ZIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => zio.ZIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => zio.ZIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => zio.ZIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => zio.ZIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => zio.ZIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => zio.ZIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => zio.ZIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => zio.ZIO[Input11, P, Out11],
-      e12: xio.ErrorContent[E12, P] => zio.ZIO[Input12, P, Out12],
-      e13: xio.ErrorContent[E13, P] => zio.ZIO[Input13, P, Out13],
-      e14: xio.ErrorContent[E14, P] => zio.ZIO[Input14, P, Out14],
-      e15: xio.ErrorContent[E15, P] => zio.ZIO[Input15, P, Out15],
-      e16: xio.ErrorContent[E16, P] => zio.ZIO[Input16, P, Out16],
-      e17: xio.ErrorContent[E17, P] => zio.ZIO[Input17, P, Out17]
-    ): zio.ZIO[
+      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
+      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
+      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
+      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
+      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
+      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
+      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
+      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
+      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
+      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
+      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
+      e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12],
+      e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13],
+      e14: xio.ErrorContent[E14, P] => xio.XIO[Input14, P, Out14],
+      e15: xio.ErrorContent[E15, P] => xio.XIO[Input15, P, Out15],
+      e16: xio.ErrorContent[E16, P] => xio.XIO[Input16, P, Out16],
+      e17: xio.ErrorContent[E17, P] => xio.XIO[Input17, P, Out17]
+    ): xio.XIO[
       Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8 with Input9 with Input10 with Input11 with Input12 with Input13 with Input14 with Input15 with Input16 with Input17,
       P,
       Out
@@ -542,25 +542,25 @@ object XIOErrorHelperInstance {
       Out18 <: Out,
       Input18
     ](
-      e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => zio.ZIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => zio.ZIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => zio.ZIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => zio.ZIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => zio.ZIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => zio.ZIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => zio.ZIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => zio.ZIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => zio.ZIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => zio.ZIO[Input11, P, Out11],
-      e12: xio.ErrorContent[E12, P] => zio.ZIO[Input12, P, Out12],
-      e13: xio.ErrorContent[E13, P] => zio.ZIO[Input13, P, Out13],
-      e14: xio.ErrorContent[E14, P] => zio.ZIO[Input14, P, Out14],
-      e15: xio.ErrorContent[E15, P] => zio.ZIO[Input15, P, Out15],
-      e16: xio.ErrorContent[E16, P] => zio.ZIO[Input16, P, Out16],
-      e17: xio.ErrorContent[E17, P] => zio.ZIO[Input17, P, Out17],
-      e18: xio.ErrorContent[E18, P] => zio.ZIO[Input18, P, Out18]
-    ): zio.ZIO[
+      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
+      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
+      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
+      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
+      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
+      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
+      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
+      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
+      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
+      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
+      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
+      e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12],
+      e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13],
+      e14: xio.ErrorContent[E14, P] => xio.XIO[Input14, P, Out14],
+      e15: xio.ErrorContent[E15, P] => xio.XIO[Input15, P, Out15],
+      e16: xio.ErrorContent[E16, P] => xio.XIO[Input16, P, Out16],
+      e17: xio.ErrorContent[E17, P] => xio.XIO[Input17, P, Out17],
+      e18: xio.ErrorContent[E18, P] => xio.XIO[Input18, P, Out18]
+    ): xio.XIO[
       Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8 with Input9 with Input10 with Input11 with Input12 with Input13 with Input14 with Input15 with Input16 with Input17 with Input18,
       P,
       Out
@@ -607,26 +607,26 @@ object XIOErrorHelperInstance {
       Out19 <: Out,
       Input19
     ](
-      e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => zio.ZIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => zio.ZIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => zio.ZIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => zio.ZIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => zio.ZIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => zio.ZIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => zio.ZIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => zio.ZIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => zio.ZIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => zio.ZIO[Input11, P, Out11],
-      e12: xio.ErrorContent[E12, P] => zio.ZIO[Input12, P, Out12],
-      e13: xio.ErrorContent[E13, P] => zio.ZIO[Input13, P, Out13],
-      e14: xio.ErrorContent[E14, P] => zio.ZIO[Input14, P, Out14],
-      e15: xio.ErrorContent[E15, P] => zio.ZIO[Input15, P, Out15],
-      e16: xio.ErrorContent[E16, P] => zio.ZIO[Input16, P, Out16],
-      e17: xio.ErrorContent[E17, P] => zio.ZIO[Input17, P, Out17],
-      e18: xio.ErrorContent[E18, P] => zio.ZIO[Input18, P, Out18],
-      e19: xio.ErrorContent[E19, P] => zio.ZIO[Input19, P, Out19]
-    ): zio.ZIO[
+      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
+      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
+      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
+      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
+      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
+      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
+      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
+      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
+      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
+      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
+      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
+      e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12],
+      e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13],
+      e14: xio.ErrorContent[E14, P] => xio.XIO[Input14, P, Out14],
+      e15: xio.ErrorContent[E15, P] => xio.XIO[Input15, P, Out15],
+      e16: xio.ErrorContent[E16, P] => xio.XIO[Input16, P, Out16],
+      e17: xio.ErrorContent[E17, P] => xio.XIO[Input17, P, Out17],
+      e18: xio.ErrorContent[E18, P] => xio.XIO[Input18, P, Out18],
+      e19: xio.ErrorContent[E19, P] => xio.XIO[Input19, P, Out19]
+    ): xio.XIO[
       Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8 with Input9 with Input10 with Input11 with Input12 with Input13 with Input14 with Input15 with Input16 with Input17 with Input18 with Input19,
       P,
       Out
@@ -675,27 +675,27 @@ object XIOErrorHelperInstance {
       Out20 <: Out,
       Input20
     ](
-      e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => zio.ZIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => zio.ZIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => zio.ZIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => zio.ZIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => zio.ZIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => zio.ZIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => zio.ZIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => zio.ZIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => zio.ZIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => zio.ZIO[Input11, P, Out11],
-      e12: xio.ErrorContent[E12, P] => zio.ZIO[Input12, P, Out12],
-      e13: xio.ErrorContent[E13, P] => zio.ZIO[Input13, P, Out13],
-      e14: xio.ErrorContent[E14, P] => zio.ZIO[Input14, P, Out14],
-      e15: xio.ErrorContent[E15, P] => zio.ZIO[Input15, P, Out15],
-      e16: xio.ErrorContent[E16, P] => zio.ZIO[Input16, P, Out16],
-      e17: xio.ErrorContent[E17, P] => zio.ZIO[Input17, P, Out17],
-      e18: xio.ErrorContent[E18, P] => zio.ZIO[Input18, P, Out18],
-      e19: xio.ErrorContent[E19, P] => zio.ZIO[Input19, P, Out19],
-      e20: xio.ErrorContent[E20, P] => zio.ZIO[Input20, P, Out20]
-    ): zio.ZIO[
+      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
+      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
+      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
+      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
+      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
+      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
+      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
+      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
+      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
+      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
+      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
+      e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12],
+      e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13],
+      e14: xio.ErrorContent[E14, P] => xio.XIO[Input14, P, Out14],
+      e15: xio.ErrorContent[E15, P] => xio.XIO[Input15, P, Out15],
+      e16: xio.ErrorContent[E16, P] => xio.XIO[Input16, P, Out16],
+      e17: xio.ErrorContent[E17, P] => xio.XIO[Input17, P, Out17],
+      e18: xio.ErrorContent[E18, P] => xio.XIO[Input18, P, Out18],
+      e19: xio.ErrorContent[E19, P] => xio.XIO[Input19, P, Out19],
+      e20: xio.ErrorContent[E20, P] => xio.XIO[Input20, P, Out20]
+    ): xio.XIO[
       Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8 with Input9 with Input10 with Input11 with Input12 with Input13 with Input14 with Input15 with Input16 with Input17 with Input18 with Input19 with Input20,
       P,
       Out
@@ -746,28 +746,28 @@ object XIOErrorHelperInstance {
       Out21 <: Out,
       Input21
     ](
-      e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => zio.ZIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => zio.ZIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => zio.ZIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => zio.ZIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => zio.ZIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => zio.ZIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => zio.ZIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => zio.ZIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => zio.ZIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => zio.ZIO[Input11, P, Out11],
-      e12: xio.ErrorContent[E12, P] => zio.ZIO[Input12, P, Out12],
-      e13: xio.ErrorContent[E13, P] => zio.ZIO[Input13, P, Out13],
-      e14: xio.ErrorContent[E14, P] => zio.ZIO[Input14, P, Out14],
-      e15: xio.ErrorContent[E15, P] => zio.ZIO[Input15, P, Out15],
-      e16: xio.ErrorContent[E16, P] => zio.ZIO[Input16, P, Out16],
-      e17: xio.ErrorContent[E17, P] => zio.ZIO[Input17, P, Out17],
-      e18: xio.ErrorContent[E18, P] => zio.ZIO[Input18, P, Out18],
-      e19: xio.ErrorContent[E19, P] => zio.ZIO[Input19, P, Out19],
-      e20: xio.ErrorContent[E20, P] => zio.ZIO[Input20, P, Out20],
-      e21: xio.ErrorContent[E21, P] => zio.ZIO[Input21, P, Out21]
-    ): zio.ZIO[
+      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
+      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
+      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
+      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
+      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
+      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
+      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
+      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
+      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
+      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
+      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
+      e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12],
+      e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13],
+      e14: xio.ErrorContent[E14, P] => xio.XIO[Input14, P, Out14],
+      e15: xio.ErrorContent[E15, P] => xio.XIO[Input15, P, Out15],
+      e16: xio.ErrorContent[E16, P] => xio.XIO[Input16, P, Out16],
+      e17: xio.ErrorContent[E17, P] => xio.XIO[Input17, P, Out17],
+      e18: xio.ErrorContent[E18, P] => xio.XIO[Input18, P, Out18],
+      e19: xio.ErrorContent[E19, P] => xio.XIO[Input19, P, Out19],
+      e20: xio.ErrorContent[E20, P] => xio.XIO[Input20, P, Out20],
+      e21: xio.ErrorContent[E21, P] => xio.XIO[Input21, P, Out21]
+    ): xio.XIO[
       Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8 with Input9 with Input10 with Input11 with Input12 with Input13 with Input14 with Input15 with Input16 with Input17 with Input18 with Input19 with Input20 with Input21,
       P,
       Out
@@ -820,29 +820,29 @@ object XIOErrorHelperInstance {
       Out22 <: Out,
       Input22
     ](
-      e1: xio.ErrorContent[E1, P] => zio.ZIO[Input1, P, Out1],
-      e2: xio.ErrorContent[E2, P] => zio.ZIO[Input2, P, Out2],
-      e3: xio.ErrorContent[E3, P] => zio.ZIO[Input3, P, Out3],
-      e4: xio.ErrorContent[E4, P] => zio.ZIO[Input4, P, Out4],
-      e5: xio.ErrorContent[E5, P] => zio.ZIO[Input5, P, Out5],
-      e6: xio.ErrorContent[E6, P] => zio.ZIO[Input6, P, Out6],
-      e7: xio.ErrorContent[E7, P] => zio.ZIO[Input7, P, Out7],
-      e8: xio.ErrorContent[E8, P] => zio.ZIO[Input8, P, Out8],
-      e9: xio.ErrorContent[E9, P] => zio.ZIO[Input9, P, Out9],
-      e10: xio.ErrorContent[E10, P] => zio.ZIO[Input10, P, Out10],
-      e11: xio.ErrorContent[E11, P] => zio.ZIO[Input11, P, Out11],
-      e12: xio.ErrorContent[E12, P] => zio.ZIO[Input12, P, Out12],
-      e13: xio.ErrorContent[E13, P] => zio.ZIO[Input13, P, Out13],
-      e14: xio.ErrorContent[E14, P] => zio.ZIO[Input14, P, Out14],
-      e15: xio.ErrorContent[E15, P] => zio.ZIO[Input15, P, Out15],
-      e16: xio.ErrorContent[E16, P] => zio.ZIO[Input16, P, Out16],
-      e17: xio.ErrorContent[E17, P] => zio.ZIO[Input17, P, Out17],
-      e18: xio.ErrorContent[E18, P] => zio.ZIO[Input18, P, Out18],
-      e19: xio.ErrorContent[E19, P] => zio.ZIO[Input19, P, Out19],
-      e20: xio.ErrorContent[E20, P] => zio.ZIO[Input20, P, Out20],
-      e21: xio.ErrorContent[E21, P] => zio.ZIO[Input21, P, Out21],
-      e22: xio.ErrorContent[E22, P] => zio.ZIO[Input22, P, Out22]
-    ): zio.ZIO[
+      e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
+      e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
+      e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
+      e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
+      e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
+      e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
+      e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
+      e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
+      e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
+      e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
+      e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11],
+      e12: xio.ErrorContent[E12, P] => xio.XIO[Input12, P, Out12],
+      e13: xio.ErrorContent[E13, P] => xio.XIO[Input13, P, Out13],
+      e14: xio.ErrorContent[E14, P] => xio.XIO[Input14, P, Out14],
+      e15: xio.ErrorContent[E15, P] => xio.XIO[Input15, P, Out15],
+      e16: xio.ErrorContent[E16, P] => xio.XIO[Input16, P, Out16],
+      e17: xio.ErrorContent[E17, P] => xio.XIO[Input17, P, Out17],
+      e18: xio.ErrorContent[E18, P] => xio.XIO[Input18, P, Out18],
+      e19: xio.ErrorContent[E19, P] => xio.XIO[Input19, P, Out19],
+      e20: xio.ErrorContent[E20, P] => xio.XIO[Input20, P, Out20],
+      e21: xio.ErrorContent[E21, P] => xio.XIO[Input21, P, Out21],
+      e22: xio.ErrorContent[E22, P] => xio.XIO[Input22, P, Out22]
+    ): xio.XIO[
       Input with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8 with Input9 with Input10 with Input11 with Input12 with Input13 with Input14 with Input15 with Input16 with Input17 with Input18 with Input19 with Input20 with Input21 with Input22,
       P,
       Out

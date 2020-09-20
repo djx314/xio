@@ -6,7 +6,7 @@ object XIOErrorHelperInstance {
 
     @for(i <- 1 to maxItem) {
         trait MatchAll1Apply@{i}[P <: xio.nat.error.NatEither @for(ii <- 1 to i) { , E@{ii} }, Input, Out] {
-            def input@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } Out@{ii} <: Out, Input@{ii} }](@for(ii <- 1 to i) { @if(ii > 1) { , } e@{ii}: xio.ErrorContent[E@{ii}, P] => zio.ZIO[Input@{ii}, P, Out@{ii}] }): zio.ZIO[Input @for(ii <- 1 to i) { with Input@{ii} }, P, Out]
+            def input@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } Out@{ii} <: Out, Input@{ii} }](@for(ii <- 1 to i) { @if(ii > 1) { , } e@{ii}: xio.ErrorContent[E@{ii}, P] => xio.XIO[Input@{ii}, P, Out@{ii}] }): xio.XIO[Input @for(ii <- 1 to i) { with Input@{ii} }, P, Out]
         }
     }
 
