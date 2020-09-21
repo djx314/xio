@@ -16,10 +16,7 @@ class XIO[-I, L <: NatEither, +R](private val inner: ZIO[I, L, R]) {
 
 }
 
-object XIO extends XIOImplicit1 {
+object XIO {
   implicit def ZIOToXIOImplicitClass1[I, L <: NatEither, R](i: ZIO[I, L, R]): XIO[I, L, R] = new XIO(i)
-}
-
-trait XIOImplicit1 {
-  implicit def ZIOToXIOImplicitClass2[I, L, R](i: ZIO[I, L, R]): XIO[I, XError1[L], R] = i.startError
+  implicit def XIOToZIOImplicitClass1[I, L <: NatEither, R](i: XIO[I, L, R]): ZIO[I, L, R] = i.toZIO
 }
