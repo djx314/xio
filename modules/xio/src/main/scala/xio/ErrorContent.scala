@@ -5,7 +5,7 @@ import zio.ZIO
 
 trait ErrorContent[T, I <: xio.nat.error.NatEither] {
   def error: T
-  def inputError[N](n: N)(implicit i: NatEitherSetter[I, N]): ZIO[Any, I, Nothing] = ZIO.fail(i.put(n))
+  def inputError[N](n: N)(implicit i: NatEitherSetter[I, N]): XIO[Any, I, Nothing] = ZIO.fail(i.put(n))
   def lift[N](n: N)(implicit i: NatEitherSetter[I, N]): I                          = i.put(n)
 }
 
