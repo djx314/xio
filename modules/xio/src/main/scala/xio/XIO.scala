@@ -3,6 +3,8 @@ package xio
 import xio.nat.error.{NatEither, NatEitherReversePlus, NatEitherToTag}
 import zio._
 
+import scala.language.implicitConversions
+
 class XIO[-I, L <: NatEither, +R](private val inner: ZIO[I, L, R]) {
 
   def toZIO: ZIO[I, L, R] = inner

@@ -2,19 +2,21 @@ import xio.helper.XIOErrorHelper
 import xio.nat.error.{NatEither, NatEitherToTag}
 import zio._
 
-package object xio extends XErrorAlias with XIOErrorHelper with xio.helper.XIOPackageObjectImplicit1 {
+import scala.language.implicitConversions
+
+package object xio extends XErrorAlias with XIOErrorHelper {
 
   /*def mapError[E1, ESUM <: NatEither](
                                          n: (E1, NatEitherSetter.NatEitherApply[ESUM]) => ESUM
                                        )(implicit nm: NatEitherToTag[L, NatEitherPositive[ESUM, E1]]): ZIO[I, ESUM, R] =
       zio.mapError(l => nm.tag(l).either.fold(identity, e1 => n(e1, new NatEitherSetter.NatEitherApply)))*/
 
-  implicit class XIOStartErrorImplicitClass1_1[I, L, R](private val xio: ZIO[I, L, R]) {
-    def startError(implicit isNot: IsNotNatEither[L]): XIO[I, XError1[L], R] = new XIO(xio.mapError(i => XError1(i)))
+  implicit class XIOStartErrorImplicitClass1_1[II, LL, RR](private val xio: ZIO[II, LL, RR]) {
+    def startError(implicit isNot: IsNotNatEither[LL]): XIO[II, XError1[LL], RR] = new XIO(xio.mapError(i => XError1(i)))
   }
 
-  implicit class XIOStartErrorImplicitClass2_1[I, R](private val xio: ZIO[I, Nothing, R]) {
-    def startError: XIO[I, XError0, R] = new XIO(xio.mapError(s => s: XError0)(CanFail.canFailAmbiguous1))
+  implicit class XIOStartErrorImplicitClass2_1[II, RR](private val xio: ZIO[II, Nothing, RR]) {
+    def startError: XIO[II, XError0, RR] = new XIO(xio)
   }
 
   implicit class XIOStartErrorImplicitClass3_1[I, L <: NatEither, R](private val xio: ZIO[I, L, R]) {
