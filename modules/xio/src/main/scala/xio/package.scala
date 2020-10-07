@@ -12,7 +12,7 @@ package object xio extends XErrorAlias with XIOErrorHelper {
       zio.mapError(l => nm.tag(l).either.fold(identity, e1 => n(e1, new NatEitherSetter.NatEitherApply)))*/
 
   implicit class XIOStartErrorImplicitClass1_1[II, LL, RR](private val xio: ZIO[II, LL, RR]) {
-    def startError(implicit isNot: IsNotNatEither[LL]): XIO[II, XError1[LL], RR] = new XIO(xio.mapError(i => XError1(i)))
+    def startError(implicit isNot: IsNotNatEitherOrNothing[LL]): XIO[II, XError1[LL], RR] = new XIO(xio.mapError(i => XError1(i)))
   }
 
   implicit class XIOStartErrorImplicitClass2_1[II, RR](private val xio: ZIO[II, Nothing, RR]) {
@@ -24,7 +24,7 @@ package object xio extends XErrorAlias with XIOErrorHelper {
   }
 
   implicit class XIOEndErrorImplicitClass1[I, L, R](private val zio: XIO[I, XError1[L], R]) {
-    def endError(implicit isNot: IsNotNatEither[L]): ZIO[I, L, R] = zio.toZIO.mapError(s => s.sureRight)
+    def endError(implicit isNot: IsNotNatEitherOrNothing[L]): ZIO[I, L, R] = zio.toZIO.mapError(s => s.sureRight)
   }
 
   implicit class XIOEndErrorImplicitClass2[I, R](private val zio: XIO[I, XError0, R]) {

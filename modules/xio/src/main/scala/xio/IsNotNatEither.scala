@@ -10,20 +10,11 @@ object IsNotNatEitherOrNothing {
 
   implicit def isNotNatEither1[T]: IsNotNatEitherOrNothing[T]              = anyInstance
   implicit def isNotNatEither2[T <: NatEither]: IsNotNatEitherOrNothing[T] = anyInstance
-  implicit val isNotNatEither3: IsNotNatEitherOrNothing[Nothing] = anyInstance
+  implicit val isNotNatEither3: IsNotNatEitherOrNothing[Nothing]           = anyInstance
 }
 
-class IsNatEither[T]
+class IsNotNothing[T]
 
-object IsNatEither {
-  val any: IsNatEither[Any]          = new IsNatEither[Any]
-  def anyInstance[T]: IsNatEither[T] = any.asInstanceOf[IsNatEither[T]]
-
-  implicit def isNotNatEither1[T <: NatEither]: IsNatEither[T] = anyInstance
-}
-
-class IsNothing[T]
-
-object IsNothing {
-  implicit val isNotNatEither1: IsNothing[Nothing]              = new IsNothing[Nothing]
+object IsNotNothing {
+  implicit val isNotNatEither1: IsNotNothing[Nothing] = new IsNotNothing[Nothing]
 }
