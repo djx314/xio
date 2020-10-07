@@ -19,8 +19,7 @@ class XIO[-I, L <: NatEither, +R](private val inner: ZIO[I, L, R]) {
 }
 
 object XIO {
-  implicit def ZIOToXIOImplicitClass1[I, L <: NatEither, R](i: ZIO[I, L, R])(implicit n: IsNotNothing[L]): XIO[I, L, R]        = new XIO(i)
-  implicit def ZIOToXIOImplicitClass2[I, L, R](i: ZIO[I, L, R])(implicit n: IsNotNatEitherOrNothing[L]): XIO[I, XError1[L], R] = new XIO(i.mapError(i => XError1(i)))
-  implicit def ZIOToXIOImplicitClass3[I, R](i: ZIO[I, Nothing, R]): XIO[I, XError0, R]                                         = new XIO(i)
-  implicit def XIOToZIOImplicitClass1[I, L <: NatEither, R](i: XIO[I, L, R]): ZIO[I, L, R]                                     = i.toZIO
+  // implicit def XIOToZIOImplicitClass1[I, L <: NatEither, R](i: XIO[I, L, R]): ZIO[I, L, R] = i.toZIO
+  implicit def zioCompat1[I, L <: NatEither, R, I2 <: I, E2 <: NatEither, O2 >: R](xio: XIO[I, L, R])(implicit v: NatEitherToTag[L, E2]): XIO[I, E2, R] =
+    new XIO(xio.toZIO.mapError(v.tag))
 }

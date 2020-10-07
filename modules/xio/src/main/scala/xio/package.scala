@@ -1,5 +1,5 @@
 import xio.helper.XIOErrorHelper
-import xio.nat.error.{NatEither, NatEitherToTag}
+import xio.nat.error.NatEither
 import zio._
 
 import scala.language.implicitConversions
@@ -31,7 +31,10 @@ package object xio extends XErrorAlias with XIOErrorHelper {
     def endError: ZIO[I, Nothing, R] = zio.toZIO.asInstanceOf[ZIO[I, Nothing, R]]
   }
 
-  implicit def zioCompat1[I, L <: NatEither, R, I2 <: I, E2 <: NatEither, O2 >: R](xio: XIO[I, L, R])(implicit v: NatEitherToTag[L, E2]): XIO[I, E2, R] =
-    new XIO(xio.toZIO.mapError(v.tag))
+  val useXIO: XIO[Any, XError0, Unit] = ZIO.unit
+
+  implicit def ZIOToXIOImplicitClass1[I, L <: NatEither, R](i: ZIO[I, L, R])(implicit n: IsNotNothing[L]): XIO[I, L, R]        = new XIO(i)
+  implicit def ZIOToXIOImplicitClass2[I, L, R](i: ZIO[I, L, R])(implicit n: IsNotNatEitherOrNothing[L]): XIO[I, XError1[L], R] = new XIO(i.mapError(i => XError1(i)))
+  implicit def ZIOToXIOImplicitClass3[I, R](i: ZIO[I, Nothing, R]): XIO[I, XError0, R]                                         = new XIO(i)
 
 }
