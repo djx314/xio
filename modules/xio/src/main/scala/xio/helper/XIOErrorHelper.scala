@@ -1,23 +1,23 @@
 package xio.helper
+import xio._
 trait XIOErrorHelper {
   implicit class XIOErrorMatchAll1ImplicitClass1[X, E1, I](i: xio.XIO[X, xio.XError1[E1], I]) {
     def allErrorTo[P <: xio.nat.error.NatEither]: XIOErrorHelperInstance.MatchAll1Apply1[P, E1, X, I] =
       new XIOErrorHelperInstance.MatchAll1Apply1[P, E1, X, I] {
         override def input1[Out1 <: I, Input1](e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1]): xio.XIO[X with Input1, P, I] = {
-          new xio.XIO(i.toZIO.catchAll(ii => XIOErrorHelperInstance2.errorCompat1(e1, ii).toZIO))
+          using xio i.catchAll(ii => XIOErrorHelperInstance2.errorCompat1(e1, ii))
         }
       }
   }
   implicit class XIOErrorMatchAll1ImplicitClass2[X, E1, E2, I](i: xio.XIO[X, xio.XError2[E1, E2], I]) {
-    def allErrorTo[P <: xio.nat.error.NatEither]: XIOErrorHelperInstance.MatchAll1Apply2[P, E1, E2, X, I] =
-      new XIOErrorHelperInstance.MatchAll1Apply2[P, E1, E2, X, I] {
-        override def input2[Out1 <: I, Input1, Out2 <: I, Input2](
-          e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
-          e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2]
-        ): xio.XIO[X with Input1 with Input2, P, I] = {
-          new xio.XIO(i.toZIO.catchAll(ii => XIOErrorHelperInstance2.errorCompat2(e1, e2, ii).toZIO))
-        }
+    def allErrorTo[P <: xio.nat.error.NatEither]: XIOErrorHelperInstance.MatchAll1Apply2[P, E1, E2, X, I] = new XIOErrorHelperInstance.MatchAll1Apply2[P, E1, E2, X, I] {
+      override def input2[Out1 <: I, Input1, Out2 <: I, Input2](
+        e1: xio.ErrorContent[E1, P] => xio.XIO[Input1, P, Out1],
+        e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2]
+      ): xio.XIO[X with Input1 with Input2, P, I] = {
+        using xio i.catchAll(ii => XIOErrorHelperInstance2.errorCompat2(e1, e2, ii))
       }
+    }
   }
   implicit class XIOErrorMatchAll1ImplicitClass3[X, E1, E2, E3, I](i: xio.XIO[X, xio.XError3[E1, E2, E3], I]) {
     def allErrorTo[P <: xio.nat.error.NatEither]: XIOErrorHelperInstance.MatchAll1Apply3[P, E1, E2, E3, X, I] =
@@ -27,7 +27,7 @@ trait XIOErrorHelper {
           e2: xio.ErrorContent[E2, P] => xio.XIO[Input2, P, Out2],
           e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3]
         ): xio.XIO[X with Input1 with Input2 with Input3, P, I] = {
-          new xio.XIO(i.toZIO.catchAll(ii => XIOErrorHelperInstance2.errorCompat3(e1, e2, e3, ii).toZIO))
+          using xio i.catchAll(ii => XIOErrorHelperInstance2.errorCompat3(e1, e2, e3, ii))
         }
       }
   }
@@ -40,7 +40,7 @@ trait XIOErrorHelper {
           e3: xio.ErrorContent[E3, P] => xio.XIO[Input3, P, Out3],
           e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4]
         ): xio.XIO[X with Input1 with Input2 with Input3 with Input4, P, I] = {
-          new xio.XIO(i.toZIO.catchAll(ii => XIOErrorHelperInstance2.errorCompat4(e1, e2, e3, e4, ii).toZIO))
+          using xio i.catchAll(ii => XIOErrorHelperInstance2.errorCompat4(e1, e2, e3, e4, ii))
         }
       }
   }
@@ -54,7 +54,7 @@ trait XIOErrorHelper {
           e4: xio.ErrorContent[E4, P] => xio.XIO[Input4, P, Out4],
           e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5]
         ): xio.XIO[X with Input1 with Input2 with Input3 with Input4 with Input5, P, I] = {
-          new xio.XIO(i.toZIO.catchAll(ii => XIOErrorHelperInstance2.errorCompat5(e1, e2, e3, e4, e5, ii).toZIO))
+          using xio i.catchAll(ii => XIOErrorHelperInstance2.errorCompat5(e1, e2, e3, e4, e5, ii))
         }
       }
   }
@@ -69,7 +69,7 @@ trait XIOErrorHelper {
           e5: xio.ErrorContent[E5, P] => xio.XIO[Input5, P, Out5],
           e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6]
         ): xio.XIO[X with Input1 with Input2 with Input3 with Input4 with Input5 with Input6, P, I] = {
-          new xio.XIO(i.toZIO.catchAll(ii => XIOErrorHelperInstance2.errorCompat6(e1, e2, e3, e4, e5, e6, ii).toZIO))
+          using xio i.catchAll(ii => XIOErrorHelperInstance2.errorCompat6(e1, e2, e3, e4, e5, e6, ii))
         }
       }
   }
@@ -85,7 +85,7 @@ trait XIOErrorHelper {
           e6: xio.ErrorContent[E6, P] => xio.XIO[Input6, P, Out6],
           e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7]
         ): xio.XIO[X with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7, P, I] = {
-          new xio.XIO(i.toZIO.catchAll(ii => XIOErrorHelperInstance2.errorCompat7(e1, e2, e3, e4, e5, e6, e7, ii).toZIO))
+          using xio i.catchAll(ii => XIOErrorHelperInstance2.errorCompat7(e1, e2, e3, e4, e5, e6, e7, ii))
         }
       }
   }
@@ -119,7 +119,7 @@ trait XIOErrorHelper {
           e7: xio.ErrorContent[E7, P] => xio.XIO[Input7, P, Out7],
           e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8]
         ): xio.XIO[X with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8, P, I] = {
-          new xio.XIO(i.toZIO.catchAll(ii => XIOErrorHelperInstance2.errorCompat8(e1, e2, e3, e4, e5, e6, e7, e8, ii).toZIO))
+          using xio i.catchAll(ii => XIOErrorHelperInstance2.errorCompat8(e1, e2, e3, e4, e5, e6, e7, e8, ii))
         }
       }
   }
@@ -156,7 +156,7 @@ trait XIOErrorHelper {
           e8: xio.ErrorContent[E8, P] => xio.XIO[Input8, P, Out8],
           e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9]
         ): xio.XIO[X with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8 with Input9, P, I] = {
-          new xio.XIO(i.toZIO.catchAll(ii => XIOErrorHelperInstance2.errorCompat9(e1, e2, e3, e4, e5, e6, e7, e8, e9, ii).toZIO))
+          using xio i.catchAll(ii => XIOErrorHelperInstance2.errorCompat9(e1, e2, e3, e4, e5, e6, e7, e8, e9, ii))
         }
       }
   }
@@ -198,7 +198,7 @@ trait XIOErrorHelper {
           e9: xio.ErrorContent[E9, P] => xio.XIO[Input9, P, Out9],
           e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10]
         ): xio.XIO[X with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8 with Input9 with Input10, P, I] = {
-          new xio.XIO(i.toZIO.catchAll(ii => XIOErrorHelperInstance2.errorCompat10(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, ii).toZIO))
+          using xio i.catchAll(ii => XIOErrorHelperInstance2.errorCompat10(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, ii))
         }
       }
   }
@@ -243,7 +243,7 @@ trait XIOErrorHelper {
           e10: xio.ErrorContent[E10, P] => xio.XIO[Input10, P, Out10],
           e11: xio.ErrorContent[E11, P] => xio.XIO[Input11, P, Out11]
         ): xio.XIO[X with Input1 with Input2 with Input3 with Input4 with Input5 with Input6 with Input7 with Input8 with Input9 with Input10 with Input11, P, I] = {
-          new xio.XIO(i.toZIO.catchAll(ii => XIOErrorHelperInstance2.errorCompat11(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, ii).toZIO))
+          using xio i.catchAll(ii => XIOErrorHelperInstance2.errorCompat11(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, ii))
         }
       }
   }
@@ -295,7 +295,7 @@ trait XIOErrorHelper {
           P,
           I
         ] = {
-          new xio.XIO(i.toZIO.catchAll(ii => XIOErrorHelperInstance2.errorCompat12(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, ii).toZIO))
+          using xio i.catchAll(ii => XIOErrorHelperInstance2.errorCompat12(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, ii))
         }
       }
   }
@@ -350,7 +350,7 @@ trait XIOErrorHelper {
           P,
           I
         ] = {
-          new xio.XIO(i.toZIO.catchAll(ii => XIOErrorHelperInstance2.errorCompat13(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, ii).toZIO))
+          using xio i.catchAll(ii => XIOErrorHelperInstance2.errorCompat13(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, ii))
         }
       }
   }
@@ -408,7 +408,7 @@ trait XIOErrorHelper {
           P,
           I
         ] = {
-          new xio.XIO(i.toZIO.catchAll(ii => XIOErrorHelperInstance2.errorCompat14(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, ii).toZIO))
+          using xio i.catchAll(ii => XIOErrorHelperInstance2.errorCompat14(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, ii))
         }
       }
   }
@@ -469,7 +469,7 @@ trait XIOErrorHelper {
           P,
           I
         ] = {
-          new xio.XIO(i.toZIO.catchAll(ii => XIOErrorHelperInstance2.errorCompat15(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, ii).toZIO))
+          using xio i.catchAll(ii => XIOErrorHelperInstance2.errorCompat15(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, ii))
         }
       }
   }
@@ -534,7 +534,7 @@ trait XIOErrorHelper {
           P,
           I
         ] = {
-          new xio.XIO(i.toZIO.catchAll(ii => XIOErrorHelperInstance2.errorCompat16(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, ii).toZIO))
+          using xio i.catchAll(ii => XIOErrorHelperInstance2.errorCompat16(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, ii))
         }
       }
   }
@@ -602,7 +602,7 @@ trait XIOErrorHelper {
           P,
           I
         ] = {
-          new xio.XIO(i.toZIO.catchAll(ii => XIOErrorHelperInstance2.errorCompat17(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, ii).toZIO))
+          using xio i.catchAll(ii => XIOErrorHelperInstance2.errorCompat17(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, ii))
         }
       }
   }
@@ -673,9 +673,7 @@ trait XIOErrorHelper {
           P,
           I
         ] = {
-          new xio.XIO(
-            i.toZIO.catchAll(ii => XIOErrorHelperInstance2.errorCompat18(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, ii).toZIO)
-          )
+          using xio i.catchAll(ii => XIOErrorHelperInstance2.errorCompat18(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, ii))
         }
       }
   }
@@ -749,9 +747,7 @@ trait XIOErrorHelper {
           P,
           I
         ] = {
-          new xio.XIO(
-            i.toZIO.catchAll(ii => XIOErrorHelperInstance2.errorCompat19(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, e19, ii).toZIO)
-          )
+          using xio i.catchAll(ii => XIOErrorHelperInstance2.errorCompat19(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, e19, ii))
         }
       }
   }
@@ -828,11 +824,7 @@ trait XIOErrorHelper {
           P,
           I
         ] = {
-          new xio.XIO(
-            i.toZIO.catchAll(ii =>
-              XIOErrorHelperInstance2.errorCompat20(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, e19, e20, ii).toZIO
-            )
-          )
+          using xio i.catchAll(ii => XIOErrorHelperInstance2.errorCompat20(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, e19, e20, ii))
         }
       }
   }
@@ -912,10 +904,8 @@ trait XIOErrorHelper {
           P,
           I
         ] = {
-          new xio.XIO(
-            i.toZIO.catchAll(ii =>
-              XIOErrorHelperInstance2.errorCompat21(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, e19, e20, e21, ii).toZIO
-            )
+          using xio i.catchAll(ii =>
+            XIOErrorHelperInstance2.errorCompat21(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, e19, e20, e21, ii)
           )
         }
       }
@@ -999,10 +989,8 @@ trait XIOErrorHelper {
           P,
           I
         ] = {
-          new xio.XIO(
-            i.toZIO.catchAll(ii =>
-              XIOErrorHelperInstance2.errorCompat22(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, e19, e20, e21, e22, ii).toZIO
-            )
+          using xio i.catchAll(ii =>
+            XIOErrorHelperInstance2.errorCompat22(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, e19, e20, e21, e22, ii)
           )
         }
       }
