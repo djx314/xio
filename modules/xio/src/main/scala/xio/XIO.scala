@@ -1,25 +1,24 @@
 package xio
 
+import xio.helper.XIOErrorHelper
 import xio.nat.error.{NatEither, NatEitherReversePlus, NatEitherToTag}
 import zio._
 
 import scala.language.implicitConversions
 
-class XIO[-I, L <: NatEither, +R](private val inner: ZIO[I, L, R]) {
+class XIO[-R, E <: NatEither, +A](private val inner: ZIO[R, E, A]) {
 
-  def toZIO: ZIO[I, L, R] = inner
+  def flatMap[R1 <: R, E1 <: NatEither, A1](k: A => XIO[R1, E1, A1])(implicit n: NatEitherReversePlus[E, E1]): XIO[R1, E1#Plus[E], A1] =
+    new XIO(inner.mapError(n.takeTail).flatMap(i => k(i).inner.mapError(n.takeHead)))
 
-  def flatMap[R1 <: I, E1 <: NatEither, B](k: R => XIO[R1, E1, B])(implicit n: NatEitherReversePlus[L, E1]): XIO[R1, E1#Plus[L], B] =
-    new XIO(toZIO.mapError(n.takeTail).flatMap(i => k(i).toZIO.mapError(n.takeHead)))
+  def map[A1](i: A => A1): XIO[R, E, A1] = new XIO(inner.map(i))
 
-  def map[R1](i: R => R1): XIO[I, L, R1] = new XIO(inner.map(i))
-
-  def liftError[E1 <: NatEither](implicit nm: NatEitherToTag[L, E1]): XIO[I, E1, R] = new XIO(inner.mapError(nm.tag))
+  def liftError[E1 <: NatEither](implicit nm: NatEitherToTag[E, E1]): XIO[R, E1, A] = new XIO(inner.mapError(nm.tag))
 
 }
 
-object XIO {
-  // implicit def XIOToZIOImplicitClass1[I, L <: NatEither, R](i: XIO[I, L, R]): ZIO[I, L, R] = i.toZIO
-  implicit def zioCompat1[I, L <: NatEither, R, I2 <: I, E2 <: NatEither, O2 >: R](xio: XIO[I, L, R])(implicit v: NatEitherToTag[L, E2]): XIO[I, E2, R] =
-    new XIO(xio.toZIO.mapError(v.tag))
+object XIO extends XIOErrorHelper {
+  implicit def XIOToZIOImplicitClass1[I, L <: NatEither, R](i: XIO[I, L, R]): ZIO[I, L, R] = i.inner
+  implicit def zioCompat1[R, R1 <: R, E <: NatEither, E1 <: NatEither, A, A1 >: A](xio: XIO[R, E, A])(implicit v: NatEitherToTag[E, E1]): XIO[R1, E1, A1] =
+    new XIO(xio.inner.mapError(v.tag))
 }
