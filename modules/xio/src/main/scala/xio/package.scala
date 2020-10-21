@@ -29,8 +29,8 @@ package object xio extends XErrorAlias {
     def endError(implicit isNot: IsNotNatEitherOrNothing[L]): ZIO[I, L, R] = zio.mapError(s => s.sureRight)
   }
 
-  implicit class XIOEndErrorImplicitClass2[I, R](private val zio: XIO[I, XError0, R]) {
-    def endError: ZIO[I, Nothing, R] = zio.asInstanceOf[ZIO[I, Nothing, R]]
+  implicit class XIOEndErrorImplicitClass2[I, R](private val xio: XIO[I, XError0, R]) {
+    def endError: ZIO[I, Nothing, R] = (xio: ZIO[I, XError0, R]).asInstanceOf[ZIO[I, Nothing, R]]
   }
 
   // val useXIO: XIO[Any, XError0, Unit] = ZIO.unit

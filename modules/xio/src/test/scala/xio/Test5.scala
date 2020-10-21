@@ -6,7 +6,7 @@ import zio._
 object Test5 {
 
   def main(arr: Array[String]): Unit = {
-    val b1                                                = ZIO.fail(new Item3).startError
+    val b1                                                = using xio ZIO.fail(new Item3)
     val b2: XIO[Any, XError3[Item2, Item3, Item4], Item5] = b1
     /*val b3: ZIO[Any, XError1[Item5], Item5] = b2
       .mapError[Item3, XError2[Item2, Item4]]((item3, call) => call(new Item4))
