@@ -26,7 +26,7 @@ trait CustomSettings {
 
   val vSetting               = List(_orgSetting, _versionSetting)
   val notFmtCompilerSettings = List(scalaOption1, scaladocSetting)
-  val compilerSettings       = List(notFmtCompilerSettings, List(fmt)).flatten
+  val compilerSettings       = notFmtCompilerSettings ::: List(fmt)
 
 }
 
