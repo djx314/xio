@@ -113,7 +113,7 @@ object HelloWorldMain {
 
     val n1: Future[Unit] = n.map { list =>
       println(list.mkString("\n"))
-      println((1 to 1000).to(List) == list)
+      println((1 to 1000).to(List) == list) // true
     }
 
     Await.result(n1, Duration.Inf)
