@@ -274,9 +274,8 @@ object XIOErrorHelperInstance2 {
     e19: xio.ErrorContent[E19, P] => xio.XIO[Input, P, Out],
     e20: xio.ErrorContent[E20, P] => xio.XIO[Input, P, Out],
     u: xio.XError20[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, E20]
-  ): xio.XIO[Input, P, Out] =
-    u.either
-      .fold(ii1 => errorCompat19(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, e19, ii1), ii2 => e20(new xio.ErrorContentImpl(ii2)))
+  ): xio.XIO[Input, P, Out] = u.either
+    .fold(ii1 => errorCompat19(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, e19, ii1), ii2 => e20(new xio.ErrorContentImpl(ii2)))
   def errorCompat21[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, E20, E21, Input, Out](
     e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
     e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
@@ -300,11 +299,8 @@ object XIOErrorHelperInstance2 {
     e20: xio.ErrorContent[E20, P] => xio.XIO[Input, P, Out],
     e21: xio.ErrorContent[E21, P] => xio.XIO[Input, P, Out],
     u: xio.XError21[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, E20, E21]
-  ): xio.XIO[Input, P, Out] =
-    u.either.fold(
-      ii1 => errorCompat20(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, e19, e20, ii1),
-      ii2 => e21(new xio.ErrorContentImpl(ii2))
-    )
+  ): xio.XIO[Input, P, Out] = u.either
+    .fold(ii1 => errorCompat20(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, e19, e20, ii1), ii2 => e21(new xio.ErrorContentImpl(ii2)))
   def errorCompat22[P <: xio.nat.error.NatEither, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, E20, E21, E22, Input, Out](
     e1: xio.ErrorContent[E1, P] => xio.XIO[Input, P, Out],
     e2: xio.ErrorContent[E2, P] => xio.XIO[Input, P, Out],
@@ -329,9 +325,8 @@ object XIOErrorHelperInstance2 {
     e21: xio.ErrorContent[E21, P] => xio.XIO[Input, P, Out],
     e22: xio.ErrorContent[E22, P] => xio.XIO[Input, P, Out],
     u: xio.XError22[E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, E20, E21, E22]
-  ): xio.XIO[Input, P, Out] =
-    u.either.fold(
-      ii1 => errorCompat21(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, e19, e20, e21, ii1),
-      ii2 => e22(new xio.ErrorContentImpl(ii2))
-    )
+  ): xio.XIO[Input, P, Out] = u.either.fold(
+    ii1 => errorCompat21(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, e19, e20, e21, ii1),
+    ii2 => e22(new xio.ErrorContentImpl(ii2))
+  )
 }
