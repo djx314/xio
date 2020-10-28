@@ -1,7 +1,6 @@
 package xio.akka.runner
 
 import java.util
-import java.util.Random
 
 import akka.actor.typed.scaladsl.Behaviors
 import akka.actor.typed._
@@ -79,7 +78,7 @@ object HelloWorldBot {
 }
 
 trait Runner[Env] extends AutoCloseable {
-  def env: ZLayer[Any, Throwable, Env]
+  val env: Either[Env, ZLayer[Any, Throwable, Env]]
 
   def timeoutMillions: Long
 
@@ -91,9 +90,9 @@ trait Runner[Env] extends AutoCloseable {
 
   private def runToFuture[Env1, Env2, E1 <: Throwable, T](
     zio: ZIO[Env2, Throwable, T]
-  )(env: ZLayer[Any, E1, Env1])(implicit tag: ClassTag[T], ev1: Env1 <:< Env2): Future[T] =
+  )(env: Either[Env1, ZLayer[Any, E1, Env1]])(implicit tag: ClassTag[T], ev1: Env1 <:< Env2): Future[T] =
     system
-      .ask((ac: ActorRef[HelloWorld.RunResult]) => HelloWorldMain.SayHello(zio.provideLayer(env), ac))
+      .ask((ac: ActorRef[HelloWorld.RunResult]) => HelloWorldMain.SayHello(env.fold(i1 => zio.provide(i1), i2 => zio.provideLayer(i2)), ac))
       .flatMap(r => r.value.fold(Future.failed, Future.successful))
       .mapTo[T]
 
@@ -113,8 +112,8 @@ object Runner {
   def default(timeoutMillions: Long): Runner[ZEnv] = {
     val timeoutMillions1 = timeoutMillions
     new Runner[ZEnv] {
-      override val env: ZLayer[Any, Throwable, ZEnv] = ZEnv.live
-      override val timeoutMillions: Long             = timeoutMillions1
+      override val env: Either[ZEnv, ZLayer[Any, Throwable, ZEnv]] = Right(ZEnv.live)
+      override val timeoutMillions: Long                           = timeoutMillions1
     }
   }
 }
