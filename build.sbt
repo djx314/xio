@@ -22,8 +22,8 @@ val a05_xio_sttp      = (project in a05ParentDir / "xio-sttp").dependsOn(a05_xio
 val modulesDir    = baseDir / "modules"
 val xio           = project in modulesDir / "xio"
 val xio_async_sql = (project in modulesDir / "xio-async-sql").dependsOn(xio)
-val xio_runner   = project in modulesDir / "xio-runner"
+val xio_runner    = project in modulesDir / "xio-runner"
 val xio_codegen   = project in modulesDir / "xio-codegen"
 
 addCommandAlias("codegen", "xio_codegen/runMain xio.codegen.XIOCodegen")
-addCommandAlias("p", ";+xio/publishLocal")
+addCommandAlias("p", ";+xio/publishLocal;+xio_runner/publishLocal")

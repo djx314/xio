@@ -4,10 +4,15 @@ import sbt.Keys._
 trait CustomSettings {
 
   val scala_213_Version = "2.13.3"
-  val scalaSettings = Seq(
-    scalacOptions ++= Seq("-feature", "-deprecation"),
-    scalaVersion := scala_213_Version,
+
+  val commonScalaSettings = List(scalacOptions ++= Seq("-feature", "-deprecation"), scalaVersion := scala_213_Version)
+
+  val scalaSettings = commonScalaSettings ::: List(
     crossScalaVersions := List("2.11.12", "2.12.12", scala_213_Version)
+  )
+
+  val scala_212_213_Settings = commonScalaSettings ::: List(
+    crossScalaVersions := List("2.12.12", scala_213_Version)
   )
 
   protected val higherKindsParam = "-language:higherKinds"

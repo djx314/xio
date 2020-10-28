@@ -26,7 +26,9 @@ trait Dependencies {
   val sttp = "com.softwaremill.sttp.client" %% "async-http-client-backend-zio" % "2.2.8"
 
   val AkkaVersion = "2.6.10"
-  val akka = "com.typesafe.akka" %% "akka-actor-typed" % AkkaVersion
+  val akka        = "com.typesafe.akka" %% "akka-actor-typed" % AkkaVersion
+
+  val collectionCompat = "org.scala-lang.modules" %% "scala-collection-compat" % "2.2.0"
 
 }
 
