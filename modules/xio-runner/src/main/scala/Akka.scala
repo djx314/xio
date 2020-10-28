@@ -23,7 +23,7 @@ object HelloWorld {
 
     import scala.concurrent.duration._
     import scala.util._
-    implicit val timeOut: Timeout             = 10.seconds
+    implicit val timeOut: Timeout             = 3.days
     implicit val system: ActorSystem[Nothing] = actorSystem
     implicit val ec: ExecutionContext         = actorSystem.executionContext
 
