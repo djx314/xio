@@ -18,7 +18,6 @@ class XIO[-R, E <: NatEither, +A](private val inner: ZIO[R, E, A]) {
 }
 
 object XIO extends XIOErrorHelper {
-  implicit def XIOToZIOImplicitClass1[I, L <: NatEither, R](i: XIO[I, L, R]): ZIO[I, L, R] = i.inner
-  implicit def zioCompat1[R, R1 <: R, E <: NatEither, E1 <: NatEither, A, A1 >: A](xio: XIO[R, E, A])(implicit v: NatEitherToTag[E, E1]): XIO[R1, E1, A1] =
-    new XIO(xio.inner.mapError(v.tag))
+  implicit def XIOToZIOImplicitClass1[I, L <: NatEither, R](i: XIO[I, L, R]): ZIO[I, L, R]                                            = i.inner
+  implicit def zioCompat1[R, E <: NatEither, E1 <: NatEither, A](xio: XIO[R, E, A])(implicit v: NatEitherToTag[E, E1]): XIO[R, E1, A] = new XIO(xio.inner.mapError(v.tag))
 }
