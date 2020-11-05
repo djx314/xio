@@ -6,12 +6,12 @@ trait AllToZIO[In, R, E, A] {
 }
 
 object AllToZIO {
-  implicit def implicit1[R1 >: R, A1 <: A, Err <: xio.nat.error.NatEither, R, E, A](implicit
+  implicit def implicit1[R1, A1, Err <: xio.nat.error.NatEither, R <: R1, E, A >: A1](implicit
     lift: NatEitherToTag[Err, xio.XError1[E]]
   ): AllToZIO[xio.XIO[R1, Err, A1], R, E, A] = new AllToZIO[xio.XIO[R1, Err, A1], R, E, A] {
     override def input(in: xio.XIO[R1, Err, A1]): zio.ZIO[R, E, A] = in.mapError(d => lift.tag(d).sureRight)
   }
-  implicit def implicit2[R1 >: R, A1 <: A, R, E, A]: AllToZIO[zio.ZIO[R1, E, A1], R, E, A] = new AllToZIO[zio.ZIO[R1, E, A1], R, E, A] {
+  implicit def implicit2[R1, A1, R <: R1, E, A >: A1]: AllToZIO[zio.ZIO[R1, E, A1], R, E, A] = new AllToZIO[zio.ZIO[R1, E, A1], R, E, A] {
     override def input(in: zio.ZIO[R1, E, A1]): zio.ZIO[R, E, A] = in
   }
   implicit def implicit3[R, E, A]: AllToZIO[E, R, E, A] = new AllToZIO[E, R, E, A] {
