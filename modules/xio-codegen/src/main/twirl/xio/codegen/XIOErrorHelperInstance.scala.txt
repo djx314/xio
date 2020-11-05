@@ -8,6 +8,11 @@ object XIOErrorHelperInstance {
         trait MatchAll1Apply@{i}[P <: xio.nat.error.NatEither @for(ii <- 1 to i) { , E@{ii} }, Input, Out] {
             def input@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } Out@{ii} <: Out, Input@{ii} }](@for(ii <- 1 to i) { @if(ii > 1) { , } e@{ii}: xio.ErrorContent[E@{ii}, P] => xio.XIO[Input@{ii}, P, Out@{ii}] }): xio.XIO[Input @for(ii <- 1 to i) { with Input@{ii} }, P, Out]
         }
+
+        class MatchAll1Apply@{i}Impl[P <: xio.nat.error.NatEither @for(ii <- 1 to i) { , E@{ii} }, Input, Out](val xioInstance: xio.XIO[Input, xio.XError@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } E@{ii} }], Out]) extends MatchAll1Apply@{i}[P @for(ii <- 1 to i) { , E@{ii} }, Input, Out] {
+            def input@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } Out@{ii} <: Out, Input@{ii} }](@for(ii <- 1 to i) { @if(ii > 1) { , } e@{ii}: xio.ErrorContent[E@{ii}, P] => xio.XIO[Input@{ii}, P, Out@{ii}] }): xio.XIO[Input @for(ii <- 1 to i) { with Input@{ii} }, P, Out] =
+                xio.using xio xioInstance.catchAll(ii => XIOErrorHelperInstance2.errorCompat@{i}(@for(ii <- 1 to i) { e@{ii} , } ii))
+        }
     }
 
 }
