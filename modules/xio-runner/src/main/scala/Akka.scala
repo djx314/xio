@@ -16,7 +16,8 @@ object HelloWorld {
   final case class RunResult(value: Either[Throwable, Any])
   sealed trait QueueReceive
   final case class InputZIO(zio: ZIO[Any, Throwable, Any], replyTo: ActorRef[RunResult]) extends QueueReceive
-  final case class Greeted(from: ActorRef[InputZIO])                                     extends QueueReceive
+  // final case class Greeted(from: ActorRef[InputZIO])                                     extends QueueReceive
+  final case class Greeted(from: ZIO[ZEnv, Throwable, InputZIO] => Unit) extends QueueReceive
 
   def fromActorRef(replyTo: ActorRef[Greeted])(actorSystem: ActorSystem[Nothing]): CancelableFuture[Int] = {
 
@@ -28,10 +29,11 @@ object HelloWorld {
 
     def forZIO: ZIO[ZEnv, Throwable, Int] = {
       val ii = ZIO.effectAsync[ZEnv, Throwable, InputZIO] { result =>
-        replyTo.ask((i: ActorRef[InputZIO]) => Greeted(i)).onComplete {
+        /*replyTo.ask((i: ActorRef[InputZIO]) => Greeted(i,result)).onComplete {
           case Success(i) => result(ZIO.succeed(i))
           case Failure(e) => result(ZIO.fail(e))
-        }
+        }*/
+        replyTo ! Greeted(result)
       }
       for {
         inner   <- ii
@@ -48,7 +50,7 @@ object HelloWorld {
 
 }
 
-object HelloWorldBot {
+class HelloWorldBot {
 
   val queue: java.util.Queue[HelloWorld.InputZIO] = new util.LinkedList[HelloWorld.InputZIO]
   var replyTo: HelloWorld.Greeted                 = null
@@ -61,14 +63,16 @@ object HelloWorldBot {
           if (replyTo != null) {
             val ele = queue.poll()
             if (ele != null) {
-              replyTo.from ! ele
+              // replyTo.from ! ele
+              replyTo.from(ZIO.succeed(ele))
               replyTo = null
             }
           }
         case i: HelloWorld.Greeted =>
           val ele = queue.poll()
           if (ele != null) {
-            i.from ! ele
+            // i.from ! ele
+            replyTo.from(ZIO.succeed(ele))
           } else {
             replyTo = i
           }
@@ -123,7 +127,7 @@ object HelloWorldMain {
   final case class SayHello(zioTask: ZIO[Any, Throwable, Any], replyTo: ActorRef[HelloWorld.RunResult])
 
   def apply(): Behavior[SayHello] = Behaviors.setup { context =>
-    val replyTo = context.spawn(HelloWorldBot.apply(), "zio-sender")
+    val replyTo = context.spawn((new HelloWorldBot).apply(), "zio-sender")
     HelloWorld.fromActorRef(replyTo)(context.system)
 
     Behaviors.receiveMessage { message =>
