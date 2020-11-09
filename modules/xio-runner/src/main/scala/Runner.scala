@@ -15,8 +15,8 @@ trait Runner[Env] extends AutoCloseable {
 
   private def runToFuture[T](zio: ZIO[Any, Throwable, T])(implicit tag: ClassTag[T]): Future[T] = {
     val promise = SPromise[Any]()
-    val f       = promise.future
     system ! ActorToZIO.InputZIO(zio, promise)
+    val f = promise.future
     f.mapTo[T]
   }
 
