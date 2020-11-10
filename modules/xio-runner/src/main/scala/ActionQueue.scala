@@ -14,7 +14,6 @@ class ActionQueue {
   def apply(): Behavior[ActorToZIO.QueueReceive] = Behaviors.receive { (context, message) =>
     message match {
       case in: ActorToZIO.InputZIO =>
-        println("接收到一个 zio action")
         queue.offer(in)
         if (replyTo != null) {
           val ele = queue.poll()
