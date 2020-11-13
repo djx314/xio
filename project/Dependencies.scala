@@ -3,10 +3,10 @@ import sbt.Keys._
 
 trait Dependencies {
 
-  val zioLoggingVersion = "0.4.0"
+  val zioLoggingVersion = "0.5.3"
   val zio = Seq(
     // "dev.zio" %% "zio-interop-cats"  % "2.1.4.0",
-    "dev.zio" %% "zio"               % "1.0.1",
+    "dev.zio" %% "zio"               % "1.0.3",
     "dev.zio" %% "zio-logging"       % zioLoggingVersion,
     "dev.zio" %% "zio-logging-slf4j" % zioLoggingVersion
   )
