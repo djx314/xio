@@ -24,7 +24,7 @@ object HelloWorldMain {
 
     import scala.concurrent.ExecutionContext.Implicits.global
 
-    val n: Future[List[Int]] = Future.sequence(aa.map(i => runner.unsafeToFuture(i)))
+    val n: Future[List[Int]] = Future.sequence(aa.map(i => runner.unsafeToFuture(i): Future[Int]))
 
     val n1: Future[Unit] = n.map { list =>
       println(list.mkString("\n"))

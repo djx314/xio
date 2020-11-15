@@ -1,10 +1,9 @@
 package xio.akka.runner
 
 import akka.actor.typed._
-import zio.Exit.{Failure, Success}
 import zio._
 
-import scala.concurrent.{ExecutionContext, Future, Promise => SPromise}
+import scala.concurrent.{Future, Promise => SPromise}
 import scala.reflect.ClassTag
 
 trait Runner[Env] extends AutoCloseable {
@@ -32,7 +31,7 @@ trait Runner[Env] extends AutoCloseable {
     }
   }
 
-  def unsafeToFuture[Env1, T](zio: ZIO[Env1, Throwable, T])(implicit tag: ClassTag[T], ev1: Env <:< Env1): Future[T] = runToFuture(zio.provideLayer(layer))
+  def unsafeToFuture[Env1, T](zio: ZIO[Env1, Throwable, T])(implicit tag: ClassTag[T], ev1: Env <:< Env1): CancelableFuture[T] = runToFuture(zio.provideLayer(layer))
 
   override def close(): Unit = {
     try {
