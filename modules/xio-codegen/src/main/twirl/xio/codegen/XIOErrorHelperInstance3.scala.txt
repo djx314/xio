@@ -1,0 +1,18 @@
+@(maxItem: Int)
+
+package xio.helper
+
+object XIOErrorHelperInstance3 {
+
+    @for(i <- 1 to maxItem) {
+        trait MatchAll1Apply@{i}[P @for(ii <- 1 to i) { , E@{ii} }, Input, Out] {
+            def input@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } Out@{ii} <: Out, Input@{ii}, T@{ii} }](@for(ii <- 1 to i) { @if(ii > 1) { , } e@{ii}: E@{ii} => T@{ii} })(implicit @for(ii <- 1 to i) { @if(ii > 1) { , } con@{ii}: xio.helper.AllToZIO[T@{ii}, Input@{ii}, P, Out@{ii}] }): zio.ZIO[Input @for(ii <- 1 to i) { with Input@{ii} }, P, Out]
+        }
+
+        class MatchAll1Apply@{i}Impl[P @for(ii <- 1 to i) { , E@{ii} }, Input, Out](val xioInstance: xio.XIO[Input, xio.XError@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } E@{ii} }], Out]) extends MatchAll1Apply@{i}[P @for(ii <- 1 to i) { , E@{ii} }, Input, Out] {
+            def input@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } Out@{ii} <: Out, Input@{ii}, T@{ii} }](@for(ii <- 1 to i) { @if(ii > 1) { , } e@{ii}: E@{ii} => T@{ii} })(implicit @for(ii <- 1 to i) { @if(ii > 1) { , } con@{ii}: xio.helper.AllToZIO[T@{ii}, Input@{ii}, P, Out@{ii}] }): zio.ZIO[Input @for(ii <- 1 to i) { with Input@{ii} }, P, Out] =
+                xioInstance.catchAll(ii => XIOErrorHelperInstance4.errorCompat@{i}(@for(ii <- 1 to i) { e@{ii}.andThen(con@{ii}.input) , } ii))
+        }
+    }
+
+}

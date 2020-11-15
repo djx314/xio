@@ -1,0 +1,2 @@
+CustomSettings.scalaSettings
+CustomSettings.compilerSettings

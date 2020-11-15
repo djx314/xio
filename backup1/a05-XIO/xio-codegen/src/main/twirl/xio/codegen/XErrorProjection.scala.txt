@@ -1,0 +1,36 @@
+@(maxItem: Int)
+
+package xio
+
+trait XErrorAlias {
+
+    type XError0 = nat.error.NatEitherZero
+    type XError1[T1] = nat.error.NatEitherPositive[nat.error.NatEitherZero, T1]
+    @for(i <- 2 to maxItem) {
+        type XError@{i}[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }] = nat.error.NatEitherPositive[XError@{i - 1}[@for(ii <- 1 to i - 1) { @if(ii > 1) { , } T@{ii} }], T@{i}]
+    }
+
+    class XError1Setter {
+        def apply[T1](i1: T1): XError1[T1] = {
+            val setter = implicitly[nat.error.NatEitherSetter[XError1[T1], T1]]
+            setter.put(i1)
+        }
+    }
+    object XError1 extends XError1Setter
+
+    @for(i <- 2 to maxItem) {
+        class XError@{i}Setter[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }] {
+            @for(ii <- 1 to i) {
+                def set@{ii}(i@{ii}: T@{ii}): XError@{i}[@for(iii <- 1 to i) { @if(iii > 1) { , } T@{iii} }] = {
+                    val setter = implicitly[nat.error.NatEitherSetter[XError@{i}[@for(iii <- 1 to i) { @if(iii > 1) { , } T@{iii} }], T@{ii}]]
+                    setter.put(i@{ii})
+                }
+            }
+            def apply[T](ii: T)(implicit n: nat.error.NatEitherSetter[XError@{i}[@for(iii <- 1 to i) { @if(iii > 1) { , } T@{iii} }], T]): XError@{i}[@for(iii <- 1 to i) { @if(iii > 1) { , } T@{iii} }] = n.put(ii)
+        }
+        object XError@{i} {
+            def apply[@for(iii <- 1 to i) { @if(iii > 1) { , } T@{iii} }]: XError@{i}Setter[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }] = new XError@{i}Setter[@for(ii <- 1 to i) { @if(ii > 1) { , } T@{ii} }]
+        }
+    }
+
+}
