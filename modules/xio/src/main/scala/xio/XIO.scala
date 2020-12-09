@@ -20,4 +20,6 @@ class XIO[-R, E <: NatEither, +A](private val inner: ZIO[R, E, A]) {
 object XIO extends XIOErrorHelper {
   implicit def XIOToZIOImplicitClass1[I, L <: NatEither, R](i: XIO[I, L, R]): ZIO[I, L, R]                                            = i.inner
   implicit def zioCompat1[R, E <: NatEither, E1 <: NatEither, A](xio: XIO[R, E, A])(implicit v: NatEitherToTag[E, E1]): XIO[R, E1, A] = new XIO(xio.inner.mapError(v.tag))
+
+  def effectTotal[T](t: => T): XIO[Any, XError1[EffectError], T] = using xio ZIO.effect(t).mapError((n: Throwable) => new EffectError(n))
 }
