@@ -13,7 +13,8 @@ class XIO[-R, E <: NatEither, +A](private val inner: ZIO[R, E, A]) {
 
   def map[A1](i: A => A1): XIO[R, E, A1] = new XIO(inner.map(i))
 
-  def liftError[E1 <: NatEither](implicit nm: NatEitherToTag[E, E1]): XIO[R, E1, A] = new XIO(inner.mapError(nm.tag))
+  def liftError[E1 <: NatEither](implicit nm: NatEitherToTag[E, E1]): XIO[R, E1, A]  = new XIO(inner.mapError(nm.tag))
+  def liftErrorToZIO[E1](implicit nm: NatEitherToTag[E, XError1[E1]]): ZIO[R, E1, A] = inner.mapError(i => nm.tag(i).sureRight)
 
 }
 
